@@ -1,3 +1,7 @@
+import { useParams } from 'react-router-dom';
+
 export const Page = () => {
-  return <div>Page</div>;
+  const { slug } = useParams();
+
+  return <div>Page slug: {slug}</div>;
 };
