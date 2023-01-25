@@ -2,9 +2,13 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { SlDiamond } from 'react-icons/sl';
 import { MdMenu, MdClose, MdOutlineLightMode } from 'react-icons/md';
+import { MenuItems } from './MenuItems/MenuItems';
 
-const NavigationWrapper = styled.div`
-  height: 8rem;
+const NavigationWrapper = styled.nav`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: ${({ theme }) => theme.navigation.height};
   background-color: ${({ theme }) => theme.color.element};
   display: flex;
   align-items: center;
@@ -33,6 +37,19 @@ const RightSection = styled.div`
   gap: 2rem;
 `;
 
+export const NavigationItemsContainer = styled.div`
+  position: absolute;
+  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+  height: calc(100vh - ${({ theme }) => theme.navigation.height});
+  max-height: calc(100vh - ${({ theme }) => theme.navigation.height});
+  width: 100%;
+  left: 0;
+  top: ${({ theme }) => theme.navigation.height};
+  background-color: ${({ theme }) => theme.color.accent};
+  justify-content: center;
+  overflow-y: auto;
+`;
+
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -56,6 +73,9 @@ export const Navigation = () => {
           <StyledMdMenu size="3rem" onClick={openMenu} />
         )}
       </RightSection>
+      <NavigationItemsContainer isOpen={isOpen}>
+        <MenuItems />
+      </NavigationItemsContainer>
     </NavigationWrapper>
   );
 };
