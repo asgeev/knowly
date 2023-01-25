@@ -38,18 +38,18 @@ export const baseTheme = {
 
 export const lightTheme = {
     color: {
-        bodyColor: 'white',
-        textColor: '#333333',
-        primary: '#333333',
+        body: 'white',
+        text: '#333333',
+        accent: '#333333',
         secondary: '',
     },
 };
 
 export const darkTheme = {
     color: {
-        bodyColor: '#2f2f2f',
-        textColor: '#e5e5e5',
-        primary: '#e5e5e5',
-        secondary: '',
+        body: '#12131a',
+        text: '#e5e5e5',
+        accent: '#1855c9',
+        element: '#1e2129',
     },
 };

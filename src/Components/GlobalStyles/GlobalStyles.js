@@ -15,12 +15,12 @@ html {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     font-size: 1.6rem;
     text-rendering: optimizeLegibility;
     /* transition: all 0.2s linear; */
-    background-color: ${({ theme }) => theme.color.bodyColor};
-    color: ${({ theme }) => theme.color.textColor}
+    background-color: ${({ theme }) => theme.color.body};
+    color: ${({ theme }) => theme.color.text}
 }
 `;

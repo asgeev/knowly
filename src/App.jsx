@@ -1,7 +1,7 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './Components/GlobalStyles/GlobalStyles';
-import { darkTheme, baseTheme } from './assets/Theme/theme';
+import { darkTheme, baseTheme, lightTheme } from './assets/Theme/theme';
 import { AppLayout } from './Components/AppLayout/AppLayout';
 import { PageNotFound } from './Components/PageNotFound/PageNotFound';
 import { Page } from './Components/Page/Page';
