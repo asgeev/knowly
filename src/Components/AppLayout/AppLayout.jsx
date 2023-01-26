@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
+import { useState } from 'react';
 import { Navigation } from '../Navigation/Navigation';
 import { SearchBar } from '../SearchBar/SearchBar';
 
@@ -61,11 +62,13 @@ const OutletContainerCenter = styled.div`
 `;
 
 export const AppLayout = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <AppLayoutWrapper>
-      <Navigation />
+      <Navigation isOpen={isOpen} setIsOpen={setIsOpen} />
       <Main>
-        <SearchBar />
+        <SearchBar isOpen={isOpen} />
         <OutletContainerCenter>
           <OutletContainer>
             <Outlet />

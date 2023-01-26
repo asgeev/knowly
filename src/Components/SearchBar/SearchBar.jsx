@@ -4,12 +4,14 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDebounce } from '../../Hooks/useDebounce';
 
 export const SearchBarContainer = styled.div`
+  display: ${({ isOpen }) => (isOpen ? 'none' : 'block')};
   position: sticky;
   top: ${({ theme }) => theme.navigation.mobile_height};
   left: 0;
   background-color: ${({ theme }) => theme.color.body};
   padding: 2rem;
   z-index: 3;
+
   ${({ theme }) => theme.mq.lg} {
     position: sticky;
     top: 0;
@@ -31,7 +33,7 @@ export const StyledSearchBar = styled.input`
   padding: 1rem;
 `;
 
-export const SearchBar = () => {
+export const SearchBar = ({ isOpen }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchElements, setSearchElements] = useState([]);
   const debounceSearchQuery = useCallback(useDebounce(searchQuery, 600));
@@ -41,7 +43,7 @@ export const SearchBar = () => {
   }, [debounceSearchQuery]);
 
   return (
-    <SearchBarContainer>
+    <SearchBarContainer isOpen={isOpen}>
       <InputContainer>
         <MdSearch size="3rem" />
         <StyledSearchBar

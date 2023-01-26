@@ -20,6 +20,7 @@ export const NavigationWrapper = styled.nav`
     align-items: flex-start;
     flex: 1 20%;
     flex-direction: column;
+    justify-content: start;
     gap: 4rem;
     height: ${({ theme }) => theme.navigation.desktop_height};
     max-width: ${({ theme }) => theme.navigation.desktop_width};
@@ -52,20 +53,28 @@ const RightSection = styled.div`
 `;
 
 export const NavigationItemsContainer = styled.div`
-  position: absolute;
+  position: fixed;
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
-  height: calc(100vh - ${({ theme }) => theme.navigation.height});
-  max-height: calc(100vh - ${({ theme }) => theme.navigation.height});
+  /* height: calc(100vh - ${({ theme }) => theme.navigation.height}); */
+  height: 100vh;
+  /* max-height: calc(100vh - ${({ theme }) => theme.navigation.height}); */
+  /* height: 100vh; */
   width: 100%;
   left: 0;
   top: ${({ theme }) => theme.navigation.mobile_height};
   background-color: ${({ theme }) => theme.color.accent};
   justify-content: center;
   overflow-y: auto;
-  z-index: 10;
+  z-index: 999999;
+  /* transition: 1s; */
+  /* transform: translateY(-100vh); */
 
   ${({ theme }) => theme.mq.lg} {
-    display: none;
+    position: static;
+    /* justify-content: flex-start; */
+    display: flex;
+    overflow: hidden;
+    background-color: transparent;
   }
 `;
 
@@ -79,9 +88,7 @@ export const MenuIcon = styled.div`
   }
 `;
 
-export const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
+export const Navigation = ({ isOpen, setIsOpen }) => {
   const closeMenu = () => {
     setIsOpen(false);
   };
@@ -94,6 +101,9 @@ export const Navigation = () => {
       <LeftSection>
         <SlDiamond size="3rem" />
       </LeftSection>
+      <NavigationItemsContainer isOpen={isOpen}>
+        <MenuItems />
+      </NavigationItemsContainer>
       <RightSection>
         <StyledMdOutlineLightMode size="3rem" />
         <MenuIcon>
@@ -104,9 +114,6 @@ export const Navigation = () => {
           )}
         </MenuIcon>
       </RightSection>
-      <NavigationItemsContainer isOpen={isOpen}>
-        <MenuItems />
-      </NavigationItemsContainer>
     </NavigationWrapper>
   );
 };

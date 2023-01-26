@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const HomeContainer = styled.div`
   width: 100%;
+  line-height: 3rem;
 `;
 
 export const Home = () => {

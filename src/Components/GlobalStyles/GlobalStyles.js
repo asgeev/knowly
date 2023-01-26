@@ -23,6 +23,5 @@ body {
     background-color: ${({ theme }) => theme.color.body};
     color: ${({ theme }) => theme.color.text};
     height: 100%;
-    line-height: 3rem;
 }
 `;
