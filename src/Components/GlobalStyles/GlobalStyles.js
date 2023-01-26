@@ -21,6 +21,8 @@ body {
     text-rendering: optimizeLegibility;
     /* transition: all 0.2s linear; */
     background-color: ${({ theme }) => theme.color.body};
-    color: ${({ theme }) => theme.color.text}
+    color: ${({ theme }) => theme.color.text};
+    height: 100%;
+    line-height: 3rem;
 }
 `;

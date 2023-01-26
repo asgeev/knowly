@@ -4,7 +4,16 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDebounce } from '../../Hooks/useDebounce';
 
 export const SearchBarContainer = styled.div`
+  position: sticky;
+  top: ${({ theme }) => theme.navigation.mobile_height};
+  left: 0;
+  background-color: ${({ theme }) => theme.color.body};
   padding: 2rem;
+  z-index: 3;
+  ${({ theme }) => theme.mq.lg} {
+    position: sticky;
+    top: 0;
+  }
 `;
 
 export const InputContainer = styled.div`

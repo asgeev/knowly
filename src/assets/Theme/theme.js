@@ -32,7 +32,10 @@ export const baseTheme = {
         xxl: '@media (min-width: 1400px)',
     },
     navigation: {
-        height: '8rem',
+        mobile_height: '8rem',
+        mobile_width: '100%',
+        desktop_height: '100vh',
+        desktop_width: '27rem'
     },
 };
 
