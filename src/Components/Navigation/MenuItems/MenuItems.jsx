@@ -1,8 +1,15 @@
 import styled from 'styled-components';
 
 const MenuItem = styled.li`
-  padding: 1rem 0;
   cursor: pointer;
+  list-style: none;
+
+  &:hover {
+    color: red;
+  }
+
+  ${({ theme }) => theme.mq.lg} {
+  }
 `;
 
 export const MenuItems = () => {

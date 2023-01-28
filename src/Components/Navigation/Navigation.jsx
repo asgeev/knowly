@@ -7,9 +7,9 @@ import { MenuItems } from './MenuItems/MenuItems';
 export const NavigationWrapper = styled.nav`
   position: fixed;
   top: 0;
-  width: ${({ theme }) => theme.navigation.mobile_width};
-  height: ${({ theme }) => theme.navigation.mobile_height};
-  background-color: ${({ theme }) => theme.color.element};
+  width: ${({ theme }) => theme.navBar.mobileWidth};
+  height: ${({ theme }) => theme.navBar.mobileHeight};
+  background-color: ${({ theme }) => theme.color.accent};
   display: flex;
   align-items: center;
   padding: 2rem;
@@ -18,15 +18,15 @@ export const NavigationWrapper = styled.nav`
   ${({ theme }) => theme.mq.lg} {
     display: flex;
     align-items: flex-start;
-    flex: 1 20%;
     flex-direction: column;
     justify-content: start;
     gap: 4rem;
-    height: ${({ theme }) => theme.navigation.desktop_height};
-    max-width: ${({ theme }) => theme.navigation.desktop_width};
+    height: ${({ theme }) => theme.navBar.desktopHeight};
+    max-width: ${({ theme }) => theme.navBar.desktopWidth};
     position: sticky;
     top: 0;
     left: 0;
+    z-index: 9999;
     padding: 3rem;
   }
 `;
@@ -55,23 +55,16 @@ const RightSection = styled.div`
 export const NavigationItemsContainer = styled.div`
   position: fixed;
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
-  /* height: calc(100vh - ${({ theme }) => theme.navigation.height}); */
   height: 100vh;
-  /* max-height: calc(100vh - ${({ theme }) => theme.navigation.height}); */
-  /* height: 100vh; */
   width: 100%;
-  left: 0;
-  top: ${({ theme }) => theme.navigation.mobile_height};
+  right: 0;
+  top: ${({ theme }) => theme.navBar.mobileHeight};
   background-color: ${({ theme }) => theme.color.accent};
   justify-content: center;
   overflow-y: auto;
-  z-index: 999999;
-  /* transition: 1s; */
-  /* transform: translateY(-100vh); */
 
   ${({ theme }) => theme.mq.lg} {
     position: static;
-    /* justify-content: flex-start; */
     display: flex;
     overflow: hidden;
     background-color: transparent;

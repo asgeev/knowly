@@ -5,60 +5,61 @@ import { Navigation } from '../Navigation/Navigation';
 import { SearchBar } from '../SearchBar/SearchBar';
 
 const AppLayoutWrapper = styled.div`
+  display: flex;
+
   ${({ theme }) => theme.mq.lg} {
-    display: flex;
     flex-direction: row;
+    gap: 9rem;
   }
 `;
 
-const OutletContainer = styled.div`
-  max-width: ${({ theme }) => theme.containerSize.sm};
-  width: 100%;
+const Main = styled.main`
   display: flex;
-  flex-direction: row;
-  margin: 0 1rem;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: ${({ theme }) => theme.navBar.mobileHeight};
+  margin-bottom: 7rem;
+
+  ${({ theme }) => theme.mq.lg} {
+    align-items: flex-start;
+    margin: 0;
+  }
+`;
+
+const OutletContainerCenter = styled.div`
+  margin-left: 2rem;
+  margin-right: 2rem;
 
   ${({ theme }) => theme.mq.md} {
+    margin: 0;
     max-width: ${({ theme }) => theme.containerSize.md};
   }
 
   ${({ theme }) => theme.mq.lg} {
     max-width: calc(
       ${({ theme }) => theme.containerSize.lg} -
-        ${({ theme }) => theme.navigation.desktop_width}
+        ${({ theme }) => theme.navBar.desktopWidth}
     );
   }
 
   ${({ theme }) => theme.mq.xl} {
     max-width: calc(
       ${({ theme }) => theme.containerSize.xl} -
-        ${({ theme }) => theme.navigation.desktop_width}
+        ${({ theme }) => theme.navBar.desktopWidth}
     );
   }
 
   ${({ theme }) => theme.mq.xxl} {
     max-width: calc(
       ${({ theme }) => theme.containerSize.xxl} -
-        ${({ theme }) => theme.navigation.desktop_width}
+        ${({ theme }) => theme.navBar.desktopWidth}
     );
   }
 `;
 
-const Main = styled.main`
-  margin-top: ${({ theme }) => theme.navigation.mobile_height};
-  flex: 1 80%;
-  margin-bottom: 7rem;
-
-  ${({ theme }) => theme.mq.lg} {
-    margin: 0;
-    margin-bottom: 10rem;
-  }
-`;
-
-const OutletContainerCenter = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 5rem;
+const OutletContainer = styled.div`
+  width: 100%;
 `;
 
 export const AppLayout = () => {
@@ -68,8 +69,8 @@ export const AppLayout = () => {
     <AppLayoutWrapper>
       <Navigation isOpen={isOpen} setIsOpen={setIsOpen} />
       <Main>
-        <SearchBar isOpen={isOpen} />
         <OutletContainerCenter>
+          <SearchBar isOpen={isOpen} />
           <OutletContainer>
             <Outlet />
           </OutletContainer>

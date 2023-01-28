@@ -31,17 +31,17 @@ export const baseTheme = {
         xl: '@media (min-width: 1200px)',
         xxl: '@media (min-width: 1400px)',
     },
-    navigation: {
-        mobile_height: '8rem',
-        mobile_width: '100%',
-        desktop_height: '100vh',
-        desktop_width: '27rem'
+    navBar: {
+        mobileHeight: '8rem',
+        mobileWidth: '100%',
+        desktopHeight: '100vh',
+        desktopWidth: '27rem'
     },
 };
 
 export const lightTheme = {
     color: {
-        body: 'white',
+        body: 'hsl(0,0%,100%)',
         text: '#333333',
         accent: '#333333',
         secondary: '',
@@ -50,7 +50,7 @@ export const lightTheme = {
 
 export const darkTheme = {
     color: {
-        body: '#12131a',
+        body: 'hsl(225,5.88%,13.33%)',
         text: '#e5e5e5',
         accent: '#1855c9',
         element: '#1e2129',
