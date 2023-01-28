@@ -1,31 +1,46 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 const MenuItem = styled.li`
   cursor: pointer;
   list-style: none;
+  padding: 2rem 3rem;
 
   &:hover {
-    color: red;
+    background-color: ${({ theme }) => theme.color.accent};
   }
 
   ${({ theme }) => theme.mq.lg} {
+    font-size: 1.4rem;
+    border-radius: 0.7rem;
+    padding: 1rem 2rem;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.color.elementSelected};
+    }
   }
 `;
 
-export const MenuItems = () => {
+export const StyledNavLink = styled(NavLink)`
+  color: white;
+  text-decoration: none;
+`;
+
+export const MenuItemsWrapper = styled.div`
+  width: 100%;
+`;
+
+const slug = 'EZD';
+export const MenuItems = ({ closeMenu }) => {
   return (
-    <div>
+    <MenuItemsWrapper>
       <ul>
-        <MenuItem>Wydział Informatyki</MenuItem>
-        <MenuItem>Wydział Świadczeń Opieki zdrowotnej</MenuItem>
-        <MenuItem>Wydział Oragnizacyjny</MenuItem>
-        <MenuItem>Wydział Finansowy</MenuItem>
-        <MenuItem>el</MenuItem>
-        <MenuItem>el</MenuItem>
-        <MenuItem>el</MenuItem>
-        <MenuItem>el</MenuItem>
-        <MenuItem>el</MenuItem>
+        <MenuItem>
+          <StyledNavLink to={`page/${slug}`} onClick={() => closeMenu()}>
+            EZD
+          </StyledNavLink>
+        </MenuItem>
       </ul>
-    </div>
+    </MenuItemsWrapper>
   );
 };

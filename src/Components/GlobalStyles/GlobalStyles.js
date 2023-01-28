@@ -8,10 +8,13 @@ export const GlobalStyles = createGlobalStyle`
     --moz-osx-font-smothing: grayscale;
     margin: 0;
     padding: 0;
+
+    
 }
 
 html {
-    font-size: 62.5%;
+    font-size: 62.5%; 
+    
 }
 
 body {
@@ -22,6 +25,8 @@ body {
     /* transition: all 0.2s linear; */
     background-color: ${({ theme }) => theme.color.body};
     color: ${({ theme }) => theme.color.text};
-    /* height: 100%; */
+    height: 100%
 }
+
+
 `;

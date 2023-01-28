@@ -55,6 +55,6 @@ export const darkTheme = {
         accent: 'hsl(219, 79%, 44%)',
         navigationBackground: '#202427',
         elementBackground: '#202427',
-        elementSelected: '#202427'
+        elementSelected: '#131517'
     },
 };

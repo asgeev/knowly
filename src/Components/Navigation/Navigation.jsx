@@ -55,19 +55,34 @@ const RightSection = styled.div`
 export const NavigationItemsContainer = styled.div`
   position: fixed;
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
-  height: 100vh;
+  height: calc(100vh - ${({ theme }) => theme.navBar.mobileHeight});
   width: 100%;
-  right: 0;
+  left: 0;
   top: ${({ theme }) => theme.navBar.mobileHeight};
-  background-color: ${({ theme }) => theme.color.accent};
-  justify-content: center;
+  background-color: ${({ theme }) => theme.color.body};
   overflow-y: auto;
+  padding-top: 2rem;
+
+  &::-webkit-scrollbar {
+    width: 9px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(155, 155, 155, 0.5);
+    border-radius: 20px;
+    border: transparent;
+  }
 
   ${({ theme }) => theme.mq.lg} {
     position: static;
     display: flex;
     overflow: hidden;
     background-color: transparent;
+    height: 100%;
+    padding: 0;
+    overflow: auto;
   }
 `;
 
@@ -95,7 +110,7 @@ export const Navigation = ({ isOpen, setIsOpen }) => {
         <SlDiamond size="3rem" />
       </LeftSection>
       <NavigationItemsContainer isOpen={isOpen}>
-        <MenuItems />
+        <MenuItems closeMenu={closeMenu} />
       </NavigationItemsContainer>
       <RightSection>
         <StyledMdOutlineLightMode size="3rem" />

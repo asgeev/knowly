@@ -1,6 +1,6 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigation } from '../Navigation/Navigation';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { Footer } from '../Footer/Footer';
@@ -70,7 +70,13 @@ const OutletContainer = styled.div`
 `;
 
 export const AppLayout = () => {
+  const { pathname } = useLocation();
+
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
     <AppLayoutWrapper>

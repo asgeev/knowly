@@ -1,5 +1,5 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-// import 'normalize.css/normalize.css';
+import 'normalize.css/normalize.css';
 import { GlobalStyles } from './Components/GlobalStyles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { darkTheme, baseTheme, lightTheme } from './assets/Theme/theme';
