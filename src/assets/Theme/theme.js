@@ -44,15 +44,17 @@ export const lightTheme = {
         body: 'hsl(0,0%,100%)',
         text: '#333333',
         accent: '#333333',
-        secondary: '',
+        elementBackground: '',
     },
 };
 
 export const darkTheme = {
     color: {
-        body: 'hsl(225,5.88%,13.33%)',
-        text: '#e5e5e5',
-        accent: '#1855c9',
-        element: '#1e2129',
+        body: '#131517',
+        text: 'hsl(0, 0%, 90%)',
+        accent: 'hsl(219, 79%, 44%)',
+        navigationBackground: '#202427',
+        elementBackground: '#202427',
+        elementSelected: '#202427'
     },
 };

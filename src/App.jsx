@@ -1,8 +1,8 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+// import 'normalize.css/normalize.css';
 import { GlobalStyles } from './Components/GlobalStyles/GlobalStyles';
+import { ThemeProvider } from 'styled-components';
 import { darkTheme, baseTheme, lightTheme } from './assets/Theme/theme';
-import 'normalize.css/normalize.css';
 import { AppLayout } from './Components/AppLayout/AppLayout';
 import { PageNotFound } from './Components/PageNotFound/PageNotFound';
 import { Page } from './Components/Page/Page';
@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AppLayout />}>
             <Route index element={<Home />} />
-            <Route path="page/:slug" element={<Page />} />
+            <Route index path="page/:slug" element={<Page />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>

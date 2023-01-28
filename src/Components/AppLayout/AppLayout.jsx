@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { Navigation } from '../Navigation/Navigation';
 import { SearchBar } from '../SearchBar/SearchBar';
+import { Footer } from '../Footer/Footer';
 
 const AppLayoutWrapper = styled.div`
   display: flex;
 
   ${({ theme }) => theme.mq.lg} {
     flex-direction: row;
-    gap: 9rem;
+    gap: 4rem;
   }
 `;
 
@@ -22,17 +23,22 @@ const Main = styled.main`
   margin-bottom: 7rem;
 
   ${({ theme }) => theme.mq.lg} {
-    align-items: flex-start;
     margin: 0;
+    align-items: flex-start;
   }
 `;
 
-const OutletContainerCenter = styled.div`
-  margin-left: 2rem;
-  margin-right: 2rem;
+const MainSubContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: 100%;
 
+  ${({ theme }) => theme.mq.sm} {
+    max-width: ${({ theme }) => theme.containerSize.sm};
+  }
   ${({ theme }) => theme.mq.md} {
-    margin: 0;
     max-width: ${({ theme }) => theme.containerSize.md};
   }
 
@@ -59,7 +65,8 @@ const OutletContainerCenter = styled.div`
 `;
 
 const OutletContainer = styled.div`
-  width: 100%;
+  /* width: 100%; */
+  /* margin: 1rem 0 3rem 0; */
 `;
 
 export const AppLayout = () => {
@@ -69,12 +76,13 @@ export const AppLayout = () => {
     <AppLayoutWrapper>
       <Navigation isOpen={isOpen} setIsOpen={setIsOpen} />
       <Main>
-        <OutletContainerCenter>
+        <MainSubContainer>
           <SearchBar isOpen={isOpen} />
           <OutletContainer>
             <Outlet />
           </OutletContainer>
-        </OutletContainerCenter>
+          <Footer />
+        </MainSubContainer>
       </Main>
     </AppLayoutWrapper>
   );

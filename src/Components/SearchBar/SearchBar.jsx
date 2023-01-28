@@ -11,6 +11,7 @@ export const SearchBarContainer = styled.div`
   background-color: ${({ theme }) => theme.color.body};
   width: 100%;
   padding: 3rem 0;
+  border-bottom: 1px solid #262626;
 
   ${({ theme }) => theme.mq.lg} {
     position: sticky;
@@ -21,7 +22,12 @@ export const SearchBarContainer = styled.div`
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
+  border-radius: 1rem;
   gap: 2rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: ${({ theme }) => theme.color.elementBackground};
 `;
 
 export const StyledSearchBar = styled.input`

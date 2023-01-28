@@ -22,6 +22,6 @@ body {
     /* transition: all 0.2s linear; */
     background-color: ${({ theme }) => theme.color.body};
     color: ${({ theme }) => theme.color.text};
-    height: 100%;
+    /* height: 100%; */
 }
 `;

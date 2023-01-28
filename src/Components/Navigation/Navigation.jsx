@@ -9,7 +9,7 @@ export const NavigationWrapper = styled.nav`
   top: 0;
   width: ${({ theme }) => theme.navBar.mobileWidth};
   height: ${({ theme }) => theme.navBar.mobileHeight};
-  background-color: ${({ theme }) => theme.color.accent};
+  background-color: ${({ theme }) => theme.color.navigationBackground};
   display: flex;
   align-items: center;
   padding: 2rem;
