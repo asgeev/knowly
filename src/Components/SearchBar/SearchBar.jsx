@@ -36,10 +36,12 @@ export const StyledSearchBar = styled.input`
 export const SearchBar = ({ isOpen }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchElements, setSearchElements] = useState([]);
-  const debounceSearchQuery = useCallback(useDebounce(searchQuery, 600));
+  const debounceSearchQuery = useCallback(useDebounce(searchQuery, 600)).trim();
 
   useEffect(() => {
-    console.log(debounceSearchQuery);
+    if (debounceSearchQuery.length >= 1) {
+      console.log(debounceSearchQuery);
+    }
   }, [debounceSearchQuery]);
 
   return (
