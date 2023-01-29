@@ -45,6 +45,8 @@ export const StyledMdOutlineLightMode = styled(MdOutlineLightMode)`
 const LeftSection = styled.div`
   display: flex;
   align-items: center;
+  width: 100%;
+  gap: 4rem;
 `;
 const RightSection = styled.div`
   display: flex;
@@ -108,6 +110,7 @@ export const Navigation = ({ isOpen, setIsOpen }) => {
     <NavigationWrapper>
       <LeftSection>
         <SlDiamond size="3rem" />
+        <p style={{ color: 'gold' }}>KnowHow</p>
       </LeftSection>
       <NavigationItemsContainer isOpen={isOpen}>
         <MenuItems closeMenu={closeMenu} />

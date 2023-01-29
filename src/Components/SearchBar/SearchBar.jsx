@@ -26,7 +26,7 @@ export const InputContainer = styled.div`
   border-radius: 1rem;
   gap: 2rem;
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   background-color: ${({ theme }) => theme.color.elementBackground};
 `;
 
