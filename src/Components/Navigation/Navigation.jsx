@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { SlDiamond } from 'react-icons/sl';
 import { MdMenu, MdClose, MdOutlineLightMode } from 'react-icons/md';
-import { MenuItems } from './MenuItems/MenuItems';
+import { NavLinks } from './NavLinks/NavLinks';
 
 export const NavigationWrapper = styled.nav`
   position: fixed;
@@ -113,7 +113,7 @@ export const Navigation = ({ isOpen, setIsOpen }) => {
         <p style={{ color: 'gold' }}>KnowHow</p>
       </LeftSection>
       <NavigationItemsContainer isOpen={isOpen}>
-        <MenuItems closeMenu={closeMenu} />
+        <NavLinks />
       </NavigationItemsContainer>
       <RightSection>
         <StyledMdOutlineLightMode size="3rem" />

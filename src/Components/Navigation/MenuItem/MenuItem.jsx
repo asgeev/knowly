@@ -1,9 +1,9 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { MdEco, MdExpandMore } from 'react-icons/md';
-import { FiHome } from 'react-icons/fi';
 
-const StyledNavLink = styled(NavLink)`
+export const StyledNavLink = styled(NavLink)`
   cursor: pointer;
   list-style: none;
   padding: 2rem 3rem;
@@ -13,6 +13,12 @@ const StyledNavLink = styled(NavLink)`
   align-items: center;
   justify-content: space-between;
   border-radius: 0.7rem;
+  margin: 0.7rem 0;
+
+  &.active {
+    background-color: ${({ theme }) => theme.color.accent};
+    /* color: gold; */
+  }
 
   &:hover {
     background-color: ${({ theme }) => theme.color.accent};
@@ -41,16 +47,6 @@ export const ExpandIcon = styled.div`
   align-items: center;
 `;
 
-export const MenuItemsWrapper = styled.div`
-  width: 100%;
-  padding: 2rem;
-
-  ${({ theme }) => theme.mq.lg} {
-    margin-top: 4rem;
-    padding: 0;
-  }
-`;
-
 export const TitleIconWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -58,29 +54,20 @@ export const TitleIconWrapper = styled.div`
   gap: 2rem;
 `;
 
-const slug = 'EZD';
-export const MenuItems = ({ closeMenu }) => {
-  return (
-    <MenuItemsWrapper>
-      <StyledNavLink to={'/'} onClick={() => closeMenu()}>
-        <TitleIconWrapper>
-          <Icon>
-            <FiHome size="2rem" />
-          </Icon>
-          <Title>Home</Title>
-        </TitleIconWrapper>
-      </StyledNavLink>
-      <StyledNavLink to={`page/${slug}`} onClick={() => closeMenu()}>
-        <TitleIconWrapper>
-          <Icon>
-            <MdEco size="2rem" />
-          </Icon>
-          <Title>Ezd</Title>
-        </TitleIconWrapper>
-        <ExpandIcon>
-          <MdExpandMore size={'2rem'} />
-        </ExpandIcon>
-      </StyledNavLink>
-    </MenuItemsWrapper>
-  );
+export const MenuItemWrapper = styled.div`
+  color: white;
+  font-size: 1.4rem;
+`;
+
+export const SubmenuWrapper = styled.div`
+  display: ${({ open }) => (open ? 'block' : 'none')};
+  width: 100%;
+  height: auto;
+  padding: 1rem 2.8rem;
+`;
+
+const slug = 'asfas';
+
+export const MenuItem = () => {
+  return <MenuItemWrapper></MenuItemWrapper>;
 };
