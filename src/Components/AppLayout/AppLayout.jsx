@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Navigation } from '../Navigation/Navigation';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { Footer } from '../Footer/Footer';
+import { Widgets } from '../Widgets/Widgets';
 
 const AppLayoutWrapper = styled.div`
   min-height: 100dvh;
@@ -19,20 +20,39 @@ const AppLayoutWrapper = styled.div`
 `;
 
 const Main = styled.main`
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto 1fr;
+
   ${({ theme }) => theme.mq.lg} {
-    margin-left: 270px;
+    margin-left: ${({ theme }) => theme.navBar.desktopWidth};
+    /* align-items: flex-start; */
   }
 `;
 
 const MainSubContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  align-items: center;
   width: 100%;
+
+  ${({ theme }) => theme.mq.lg} {
+    /* justify-content: flex-start;
+    align-items: flex-start; */
+
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    align-items: flex-start;
+  }
+`;
+
+const OutletContainer = styled.div`
+  padding: 0 2rem;
 
   ${({ theme }) => theme.mq.sm} {
     max-width: ${({ theme }) => theme.containerSize.sm};
+    padding: 0;
   }
   ${({ theme }) => theme.mq.md} {
     max-width: ${({ theme }) => theme.containerSize.md};
@@ -43,6 +63,8 @@ const MainSubContainer = styled.div`
       ${({ theme }) => theme.containerSize.lg} -
         ${({ theme }) => theme.navBar.desktopWidth}
     );
+    padding: 0 3rem;
+    margin-top: 20px;
   }
 
   ${({ theme }) => theme.mq.xl} {
@@ -58,11 +80,6 @@ const MainSubContainer = styled.div`
         ${({ theme }) => theme.navBar.desktopWidth}
     );
   }
-`;
-
-const OutletContainer = styled.div`
-  /* width: 100%; */
-  /* margin: 1rem 0 3rem 0; */
 `;
 
 export const AppLayout = () => {
@@ -83,6 +100,7 @@ export const AppLayout = () => {
           <OutletContainer>
             <Outlet />
           </OutletContainer>
+          <Widgets />
         </MainSubContainer>
       </Main>
     </AppLayoutWrapper>

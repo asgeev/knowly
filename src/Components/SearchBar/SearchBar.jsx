@@ -4,33 +4,49 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDebounce } from '../../Hooks/useDebounce';
 
 export const SearchBarContainer = styled.div`
-  display: ${({ isOpen }) => (isOpen ? 'none' : 'inline-block')};
+  display: ${({ isOpen }) => (isOpen ? 'none' : 'flex')};
   position: sticky;
   top: 0;
   top: ${({ theme }) => theme.navBar.mobileHeight};
-  background-color: ${({ theme }) => theme.color.background100};
+  background-color: ${({ theme }) => theme.color.background};
   left: 0;
   width: 100%;
-  padding: 2rem 0;
+  padding: 2rem;
+  justify-content: center;
 
   ${({ theme }) => theme.mq.lg} {
     position: sticky;
     top: 0;
-    width: 100%;
-    padding: 1rem 0;
+    left: 0;
+    max-width: 100%;
+    padding: 1.5rem 3rem;
+    background-color: ${({ theme }) => theme.color.background100};
     border-bottom: 1px solid ${({ theme }) => theme.color.dividerPrimary};
+    justify-content: flex-start;
   }
 `;
 
 export const InputContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-radius: 1rem;
   gap: 2rem;
-  border-radius: 1rem;
-  padding: 1rem 1.5rem;
-  background-color: ${({ theme }) => theme.color.elementBackground};
+  border-radius: 0.5rem;
+
+  /* padding: 1rem 1.5rem; */
+  /* background-color: ${({ theme }) => theme.color.background300}; */
+
+  ${({ theme }) => theme.mq.sm} {
+    max-width: ${({ theme }) => theme.containerSize.sm};
+  }
+  ${({ theme }) => theme.mq.md} {
+    max-width: ${({ theme }) => theme.containerSize.md};
+  }
+
+  ${({ theme }) => theme.mq.lg} {
+    max-width: ${({ theme }) => theme.containerSize.md};
+  }
 `;
 
 export const StyledSearchBar = styled.input`

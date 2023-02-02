@@ -25,7 +25,7 @@ export const NavigationWrapper = styled.nav`
     justify-content: start;
     gap: 4rem;
     height: 100%;
-    max-width: ${({ theme }) => theme.navBar.desktopWidth};
+    width: ${({ theme }) => theme.navBar.desktopWidth};
     border-right: 1px solid ${({ theme }) => theme.color.dividerPrimary};
     z-index: 9999;
     padding: 3rem;
@@ -56,11 +56,11 @@ const RightSection = styled.div`
 `;
 
 export const NavigationItemsContainer = styled.div`
-  position: fixed;
+  position: absolute;
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   min-height: calc(100vh - ${({ theme }) => theme.navBar.mobileHeight});
-  /* height: 100dvh; */
-  /* height: 100svh; */
+  height: 100dvh;
+  height: 100svh;
   width: 100%;
   left: 0;
   top: ${({ theme }) => theme.navBar.mobileHeight};
