@@ -14,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`
 
 html {
     font-size: 62.5%; 
-    
+    height: 100%;
 }
 
 body {
@@ -23,8 +23,8 @@ body {
     font-size: 1.6rem;
     text-rendering: optimizeLegibility;
     /* transition: all 0.2s linear; */
-    background-color: ${({ theme }) => theme.color.body};
-    color: ${({ theme }) => theme.color.text};
+    background-color: ${({ theme }) => theme.color.background};
+    color: ${({ theme }) => theme.color.primaryText};
     height: 100%
 }
 

@@ -34,7 +34,7 @@ export const baseTheme = {
     navBar: {
         mobileHeight: '8rem',
         mobileWidth: '100%',
-        desktopHeight: '100vh',
+        desktopHeight: '100%',
         desktopWidth: '27rem'
     },
 };
@@ -50,11 +50,13 @@ export const lightTheme = {
 
 export const darkTheme = {
     color: {
-        body: '#131517',
-        text: 'hsl(0, 0%, 90%)',
-        accent: 'hsl(219, 79%, 44%)',
-        navigationBackground: '#202427',
-        elementBackground: '#202427',
-        elementSelected: '#131517'
+        background: '#121212',
+        background100: '#181818',
+        background200: '#404040',
+        background300: '#282828',
+        primaryText: '#FFFFFF',
+        secondaryText: '#B3B3B3', 
+        dividerPrimary: '#3c4043',
+        accent1000: 'hsl(219, 79%, 44%)',
     },
 };

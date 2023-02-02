@@ -6,25 +6,21 @@ import { SearchBar } from '../SearchBar/SearchBar';
 import { Footer } from '../Footer/Footer';
 
 const AppLayoutWrapper = styled.div`
-  display: flex;
+  min-height: 100dvh;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto;
 
   ${({ theme }) => theme.mq.lg} {
-    flex-direction: row;
-    gap: 4rem;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
   }
 `;
 
 const Main = styled.main`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  margin-top: ${({ theme }) => theme.navBar.mobileHeight};
-  margin-bottom: 7rem;
-
   ${({ theme }) => theme.mq.lg} {
-    margin: 0;
-    align-items: flex-start;
+    margin-left: 270px;
   }
 `;
 
@@ -82,12 +78,11 @@ export const AppLayout = () => {
     <AppLayoutWrapper>
       <Navigation isOpen={isOpen} setIsOpen={setIsOpen} />
       <Main>
+        <SearchBar isOpen={isOpen} />
         <MainSubContainer>
-          <SearchBar isOpen={isOpen} />
           <OutletContainer>
             <Outlet />
           </OutletContainer>
-          <Footer />
         </MainSubContainer>
       </Main>
     </AppLayoutWrapper>

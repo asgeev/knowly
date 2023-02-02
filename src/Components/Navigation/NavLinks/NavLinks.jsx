@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 // import { FiHome } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
 import { MenuData } from '../MenuData';
+import { MdExpandLess, MdExpandMore } from 'react-icons/md';
 
 export const MenuItemsWrapper = styled.div`
   width: 100%;
@@ -43,18 +44,33 @@ const RecursiveMenuComponent = ({ data }) => {
     setShowNested({ ...showNested, [name]: !showNested[name] });
   };
   return (
-    <div style={{ paddingLeft: '20px' }}>
-      {data.map((parent) => {
+    <div>
+      {data.map((element) => {
         return (
-          <div key={parent.id}>
-            <NavLink
-              onClick={() => toggleNested(parent.title)}
-              to={`page${parent.path}`}
+          <div key={element.id}>
+            {element.type.normalize() === 'WRAPPER'.normalize() ? (
+              <div onClick={() => toggleNested(element.title)}>
+                <p>{element.title}</p>
+                {element.items?.length ? <MdExpandMore size={'3rem'} /> : null}
+              </div>
+            ) : (
+              <NavLink
+                onClick={() => toggleNested(element.title)}
+                to={`${element.test1}/${element.slug}`}
+              >
+                {element.title}
+
+                {element.items?.length ? <MdExpandMore size={'3rem'} /> : null}
+              </NavLink>
+            )}
+
+            <div
+              style={{
+                display: !showNested[element.title] && 'none',
+                paddingLeft: '10px',
+              }}
             >
-              {parent.title}
-            </NavLink>
-            <div style={{ display: !showNested[parent.title] && 'none' }}>
-              {parent.items && <RecursiveMenuComponent data={parent.items} />}
+              {element.items && <RecursiveMenuComponent data={element.items} />}
             </div>
           </div>
         );

@@ -5,27 +5,28 @@ import { MdMenu, MdClose, MdOutlineLightMode } from 'react-icons/md';
 import { NavLinks } from './NavLinks/NavLinks';
 
 export const NavigationWrapper = styled.nav`
-  position: fixed;
+  position: sticky;
   top: 0;
   width: ${({ theme }) => theme.navBar.mobileWidth};
   height: ${({ theme }) => theme.navBar.mobileHeight};
-  background-color: ${({ theme }) => theme.color.navigationBackground};
+  background-color: ${({ theme }) => theme.color.background100};
   display: flex;
   align-items: center;
   padding: 2rem;
   justify-content: space-between;
 
   ${({ theme }) => theme.mq.lg} {
+    position: fixed;
+    top: 0px;
+    left: 0;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     justify-content: start;
     gap: 4rem;
-    height: ${({ theme }) => theme.navBar.desktopHeight};
+    height: 100%;
     max-width: ${({ theme }) => theme.navBar.desktopWidth};
-    position: sticky;
-    top: 0;
-    left: 0;
+    border-right: 1px solid ${({ theme }) => theme.color.dividerPrimary};
     z-index: 9999;
     padding: 3rem;
   }
@@ -57,11 +58,13 @@ const RightSection = styled.div`
 export const NavigationItemsContainer = styled.div`
   position: fixed;
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
-  height: calc(100vh - ${({ theme }) => theme.navBar.mobileHeight});
+  min-height: calc(100vh - ${({ theme }) => theme.navBar.mobileHeight});
+  /* height: 100dvh; */
+  /* height: 100svh; */
   width: 100%;
   left: 0;
   top: ${({ theme }) => theme.navBar.mobileHeight};
-  background-color: ${({ theme }) => theme.color.body};
+  background-color: ${({ theme }) => theme.color.background100};
   overflow-y: auto;
   padding-top: 2rem;
 
@@ -85,6 +88,7 @@ export const NavigationItemsContainer = styled.div`
     height: 100%;
     padding: 0;
     overflow: auto;
+    min-height: unset;
   }
 `;
 

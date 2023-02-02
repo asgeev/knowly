@@ -6,16 +6,19 @@ import { useDebounce } from '../../Hooks/useDebounce';
 export const SearchBarContainer = styled.div`
   display: ${({ isOpen }) => (isOpen ? 'none' : 'inline-block')};
   position: sticky;
+  top: 0;
   top: ${({ theme }) => theme.navBar.mobileHeight};
+  background-color: ${({ theme }) => theme.color.background100};
   left: 0;
-  background-color: ${({ theme }) => theme.color.body};
   width: 100%;
-  padding: 3rem 0;
-  border-bottom: 1px solid #262626;
+  padding: 2rem 0;
 
   ${({ theme }) => theme.mq.lg} {
     position: sticky;
     top: 0;
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px solid ${({ theme }) => theme.color.dividerPrimary};
   }
 `;
 

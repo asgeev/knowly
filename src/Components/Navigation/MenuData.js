@@ -1,90 +1,72 @@
 export const MenuData = [
     {
+        "id": 19,
+        "title": "Test",
+        "menuAttached": true,
+        "order": 1,
+        "path": "/test",
+        "type": "WRAPPER",
+        "uiRouterKey": "test",
+        "slug": "test",
+        "external": false,
+        "audience": [
+            "dfhfdh"
+        ],
+        "items": [
+            {
+                "id": 20,
+                "title": "Test1",
+                "menuAttached": true,
+                "order": 1,
+                "path": "/test/test1",
+                "type": "WRAPPER",
+                "uiRouterKey": "test1",
+                "slug": "test-test1",
+                "external": false,
+                "items": []
+            }
+        ],
+        "test": false,
+        "test1": "page"
+    },
+    {
         "id": 5,
         "title": "Adresy innych stron",
-        "menuAttached": false,
-        "order": 1,
+        "menuAttached": true,
+        "order": 2,
         "path": "/adresy-innych-stron",
         "type": "INTERNAL",
         "uiRouterKey": "adresy-innych-stron",
         "slug": "adresy-innych-stron",
         "external": false,
         "related": {
-            "id": 2,
-            "title": "Adresy innych stron",
-            "slug": "adresy-innych-stron",
-            "createdAt": "2023-01-17T20:24:53.348Z",
-            "updatedAt": "2023-01-18T14:00:05.417Z",
-            "publishedAt": "2023-01-18T11:10:45.716Z",
-            "content": "<p>księgowość:</p><ul><li><a href=\"www.google.pl\">FK</a></li></ul>",
-            "__contentType": "api::page.page",
+            "id": 1,
+            "title": "asfas fsafgasg",
+            "content": "<p>gdsgsdg</p>",
+            "createdAt": "2023-01-17T20:23:30.111Z",
+            "updatedAt": "2023-01-18T12:51:44.048Z",
+            "publishedAt": "2023-01-17T20:34:54.499Z",
+            "slug": "asfas-fsafgasg",
+            "__contentType": "api::article.article",
             "navigationItemId": 5,
             "__templateName": "Generic"
         },
         "items": [
             {
                 "id": 6,
-                "title": "1.0",
-                "menuAttached": false,
+                "title": "SZOI",
+                "menuAttached": true,
                 "order": 1,
                 "path": "www.google.pl",
                 "type": "EXTERNAL",
                 "uiRouterKey": "szoi",
                 "slug": "szoi",
-                "external": true,
-                "items": [
-                    {
-                        "id": 6,
-                        "title": "1.1",
-                        "menuAttached": false,
-                        "order": 1,
-                        "path": "www.google.pl",
-                        "type": "EXTERNAL",
-                        "uiRouterKey": "szoi",
-                        "slug": "szoi",
-                        "external": true,
-                        "items": [
-                            {
-                                "id": 6,
-                                "title": "1.1.0",
-                                "menuAttached": false,
-                                "order": 1,
-                                "path": "www.google.pl",
-                                "type": "EXTERNAL",
-                                "uiRouterKey": "szoi",
-                                "slug": "szoi",
-                                "external": true
-                            },
-                            {
-                                "id": 7,
-                                "title": "1.1.1",
-                                "menuAttached": false,
-                                "order": 2,
-                                "path": "www.google.pl",
-                                "type": "EXTERNAL",
-                                "uiRouterKey": "ap-kontrole",
-                                "slug": "ap-kontrole",
-                                "external": true
-                            }
-                        ]
-                    },
-                    {
-                        "id": 7,
-                        "title": "1.2",
-                        "menuAttached": false,
-                        "order": 2,
-                        "path": "www.google.pl",
-                        "type": "EXTERNAL",
-                        "uiRouterKey": "ap-kontrole",
-                        "slug": "ap-kontrole",
-                        "external": true
-                    }
-                ]
+                "external": true
             },
             {
                 "id": 7,
-                "title": "1.1",
-                "menuAttached": false,
+                "title": "AP-KONTROLE",
+                "menuAttached": true,
                 "order": 2,
                 "path": "www.google.pl",
                 "type": "EXTERNAL",
@@ -98,7 +80,7 @@ export const MenuData = [
         "id": 8,
         "title": "Lista Obecności",
         "menuAttached": false,
-        "order": 2,
+        "order": 3,
         "path": "www.google.pl",
         "type": "EXTERNAL",
         "uiRouterKey": "lista-obecnosci",
@@ -109,7 +91,7 @@ export const MenuData = [
         "id": 9,
         "title": "Prasówka",
         "menuAttached": false,
-        "order": 3,
+        "order": 4,
         "path": "/prasowka",
         "type": "INTERNAL",
         "uiRouterKey": "prasowka",
@@ -133,7 +115,7 @@ export const MenuData = [
         "id": 10,
         "title": "Raporty",
         "menuAttached": false,
-        "order": 4,
+        "order": 5,
         "path": "/raporty",
         "type": "WRAPPER",
         "uiRouterKey": "raporty",
@@ -242,7 +224,7 @@ export const MenuData = [
         "id": 11,
         "title": "Procedury",
         "menuAttached": false,
-        "order": 5,
+        "order": 6,
         "path": "/procedury",
         "type": "INTERNAL",
         "uiRouterKey": "procedury",
@@ -266,7 +248,7 @@ export const MenuData = [
         "id": 12,
         "title": "Prosty język",
         "menuAttached": false,
-        "order": 6,
+        "order": 7,
         "path": "/prosty-jezyk",
         "type": "INTERNAL",
         "uiRouterKey": "prosty-jezyk",
@@ -290,7 +272,7 @@ export const MenuData = [
         "id": 13,
         "title": "Struktura organizacyjna",
         "menuAttached": false,
-        "order": 7,
+        "order": 8,
         "path": "/struktura-organizacyjna",
         "type": "INTERNAL",
         "uiRouterKey": "struktura-organizacyjna",
@@ -314,7 +296,7 @@ export const MenuData = [
         "id": 14,
         "title": "Strategia NFZ",
         "menuAttached": false,
-        "order": 8,
+        "order": 9,
         "path": "/strategia-nfz",
         "type": "INTERNAL",
         "uiRouterKey": "strategia-nfz",
@@ -333,5 +315,6 @@ export const MenuData = [
             "__templateName": "Generic"
         },
         "items": []
-    }
+    },
+    
 ]
