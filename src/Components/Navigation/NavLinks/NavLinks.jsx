@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 // import { FiHome } from 'react-icons/fi';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { MenuData } from '../MenuData';
 import { MdExpandLess, MdExpandMore } from 'react-icons/md';
+import { BiHome } from 'react-icons/bi';
+import { Divider } from '../../Divider/Divider';
 
 export const MenuItemsWrapper = styled.div`
   width: 100%;
@@ -12,70 +14,130 @@ export const MenuItemsWrapper = styled.div`
   ${({ theme }) => theme.mq.lg} {
     margin-top: 4rem;
     padding: 0;
+    font-size: 1.4rem;
   }
 `;
 
-// const RecursiveMenu = ({ data }) => {
-//   const [expand, setExpand] = useState(true);
+export const StyledMenuItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  transition: all 0.2s ease-in-out;
+  color: ${({ theme }) => theme.color.secondaryText};
+  gap: 2rem;
 
-//   return (
-//     <div>
-//       {data.map((item) => (
-//         <div key={item.title} onClick={() => setExpand((prev) => !prev)}>
-//           <div>{item.title}</div>
+  &:hover {
+    background-color: ${({ theme }) => theme.color.background};
+    color: ${({ theme }) => theme.color.primaryText};
+    cursor: pointer;
+  }
+`;
 
-//           <div
-//             style={{ display: expand ? 'block' : 'none', paddingLeft: '20px' }}
-//           >
-//             {item.items &&
-//               item.items?.map((item) => (
-//                 <RecursiveMenu data={item.items} key={item.title} />
-//               ))}
-//           </div>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
+export const StyledNavLink = styled(NavLink)`
+  all: unset;
+  cursor: pointer;
+  position:relative;
+  transition: display 1s ease-in;
+
+
+
+  &.active {
+    color: red;
+
+    &:after {
+      position:absolute;
+      content=">";
+      top: 0px;
+      left: 0;
+      width: 2px;
+      height: 2px;
+    }
+  } 
+`;
+
+export const StyledEdExpandMore = styled(MdExpandMore)`
+  // &:hover {
+  //   cursor: pointer;
+  // }
+`;
+
+export const StyledEdExpandLess = styled(MdExpandLess)`
+  // &:hover {
+  //   cursor: pointer;
+  // }
+`;
+
+export const StyledNestedElements = styled.div`
+  position: relative;
+  margin-left: 1.3rem;
+
+  &::before{
+    content: '|';
+    positon: absolute;
+    top: -10px;
+    left: 0;
+    height: 10px;
+    width: 10px;
+    background-color: ${({ theme }) => theme.color.background};
+
+  }
+}`;
+
+export const MenuItemTitle = styled.span`
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+`;
+
+const MenuItem = ({ element, type, items, toggleNested, icon }) => {
+  const { title, slug } = element;
+
+  return (
+    <StyledMenuItem onClick={() => toggleNested(title)}>
+      {type ? (
+        <MenuItemTitle>{title}</MenuItemTitle>
+      ) : (
+        <StyledNavLink to={`page/${slug}`}>{title}</StyledNavLink>
+      )}
+      {items ? (
+        <StyledEdExpandMore
+          size={'2rem'}
+          onClick={toggleNested ? () => toggleNested(title) : null}
+        />
+      ) : null}
+    </StyledMenuItem>
+  );
+};
 
 const RecursiveMenuComponent = ({ data }) => {
   const [showNested, setShowNested] = useState({});
+
   const toggleNested = (name) => {
     setShowNested({ ...showNested, [name]: !showNested[name] });
   };
+
   return (
-    <div>
+    <>
       {data.map((element) => {
         return (
           <div key={element.id}>
-            {element.type.normalize() === 'WRAPPER'.normalize() ? (
-              <div onClick={() => toggleNested(element.title)}>
-                <p>{element.title}</p>
-                {element.items?.length ? <MdExpandMore size={'3rem'} /> : null}
-              </div>
-            ) : (
-              <NavLink
-                onClick={() => toggleNested(element.title)}
-                to={`${element.test1}/${element.slug}`}
-              >
-                {element.title}
+            <MenuItem
+              toggleNested={toggleNested}
+              items={element.items?.length ? true : false}
+              type={element.type === 'WRAPPER' ? true : false}
+              element={element}
+            />
 
-                {element.items?.length ? <MdExpandMore size={'3rem'} /> : null}
-              </NavLink>
-            )}
-
-            <div
-              style={{
-                display: !showNested[element.title] && 'none',
-                paddingLeft: '10px',
-              }}
+            <StyledNestedElements
+              style={{ display: !showNested[element.title] && 'none' }}
             >
               {element.items && <RecursiveMenuComponent data={element.items} />}
-            </div>
+            </StyledNestedElements>
           </div>
         );
       })}
-    </div>
+    </>
   );
 };
 
@@ -88,7 +150,15 @@ export const NavLinks = ({ closeMenu }) => {
 
   return (
     <MenuItemsWrapper>
+      <StyledMenuItem>
+        <div style={{ display: 'flex', gap: '2rem' }}>
+          <BiHome size="2rem" />
+          <span>Home</span>
+        </div>
+      </StyledMenuItem>
+      <Divider />
       <RecursiveMenuComponent data={menuData} />
+      <Divider />
     </MenuItemsWrapper>
   );
 };

@@ -26,9 +26,8 @@ export const NavigationWrapper = styled.nav`
     gap: 4rem;
     height: 100%;
     width: ${({ theme }) => theme.navBar.desktopWidth};
-    border-right: 1px solid ${({ theme }) => theme.color.dividerPrimary};
+    /* border-right: 1px solid ${({ theme }) => theme.color.background100}; */
     z-index: 9999;
-    padding: 3rem;
   }
 `;
 
@@ -61,6 +60,7 @@ export const NavigationItemsContainer = styled.div`
   min-height: calc(100vh - ${({ theme }) => theme.navBar.mobileHeight});
   height: 100dvh;
   height: 100svh;
+  height: 100%;
   width: 100%;
   left: 0;
   top: ${({ theme }) => theme.navBar.mobileHeight};
@@ -69,7 +69,7 @@ export const NavigationItemsContainer = styled.div`
   padding-top: 2rem;
 
   &::-webkit-scrollbar {
-    width: 9px;
+    width: 3px;
   }
   &::-webkit-scrollbar-track {
     background: transparent;

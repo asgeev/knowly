@@ -100,7 +100,6 @@ export const AppLayout = () => {
           <OutletContainer>
             <Outlet />
           </OutletContainer>
-          <Widgets />
         </MainSubContainer>
       </Main>
     </AppLayoutWrapper>

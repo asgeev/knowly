@@ -15,7 +15,7 @@ export const MenuData = [
         "items": [
             {
                 "id": 20,
-                "title": "Test1",
+                "title": "Test",
                 "menuAttached": true,
                 "order": 1,
                 "path": "/test/test1",
@@ -23,7 +23,20 @@ export const MenuData = [
                 "uiRouterKey": "test1",
                 "slug": "test-test1",
                 "external": false,
-                "items": []
+                "items": [
+                    {
+                        "id": 20,
+                        "title": "Test1.1",
+                        "menuAttached": true,
+                        "order": 1,
+                        "path": "/test/test1",
+                        "type": "WRAPPER",
+                        "uiRouterKey": "test1",
+                        "slug": "test-test1",
+                        "external": false,
+                        "items": []
+                    }
+                ]
             }
         ],
         "test": false,

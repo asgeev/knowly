@@ -35,7 +35,7 @@ export const baseTheme = {
         mobileHeight: '8rem',
         mobileWidth: '100%',
         desktopHeight: '100%',
-        desktopWidth: '27rem'
+        desktopWidth: '26rem'
     },
 };
 
@@ -50,12 +50,12 @@ export const lightTheme = {
 
 export const darkTheme = {
     color: {
-        background: '#121212',
-        background100: '#181818',
-        background200: '#404040',
-        background300: '#282828',
-        primaryText: '#FFFFFF',
-        secondaryText: '#B3B3B3', 
+        background: '#18191A',
+        background100: '#242526',
+        background200: '#3A3B3C',
+        background300: 'red',
+        primaryText: '#E4E6EB',
+        secondaryText: '#B0B3B8', 
         dividerPrimary: '#3c4043',
         accent1000: 'hsl(219, 79%, 44%)',
     },

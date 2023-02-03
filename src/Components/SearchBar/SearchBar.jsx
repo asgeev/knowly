@@ -20,8 +20,8 @@ export const SearchBarContainer = styled.div`
     left: 0;
     max-width: 100%;
     padding: 1.5rem 3rem;
-    background-color: ${({ theme }) => theme.color.background100};
-    border-bottom: 1px solid ${({ theme }) => theme.color.dividerPrimary};
+    /* background-color: ${({ theme }) => theme.color.background100}; */
+    border-bottom: 1px solid ${({ theme }) => theme.color.background100};
     justify-content: flex-start;
   }
 `;
