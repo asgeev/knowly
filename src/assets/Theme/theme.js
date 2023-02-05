@@ -35,7 +35,7 @@ export const baseTheme = {
         mobileHeight: '8rem',
         mobileWidth: '100%',
         desktopHeight: '100%',
-        desktopWidth: '26rem'
+        desktopWidth: '26.5rem'
     },
 };
 
@@ -57,6 +57,7 @@ export const darkTheme = {
         primaryText: '#E4E6EB',
         secondaryText: '#B0B3B8', 
         dividerPrimary: '#3c4043',
-        accent1000: 'hsl(219, 79%, 44%)',
+        accent: 'hsl(219, 79%, 44%)',
+        accent2: '#48fb47'
     },
 };

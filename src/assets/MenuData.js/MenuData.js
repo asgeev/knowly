@@ -1,7 +1,7 @@
 export const MenuData = [
     {
         "id": 19,
-        "title": "Test",
+        "title": "Baza Wiedzy",
         "menuAttached": true,
         "order": 1,
         "path": "/test",
@@ -15,24 +15,73 @@ export const MenuData = [
         "items": [
             {
                 "id": 20,
-                "title": "Test",
+                "title": "WI-SA",
                 "menuAttached": true,
                 "order": 1,
                 "path": "/test/test1",
-                "type": "WRAPPER",
+                "type": "EXTERNAL",
                 "uiRouterKey": "test1",
                 "slug": "test-test1",
                 "external": false,
                 "items": [
                     {
-                        "id": 20,
-                        "title": "Test1.1",
+                        "id": 21,
+                        "title": "Formularze rejestracyjne",
                         "menuAttached": true,
                         "order": 1,
                         "path": "/test/test1",
-                        "type": "WRAPPER",
+                        "type": "INTERNAL",
                         "uiRouterKey": "test1",
-                        "slug": "test-test1",
+                        "slug": "test-test1asd",
+                        "external": false,
+                        "items": []
+                    },
+                    {
+                        "id": 2053252,
+                        "title": "Hasła SZOI",
+                        "menuAttached": true,
+                        "order": 1,
+                        "path": "/test/test1",
+                        "type": "INTERNAL",
+                        "uiRouterKey": "test1",
+                        "slug": "test-test11asfvd",
+                        "external": false,
+                        "items": []
+                    }
+                ]
+            },
+            {
+                "id": 29,
+                "title": "WI-SI",
+                "menuAttached": true,
+                "order": 1,
+                "path": "/test/test1",
+                "type": "WRAPPER",
+                "uiRouterKey": "test1",
+                "slug": "test-test1fsvdv",
+                "external": false,
+                "items": [
+                    {
+                        "id": 213,
+                        "title": "Konta domenowe",
+                        "menuAttached": true,
+                        "order": 1,
+                        "path": "/test/test1",
+                        "type": "INTERNAL",
+                        "uiRouterKey": "test1",
+                        "slug": "test-test1fdbfdbfd",
+                        "external": false,
+                        "items": []
+                    },
+                    {
+                        "id": 2034,
+                        "title": "Laptopy",
+                        "menuAttached": true,
+                        "order": 1,
+                        "path": "/test/test1",
+                        "type": "INTERNAL",
+                        "uiRouterKey": "test1",
+                        "slug": "test-test11tyiyt",
                         "external": false,
                         "items": []
                     }

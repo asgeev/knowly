@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import { SlDiamond } from 'react-icons/sl';
 import { MdMenu, MdClose, MdOutlineLightMode } from 'react-icons/md';
@@ -26,7 +25,7 @@ export const NavigationWrapper = styled.nav`
     gap: 4rem;
     height: 100%;
     width: ${({ theme }) => theme.navBar.desktopWidth};
-    /* border-right: 1px solid ${({ theme }) => theme.color.background100}; */
+    /* border-right: 1px solid ${({ theme }) => theme.color.background200}; */
     z-index: 9999;
   }
 `;
