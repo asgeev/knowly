@@ -29,6 +29,10 @@ export const PinnedStyledMenuItem = styled(NavLink)`
     cursor: pointer;
   }
 
+  ${({ theme }) => theme.mq.lg} {
+    padding: 1rem 0 1rem 1.8rem;
+  }
+
   &.active {
     position: relative;
     color: ${({ theme }) => theme.color.primaryText};
@@ -37,25 +41,33 @@ export const PinnedStyledMenuItem = styled(NavLink)`
     &:before {
       content: '';
       position: absolute;
-      right: 2rem;
-      height: .6rem;
-      width: .6rem;
-      border-radius: 50%;
+      left: 0.5rem;
+      height: 35%;
+      width: 0.3rem;
+      border-radius: 2rem;
       background-color: ${({ theme }) => theme.color.accent};
+      transition: all 0.2s ease-in-out;
+      display: block;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
     }
   }
+
 `;
 
 
 export const StyledNestedElements = styled.div`
   position: relative;
-  margin-left: 1.7rem;
+  margin-left: 3rem;
 
   &:before {
     content: '';
     position: absolute;
     top: 0;
-    left: -1rem;
+    left: -0.9rem;
     height: 100%;
     width: 2px;
     background-color: ${({ theme }) => theme.color.background200};

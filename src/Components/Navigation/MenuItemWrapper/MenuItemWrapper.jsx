@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { MdChevronLeft, MdChevronRight, MdExpandMore } from 'react-icons/md';
+import { TbPlus } from 'react-icons/tb';
 
 export const StyledMenuItem = styled.div`
   all: unset;
@@ -20,17 +19,9 @@ export const StyledMenuItem = styled.div`
     background-color: ${({ theme }) => theme.color.background};
     color: ${({ theme }) => theme.color.primaryText};
   }
-`;
 
-export const MenuItemTitle = styled.span`
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  height: 100%;
-  padding: 1.2rem;
-
-  ${({ theme }) => theme.mq.lg} {
-    padding: 1rem;
+  &:has(a.active) {
+    background-color: ${({ theme }) => theme.color.background};
   }
 `;
 
@@ -45,11 +36,40 @@ export const StyledNavLink = styled(NavLink)`
 
   &.active {
     position: relative;
-    color: ${({ theme }) => theme.color.accent};
+    color: ${({ theme }) => theme.color.primaryText};
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0.5rem;
+      height: 35%;
+      width: 0.3rem;
+      border-radius: 2rem;
+      background-color: ${({ theme }) => theme.color.accent};
+      transition: all 0.2s ease-in-out;
+      display: block;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
   }
 
   ${({ theme }) => theme.mq.lg} {
-    padding: 1rem;
+    padding: 1.2rem 0 1.2rem 1.8rem;
+  }
+`;
+
+export const MenuItemTitle = styled.span`
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 100%;
+  padding: 1.2rem;
+
+  ${({ theme }) => theme.mq.lg} {
+    padding: 1rem 0 1rem 2rem;
   }
 `;
 
@@ -77,7 +97,7 @@ export const MenuItemWrapper = ({ element, toggleNested }) => {
       )}
       {element.items?.length ? (
         <ChevronIcon onClick={() => toggleNested(element.title)}>
-          <MdExpandMore size={'2rem'} />
+          <TbPlus size={'1.6rem'} />
         </ChevronIcon>
       ) : null}
     </StyledMenuItem>

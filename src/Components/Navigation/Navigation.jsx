@@ -26,7 +26,6 @@ export const NavigationWrapper = styled.nav`
     height: 100%;
     width: ${({ theme }) => theme.navBar.desktopWidth};
     /* border-right: 1px solid ${({ theme }) => theme.color.background200}; */
-    z-index: 9999;
   }
 `;
 
