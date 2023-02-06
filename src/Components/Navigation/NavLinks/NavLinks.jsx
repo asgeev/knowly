@@ -32,7 +32,11 @@ export const RecursiveNavLinksComponent = ({ data }) => {
       {data.map((element) => {
         return (
           <div key={`${element.name}-${element.id}`}>
-            <MenuItemWrapper toggleNested={toggleNested} element={element} />
+            <MenuItemWrapper
+              showNested={showNested}
+              toggleNested={toggleNested}
+              element={element}
+            />
 
             <StyledNestedDiv
               style={{

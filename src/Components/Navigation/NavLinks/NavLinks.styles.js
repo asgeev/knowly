@@ -54,7 +54,7 @@ export const PinnedStyledMenuItem = styled(NavLink)`
       -moz-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
       transform: translateY(-50%);
-      animation: ${ShowIndicator} 0.1s ease-in;
+      animation: ${ShowIndicator} 0.2s ease-in;
     }
   }
 

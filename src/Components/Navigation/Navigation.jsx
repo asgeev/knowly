@@ -21,7 +21,7 @@ export const NavigationWrapper = styled.nav`
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    justify-content: start;
+    justify-content: space-between;
     gap: 4rem;
     height: 100%;
     width: ${({ theme }) => theme.navBar.desktopWidth};
@@ -79,7 +79,7 @@ export const NavigationItemsContainer = styled.div`
   }
 
   ${({ theme }) => theme.mq.lg} {
-    position: static;
+    position: sticky;
     display: flex;
     overflow: hidden;
     background-color: transparent;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { TbPlus } from 'react-icons/tb';
+import { TiMinus, TiPlus } from 'react-icons/ti';
 import { ShowIndicator } from './MenuItemWrapper.styles';
 
 export const StyledMenuItem = styled.div`
@@ -86,7 +87,7 @@ export const ChevronIcon = styled.div`
   }
 `;
 
-export const MenuItemWrapper = ({ element, toggleNested }) => {
+export const MenuItemWrapper = ({ element, toggleNested, showNested }) => {
   const { title, slug } = element;
 
   return (
@@ -97,8 +98,12 @@ export const MenuItemWrapper = ({ element, toggleNested }) => {
         <StyledNavLink to={`page/${slug}`}>{title}</StyledNavLink>
       )}
       {element.items?.length ? (
-        <ChevronIcon onClick={() => toggleNested(element.title)}>
-          <TbPlus size={'1.6rem'} />
+        <ChevronIcon onClick={() => toggleNested(element.title)} title="Expand">
+          {!showNested[element.title] ? (
+            <TiPlus size={'1.4rem'} />
+          ) : (
+            <TiMinus size={'1.4rem'} />
+          )}
         </ChevronIcon>
       ) : null}
     </StyledMenuItem>
