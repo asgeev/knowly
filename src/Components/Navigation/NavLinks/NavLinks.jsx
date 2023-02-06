@@ -8,7 +8,7 @@ import {
   PinnedStyledMenuItem,
   MenuItemsWrapper,
   MenuItemTitle,
-  StyledNestedElements,
+  StyledNestedDiv,
 } from './NavLinks.styles';
 
 export const RecursiveNavLinksComponent = ({ data }) => {
@@ -33,22 +33,18 @@ export const RecursiveNavLinksComponent = ({ data }) => {
         return (
           <div key={`${element.name}-${element.id}`}>
             <MenuItemWrapper toggleNested={toggleNested} element={element} />
-            {/* 
-            <MenuItemWrapper
-              showNested={showNested}
-              toggleNested={toggleNested}
-              items={element.items?.length ? true : false}
-              type={element.type === 'WRAPPER' ? true : false}
-              element={element}
-            /> */}
 
-            <StyledNestedElements
-              style={{ display: !showNested[element.title] && 'none' }}
+            <StyledNestedDiv
+              style={{
+                visibility: !showNested[element.title] && 'hidden',
+                opacity: !showNested[element.title] && '0',
+                maxHeight: !showNested[element.title] && '0',
+              }}
             >
               {element.items && (
                 <RecursiveNavLinksComponent data={element.items} />
               )}
-            </StyledNestedElements>
+            </StyledNestedDiv>
           </div>
         );
       })}

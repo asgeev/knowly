@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { TbPlus } from 'react-icons/tb';
+import { ShowIndicator } from './MenuItemWrapper.styles';
 
 export const StyledMenuItem = styled.div`
   all: unset;
@@ -8,7 +9,7 @@ export const StyledMenuItem = styled.div`
   align-items: center;
   justify-content: space-between;
   /* padding: 0 1.2rem; */
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
   color: ${({ theme }) => theme.color.secondaryText};
   gap: 2rem;
   border-radius: 0.6rem;
@@ -46,13 +47,13 @@ export const StyledNavLink = styled(NavLink)`
       width: 0.3rem;
       border-radius: 2rem;
       background-color: ${({ theme }) => theme.color.accent};
-      transition: all 0.2s ease-in-out;
       display: block;
       top: 50%;
       -webkit-transform: translateY(-50%);
       -moz-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
       transform: translateY(-50%);
+      animation: ${ShowIndicator} 0.2s ease-in;
     }
   }
 

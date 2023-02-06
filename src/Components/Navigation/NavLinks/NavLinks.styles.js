@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { ShowIndicator } from "../MenuItemWrapper/MenuItemWrapper.styles";
 
 export const MenuItemsWrapper = styled.div`
   width: 100%;
@@ -53,15 +54,19 @@ export const PinnedStyledMenuItem = styled(NavLink)`
       -moz-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
       transform: translateY(-50%);
+      animation: ${ShowIndicator} 0.1s ease-in;
     }
   }
 
 `;
 
 
-export const StyledNestedElements = styled.div`
+export const StyledNestedDiv = styled.div`
   position: relative;
   margin-left: 3rem;
+  transition: all .4s ease-in-out;
+  transition-delay: .1s;
+  max-height: 1000px;
 
   &:before {
     content: '';
