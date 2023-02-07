@@ -1,9 +1,10 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { MenuData } from '../../../assets/MenuData.js/MenuData';
+import { MenuData } from '../../assets/MenuData/MenuData';
 import { BiHome } from 'react-icons/bi';
-import { MenuItemWrapper } from '../MenuItemWrapper/MenuItemWrapper';
-import { Divider } from '../../Divider/Divider';
+// import { MenuItemWrapper } from './MenuItemWrapper/MenuItemWrapper';
+import { MenuItemWrapper } from './MenuItemWrapper/MenuItemWrapper';
+import { Divider } from '../Divider/Divider';
 import {
   PinnedStyledMenuItem,
   MenuItemsWrapper,
@@ -60,7 +61,16 @@ export const NavLinks = () => {
   const [menuData, setMenuData] = useState([]);
 
   useEffect(() => {
-    setMenuData(MenuData);
+    fetch('http://localhost:1337/api/navigation/render/1?type=TREE')
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setMenuData(result);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }, []);
 
   return (

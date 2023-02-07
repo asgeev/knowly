@@ -1,8 +1,14 @@
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { TbPlus } from 'react-icons/tb';
-import { TiMinus, TiPlus } from 'react-icons/ti';
-import { ShowIndicator } from './MenuItemWrapper.styles';
+import styled, { keyframes } from 'styled-components';
+
+export const ShowIndicator = keyframes`
+  from {
+    height: 0%;
+    
+  }to {
+    height: 35%;
+  }
+`;
 
 export const StyledMenuItem = styled.div`
   all: unset;
@@ -33,7 +39,7 @@ export const StyledNavLink = styled(NavLink)`
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
-  padding: 1.2rem;
+  padding: 1.2rem 0 1.2rem 2rem;
   width: 100%;
 
   &.active {
@@ -44,7 +50,7 @@ export const StyledNavLink = styled(NavLink)`
       content: '';
       position: absolute;
       left: 0.5rem;
-      height: 35%;
+      height: 36%;
       width: 0.3rem;
       border-radius: 2rem;
       background-color: ${({ theme }) => theme.color.accent};
@@ -59,7 +65,7 @@ export const StyledNavLink = styled(NavLink)`
   }
 
   ${({ theme }) => theme.mq.lg} {
-    padding: 1.2rem 0 1.2rem 1.8rem;
+    padding: 1rem 0 1rem 1.8rem;
   }
 `;
 
@@ -68,10 +74,10 @@ export const MenuItemTitle = styled.span`
   -ms-user-select: none;
   user-select: none;
   height: 100%;
-  padding: 1.2rem;
+  padding: 1.2rem 0 1.2rem 2rem;
 
   ${({ theme }) => theme.mq.lg} {
-    padding: 1rem 0 1rem 2rem;
+    padding: 1rem 0 1rem 1.8rem;
   }
 `;
 
@@ -83,29 +89,6 @@ export const ChevronIcon = styled.div`
   justify-content: center;
 
   ${({ theme }) => theme.mq.lg} {
-    padding: 1rem;
+    padding: 1.2rem;
   }
 `;
-
-export const MenuItemWrapper = ({ element, toggleNested, showNested }) => {
-  const { title, slug } = element;
-
-  return (
-    <StyledMenuItem>
-      {element.type === 'WRAPPER' ? (
-        <MenuItemTitle>{element.title}</MenuItemTitle>
-      ) : (
-        <StyledNavLink to={`page/${slug}`}>{title}</StyledNavLink>
-      )}
-      {element.items?.length ? (
-        <ChevronIcon onClick={() => toggleNested(element.title)} title="Expand">
-          {!showNested[element.title] ? (
-            <TiPlus size={'1.4rem'} />
-          ) : (
-            <TiMinus size={'1.4rem'} />
-          )}
-        </ChevronIcon>
-      ) : null}
-    </StyledMenuItem>
-  );
-};

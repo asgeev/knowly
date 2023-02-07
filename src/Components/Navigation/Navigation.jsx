@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { SlDiamond } from 'react-icons/sl';
 import { MdMenu, MdClose, MdOutlineLightMode } from 'react-icons/md';
-import { NavLinks } from './NavLinks/NavLinks';
+import { NavLinks } from '../NavLinks/NavLinks';
 
 export const NavigationWrapper = styled.nav`
   position: sticky;
@@ -11,7 +11,7 @@ export const NavigationWrapper = styled.nav`
   background-color: ${({ theme }) => theme.color.background100};
   display: flex;
   align-items: center;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
   justify-content: space-between;
 
   ${({ theme }) => theme.mq.lg} {

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { ShowIndicator } from "../MenuItemWrapper/MenuItemWrapper.styles";
+import { ShowIndicator } from "./MenuItemWrapper/MenuItemWrapper.styles";
 
 export const MenuItemsWrapper = styled.div`
   width: 100%;
@@ -72,7 +72,7 @@ export const StyledNestedDiv = styled.div`
     content: '';
     position: absolute;
     top: 0;
-    left: -0.9rem;
+    left: -1rem;
     height: 100%;
     width: 2px;
     background-color: ${({ theme }) => theme.color.background200};

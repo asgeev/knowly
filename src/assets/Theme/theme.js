@@ -11,10 +11,10 @@ export const baseTheme = {
             xxl: '9.4rem',
         },
         weight: {
-            100: '100',
-            300: '300',
-            500: '500',
-            700: '700',
+            w100: '100',
+            w300: '300',
+            w500: '500',
+            w700: '700',
         },
     },
     containerSize: {
@@ -57,7 +57,8 @@ export const darkTheme = {
         primaryText: '#E4E6EB',
         secondaryText: '#B0B3B8', 
         dividerPrimary: '#3c4043',
-        accent: 'hsl(219, 79%, 44%)',
-        accent2: '#48fb47'
+        // accent: 'hsl(219, 79%, 44%)',
+        accent: '#FFFD00',
+        accentSecondary: '#FFFD00'
     },
 };
