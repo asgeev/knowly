@@ -29,5 +29,15 @@ body {
     height: 100%
 }
 
+img{
+    max-width: 100%;
+}
+
+p{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+}
+
 
 `;

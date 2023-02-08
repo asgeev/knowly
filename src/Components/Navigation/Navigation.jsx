@@ -6,17 +6,19 @@ import { NavLinks } from '../NavLinks/NavLinks';
 export const NavigationWrapper = styled.nav`
   position: sticky;
   top: 0;
+  left: 0;
   width: ${({ theme }) => theme.navBar.mobileWidth};
   height: ${({ theme }) => theme.navBar.mobileHeight};
   background-color: ${({ theme }) => theme.color.background100};
   display: flex;
   align-items: center;
   padding: 2rem 1.5rem;
+  z-index: 99;
   justify-content: space-between;
 
   ${({ theme }) => theme.mq.lg} {
     position: fixed;
-    top: 0px;
+    top: 0;
     left: 0;
     display: flex;
     align-items: flex-start;
@@ -79,7 +81,7 @@ export const NavigationItemsContainer = styled.div`
   }
 
   ${({ theme }) => theme.mq.lg} {
-    position: sticky;
+    position: static;
     display: flex;
     overflow: hidden;
     background-color: transparent;

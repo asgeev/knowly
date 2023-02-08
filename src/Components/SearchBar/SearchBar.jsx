@@ -10,7 +10,6 @@ export const SearchBarContainer = styled.div`
   top: ${({ theme }) => theme.navBar.mobileHeight};
   background-color: ${({ theme }) => theme.color.background};
   left: 0;
-  width: 100%;
   padding: 2rem;
   justify-content: center;
 
@@ -20,6 +19,7 @@ export const SearchBarContainer = styled.div`
     left: 0;
     max-width: 100%;
     padding: 1.5rem 3rem;
+    padding-left: 6rem;
     /* background-color: ${({ theme }) => theme.color.background100}; */
     border-bottom: 1px solid ${({ theme }) => theme.color.background100};
     justify-content: flex-start;

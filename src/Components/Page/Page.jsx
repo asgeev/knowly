@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import DOMPurify from 'dompurify';
 
 export const PageContent = styled.section``;
 
 export const Page = () => {
   const { pageId } = useParams();
-  const [page, setPage] = useState({});
+  const [pageContent, setPageContent] = useState({});
   const [isLoding, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
-  console.log(page);
+  console.log(pageContent);
   console.log(pageId);
 
   useEffect(() => {
@@ -17,11 +19,13 @@ export const Page = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-          setPage(result.data.attributes);
+          setPageContent(result.data.attributes);
           setIsLoading(false);
         },
         (error) => {
           console.log(error);
+          setIsError(true);
+          setIsLoading(false);
         }
       );
   }, [pageId]);
@@ -29,9 +33,14 @@ export const Page = () => {
   return (
     <PageContent>
       {isLoding ? <p>Loading...</p> : null}
+      {isError ? <p>error</p> : null}
       <>
-        <h1>{page.title}</h1>
-        <>{page.Content}</>
+        <h1>{pageContent.title}</h1>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(pageContent.content),
+          }}
+        />
       </>
     </PageContent>
   );

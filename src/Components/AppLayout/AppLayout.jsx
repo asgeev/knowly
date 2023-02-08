@@ -14,6 +14,7 @@ const AppLayoutWrapper = styled.div`
   grid-template-columns: auto;
 
   ${({ theme }) => theme.mq.lg} {
+    position: relative;
     grid-template-columns: auto;
     grid-template-rows: auto;
   }
@@ -26,7 +27,6 @@ const Main = styled.main`
 
   ${({ theme }) => theme.mq.lg} {
     margin-left: ${({ theme }) => theme.navBar.desktopWidth};
-    /* align-items: flex-start; */
   }
 `;
 
@@ -41,19 +41,25 @@ const MainSubContainer = styled.div`
     align-items: flex-start; */
 
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
     grid-template-rows: auto;
     align-items: flex-start;
+    padding-left: 6rem;
   }
 `;
 
-const OutletContainer = styled.div`
+const FlexContainer = styled.div`
   padding: 0 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: column;
 
   ${({ theme }) => theme.mq.sm} {
-    max-width: ${({ theme }) => theme.containerSize.sm};
     padding: 0;
+    max-width: ${({ theme }) => theme.containerSize.sm};
   }
+
   ${({ theme }) => theme.mq.md} {
     max-width: ${({ theme }) => theme.containerSize.md};
   }
@@ -63,8 +69,10 @@ const OutletContainer = styled.div`
       ${({ theme }) => theme.containerSize.lg} -
         ${({ theme }) => theme.navBar.desktopWidth}
     );
-    padding: 0 3rem;
-    margin-top: 20px;
+    margin-top: 2rem;
+    padding-right: 2rem;
+    flex-direction: row;
+    flex-wrap: unset;
   }
 
   ${({ theme }) => theme.mq.xl} {
@@ -79,6 +87,26 @@ const OutletContainer = styled.div`
       ${({ theme }) => theme.containerSize.xxl} -
         ${({ theme }) => theme.navBar.desktopWidth}
     );
+  }
+`;
+
+export const WidgetsContainer = styled.div`
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+
+  ${({ theme }) => theme.mq.lg} {
+    margin-top: 0;
+    margin-bottom: 3rem;
+    margin-left: 1.5rem;
+    flex-basis: 25%;
+  }
+`;
+
+export const OutletConainer = styled.div`
+  flex-basis: 75%;
+
+  ${({ theme }) => theme.mq.lg} {
+    margin-right: 1.5rem;
   }
 `;
 
@@ -97,9 +125,15 @@ export const AppLayout = () => {
       <Main>
         <SearchBar isOpen={isOpen} />
         <MainSubContainer>
-          <OutletContainer>
-            <Outlet />
-          </OutletContainer>
+          <FlexContainer>
+            <OutletConainer>
+              <Outlet />
+            </OutletConainer>
+
+            <WidgetsContainer>
+              <Widgets />
+            </WidgetsContainer>
+          </FlexContainer>
         </MainSubContainer>
       </Main>
     </AppLayoutWrapper>

@@ -65,7 +65,7 @@ export const StyledNavLink = styled(NavLink)`
   }
 
   ${({ theme }) => theme.mq.lg} {
-    padding: 1rem 0 1rem 1.8rem;
+    padding: 1rem 1rem 1rem 1.8rem;
   }
 `;
 
@@ -77,7 +77,7 @@ export const MenuItemTitle = styled.span`
   padding: 1.2rem 0 1.2rem 2rem;
 
   ${({ theme }) => theme.mq.lg} {
-    padding: 1rem 0 1rem 1.8rem;
+    padding: 1rem 1rem 1rem 1.8rem;
   }
 `;
 
