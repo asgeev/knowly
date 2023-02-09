@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const WidgetsWrapper = styled.div`
-  position: sticky;
-  top: 10rem;
   background-color: ${({ theme }) => theme.color.background100};
   min-height: 400px;
   max-height: 500px;

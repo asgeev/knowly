@@ -37,13 +37,6 @@ const MainSubContainer = styled.div`
   width: 100%;
 
   ${({ theme }) => theme.mq.lg} {
-    /* justify-content: flex-start;
-    align-items: flex-start; */
-
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-    align-items: flex-start;
     padding-left: 6rem;
   }
 `;
@@ -52,8 +45,9 @@ const FlexContainer = styled.div`
   padding: 0 2rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   flex-direction: column;
+
+  width: 100%;
 
   ${({ theme }) => theme.mq.sm} {
     padding: 0;
@@ -72,7 +66,7 @@ const FlexContainer = styled.div`
     margin-top: 2rem;
     padding-right: 2rem;
     flex-direction: row;
-    flex-wrap: unset;
+    justify-content: space-between;
   }
 
   ${({ theme }) => theme.mq.xl} {
@@ -80,6 +74,7 @@ const FlexContainer = styled.div`
       ${({ theme }) => theme.containerSize.xl} -
         ${({ theme }) => theme.navBar.desktopWidth}
     );
+    flex-wrap: unset;
   }
 
   ${({ theme }) => theme.mq.xxl} {
@@ -93,20 +88,19 @@ const FlexContainer = styled.div`
 export const WidgetsContainer = styled.div`
   margin-top: 3rem;
   margin-bottom: 5rem;
+  min-width: 100%;
 
-  ${({ theme }) => theme.mq.lg} {
+  ${({ theme }) => theme.mq.xl} {
     margin-top: 0;
     margin-bottom: 3rem;
-    margin-left: 1.5rem;
-    flex-basis: 25%;
+    margin-left: 3rem;
+    min-width: 250px;
   }
 `;
 
 export const OutletConainer = styled.div`
-  flex-basis: 75%;
-
   ${({ theme }) => theme.mq.lg} {
-    margin-right: 1.5rem;
+    margin-right: 3rem;
   }
 `;
 
