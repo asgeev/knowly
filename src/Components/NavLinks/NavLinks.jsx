@@ -30,7 +30,7 @@ export const RecursiveNavLinksComponent = ({ data }) => {
 
   return (
     <>
-      {data.map((element) => {
+      {data?.map((element) => {
         return (
           <div key={`${element.name}-${element.id}`}>
             <MenuItemWrapper
@@ -80,7 +80,12 @@ export const NavLinks = () => {
         <MenuItemTitle>Home</MenuItemTitle>
       </PinnedStyledMenuItem>
       <Divider />
-      <RecursiveNavLinksComponent data={menuData} />
+      {menuData.length ? (
+        <RecursiveNavLinksComponent data={menuData} />
+      ) : (
+        <span>Nie można pobrać nawigacji spróbuj ponownie później</span>
+      )}
+
       <Divider />
     </MenuItemsWrapper>
   );

@@ -17,8 +17,9 @@ function App() {
           <Route path="/" element={<AppLayout />}>
             <Route index element={<Home />} />
             <Route index path="page/:pageId" element={<Page />} />
-            <Route path="*" element={<PageNotFound />} />
           </Route>
+          <Route path="*" element={<PageNotFound />} />
+          <Route path="not-found" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

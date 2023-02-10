@@ -1,25 +1,35 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { FormattedContent } from '../FormattedContent/FormattedContent';
 import styled from 'styled-components';
-import DOMPurify from 'dompurify';
+import { TagsContainer } from '../TagsContainer/TagsContainer';
 
-export const PageContent = styled.section``;
+export const PageWrapper = styled.div``;
+
+export const PageTitle = styled.h1`
+  margin-top: 0;
+`;
+
+export const PageContent = styled.section`
+  /* background-color: red; */
+`;
 
 export const Page = () => {
   const { pageId } = useParams();
-  const [pageContent, setPageContent] = useState({});
+  const [pageContent, setPageContent] = useState([]);
   const [isLoding, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-
-  console.log(pageContent);
-  console.log(pageId);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:1337/api/pages/${pageId}`)
+    fetch(`http://localhost:1337/api/pages/${pageId}?populate=*`)
       .then((res) => res.json())
       .then(
         (result) => {
-          setPageContent(result.data.attributes);
+          if (result.data === null || result.error?.status === '404') {
+            navigate('/not-found');
+          }
+          setPageContent(result.data?.attributes);
           setIsLoading(false);
         },
         (error) => {
@@ -28,20 +38,20 @@ export const Page = () => {
           setIsLoading(false);
         }
       );
+    console.log(pageContent);
   }, [pageId]);
 
   return (
-    <PageContent>
+    <PageWrapper>
       {isLoding ? <p>Loading...</p> : null}
-      {isError ? <p>error</p> : null}
-      <>
-        <h1>{pageContent.title}</h1>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(pageContent.content),
-          }}
-        />
-      </>
-    </PageContent>
+      {isError ? (
+        <h2>Błąd pobierania danych, spróbuj ponownie później</h2>
+      ) : null}
+
+      <PageTitle>{pageContent.title}</PageTitle>
+      <TagsContainer tags={pageContent.tags?.data} />
+
+      <FormattedContent content={pageContent.content} />
+    </PageWrapper>
   );
 };

@@ -63,8 +63,8 @@ const FlexContainer = styled.div`
       ${({ theme }) => theme.containerSize.lg} -
         ${({ theme }) => theme.navBar.desktopWidth}
     );
-    margin-top: 2rem;
-    padding-right: 2rem;
+    margin-top: 4rem;
+    padding-right: 6rem;
     flex-direction: row;
     justify-content: space-between;
   }
@@ -75,6 +75,7 @@ const FlexContainer = styled.div`
         ${({ theme }) => theme.navBar.desktopWidth}
     );
     flex-wrap: unset;
+    padding-right: 2rem;
   }
 
   ${({ theme }) => theme.mq.xxl} {
@@ -101,6 +102,7 @@ export const WidgetsContainer = styled.div`
 export const OutletConainer = styled.div`
   ${({ theme }) => theme.mq.lg} {
     margin-right: 3rem;
+    margin-bottom: 10rem;
   }
 `;
 

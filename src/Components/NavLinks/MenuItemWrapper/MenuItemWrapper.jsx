@@ -8,7 +8,6 @@ import {
 
 export const MenuItemWrapper = ({ element, toggleNested, showNested }) => {
   const { title, slug, path, related, order, id, uiRouterKey } = element;
-  console.log(element);
   return (
     <StyledMenuItem>
       {element.type === 'WRAPPER' ? (
