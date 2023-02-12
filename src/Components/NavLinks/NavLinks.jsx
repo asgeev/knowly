@@ -11,6 +11,7 @@ import {
   MenuItemTitle,
   StyledNestedDiv,
 } from './NavLinks.styles';
+import { useAxios } from '../../Hooks/useAxios';
 
 export const RecursiveNavLinksComponent = ({ data }) => {
   const [showNested, setShowNested] = useState({});
@@ -60,18 +61,26 @@ export const RecursiveNavLinksComponent = ({ data }) => {
 export const NavLinks = () => {
   const [menuData, setMenuData] = useState([]);
 
+  const { response, loading, error } = useAxios({
+    url: '/navigation/render/1?type=TREE',
+  });
+
+  // useEffect(() => {
+  //   fetch('http://localhost:1337/api/navigation/render/1?type=TREE')
+  //     .then((res) => res.json())
+  //     .then(
+  //       (result) => {
+  //         setMenuData(result);
+  //       },
+  //       (error) => {
+  //         console.log(error);
+  //       }
+  //     );
+  // }, []);
+
   useEffect(() => {
-    fetch('http://localhost:1337/api/navigation/render/1?type=TREE')
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setMenuData(result);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-  }, []);
+    response ? setMenuData(response) : {};
+  }, [response]);
 
   return (
     <MenuItemsWrapper>
