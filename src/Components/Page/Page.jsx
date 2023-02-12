@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FormattedContent } from '../FormattedContent/FormattedContent';
+import { DangerouslyContent } from '../DangerouslyContent/DangerouslyContent';
 import styled from 'styled-components';
 import { TagsContainer } from '../TagsContainer/TagsContainer';
+import { UnitName } from '../UnitName/UnitName';
 
 export const PageWrapper = styled.div``;
 
@@ -10,27 +11,27 @@ export const PageTitle = styled.h1`
   margin-top: 0;
 `;
 
-export const PageContent = styled.section`
-  /* background-color: red; */
-`;
+const queryParams = `populate=tags,unit`;
 
 export const Page = () => {
   const { pageId } = useParams();
-  const [pageContent, setPageContent] = useState([]);
+  const [pageContent, setPageContent] = useState(null);
   const [isLoding, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:1337/api/pages/${pageId}?populate=*`)
+    fetch(`http://localhost:1337/api/pages/${pageId}?${queryParams}`)
       .then((res) => res.json())
       .then(
         (result) => {
           if (result.data === null || result.error?.status === '404') {
             navigate('/not-found');
+          } else {
+            setPageContent(result.data.attributes);
+            setIsLoading(false);
+            console.log(pageContent);
           }
-          setPageContent(result.data?.attributes);
-          setIsLoading(false);
         },
         (error) => {
           console.log(error);
@@ -38,20 +39,25 @@ export const Page = () => {
           setIsLoading(false);
         }
       );
-    console.log(pageContent);
   }, [pageId]);
 
   return (
     <PageWrapper>
-      {isLoding ? <p>Loading...</p> : null}
       {isError ? (
         <h2>Błąd pobierania danych, spróbuj ponownie później</h2>
       ) : null}
+      {isLoding ? <p>Loading...</p> : null}
+      {pageContent && (
+        <>
+          <PageTitle>{pageContent.title}</PageTitle>
 
-      <PageTitle>{pageContent.title}</PageTitle>
-      <TagsContainer tags={pageContent.tags?.data} />
+          <UnitName unit={pageContent.unit?.data} />
 
-      <FormattedContent content={pageContent.content} />
+          <TagsContainer tags={pageContent.tags?.data} />
+
+          <DangerouslyContent content={pageContent.content} />
+        </>
+      )}
     </PageWrapper>
   );
 };

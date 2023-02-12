@@ -7,6 +7,7 @@ import { Footer } from '../Footer/Footer';
 import { Widgets } from '../Widgets/Widgets';
 
 const AppLayoutWrapper = styled.div`
+  width: 100%;
   min-height: 100dvh;
   min-height: 100vh;
   display: grid;
@@ -45,9 +46,8 @@ const FlexContainer = styled.div`
   padding: 0 2rem;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
-
   width: 100%;
+  gap: 5rem;
 
   ${({ theme }) => theme.mq.sm} {
     padding: 0;
@@ -74,8 +74,8 @@ const FlexContainer = styled.div`
       ${({ theme }) => theme.containerSize.xl} -
         ${({ theme }) => theme.navBar.desktopWidth}
     );
+    /* margin-right: 2rem; */
     flex-wrap: unset;
-    padding-right: 2rem;
   }
 
   ${({ theme }) => theme.mq.xxl} {
@@ -87,22 +87,26 @@ const FlexContainer = styled.div`
 `;
 
 export const WidgetsContainer = styled.div`
-  margin-top: 3rem;
   margin-bottom: 5rem;
-  min-width: 100%;
+  width: 100%;
 
-  ${({ theme }) => theme.mq.xl} {
+  white-space: nowrap;
+  /* width: min-content; */
+
+  ${({ theme }) => theme.mq.lg} {
     margin-top: 0;
     margin-bottom: 3rem;
-    margin-left: 3rem;
-    min-width: 250px;
+    /* flex: 1 1 auto; */
+    max-width: 280px;
   }
 `;
 
 export const OutletConainer = styled.div`
+  width: 100%;
+
+  /* flex: 0 0 auto; */
   ${({ theme }) => theme.mq.lg} {
-    margin-right: 3rem;
-    margin-bottom: 10rem;
+    margin-bottom: 8rem;
   }
 `;
 

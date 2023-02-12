@@ -7,9 +7,7 @@ export const GlobalStyles = createGlobalStyle`
     --webkit-font-smothing: antialiased;
     --moz-osx-font-smothing: grayscale;
     margin: 0;
-    padding: 0;
-
-    
+    padding: 0;   
 }
 
 html {
@@ -21,16 +19,18 @@ html {
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     text-rendering: optimizeLegibility;
     /* transition: all 0.2s linear; */
     background-color: ${({ theme }) => theme.color.background};
     color: ${({ theme }) => theme.color.primaryText};
-    height: 100%
+    height: 100%;
 }
 
 img{
-    max-width: 100%;
+    width: 100%;
+    height: auto;
 }
+
 
 `;

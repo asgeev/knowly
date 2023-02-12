@@ -41,10 +41,17 @@ export const baseTheme = {
 
 export const lightTheme = {
     color: {
-        body: 'hsl(0,0%,100%)',
-        text: '#333333',
-        accent: '#333333',
-        elementBackground: '',
+        background: 'hsl(0,0%,100%)',
+        background100: '#242526',
+        background200: '#3A3B3C',
+        background300: 'red',
+        primaryText: '#333333',
+        secondaryText: '#B0B3B8', 
+        dividerPrimary: '#3c4043',
+        // accent: 'hsl(219, 79%, 44%)',
+        // accent: '#FFFD00',
+        accent: 'rgb(33 149 243)',
+        accentSecondary: '#FFFD00'
     },
 };
 
@@ -58,7 +65,8 @@ export const darkTheme = {
         secondaryText: '#B0B3B8', 
         dividerPrimary: '#3c4043',
         // accent: 'hsl(219, 79%, 44%)',
-        accent: '#FFFD00',
+        // accent: '#FFFD00',
+        accent: 'rgb(33 149 243)',
         accentSecondary: '#FFFD00'
     },
 };
