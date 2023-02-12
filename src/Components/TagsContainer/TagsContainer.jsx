@@ -5,7 +5,7 @@ export const StyledTagsContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.7rem;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   width: 100%;
 `;
 
@@ -116,7 +116,7 @@ export const TagsContainer = ({
       </TagsIcon>
       <StyledTagsItemsContainer>
         {tags.map((tag, index) => {
-          console.log(tag.attributes.tag_name);
+          // console.log(tag.attributes.tag_name);
           return (
             <StyledTagButton key={index}>
               #{tag.attributes.slug}

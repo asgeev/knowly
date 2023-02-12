@@ -10,21 +10,49 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 export const PageWrapper = styled.div``;
 
-export const PageTitle = styled.h1`
-  margin-top: 0;
+export const PageTitle = styled.h1``;
+
+export const PageHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
 `;
 
-const queryParams = `populate=tags,unit`;
+export const PageHeaderAvatar = styled.div`
+  height: 48px;
+  width: 48px;
+  background-image: url('/avatar.jpg');
+  background-size: contain;
+`;
+
+export const PageHeaderUpdatedBy = styled.p`
+  font-size: 1.4rem;
+  color: ${({ theme }) => theme.color.secondaryText};
+`;
+
+export const PageHeaderUpdatedAt = styled(PageHeaderUpdatedBy)``;
+
+export const PageHeaderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const queryParams = `populate=%2A`;
 
 export const Page = () => {
   const { pageId } = useParams();
   const navigate = useNavigate();
-  // const [isLoding, setIsLoading] = useState(true);
-  // const [isError, setIsError] = useState(false);
   const { response, error, loading } = useAxios({
     url: `/pages/${pageId}?${queryParams}`,
   });
   const [pageContent, setPageContent] = useState(response);
+  const updateAt = new Date(pageContent?.updatedAt);
+  const updateAtOptions = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
 
   useEffect(() => {
     response ? setPageContent(response.data.attributes) : {};
@@ -38,6 +66,21 @@ export const Page = () => {
 
       {pageContent && (
         <>
+          <PageHeader>
+            {console.log(pageContent)}
+            <PageHeaderAvatar />
+            <PageHeaderContainer>
+              <PageHeaderUpdatedBy>
+                Autor: {pageContent.updatedBy?.data.attributes.firstname}{' '}
+                {pageContent.updatedBy?.data.attributes.lastname}
+              </PageHeaderUpdatedBy>
+              <PageHeaderUpdatedAt>
+                Ostatnia aktualizacja:{' '}
+                {updateAt.toLocaleDateString('pl-pl', updateAtOptions)}
+              </PageHeaderUpdatedAt>
+            </PageHeaderContainer>
+          </PageHeader>
+
           <PageTitle>{pageContent.title}</PageTitle>
           <UnitName unit={pageContent.unit?.data} />
           <TagsContainer tags={pageContent.tags?.data} />
