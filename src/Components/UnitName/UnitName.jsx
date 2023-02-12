@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { TbBuildingCommunity } from 'react-icons/tb';
+import Skeleton from 'react-loading-skeleton';
 
 export const UnitNameContainer = styled.div`
   padding: 1rem 0;
@@ -23,7 +24,7 @@ export const UnitNameTiitle = styled.p`
 `;
 
 export const UnitName = ({ unit }) => {
-  const { unitName, unitShortcut } = unit.attributes;
+  const { unitName, unitShortcut } = unit?.attributes;
 
   return (
     <UnitNameContainer>

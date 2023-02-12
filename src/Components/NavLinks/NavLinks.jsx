@@ -12,6 +12,8 @@ import {
   StyledNestedDiv,
 } from './NavLinks.styles';
 import { useAxios } from '../../Hooks/useAxios';
+import Skeleton from 'react-loading-skeleton';
+import { NavLinksSkeleton } from '../Skeletons/NavLinksSkeleton/NavLinksSkeleton';
 
 export const RecursiveNavLinksComponent = ({ data }) => {
   const [showNested, setShowNested] = useState({});
@@ -65,21 +67,8 @@ export const NavLinks = () => {
     url: '/navigation/render/1?type=TREE',
   });
 
-  // useEffect(() => {
-  //   fetch('http://localhost:1337/api/navigation/render/1?type=TREE')
-  //     .then((res) => res.json())
-  //     .then(
-  //       (result) => {
-  //         setMenuData(result);
-  //       },
-  //       (error) => {
-  //         console.log(error);
-  //       }
-  //     );
-  // }, []);
-
   useEffect(() => {
-    response ? setMenuData(response) : {};
+    response ? setMenuData(response) : [];
   }, [response]);
 
   return (
@@ -92,7 +81,7 @@ export const NavLinks = () => {
       {menuData.length ? (
         <RecursiveNavLinksComponent data={menuData} />
       ) : (
-        <span>Nie można pobrać nawigacji spróbuj ponownie później</span>
+        <NavLinksSkeleton count={5} />
       )}
 
       <Divider />

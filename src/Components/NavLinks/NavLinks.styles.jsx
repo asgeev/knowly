@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
-import { ShowIndicator } from "./MenuItemWrapper/MenuItemWrapper.styles";
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import { ShowIndicator } from './MenuItemWrapper/MenuItemWrapper.styles';
 
 export const MenuItemsWrapper = styled.div`
   width: 100%;
   padding: 2rem;
 
   ${({ theme }) => theme.mq.lg} {
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     padding: 0;
     font-size: 1.4rem;
   }
@@ -18,11 +18,11 @@ export const PinnedStyledMenuItem = styled(NavLink)`
   display: flex;
   gap: 1.5rem;
   border-radius: 0.6rem;
+  padding: 1.2rem;
   transition: all 0.2s ease-in-out;
   color: ${({ theme }) => theme.color.secondaryText};
   align-items: center;
   justify-content: flex-start;
-  padding: 1.2rem;
 
   &:hover {
     background-color: ${({ theme }) => theme.color.background};
@@ -57,15 +57,13 @@ export const PinnedStyledMenuItem = styled(NavLink)`
       animation: ${ShowIndicator} 0.2s ease-in;
     }
   }
-
 `;
-
 
 export const StyledNestedDiv = styled.div`
   position: relative;
   margin-left: 3rem;
-  transition: all .4s ease-in-out;
-  transition-delay: .1s;
+  transition: all 0.4s ease-in-out;
+  transition-delay: 0.1s;
   max-height: 1000px;
 
   &:before {
@@ -79,11 +77,8 @@ export const StyledNestedDiv = styled.div`
   }
 `;
 
-
 export const MenuItemTitle = styled.span`
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
 `;
-
-

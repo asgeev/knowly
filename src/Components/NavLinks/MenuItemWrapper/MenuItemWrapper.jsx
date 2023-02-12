@@ -1,4 +1,5 @@
 import { TiMinus, TiPlus } from 'react-icons/ti';
+import Skeleton from 'react-loading-skeleton';
 import {
   StyledMenuItem,
   MenuItemTitle,
@@ -23,7 +24,9 @@ export const MenuItemWrapper = ({ element, toggleNested, showNested }) => {
             <TiMinus size={'1.4rem'} />
           )}
         </ChevronIcon>
-      ) : null}
+      ) : (
+        <Skeleton />
+      )}
     </StyledMenuItem>
   );
 };
