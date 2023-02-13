@@ -48,6 +48,7 @@ const FlexContainer = styled.div`
   flex-wrap: wrap;
   width: 100%;
   gap: 5rem;
+  margin-top: 4rem;
 
   ${({ theme }) => theme.mq.sm} {
     padding: 0;
@@ -63,7 +64,7 @@ const FlexContainer = styled.div`
       ${({ theme }) => theme.containerSize.lg} -
         ${({ theme }) => theme.navBar.desktopWidth}
     );
-    margin-top: 4rem;
+    margin-top: 8rem;
     padding-right: 6rem;
     flex-direction: row;
     justify-content: space-between;

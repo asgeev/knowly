@@ -7,6 +7,7 @@ import { UnitName } from '../UnitName/UnitName';
 import { useAxios } from '../../Hooks/useAxios';
 import { PageSkeleton } from '../Skeletons/PageSkeleton/PageSkeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { useDate } from '../../Hooks/useDate';
 
 export const PageWrapper = styled.div``;
 
@@ -15,7 +16,7 @@ export const PageTitle = styled.h1``;
 export const PageHeader = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  /* align-items: center; */
   gap: 1.5rem;
 `;
 
@@ -46,13 +47,7 @@ export const Page = () => {
     url: `/pages/${pageId}?${queryParams}`,
   });
   const [pageContent, setPageContent] = useState(response);
-  const updateAt = new Date(pageContent?.updatedAt);
-  const updateAtOptions = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  };
+  const updatedAt = useDate(pageContent?.updatedAt);
 
   useEffect(() => {
     response ? setPageContent(response.data.attributes) : {};
@@ -67,17 +62,14 @@ export const Page = () => {
       {pageContent && (
         <>
           <PageHeader>
-            {console.log(pageContent)}
+            {/* {console.log(pageContent)} */}
             <PageHeaderAvatar />
             <PageHeaderContainer>
               <PageHeaderUpdatedBy>
-                Autor: {pageContent.updatedBy?.data.attributes.firstname}{' '}
+                {pageContent.updatedBy?.data.attributes.firstname}{' '}
                 {pageContent.updatedBy?.data.attributes.lastname}
               </PageHeaderUpdatedBy>
-              <PageHeaderUpdatedAt>
-                Ostatnia aktualizacja:{' '}
-                {updateAt.toLocaleDateString('pl-pl', updateAtOptions)}
-              </PageHeaderUpdatedAt>
+              <PageHeaderUpdatedAt>{updatedAt}</PageHeaderUpdatedAt>
             </PageHeaderContainer>
           </PageHeader>
 
