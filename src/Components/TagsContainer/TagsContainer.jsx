@@ -12,7 +12,7 @@ export const StyledTagsContainer = styled.div`
 export const StyledTagButton = styled.button`
   all: unset;
   padding: 0.5rem 1rem;
-  font-size: 1.3rem;
+  font-size: ${({ theme }) => theme.font.size.small};
   border-radius: 0.3rem;
   color: ${({ theme }) => theme.color.accent};
 

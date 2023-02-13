@@ -1,14 +1,33 @@
 export const baseTheme = {
     font: {
         size: {
-            xxxs: '.9rem',
-            xxs: '1.2rem',
-            xs: '1.4rem',
-            s: '2.6rem',
-            m: '4.2rem',
-            l: '5 rem',
-            xl: '7.2rem',
-            xxl: '9.4rem',
+            //Mobile default font size - 16px
+            // mobile: {
+            //     h1: '1.802em',
+            //     h2: '1.602em',
+            //     h3: '1.424em',
+            //     h4: '1.266em',
+            //     p: '1em',
+            //     small: '0.889em',
+            // },
+            // //Desktop default font size - 16px
+            // desktop: {
+            //     h1: '2.488em',
+            //     h2: '2.074em',
+            //     h3: '1.728em',
+            //     h4: '1.44em',
+            //     p: '1em',
+            //     small: '0.833em',
+            //     ultraSmall: '',
+            // },
+            h1: '2.488em',
+            h2: '2.074em',
+            h3: '1.728em',
+            h4: '1.44em',
+            p: '1em',
+            small: '0.833em',
+            ultraSmall: '0.694em',
+            
         },
         weight: {
             w100: '100',
@@ -41,12 +60,12 @@ export const baseTheme = {
 
 export const lightTheme = {
     color: {
-        background: 'hsl(0,0%,100%)',
+        background: '#fff',
         background100: '#242526',
         background200: '#3A3B3C',
         background300: 'red',
         primaryText: '#333333',
-        secondaryText: '#B0B3B8', 
+        secondaryText: 'black', 
         dividerPrimary: '#3c4043',
         // accent: 'hsl(219, 79%, 44%)',
         // accent: '#FFFD00',

@@ -1,5 +1,4 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import 'normalize.css/normalize.css';
 import { GlobalStyles } from './Components/GlobalStyles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { darkTheme, baseTheme, lightTheme } from './assets/Theme/theme';
@@ -8,6 +7,7 @@ import { PageNotFound } from './Components/PageNotFound/PageNotFound';
 import { Page } from './Components/Page/Page';
 import { Home } from './Components/Home/Home';
 import { SkeletonTheme } from 'react-loading-skeleton';
+import './assets/Theme/normalize.css';
 
 function App() {
   return (

@@ -18,7 +18,7 @@ export const UnitNameIcon = styled.div`
 `;
 
 export const UnitNameTiitle = styled.p`
-  font-size: 1.3rem;
+  font-size: ${({ theme }) => theme.font.size.small};
   margin-left: 1rem;
   color: ${({ theme }) => theme.color.secondaryText};
 `;
