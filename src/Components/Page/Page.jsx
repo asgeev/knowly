@@ -1,4 +1,4 @@
-import { useEffect, useState, useForceUpdate } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { DangerouslyContent } from '../DangerouslyContent/DangerouslyContent';
 import styled from 'styled-components';
@@ -8,7 +8,6 @@ import { useAxios } from '../../Hooks/useAxios';
 import { PageSkeleton } from '../Skeletons/PageSkeleton/PageSkeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useDate } from '../../Hooks/useDate';
-import { useCallback } from 'react';
 
 export const PageWrapper = styled.div``;
 
@@ -75,8 +74,7 @@ export const Page = () => {
       {error && navigate('/not-found')}
       {loading && <PageSkeleton />}
 
-      {console.log(pageContent)}
-
+      {/* <PageSkeleton /> */}
       {pageContent && (
         <>
           <PageHeader>

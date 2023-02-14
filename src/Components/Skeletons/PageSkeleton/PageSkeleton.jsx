@@ -2,7 +2,7 @@ import Skeleton from 'react-loading-skeleton';
 import styled from 'styled-components';
 
 export const SkeletonPageTitle = styled.h1`
-  margin-top: 0;
+  margin: 2.5rem 0;
 `;
 
 export const SkeletonUnit = styled.div`
@@ -14,7 +14,7 @@ export const SkeletonTags = styled.div`
 `;
 
 export const SkeletonPageContent = styled.div`
-  padding: 1rem 0;
+  /* padding: 1rem 0; */
   margin-top: 3rem;
 
   span > span {
@@ -22,9 +22,35 @@ export const SkeletonPageContent = styled.div`
   }
 `;
 
+export const SkeletonPageHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  gap: 1.5rem;
+`;
+export const SkeletonPageHeaderAvatar = styled.div`
+  height: 48px;
+  width: 48px;
+`;
+
+export const SkeletonPageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+`;
+
 export const PageSkeleton = () => {
   return (
     <>
+      <SkeletonPageHeader>
+        <SkeletonPageHeaderAvatar>
+          <Skeleton circle width={48} height={48} />
+        </SkeletonPageHeaderAvatar>
+        <SkeletonPageContainer>
+          <Skeleton />
+          <Skeleton />
+        </SkeletonPageContainer>
+      </SkeletonPageHeader>
       <SkeletonPageTitle>
         <Skeleton />
       </SkeletonPageTitle>
