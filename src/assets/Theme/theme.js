@@ -85,7 +85,8 @@ export const darkTheme = {
         dividerPrimary: '#3c4043',
         // accent: 'hsl(219, 79%, 44%)',
         // accent: '#FFFD00',
-        accent: 'rgb(33 149 243)',
+        // accent: 'rgb(33 149 243)',
+        accent: '#1772FF',
         accentSecondary: '#FFFD00'
     },
 };

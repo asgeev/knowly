@@ -28,7 +28,7 @@ export const PageHeader = styled.div`
 export const PageHeaderAvatar = styled.div`
   height: 48px;
   width: 48px;
-  background-image: url('/avatar.jpg');
+  background-image: url('../src/assets/icons/unknow.png');
   background-size: contain;
 `;
 

@@ -75,7 +75,7 @@ export const NavLinks = () => {
     <MenuItemsWrapper>
       <PinnedStyledMenuItem to="/">
         <BiHome size="2rem" />
-        <MenuItemTitle>Home</MenuItemTitle>
+        <MenuItemTitle>Strona główna</MenuItemTitle>
       </PinnedStyledMenuItem>
       <Divider />
       {menuData.length ? (

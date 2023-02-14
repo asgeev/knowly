@@ -12,7 +12,6 @@ export const NavigationWrapper = styled.nav`
   background-color: ${({ theme }) => theme.color.background100};
   display: flex;
   align-items: center;
-  padding: 2rem 1.5rem;
   z-index: 99;
   justify-content: space-between;
 
@@ -26,6 +25,7 @@ export const NavigationWrapper = styled.nav`
     justify-content: space-between;
     gap: 4rem;
     height: 100%;
+    padding: 2rem 1.5rem;
     width: ${({ theme }) => theme.navBar.desktopWidth};
     /* border-right: 1px solid ${({ theme }) => theme.color.background200}; */
   }
@@ -45,13 +45,31 @@ export const StyledMdOutlineLightMode = styled(MdOutlineLightMode)`
 const LeftSection = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
-  gap: 4rem;
+  gap: 2rem;
+  padding: 1rem 1.8rem;
+  position: relative;
 `;
+
+export const LeftSectionPageTitle = styled.span`
+  color: ${({ theme }) => theme.color.accent};
+`;
+
+export const BetaTag = styled.span`
+  position: absolute;
+  top: 0;
+  right: -2.8rem;
+  background-color: ${({ theme }) => theme.color.accent};
+  border-radius: 0.4rem;
+  padding: 0.3rem 0.6rem;
+  font-size: ${({ theme }) => theme.font.size.ultraSmall};
+  color: ${({ theme }) => theme.color.primaryText};
+`;
+
 const RightSection = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
+  padding: 1rem 1.8rem;
 `;
 
 export const NavigationItemsContainer = styled.div`
@@ -114,7 +132,8 @@ export const Navigation = ({ isOpen, setIsOpen }) => {
     <NavigationWrapper>
       <LeftSection>
         <SlDiamond size="3rem" />
-        <p style={{ color: 'gold' }}>KnowHow</p>
+        <LeftSectionPageTitle>Data Center</LeftSectionPageTitle>
+        <BetaTag>BETA</BetaTag>
       </LeftSection>
       <NavigationItemsContainer isOpen={isOpen}>
         <NavLinks />
