@@ -4,13 +4,16 @@ import { useNavigate } from 'react-router-dom';
 
 axios.defaults.baseURL = import.meta.env.VITE_API_ADRESS;
 
-export const useAxios = (axiosParams) => {
+export const useAxios = (axiosParams, pageId) => {
   const [response, setResponse] = useState(undefined);
   const [error, setError] = useState('');
-  const [loading, setloading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  console.log(axiosParams);
+
   const fetchData = async (params) => {
+    setLoading(true);
     try {
       const result = await axios.request(params);
       setResponse(result.data);
@@ -19,13 +22,13 @@ export const useAxios = (axiosParams) => {
       setError(err);
       // console.log(err);
     } finally {
-      setloading(false);
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchData(axiosParams);
-  }, []); // execute once only
+  }, [pageId]); // execute once only
 
   return { response, error, loading };
 };

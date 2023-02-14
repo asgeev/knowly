@@ -12,6 +12,7 @@ export const SearchBarContainer = styled.div`
   left: 0;
   padding: 2rem;
   justify-content: center;
+  z-index: 300;
 
   ${({ theme }) => theme.mq.lg} {
     position: sticky;

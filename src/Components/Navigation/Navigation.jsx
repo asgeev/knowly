@@ -45,24 +45,24 @@ export const StyledMdOutlineLightMode = styled(MdOutlineLightMode)`
 const LeftSection = styled.div`
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   padding: 1rem 1.8rem;
   position: relative;
 `;
 
 export const LeftSectionPageTitle = styled.span`
-  color: ${({ theme }) => theme.color.accent};
+  /* color: ${({ theme }) => theme.color.accent}; */
 `;
 
 export const BetaTag = styled.span`
   position: absolute;
   top: 0;
   right: -2.8rem;
-  background-color: ${({ theme }) => theme.color.accent};
+  background-color: ${({ theme }) => theme.color.background};
   border-radius: 0.4rem;
   padding: 0.3rem 0.6rem;
   font-size: ${({ theme }) => theme.font.size.ultraSmall};
-  color: ${({ theme }) => theme.color.primaryText};
+  color: ${({ theme }) => theme.color.accent};
 `;
 
 const RightSection = styled.div`

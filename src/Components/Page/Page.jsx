@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useForceUpdate } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { DangerouslyContent } from '../DangerouslyContent/DangerouslyContent';
 import styled from 'styled-components';
@@ -8,6 +8,7 @@ import { useAxios } from '../../Hooks/useAxios';
 import { PageSkeleton } from '../Skeletons/PageSkeleton/PageSkeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useDate } from '../../Hooks/useDate';
+import { useCallback } from 'react';
 
 export const PageWrapper = styled.div``;
 
@@ -52,9 +53,12 @@ const queryParams = `populate=%2A`;
 export const Page = () => {
   const { pageId } = useParams();
   const navigate = useNavigate();
-  const { response, error, loading } = useAxios({
-    url: `/pages/${pageId}?${queryParams}`,
-  });
+  const { response, error, loading } = useAxios(
+    {
+      url: `/pages/${pageId}?${queryParams}`,
+    },
+    pageId
+  );
   const [pageContent, setPageContent] = useState(response);
   const updatedAt = useDate(pageContent?.updatedAt);
 
@@ -62,16 +66,20 @@ export const Page = () => {
     response ? setPageContent(response.data.attributes) : {};
   }, [response]);
 
+  useEffect(() => {
+    setPageContent(undefined);
+  }, [pageId]);
+
   return (
     <PageWrapper>
       {error && navigate('/not-found')}
       {loading && <PageSkeleton />}
-      {/* {<PageSkeleton />} */}
+
+      {console.log(pageContent)}
 
       {pageContent && (
         <>
           <PageHeader>
-            {/* {console.log(pageContent)} */}
             <PageHeaderAvatar />
             <PageHeaderContainer>
               <PageHeaderUpdatedBy>
@@ -83,8 +91,8 @@ export const Page = () => {
           </PageHeader>
 
           <PageTitle>{pageContent.title}</PageTitle>
-          <UnitName unit={pageContent.unit?.data} />
-          <TagsContainer tags={pageContent.tags?.data} />
+          {pageContent.unit && <UnitName unit={pageContent.unit.data} />}
+          {pageContent.tags && <TagsContainer tags={pageContent.tags?.data} />}
           <DangerouslyContent content={pageContent.content} />
         </>
       )}
