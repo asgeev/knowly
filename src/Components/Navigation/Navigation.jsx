@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SlDiamond } from 'react-icons/sl';
+import { TbBrandGravatar } from 'react-icons/tb';
 import { MdMenu, MdClose, MdOutlineLightMode } from 'react-icons/md';
 import { NavLinks } from '../NavLinks/NavLinks';
 
@@ -44,14 +44,25 @@ export const StyledMdOutlineLightMode = styled(MdOutlineLightMode)`
 
 const LeftSection = styled.div`
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   gap: 1rem;
   padding: 1rem 1.8rem;
   position: relative;
+  /* color: ${({ theme }) => theme.color.accent}; */
+
+  img {
+    height: 50px;
+    /* width: auto;
+    height: 100%; */
+  }
 `;
 
 export const LeftSectionPageTitle = styled.span`
-  /* color: ${({ theme }) => theme.color.accent}; */
+  /* color: ${({ theme }) => theme.color.primaryText}; */
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
+  letter-spacing: 15;
 `;
 
 export const BetaTag = styled.span`
@@ -131,8 +142,9 @@ export const Navigation = ({ isOpen, setIsOpen }) => {
   return (
     <NavigationWrapper>
       <LeftSection>
-        <SlDiamond size="3rem" />
-        <LeftSectionPageTitle>Data Center</LeftSectionPageTitle>
+        {/* <TbBrandGravatar size="3rem" /> */}
+
+        <img src="../src/assets/icons/logo.png" alt="logo" />
         <BetaTag>BETA</BetaTag>
       </LeftSection>
       <NavigationItemsContainer isOpen={isOpen}>

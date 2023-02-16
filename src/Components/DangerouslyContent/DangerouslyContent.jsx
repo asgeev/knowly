@@ -16,8 +16,8 @@ export const Styled = styled.div`
   h3,
   h4,
   h5 {
-    margin: 4rem 0 2rem;
-    font-weight: 600;
+    margin: 4rem 0 1rem;
+    font-weight: 500;
     line-height: 1.3;
   }
 
@@ -36,7 +36,7 @@ export const Styled = styled.div`
   }
   p {
     font-size: ${({ theme }) => theme.font.size.p};
-    margin-bottom: 1.6rem;
+    margin-bottom: 2rem;
   }
 
   ul.todo-list {

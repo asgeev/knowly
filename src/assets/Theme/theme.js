@@ -21,9 +21,9 @@ export const baseTheme = {
             //     ultraSmall: '',
             // },
             h1: '2.488em',
-            h2: '2.074em',
-            h3: '1.728em',
-            h4: '1.44em',
+            h2: '1.728em',
+            h3: '1.44em',
+            h4: '1.2em',
             p: '1em',
             small: '0.833em',
             ultraSmall: '0.694em',
@@ -86,7 +86,7 @@ export const darkTheme = {
         // accent: 'hsl(219, 79%, 44%)',
         // accent: '#FFFD00',
         // accent: 'rgb(33 149 243)',
-        accent: '#1772FF',
+        accent: '#3241FF',
         accentSecondary: '#FFFD00'
     },
 };

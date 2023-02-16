@@ -36,7 +36,11 @@ export const SkeletonPageHeaderAvatar = styled.div`
 export const SkeletonPageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 100%;
+`;
+
+export const SkeletonElement = styled.div`
+  width: ${({ width }) => width};
 `;
 
 export const PageSkeleton = () => {
@@ -47,8 +51,12 @@ export const PageSkeleton = () => {
           <Skeleton circle width={48} height={48} />
         </SkeletonPageHeaderAvatar>
         <SkeletonPageContainer>
-          <Skeleton />
-          <Skeleton />
+          <SkeletonElement width={'40%'}>
+            <Skeleton />
+          </SkeletonElement>
+          <SkeletonElement width={'50%'}>
+            <Skeleton />
+          </SkeletonElement>
         </SkeletonPageContainer>
       </SkeletonPageHeader>
       <SkeletonPageTitle>
