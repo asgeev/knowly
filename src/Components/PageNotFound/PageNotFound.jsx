@@ -1,29 +1,27 @@
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
+// import background from '../src/assets/404background.jpg';
+import astronaut from '../../assets/astronaut.png';
+import background from '../../assets/404background.jpg';
+import logo from '../../assets/icons/logo.png';
 
 export const Header = styled.div`
   height: 8rem;
-  width: 100%;
-  padding: 1rem 1.8rem;
-  /* background-color: ${({ theme }) => theme.color.background100}; */
+  padding: 1.2rem 1.8rem;
 
   img {
     height: 5rem;
-    /* width: auto;
-    height: 100%; */
+    background-color: black;
   }
 `;
 
 export const PageNotFoundContainer = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: center; */
   width: 100vw;
-  /* height: calc(100vh - 8rem); */
   height: 100vh;
   font-family: 'Comfortaa', cursive;
-  background-image: url('../src/assets/404background.jpg');
+  background-image: url(${({ src }) => src});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -60,22 +58,22 @@ export const Paragraph404 = styled.p`
 
 export const fly = keyframes`
   0% {
-    transform: rotate(-90deg) translateX(0);
+    transform: rotateZ(-90deg) translateX(0);
   }
 
   100% {
-    transform: rotate(0deg) translateX(calc(100vw + 200px));
+    transform: rotateZ(0deg) translateX(calc(100vw + 200px));
   }
 
 `;
 
-export const AstronautImage = styled.div`
+export const AstronautImage = styled.img`
   position: absolute;
   top: 40%;
   left: -200px;
   width: 200px;
   height: 200px;
-  background-image: url('../src/assets/astronaut.png');
+  /* background-image: url('../src/assets/404background.jpg'); */
   background-size: contain;
   z-index: 4;
 
@@ -83,12 +81,24 @@ export const AstronautImage = styled.div`
   animation-duration: 10s;
   animation-direction: reverse;
   animation-iteration-count: infinite;
-  animation-timing-function: cubic-bezier(0.87, 0.32, 0.77, 0.65);
-  /* animation-timing-function: ease-in-out; */
-  /* animation-timing-function: cubic-bezier(0.31, 0.44, 0.445, 1.65); custom */
+  animation-timing-function: ease-in-out;
 
+  ${({ theme }) => theme.mq.sm} {
+    top: 45%;
+  }
+  ${({ theme }) => theme.mq.md} {
+    top: 50%;
+  }
   ${({ theme }) => theme.mq.lg} {
+    animation-duration: 15s;
+    top: 55%;
     font-size: 5rem;
+  }
+  ${({ theme }) => theme.mq.xl} {
+    top: 65%;
+  }
+  ${({ theme }) => theme.mq.xxl} {
+    top: 85%;
   }
 `;
 
@@ -106,16 +116,16 @@ export const PageNotFound = () => {
 
   return (
     <>
-      <PageNotFoundContainer>
+      <PageNotFoundContainer src={background}>
         <Header>
-          <img src="../src/assets/icons/logo.png" alt="logo" />
+          <img src={logo} alt="logo" />
         </Header>
         <Header404>404</Header404>
         <Paragraph404>Strona nie została odnaleziona!</Paragraph404>
         {/* <Button onClick={() => navigate('/', { replace: true })}>
           Wróć do strony głównej
         </Button> */}
-        <AstronautImage />
+        <AstronautImage src={astronaut} />
       </PageNotFoundContainer>
     </>
   );

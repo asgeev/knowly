@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { TbBrandGravatar } from 'react-icons/tb';
 import { MdMenu, MdClose, MdOutlineLightMode } from 'react-icons/md';
 import { NavLinks } from '../NavLinks/NavLinks';
+import logo from '../../assets/icons/logo.png';
 
 export const NavigationWrapper = styled.nav`
   position: sticky;
@@ -144,7 +145,7 @@ export const Navigation = ({ isOpen, setIsOpen }) => {
       <LeftSection>
         {/* <TbBrandGravatar size="3rem" /> */}
 
-        <img src="../src/assets/icons/logo.png" alt="logo" />
+        <img src={logo} alt="logo" />
         <BetaTag>BETA</BetaTag>
       </LeftSection>
       <NavigationItemsContainer isOpen={isOpen}>

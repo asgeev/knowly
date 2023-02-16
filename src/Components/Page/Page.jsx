@@ -8,6 +8,7 @@ import { useAxios } from '../../Hooks/useAxios';
 import { PageSkeleton } from '../Skeletons/PageSkeleton/PageSkeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useDate } from '../../Hooks/useDate';
+import unknowAvatar from '../../assets/icons/unknow.png';
 
 export const PageWrapper = styled.div``;
 
@@ -25,10 +26,10 @@ export const PageHeader = styled.div`
   gap: 1.5rem;
 `;
 
-export const PageHeaderAvatar = styled.div`
+export const PageHeaderAvatar = styled.img`
   height: 48px;
   width: 48px;
-  background-image: url('../src/assets/icons/unknow.png');
+  /* background-image: url('../src/assets/icons/unknow.png'); */
   background-size: contain;
 `;
 
@@ -78,7 +79,7 @@ export const Page = () => {
       {pageContent && (
         <>
           <PageHeader>
-            <PageHeaderAvatar />
+            <PageHeaderAvatar src={unknowAvatar} />
             <PageHeaderContainer>
               <PageHeaderUpdatedBy>
                 {pageContent.updatedBy?.data.attributes.firstname}{' '}
