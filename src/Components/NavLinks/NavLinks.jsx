@@ -69,7 +69,7 @@ export const NavLinks = () => {
 
   useEffect(() => {
     response ? setMenuData(response) : [];
-  }, [response]);
+  }, [response, menuData]);
 
   return (
     <MenuItemsWrapper>
@@ -78,11 +78,9 @@ export const NavLinks = () => {
         <MenuItemTitle>Strona główna</MenuItemTitle>
       </PinnedStyledMenuItem>
       <Divider />
-      {menuData.length ? (
-        <RecursiveNavLinksComponent data={menuData} />
-      ) : (
-        <NavLinksSkeleton count={5} />
-      )}
+      {error && <p>Błąd, spróbuj ponownie później</p>}
+      {loading && <NavLinksSkeleton count={5} />}
+      {menuData.length ? <RecursiveNavLinksComponent data={menuData} /> : null}
 
       <Divider />
     </MenuItemsWrapper>

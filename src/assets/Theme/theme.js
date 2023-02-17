@@ -83,9 +83,6 @@ export const darkTheme = {
         primaryText: '#E4E6EB',
         secondaryText: '#B0B3B8', 
         dividerPrimary: '#3c4043',
-        // accent: 'hsl(219, 79%, 44%)',
-        // accent: '#FFFD00',
-        // accent: 'rgb(33 149 243)',
         accent: '#3241FF',
         accentSecondary: '#FFFD00'
     },
