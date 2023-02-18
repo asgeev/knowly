@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { WeatherWidget } from './WeatherWidget/WeatherWidget';
+import { DevToWidget } from './DevToWidget/DevToWidget';
 
 export const WidgetsContainer = styled.div`
   margin: 0;
@@ -9,12 +10,16 @@ export const WidgetsContainer = styled.div`
   /* max-height: 500px; */
   /* padding: 1rem; */
   /* width: 280px; */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 `;
 
 export const Widgets = () => {
   return (
     <WidgetsContainer>
       <WeatherWidget />
+      {/* <DevToWidget /> */}
     </WidgetsContainer>
   );
 };
