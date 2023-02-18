@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { WeatherWidget } from './WeatherWidget/WeatherWidget';
 import { DevToWidget } from './DevToWidget/DevToWidget';
+import { FastLinksWidget } from './FastLinksWidget/FastLinksWidget';
 
 export const WidgetsContainer = styled.div`
   margin: 0;
@@ -20,6 +21,7 @@ export const Widgets = () => {
     <WidgetsContainer>
       <WeatherWidget />
       {/* <DevToWidget /> */}
+      <FastLinksWidget />
     </WidgetsContainer>
   );
 };

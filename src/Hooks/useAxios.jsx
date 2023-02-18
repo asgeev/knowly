@@ -10,7 +10,7 @@ export const useAxios = (axiosParams, pageId) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  console.log(axiosParams);
+  // console.log(axiosParams);
 
   const fetchData = async (params) => {
     setLoading(true);
