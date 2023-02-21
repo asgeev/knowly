@@ -35,21 +35,65 @@ export const StyledContainer = styled.div`
 
   ul.todo-list {
     list-style: none;
-    margin: revert;
+    /* margin: revert; */
     color: revert;
     font-family: revert;
-    margin-left: 2rem;
+    margin: 0 !important;
+
+    label.todo-list__label {
+      font-family: system-ui, sans-serif;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      
+      input[type="checkbox"]{
+        -webkit-appearance: none;
+        appearance: none;
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: .3rem;
+        margin-right: 1rem;
+        border: 0.15rem solid ${({ theme }) => theme.color.background200};
+        outline: none;
+        /* vertical-align: middle; */
+
+      }
+
+      input[checked="checked"]{
+        background-color: #26ab33;
+        position: relative;
+
+        :after{
+        content: '✓';
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -17px);
+        }
+      }
+
+
+
+    }
   }
 
   ul,
   ol {
     list-style: initial;
-    margin-left: 2rem;
+    /* margin-left: 4rem;
+    margin-bottom: 1rem; */
+    margin: 1rem 0 2rem 2rem !important;
   }
 
   ol {
     list-style: decimal;
   }
+
+  li{
+      margin: 0.5rem 0 !important;
+    }
+
 
   sub {
     vertical-align: sub;
