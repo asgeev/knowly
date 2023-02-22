@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -29,7 +29,7 @@ body {
     line-height: 1.6;
     font-weight: 400;
     
-    ${({theme}) => theme.mq.sm}{
+    ${({ theme }) => theme.mq.sm}{
       font-size: 1.8rem;   
     }
   }
@@ -78,4 +78,4 @@ select {
 }
 
 
-`;
+`

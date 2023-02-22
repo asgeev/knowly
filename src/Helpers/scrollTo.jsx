@@ -1,3 +1,3 @@
 export const scrollTo = (sfa) => {
-  console.log(sfa);
-};
+    console.log(sfa)
+}

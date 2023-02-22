@@ -27,7 +27,6 @@ export const baseTheme = {
             p: '1em',
             small: '0.833em',
             ultraSmall: '0.694em',
-            
         },
         weight: {
             w100: '100',
@@ -54,9 +53,9 @@ export const baseTheme = {
         mobileHeight: '8rem',
         mobileWidth: '100%',
         desktopHeight: '100%',
-        desktopWidth: '26.5rem'
+        desktopWidth: '26.5rem',
     },
-};
+}
 
 export const lightTheme = {
     color: {
@@ -65,14 +64,14 @@ export const lightTheme = {
         background200: '#3A3B3C',
         background300: 'red',
         primaryText: '#333333',
-        secondaryText: 'black', 
+        secondaryText: 'black',
         dividerPrimary: '#3c4043',
         // accent: 'hsl(219, 79%, 44%)',
         // accent: '#FFFD00',
         accent: 'rgb(33 149 243)',
-        accentSecondary: '#FFFD00'
+        accentSecondary: '#FFFD00',
     },
-};
+}
 
 export const darkTheme = {
     color: {
@@ -81,10 +80,10 @@ export const darkTheme = {
         background200: '#3A3B3C',
         background300: 'red',
         primaryText: '#E4E6EB',
-        secondaryText: '#B0B3B8', 
+        secondaryText: '#B0B3B8',
         dividerPrimary: '#3c4043',
         accent: '#3241FF',
         // accent: 'rgb(33 149 243)',
-        accentSecondary: '#FFFD00'
+        accentSecondary: '#FFFD00',
     },
-};
+}
