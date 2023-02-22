@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { DangerouslyContent } from '../DangerouslyContent/DangerouslyContent'
 import styled from 'styled-components'
 import { TagsContainer } from '../TagsContainer/TagsContainer'
 import { UnitName } from '../UnitName/UnitName'
-import { SectionName } from '../SectionName/SectionName'
 import { useAxios } from '../../Hooks/useAxios'
 import { PageSkeleton } from '../Skeletons/PageSkeleton/PageSkeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -73,7 +72,8 @@ export const Page = () => {
 
     return (
         <PageWrapper>
-            {error && navigate('/not-found')}
+            {error && <Navigate to="/not-found" replace={true} />}
+
             {loading && <PageSkeleton />}
             {/* {console.log(pageContent)} */}
             {/* <PageSkeleton /> */}

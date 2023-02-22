@@ -1,8 +1,9 @@
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { TbBrandGravatar } from 'react-icons/tb'
 import { MdMenu, MdClose, MdOutlineLightMode } from 'react-icons/md'
 import { NavLinks } from '../NavLinks/NavLinks'
 import logo from '../../assets/icons/logo.png'
+import logoSmall from '../../assets/icons/logoSmall.png'
 
 export const NavigationWrapper = styled.nav`
     position: sticky;
@@ -44,19 +45,31 @@ export const StyledMdOutlineLightMode = styled(MdOutlineLightMode)`
     cursor: pointer;
 `
 
-const LeftSection = styled.div`
+const LeftSection = styled.a`
     display: flex;
     /* align-items: center; */
     /* justify-content: center; */
     gap: 1rem;
     padding: 1rem 1.8rem;
     position: relative;
+    align-items: center;
     /* color: ${({ theme }) => theme.color.accent}; */
 
-    img {
-        height: 50px;
-        /* width: auto;
-    height: 100%; */
+    &:hover {
+        cursor: pointer;
+    }
+`
+
+export const LogoSmall = styled.img`
+    max-height: 40px;
+`
+
+export const Logo = styled.img`
+    display: none;
+    height: 50px;
+
+    ${({ theme }) => theme.mq.lg} {
+        display: flex;
     }
 `
 
@@ -134,19 +147,23 @@ export const MenuIcon = styled.div`
 `
 
 export const Navigation = ({ isOpen, setIsOpen }) => {
+    const navigate = useNavigate()
+
     const closeMenu = () => {
         setIsOpen(false)
     }
     const openMenu = () => {
         setIsOpen(true)
     }
-
+    const navigateToHomePage = () => {
+        navigate('/')
+    }
     return (
         <NavigationWrapper>
-            <LeftSection>
+            <LeftSection onClick={navigateToHomePage}>
                 {/* <TbBrandGravatar size="3rem" /> */}
-
-                <img src={logo} alt="logo" />
+                <LogoSmall src={logoSmall} alt="logoSmall" />
+                <Logo src={logo} alt="logo" />
                 <BetaTag>BETA</BetaTag>
             </LeftSection>
             <NavigationItemsContainer isOpen={isOpen}>
