@@ -4,6 +4,8 @@ export const StyledContainer = styled.div`
   /* font-family: 'Poppins', sans-serif; */
   word-wrap: break-word;
   overflow-wrap: break-word;
+  color-scheme: dark;
+
 
   h1,
   h2,
@@ -72,9 +74,6 @@ export const StyledContainer = styled.div`
         transform: translate(-50%, -17px);
         }
       }
-
-
-
     }
   }
 
@@ -83,7 +82,7 @@ export const StyledContainer = styled.div`
     list-style: initial;
     /* margin-left: 4rem;
     margin-bottom: 1rem; */
-    margin: 1rem 0 2rem 2rem !important;
+    margin: 1rem 0 2rem 4rem !important;
   }
 
   ol {
@@ -125,6 +124,7 @@ strong {
   font-weight: bolder;
 }
 
+
 pre{
   padding: 1.5rem 3rem;
   margin: 1rem 0;
@@ -138,6 +138,25 @@ pre{
 code{
   font-family: 'Fira Code', monospace;
 }
+
+.marker-yellow{background-color: #fdfd77}
+.marker-green{background-color: #62f962}
+.marker-pink{background-color: #fc7899}
+.marker-blue{background-color: #72ccfd}
+.pen-red{background-color:transparent;color: #e71313}
+.pen-green{background-color:transparent;color: #128a00}
+
+table {
+  font-size: ${({ theme }) => theme.font.size.small};
+  border-collapse: collapse;
+  width: 100%;
+
+}
+th, td {
+  /* border: thin solid; */
+  padding: 1rem;
+}
+
 `;
 
 export const ContentContainer = ({ children }) => {
