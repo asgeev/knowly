@@ -5,7 +5,7 @@ import { darkTheme, baseTheme, lightTheme } from './assets/Theme/theme';
 import { AppLayout } from './Components/AppLayout/AppLayout';
 import { PageNotFound } from './Components/PageNotFound/PageNotFound';
 import { Page } from './Components/Page/Page';
-import { Home } from './Components/Home/Home';
+import { HomePage } from './Components/HomePage/HomePage';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import './assets/Theme/normalize.css';
 
@@ -17,7 +17,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<AppLayout />}>
-              <Route index element={<Home />} />
+              <Route index element={<HomePage />} />
               <Route index path="page/:pageId" element={<Page />} />
               <Route path="*" element={<PageNotFound />} />
             </Route>

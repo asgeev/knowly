@@ -63,7 +63,7 @@ export const Page = () => {
   const updatedAt = useDate(pageContent?.updatedAt);
 
   useEffect(() => {
-    response ? setPageContent(response.data.attributes) : {};
+    response ? setPageContent(response.data.attributes) : null;
   }, [response]);
 
   useEffect(() => {
