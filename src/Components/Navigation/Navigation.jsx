@@ -2,8 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { MdMenu, MdClose, MdOutlineLightMode } from 'react-icons/md'
 import { NavLinks } from '../NavLinks/NavLinks'
-import logo from '../../assets/icons/logo.png'
-import logoSmall from '../../assets/icons/logoSmall.png'
+import { Logo } from '../Logo/Logo'
 
 export const NavigationWrapper = styled.nav`
     position: sticky;
@@ -45,51 +44,7 @@ export const StyledMdOutlineLightMode = styled(MdOutlineLightMode)`
     cursor: pointer;
 `
 
-const LeftSection = styled.a`
-    display: flex;
-    /* align-items: center; */
-    /* justify-content: center; */
-    gap: 1rem;
-    padding: 1rem 1.8rem;
-    position: relative;
-    align-items: center;
-    /* color: ${({ theme }) => theme.color.accent}; */
-
-    &:hover {
-        cursor: pointer;
-    }
-`
-
-export const LogoSmall = styled.img`
-    max-height: 40px;
-`
-
-export const Logo = styled.img`
-    display: none;
-    height: 50px;
-
-    ${({ theme }) => theme.mq.lg} {
-        display: flex;
-    }
-`
-
-export const LeftSectionPageTitle = styled.span`
-    /* color: ${({ theme }) => theme.color.primaryText}; */
-    font-family: 'Comfortaa', cursive;
-    font-weight: 700;
-    letter-spacing: 15;
-`
-
-export const BetaTag = styled.span`
-    position: absolute;
-    top: 0;
-    right: -2.8rem;
-    background-color: ${({ theme }) => theme.color.background};
-    border-radius: 0.4rem;
-    padding: 0.3rem 0.6rem;
-    font-size: ${({ theme }) => theme.font.size.ultraSmall};
-    color: ${({ theme }) => theme.color.accent};
-`
+const LeftSection = styled.div``
 
 const RightSection = styled.div`
     display: flex;
@@ -158,13 +113,11 @@ export const Navigation = ({ isOpen, setIsOpen }) => {
     const navigateToHomePage = () => {
         navigate('/')
     }
+
     return (
         <NavigationWrapper>
             <LeftSection onClick={navigateToHomePage}>
-                {/* <TbBrandGravatar size="3rem" /> */}
-                <LogoSmall src={logoSmall} alt="logoSmall" />
-                <Logo src={logo} alt="logo" />
-                <BetaTag>BETA</BetaTag>
+                <Logo />
             </LeftSection>
             <NavigationItemsContainer isOpen={isOpen}>
                 <NavLinks />

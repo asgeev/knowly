@@ -2,26 +2,15 @@ import { useNavigate } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import astronaut from '../../assets/astronaut.png'
 import background from '../../assets/404background.jpg'
-import logo from '../../assets/icons/logo.png'
-import logoSmall from '../../assets/icons/logoSmall.png'
+import { Logo } from '../Logo/Logo'
 
-export const Header = styled.div`
+export const TopBar = styled.div`
     height: 8rem;
     padding: 1.2rem 1.8rem;
     display: flex;
     gap: 1rem;
     padding: 1rem 1.8rem;
-    position: relative;
     align-items: center;
-
-    &:hover {
-        cursor: pointer;
-    }
-
-    img {
-        height: 5rem;
-        background-color: black;
-    }
 `
 
 export const PageNotFoundContainer = styled.div`
@@ -117,10 +106,9 @@ export const PageNotFound = () => {
     return (
         <>
             <PageNotFoundContainer src={background}>
-                <Header onClick={() => navigate('/', { replace: true })}>
-                    <img src={logoSmall} alt="logoSmall" />
-                    <img src={logo} alt="logo" />
-                </Header>
+                <TopBar>
+                    <Logo />
+                </TopBar>
                 <Header404>404</Header404>
                 <Paragraph404>Strona nie została odnaleziona!</Paragraph404>
                 <AstronautImage src={astronaut} />
