@@ -2,7 +2,6 @@ import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { MenuData } from '../../assets/MenuData/MenuData'
 import { BiHome } from 'react-icons/bi'
-// import { MenuItemWrapper } from './MenuItemWrapper/MenuItemWrapper';
 import { MenuItemWrapper } from './MenuItemWrapper/MenuItemWrapper'
 import { Divider } from '../Divider/Divider'
 import {
@@ -12,7 +11,6 @@ import {
     StyledNestedDiv,
 } from './NavLinks.styles'
 import { useAxios } from '../../Hooks/useAxios'
-import Skeleton from 'react-loading-skeleton'
 import { NavLinksSkeleton } from '../Skeletons/NavLinksSkeleton/NavLinksSkeleton'
 
 export const RecursiveNavLinksComponent = ({ data }) => {

@@ -23,6 +23,7 @@ export const Link = styled.a`
     color: ${({ theme }) => theme.color.secondaryText};
     background-color: ${({ theme }) => theme.color.background};
     font-size: ${({ theme }) => theme.font.size.small};
+    border-radius: 0.3rem;
 
     &:hover {
         cursor: pointer;

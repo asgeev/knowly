@@ -1,9 +1,5 @@
 import Skeleton from 'react-loading-skeleton'
-import styled from 'styled-components'
-
-export const SkeletonTitle = styled.h1``
-
-export const SkeletonContent = styled.div``
+import { SkeletonTitle, SkeletonContent } from './HomePageSkeleton.styles'
 
 export const HomePageSkeleton = () => {
     return (

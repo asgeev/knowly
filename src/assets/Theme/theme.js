@@ -66,9 +66,7 @@ export const lightTheme = {
         primaryText: '#333333',
         secondaryText: 'black',
         dividerPrimary: '#3c4043',
-        // accent: 'hsl(219, 79%, 44%)',
-        // accent: '#FFFD00',
-        accent: 'rgb(33 149 243)',
+        accent: '#3097FE',
         accentSecondary: '#FFFD00',
     },
 }
@@ -82,10 +80,7 @@ export const darkTheme = {
         primaryText: '#E4E6EB',
         secondaryText: '#B0B3B8',
         dividerPrimary: '#3c4043',
-        // accent: "hotpink",
-        // accent: '#3241FF',
         accent: '#3097FE',
-        // accent: 'rgb(33 149 243)',
         accentSecondary: '#FFFD00',
     },
 }

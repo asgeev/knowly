@@ -1,13 +1,8 @@
 import { useState, useEffect } from 'react'
-import styled from 'styled-components'
 import { useAxios } from '../../Hooks/useAxios'
 import { DangerouslyContent } from '../DangerouslyContent/DangerouslyContent'
 import { HomePageSkeleton } from '../Skeletons/HomePageSkeleton/HomePageSkeleton'
-
-export const HomePageWrapper = styled.div``
-export const HomePageTitle = styled.h1`
-    margin-top: 0;
-`
+import { HomePageWrapper, HomePageTitle } from './HomePage.styles'
 
 export const HomePage = () => {
     const { response, error, loading } = useAxios({

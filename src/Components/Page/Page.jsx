@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { DangerouslyContent } from '../DangerouslyContent/DangerouslyContent'
-import styled from 'styled-components'
 import { TagsContainer } from '../TagsContainer/TagsContainer'
 import { UnitName } from '../UnitName/UnitName'
 import { useAxios } from '../../Hooks/useAxios'
@@ -9,44 +8,15 @@ import { PageSkeleton } from '../Skeletons/PageSkeleton/PageSkeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { useDate } from '../../Hooks/useDate'
 import unknowAvatar from '../../assets/icons/unknow.png'
-
-export const PageWrapper = styled.div``
-
-export const PageTitle = styled.h1`
-    font-size: ${({ theme }) => theme.font.size.h1};
-    margin: 2.5rem 0;
-    line-height: 1.3em;
-    font-weight: 600;
-`
-
-export const PageHeader = styled.div`
-    display: flex;
-    flex-direction: row;
-    /* align-items: center; */
-    gap: 1.5rem;
-`
-
-export const PageHeaderAvatar = styled.img`
-    height: 48px;
-    width: 48px;
-    /* background-image: url('../src/assets/icons/unknow.png'); */
-    background-size: contain;
-`
-
-export const PageHeaderContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    font-size: ${({ theme }) => theme.font.size.small};
-    color: ${({ theme }) => theme.color.secondaryText};
-`
-
-export const PageHeaderUpdatedBy = styled.span`
-    font-weight: 500;
-`
-
-export const PageHeaderUpdatedAt = styled.span`
-    font-weight: 300;
-`
+import {
+    PageWrapper,
+    PageHeaderContainer,
+    PageHeader,
+    PageHeaderAvatar,
+    PageHeaderUpdatedBy,
+    PageHeaderUpdatedAt,
+    PageTitle,
+} from './Page.styles'
 
 const queryParams = `populate=%2A`
 
