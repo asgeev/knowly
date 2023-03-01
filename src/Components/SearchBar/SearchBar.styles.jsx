@@ -10,17 +10,16 @@ export const SearchBarContainer = styled.div`
     padding: 2rem;
     justify-content: center;
     z-index: 300;
+    border-bottom: 1px solid ${({ theme }) => theme.color.background100};
 
     ${({ theme }) => theme.mq.lg} {
         position: sticky;
         top: 0;
         left: 0;
         max-width: 100%;
-        padding: 1.5rem 3rem;
         padding-left: 6rem;
-        /* background-color: ${({ theme }) => theme.color.background100}; */
-        border-bottom: 1px solid ${({ theme }) => theme.color.background100};
-        justify-content: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
 `
 
@@ -28,12 +27,17 @@ export const InputContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
+    position: relative;
     align-items: center;
-    gap: 2rem;
-    border-radius: 0.5rem;
-
-    /* padding: 1rem 1.5rem; */
-    /* background-color: ${({ theme }) => theme.color.background300}; */
+    gap: 0.5rem;
+    border-radius: 0.6rem;
+    font-size: ${({ theme }) => theme.font.size.small};
+    padding: 0.2rem 0 0.2rem 1rem;
+    background-color: ${({ theme }) => theme.color.background100};
+    /* 
+    &:has(input:focus) {
+        outline: 1px solid ${({ theme }) => theme.color.accent};
+    } */
 
     ${({ theme }) => theme.mq.sm} {
         max-width: ${({ theme }) => theme.containerSize.sm};
@@ -43,7 +47,7 @@ export const InputContainer = styled.div`
     }
 
     ${({ theme }) => theme.mq.lg} {
-        max-width: ${({ theme }) => theme.containerSize.md};
+        max-width: ${({ theme }) => theme.containerSize.sm};
     }
 `
 
