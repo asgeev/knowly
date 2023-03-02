@@ -32,7 +32,7 @@ export const InputContainer = styled.div`
     gap: 0.5rem;
     border-radius: 0.6rem;
     font-size: ${({ theme }) => theme.font.size.small};
-    padding: 0.2rem 0 0.2rem 1rem;
+    padding: 0.2rem 1rem 0.2rem 1rem;
     background-color: ${({ theme }) => theme.color.background100};
     /* 
     &:has(input:focus) {
@@ -55,4 +55,26 @@ export const StyledSearchBar = styled.input`
     all: unset;
     width: 100%;
     padding: 1rem;
+`
+
+export const ItemsContainer = styled.div`
+    display: none;
+    ${({ theme }) => theme.mq.lg} {
+        display: flex;
+        gap: 0.5rem;
+    }
+`
+
+export const Item = styled.a`
+    display: flex;
+    align-items: center;
+
+    :visited {
+        color: white;
+    }
+    :hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        transition: all 300ms ease-in-out;
+    }
 `

@@ -1,41 +1,28 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useDebounce } from '../../Hooks/useDebounce'
 import { SearchResults } from '../SearchResults/SearchResults'
+import { Dropdown } from '../Dropdown/Dropdown'
 import {
     SearchBarContainer,
     InputContainer,
     StyledSearchBar,
+    ItemsContainer,
+    Item,
 } from './SearchBar.styles'
 import styled from 'styled-components'
 import { ImGithub } from 'react-icons/im'
 import { MdSearch } from 'react-icons/md'
 
-export const ItemsContainer = styled.div`
-    display: none;
-    ${({ theme }) => theme.mq.lg} {
-        display: flex;
-        gap: 0.5rem;
-    }
-`
-
-export const Item = styled.a`
-    display: flex;
-    align-items: center;
-
-    :visited {
-        color: white;
-    }
-    :hover {
-        cursor: pointer;
-        transform: scale(1.1);
-        transition: all 300ms ease-in-out;
-    }
-`
+const searchIndexItems = [
+    { index: 'number', title: 'numer' },
+    { index: 'page', title: 'strona' },
+    { index: 'tag', title: 'tag' },
+]
 
 export const SearchBar = ({ isOpen }) => {
     const [searchQuery, setSearchQuery] = useState('')
-    const [searchElements, setSearchElements] = useState([])
     const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const [selectedSearchIndex, setSelectedSearchIndex] = useState('number')
     const debounceSearchQuery = useCallback(
         useDebounce(searchQuery, 600)
     ).trim()
@@ -45,6 +32,10 @@ export const SearchBar = ({ isOpen }) => {
     }
     const closeSearchResults = () => {
         setIsSearchOpen(false)
+    }
+
+    const handleSelectedSearchIndex = (event) => {
+        setSelectedSearchIndex(event.target.value)
     }
 
     useEffect(() => {
@@ -65,8 +56,14 @@ export const SearchBar = ({ isOpen }) => {
                     onFocus={openSearchResults}
                     onBlur={closeSearchResults}
                 ></StyledSearchBar>
+                <Dropdown
+                    items={searchIndexItems}
+                    handleSelectedSearchIndex={handleSelectedSearchIndex}
+                    defaultValue={selectedSearchIndex}
+                />
                 <SearchResults isSearchOpen={isSearchOpen} />
             </InputContainer>
+            {console.log(selectedSearchIndex)}
             <ItemsContainer>
                 <Item href="https://github.com/polishghost27">
                     <ImGithub size="3rem" />
