@@ -16,7 +16,8 @@ import axios from 'axios'
 export const WeatherWidget = () => {
     const [weather, setWeather] = useState({})
     const query = {
-        q: 'Lublin, PL',
+        lat: 51.25,
+        lon: 22.5667,
         APPID: import.meta.env.VITE_WEATHER_API_KEY,
         units: 'metric',
     }
@@ -40,7 +41,7 @@ export const WeatherWidget = () => {
                                 <IconContainer>
                                     <MdLocationSearching />
                                 </IconContainer>
-                                <span>{query.q}</span>
+                                <span>Lublin, PL</span>
                             </Location>
                             <TempContainer>
                                 {weather.main?.temp ? (

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useRef } from 'react'
 import { useDebounce } from '../../Hooks/useDebounce'
 import { SearchResults } from '../SearchResults/SearchResults'
 import { Dropdown } from '../Dropdown/Dropdown'
@@ -56,11 +56,11 @@ export const SearchBar = ({ isOpen }) => {
                     onFocus={openSearchResults}
                     onBlur={closeSearchResults}
                 ></StyledSearchBar>
-                <Dropdown
+                {/* <Dropdown
                     items={searchIndexItems}
                     handleSelectedSearchIndex={handleSelectedSearchIndex}
                     defaultValue={selectedSearchIndex}
-                />
+                /> */}
                 <SearchResults isSearchOpen={isSearchOpen} />
             </InputContainer>
             {console.log(selectedSearchIndex)}
