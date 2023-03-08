@@ -8,15 +8,15 @@ export const HomePage = () => {
     const { response, error, loading } = useAxios({
         url: `/home-page`,
     })
-    const [content, setContent] = useState(response)
+    const [content, setContent] = useState(null)
 
     useEffect(() => {
         response ? setContent(response.data.attributes) : null
     }, [response])
 
-    useEffect(() => {
-        setContent(null)
-    }, [loading])
+    // useEffect(() => {
+    //     setContent(null)
+    // }, [loading])
 
     return (
         <HomePageWrapper>

@@ -22,7 +22,6 @@ const queryParams = `populate=%2A`
 
 export const Page = () => {
     const { pageId } = useParams()
-    const navigate = useNavigate()
     const { response, error, loading } = useAxios(
         {
             url: `/pages/${pageId}?${queryParams}`,
