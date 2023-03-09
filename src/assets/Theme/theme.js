@@ -53,7 +53,7 @@ export const baseTheme = {
         mobileHeight: '8rem',
         mobileWidth: '100%',
         desktopHeight: '100%',
-        desktopWidth: '26.5rem',
+        desktopWidth: '28rem',
     },
 }
 

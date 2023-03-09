@@ -42,7 +42,6 @@ export const StyledContainer = styled.div`
 
         label.todo-list__label {
             font-family: system-ui, sans-serif;
-            font-size: 2rem;
             display: flex;
             align-items: center;
 
@@ -71,6 +70,9 @@ export const StyledContainer = styled.div`
                     left: 50%;
                     transform: translate(-50%, -17px);
                 }
+            }
+            span.todo-list__label__description {
+                font-size: ${({ theme }) => theme.font.size.small};
             }
         }
     }
