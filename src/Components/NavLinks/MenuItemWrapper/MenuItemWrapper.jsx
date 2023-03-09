@@ -10,7 +10,7 @@ import {
 export const MenuItemWrapper = ({ element, toggleNested, showNested }) => {
     const { title, slug, path, related, order, id, uiRouterKey } = element
     return (
-        <StyledMenuItem>
+        <StyledMenuItem onClick={() => toggleNested(element.title)}>
             {element.type === 'WRAPPER' ? (
                 <MenuItemTitle>{element.title}</MenuItemTitle>
             ) : (

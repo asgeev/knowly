@@ -21,7 +21,7 @@ export const StyledMenuItem = styled.div`
     gap: 2rem;
     border-radius: 0.6rem;
     margin: 0.4rem 0;
-    /* cursor: pointer; */
+    cursor: pointer;
 
     &:hover {
         background-color: ${({ theme }) => theme.color.background};
