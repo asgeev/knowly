@@ -38,7 +38,7 @@ export const StyledContainer = styled.div`
         /* margin: revert; */
         color: revert;
         font-family: revert;
-        margin: 0 !important;
+        margin: 0 0 0 1rem !important;
 
         label.todo-list__label {
             font-family: system-ui, sans-serif;
@@ -68,7 +68,7 @@ export const StyledContainer = styled.div`
                     position: absolute;
                     top: 50%;
                     left: 50%;
-                    transform: translate(-50%, -17px);
+                    transform: translate(-50%, -15px);
                 }
             }
             span.todo-list__label__description {
@@ -88,7 +88,7 @@ export const StyledContainer = styled.div`
     }
 
     li {
-        margin: 0.5rem 0 !important;
+        margin: 1rem 0 !important;
     }
 
     sub {
@@ -105,7 +105,7 @@ export const StyledContainer = styled.div`
 
     blockquote {
         margin: 2rem 0;
-        border-left: 0.6rem solid ${({ theme }) => theme.color.background200};
+        border-left: 0.6rem solid ${({ theme }) => theme.color.accent};
         padding: 1rem 3rem;
         font-size: ${({ theme }) => theme.font.size.small};
         color: ${({ theme }) => theme.color.secondaryText};
@@ -127,6 +127,7 @@ export const StyledContainer = styled.div`
         font-size: ${({ theme }) => theme.font.size.small};
         color: ${({ theme }) => theme.color.secondaryText};
         border: unset;
+        overflow-y: auto;
     }
 
     code {
@@ -161,6 +162,6 @@ export const StyledContainer = styled.div`
     }
     th,
     td {
-        padding: 1rem;
+        padding: 0.6rem;
     }
 `
