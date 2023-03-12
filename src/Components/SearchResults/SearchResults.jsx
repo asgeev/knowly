@@ -1,5 +1,13 @@
 import styled from 'styled-components'
 import { useState } from 'react'
+import {
+    InstantSearch,
+    SearchBox,
+    Hits,
+    Highlight,
+    Stats,
+    MenuSelect,
+} from 'react-instantsearch-dom'
 
 export const ResultsContainer = styled.div`
     visibility: ${({ isSearchOpen }) => (isSearchOpen ? 'visible' : 'hidden')};
@@ -25,5 +33,18 @@ export const SearchResults = ({ isSearchOpen }) => {
         <ResultsContainer isSearchOpen={isSearchOpen}>
             <span>Wpisz wydział, dział, nazwisko lub imię</span>
         </ResultsContainer>
+    )
+}
+
+const Hit = ({ hit }) => {
+    return (
+        <>
+            {console.log(hit)}
+            <Highlight attribute="employeeName" hit={hit} />
+            <br></br>
+            <Highlight attribute="externalNumber" hit={hit} />
+            <br></br>
+            <Highlight attribute="externalNumber" hit={hit} />
+        </>
     )
 }

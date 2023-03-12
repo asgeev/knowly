@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useRef } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useDebounce } from '../../Hooks/useDebounce'
 import { SearchResults } from '../SearchResults/SearchResults'
 import { Dropdown } from '../Dropdown/Dropdown'
@@ -9,9 +9,28 @@ import {
     ItemsContainer,
     Item,
 } from './SearchBar.styles'
-import styled from 'styled-components'
 import { ImGithub } from 'react-icons/im'
 import { MdSearch } from 'react-icons/md'
+import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
+import {
+    InstantSearch,
+    SearchBox,
+    Hits,
+    Highlight,
+    Stats,
+    MenuSelect,
+    Index,
+} from 'react-instantsearch-dom'
+
+const searchClient = instantMeiliSearch(
+    import.meta.env.VITE_MEILISEARCH_API,
+    import.meta.env.VITE_MEILISEARCH_API_KEY,
+    {
+        placeholderSearch: false,
+        primaryKey: 'id',
+        searchAsYouType: true,
+    }
+)
 
 const searchIndexItems = [
     { index: 'number', title: 'numer' },
@@ -46,7 +65,16 @@ export const SearchBar = ({ isOpen }) => {
 
     return (
         <SearchBarContainer isOpen={isOpen}>
-            <InputContainer>
+            <InstantSearch indexName="number" searchClient={searchClient}>
+                <SearchBox searchAsYouType={true} showLoadingIndicator={true} />
+
+                <Hits hitComponent={Hit}>
+                    <Index indexName="number" indexId="unit" />
+                    <Index indexName="page" />
+                </Hits>
+            </InstantSearch>
+
+            {/* <InputContainer>
                 <MdSearch size="3rem" />
                 <StyledSearchBar
                     type="text"
@@ -56,19 +84,39 @@ export const SearchBar = ({ isOpen }) => {
                     onFocus={openSearchResults}
                     onBlur={closeSearchResults}
                 ></StyledSearchBar>
-                {/* <Dropdown
+                <Dropdown
                     items={searchIndexItems}
                     handleSelectedSearchIndex={handleSelectedSearchIndex}
                     defaultValue={selectedSearchIndex}
-                /> */}
+                />
+
                 <SearchResults isSearchOpen={isSearchOpen} />
-            </InputContainer>
-            {console.log(selectedSearchIndex)}
+            </InputContainer> */}
             <ItemsContainer>
                 <Item href="https://github.com/polishghost27">
                     <ImGithub size="3rem" />
                 </Item>
             </ItemsContainer>
         </SearchBarContainer>
+    )
+}
+
+const Hit = ({ hit }) => {
+    return (
+        <>
+            <Highlight attribute="employeeName" hit={hit} />
+            <br></br>
+            {/* <Highlight attribute="externalNumber" hit={hit} />
+            <br></br>
+            <Highlight attribute="internalNumber" hit={hit} />
+            <br></br> */}
+            <Highlight attribute={['unit', 'unitName']} hit={hit} />
+            <Highlight attribute={['section', 'sectionName']} hit={hit} />
+
+            {/* <p>{hit.unit.unitName}</p>
+            <p>{hit.section.sectionName}</p> */}
+
+            {console.log(hit)}
+        </>
     )
 }

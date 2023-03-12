@@ -1,5 +1,14 @@
 import styled from 'styled-components'
 
+import {
+    InstantSearch,
+    SearchBox,
+    Hits,
+    Highlight,
+    Stats,
+    MenuSelect,
+} from 'react-instantsearch-dom'
+
 export const SearchBarContainer = styled.div`
     display: ${({ isOpen }) => (isOpen ? 'none' : 'flex')};
     position: sticky;
@@ -51,7 +60,7 @@ export const InputContainer = styled.div`
     }
 `
 
-export const StyledSearchBar = styled.input`
+export const StyledSearchBar = styled(SearchBox)`
     all: unset;
     width: 100%;
     padding: 1rem;

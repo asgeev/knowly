@@ -53,7 +53,7 @@ export const StyledContainer = styled.div`
                 border-radius: 0.3rem;
                 margin-right: 1rem;
                 border: 0.15rem solid
-                    ${({ theme }) => theme.color.background200};
+                    ${({ theme }) => theme.color.dividerPrimary};
                 outline: none;
                 /* vertical-align: middle; */
             }
