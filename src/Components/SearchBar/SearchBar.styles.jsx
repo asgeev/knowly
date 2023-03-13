@@ -61,9 +61,39 @@ export const InputContainer = styled.div`
 `
 
 export const StyledSearchBar = styled(SearchBox)`
-    all: unset;
     width: 100%;
-    padding: 1rem;
+
+    form {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    input[type='search'] {
+        all: unset;
+        width: 100%;
+        padding: 1rem;
+    }
+    input[type='search']::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+    }
+
+    button[type='submit'] {
+        display: none;
+    }
+
+    button[type='reset'] {
+        padding: 0.5rem;
+        text-transform: none;
+        background-color: unset;
+        border: none;
+
+        svg.ais-SearchBox-resetIcon {
+            width: 1rem;
+            height: 1rem;
+            fill: ${({ theme }) => theme.color.secondaryText};
+        }
+    }
 `
 
 export const ItemsContainer = styled.div`

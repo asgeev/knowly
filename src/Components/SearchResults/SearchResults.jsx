@@ -13,6 +13,7 @@ export const ResultsContainer = styled.div`
     visibility: ${({ isSearchOpen }) => (isSearchOpen ? 'visible' : 'hidden')};
     opacity: ${({ isSearchOpen }) => (isSearchOpen ? 1 : 0)};
     display: flex;
+    flex-direction: column;
     position: absolute;
     top: 6rem;
     left: 0;
@@ -26,12 +27,18 @@ export const ResultsContainer = styled.div`
     transition: all 200ms ease-in-out;
 `
 
+export const StyledStats = styled(Stats)`
+    font-size: ${({ theme }) => theme.font.size.small};
+    color: ${({ theme }) => theme.color.secondaryText};
+`
+
 export const SearchResults = ({ isSearchOpen }) => {
     const [searchElements, setSearchElements] = useState([])
 
     return (
         <ResultsContainer isSearchOpen={isSearchOpen}>
-            <span>Wpisz wydział, dział, nazwisko lub imię</span>
+            <StyledStats />
+            <Hits hitComponent={Hit} />
         </ResultsContainer>
     )
 }
@@ -40,11 +47,19 @@ const Hit = ({ hit }) => {
     return (
         <>
             {console.log(hit)}
-            <Highlight attribute="employeeName" hit={hit} />
+            <A attribute="employeeName" hit={hit} />
             <br></br>
-            <Highlight attribute="externalNumber" hit={hit} />
+            <A attribute="externalNumber" hit={hit} />
             <br></br>
-            <Highlight attribute="externalNumber" hit={hit} />
+            <A attribute={['unit', 'unitName']} hit={hit} />
         </>
     )
 }
+
+const A = styled(Highlight)`
+    .ais-Highlight-highlighted {
+        color: ${({ theme }) => theme.color.accent};
+        background-color: yellow;
+        list-style: none;
+    }
+`
