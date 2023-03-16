@@ -46,7 +46,7 @@ export const SearchResults = ({ isSearchOpen }) => {
 const Hit = ({ hit }) => {
     return (
         <>
-            {console.log(hit)}
+            {/* {console.log(hit)} */}
             <A attribute="employeeName" hit={hit} />
             <br></br>
             <A attribute="externalNumber" hit={hit} />

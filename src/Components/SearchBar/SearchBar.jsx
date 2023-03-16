@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDebounce } from '../../Hooks/useDebounce'
 import { SearchResults } from '../SearchResults/SearchResults'
 import { IndexDropdown } from '../IndexDropdown/IndexDropdown'
@@ -57,28 +57,37 @@ export const SearchBar = ({ isOpen }) => {
     const closeSearchResults = () => {
         setIsSearchOpen(false)
     }
-    const handleBlur = (event) => {
-        console.log('event.relatedTarget', event.relatedTarget)
-        if (!event.currentTarget.contains(event.relatedTarget)) {
-            if (isOpen) {
-                setOpen(false)
-            }
-        }
-    }
+
     // useEffect(() => {
     //     if (debounceSearchQuery) {
     //         console.log(debounceSearchQuery)
     //     }
     // }, [debounceSearchQuery])
 
+    const handleBlur = (event) => {
+        console.log(event)
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+            closeSearchResults()
+        }
+    }
+
     return (
         <SearchBarContainer isOpen={isOpen}>
-            <InputContainer>
-                <InstantSearch
-                    indexName={selectedSearchIndex.index}
-                    searchClient={searchClient}
-                    tabindex="1"
-                    onBlur={closeSearchResults}
+            <InstantSearch
+                indexName={selectedSearchIndex.index}
+                searchClient={searchClient}
+            >
+                <InputContainer
+                    tabIndex={1}
+                    onBlur={(e) => {
+                        // console.log('focusout (self or child)')
+                        if (e.currentTarget === e.target) {
+                            console.log('blur (self)')
+                        }
+                        if (!e.currentTarget.contains(e.relatedTarget)) {
+                            closeSearchResults()
+                        }
+                    }}
                 >
                     <MdSearch size="3rem" />
                     <StyledSearchBar
@@ -90,18 +99,18 @@ export const SearchBar = ({ isOpen }) => {
                         showLoadingIndicator={true}
                         onFocus={openSearchResults}
                     />
+                    <SearchResults
+                        isSearchOpen={isSearchOpen}
+                        selectedSearchIndex={selectedSearchIndex}
+                    />
                     <IndexDropdown
                         items={searchIndexItems}
                         defaultValue={selectedSearchIndex}
                         setSelectedSearchIndex={setSelectedSearchIndex}
+                        closeSearchResults={closeSearchResults}
                     />
-                    <SearchResults
-                        isSearchOpen={isSearchOpen}
-                        selectedSearchIndex={selectedSearchIndex}
-                        // onBlur={closeSearchResults}
-                    />
-                </InstantSearch>
-            </InputContainer>
+                </InputContainer>
+            </InstantSearch>
             <ItemsContainer>
                 <Item href="https://github.com/polishghost27">
                     <ImGithub size="3rem" />

@@ -53,6 +53,7 @@ export const IndexDropdown = ({
     items = [],
     defaultValue,
     setSelectedSearchIndex,
+    closeSearchResults,
 }) => {
     const [isOpen, setIsOpen] = useState(false)
 
@@ -60,7 +61,10 @@ export const IndexDropdown = ({
         <>
             <Divider />
             <Button
-                onClick={() => setIsOpen((prev) => !prev)}
+                onClick={() => {
+                    setIsOpen((prev) => !prev)
+                    closeSearchResults()
+                }}
                 onBlurCapture={() => setIsOpen(false)}
                 isOpen={isOpen}
             >
