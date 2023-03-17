@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { useState } from 'react'
+import { Hit } from './Hit/Hit'
 import {
     Hits,
     Highlight,
@@ -16,8 +17,9 @@ export const ResultsContainer = styled.div`
     top: 6rem;
     left: 0;
     min-height: 100px;
-    max-height: 50vh;
+    max-height: 70vh;
     min-width: 100%;
+    width: clamp(100%, 150%);
     background-color: ${({ theme }) => theme.color.background100};
     border-radius: 0.6rem;
     padding: 2rem;
@@ -45,25 +47,10 @@ export const StyledStats = styled(Stats)`
     color: ${({ theme }) => theme.color.secondaryText};
 `
 
-export const StyledHit = styled.div`
-    /* background-color: ${({ theme }) => theme.color.background}; */
-    border-radius: 0.6rem;
-    padding: 1rem 0;
-    /* margin: 2rem 1rem 0 1rem; */
+export const StyledHitsContainer = styled(Hits)`
+    margin-top: 3rem;
+    font-size: ${({ theme }) => theme.font.size.small};
 `
-
-export const HitHighlight = styled(Highlight)`
-    .ais-Highlight-highlighted {
-        color: ${({ theme }) => theme.color.accent};
-        /* background-color: yellow; */
-        list-style: none;
-    }
-
-    color: ${({ accent, theme }) =>
-        accent ? theme.color.accent : theme.color.primaryText};
-`
-
-export const StyledHitsContainer = styled(Hits)``
 
 export const SearchResults = ({ isSearchOpen }) => {
     const [searchElements, setSearchElements] = useState([])
@@ -73,27 +60,5 @@ export const SearchResults = ({ isSearchOpen }) => {
             <StyledStats />
             <StyledHitsContainer hitComponent={Hit} />
         </ResultsContainer>
-    )
-}
-
-const Hit = ({ hit }) => {
-    return (
-        <StyledHit>
-            {/* {console.log(hit)} */}
-            <HitHighlight attribute="employeeFirstName" hit={hit} />{' '}
-            <HitHighlight attribute="employeeLastName" hit={hit} />
-            <></>
-            <HitHighlight accent attribute="internalNumber" hit={hit} />{' '}
-            <HitHighlight attribute="externalNumber" hit={hit} />
-            <div>
-                <br></br>
-                <HitHighlight attribute={['unit', 'unitName']} hit={hit} />
-                <br></br>
-                <HitHighlight
-                    attribute={['section', 'sectionName']}
-                    hit={hit}
-                />
-            </div>
-        </StyledHit>
     )
 }

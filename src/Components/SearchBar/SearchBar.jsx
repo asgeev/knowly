@@ -75,19 +75,18 @@ export const SearchBar = ({ isOpen }) => {
                 {isSearchOpen ? <BlurBackground /> : null}
                 <InputContainer
                     tabIndex={1}
-                    onBlur={(e) => {
-                        // console.log('focusout (self or child)')
-                        if (e.currentTarget === e.target) {
-                            console.log('blur (self)')
-                        }
-                        if (!e.currentTarget.contains(e.relatedTarget)) {
-                            closeSearchResults()
-                        }
-                    }}
+                    // onBlur={(e) => {
+                    //     // console.log('focusout (self or child)')
+                    //     if (e.currentTarget === e.target) {
+                    //         console.log('blur (self)')
+                    //     }
+                    //     if (!e.currentTarget.contains(e.relatedTarget)) {
+                    //         closeSearchResults()
+                    //     }
+                    // }}
                 >
                     <MdSearch size="3rem" />
                     <StyledSearchBar
-                        // searchAsYouType={true}
                         showLoadingIndicator={true}
                         onFocus={openSearchResults}
                         focusShortcuts={['s']}
