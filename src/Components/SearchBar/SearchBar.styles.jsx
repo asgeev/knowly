@@ -39,6 +39,7 @@ export const InputContainer = styled.div`
     position: relative;
     align-items: center;
     gap: 0.5rem;
+    z-index: 9001;
     border-radius: 0.6rem;
     font-size: ${({ theme }) => theme.font.size.small};
     padding: 0.2rem 1rem 0.2rem 1rem;

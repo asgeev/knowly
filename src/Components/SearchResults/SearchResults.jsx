@@ -1,12 +1,10 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 import {
-    InstantSearch,
-    SearchBox,
     Hits,
     Highlight,
     Stats,
-    MenuSelect,
+    connectStateResults,
 } from 'react-instantsearch-dom'
 
 export const ResultsContainer = styled.div`
@@ -18,13 +16,28 @@ export const ResultsContainer = styled.div`
     top: 6rem;
     left: 0;
     min-height: 100px;
-    max-height: 60vh;
-    width: 100%;
+    max-height: 50vh;
+    min-width: 100%;
     background-color: ${({ theme }) => theme.color.background100};
     border-radius: 0.6rem;
     padding: 2rem;
     overflow-y: auto;
-    transition: all 200ms ease-in-out;
+
+    .ais-Hits-list {
+        list-style: none;
+    }
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(155, 155, 155, 0.5);
+        border-radius: 20px;
+        border: transparent;
+    }
 `
 
 export const StyledStats = styled(Stats)`
@@ -32,34 +45,55 @@ export const StyledStats = styled(Stats)`
     color: ${({ theme }) => theme.color.secondaryText};
 `
 
+export const StyledHit = styled.div`
+    /* background-color: ${({ theme }) => theme.color.background}; */
+    border-radius: 0.6rem;
+    padding: 1rem 0;
+    /* margin: 2rem 1rem 0 1rem; */
+`
+
+export const HitHighlight = styled(Highlight)`
+    .ais-Highlight-highlighted {
+        color: ${({ theme }) => theme.color.accent};
+        /* background-color: yellow; */
+        list-style: none;
+    }
+
+    color: ${({ accent, theme }) =>
+        accent ? theme.color.accent : theme.color.primaryText};
+`
+
+export const StyledHitsContainer = styled(Hits)``
+
 export const SearchResults = ({ isSearchOpen }) => {
     const [searchElements, setSearchElements] = useState([])
 
     return (
         <ResultsContainer isSearchOpen={isSearchOpen}>
             <StyledStats />
-            <Hits hitComponent={Hit} />
+            <StyledHitsContainer hitComponent={Hit} />
         </ResultsContainer>
     )
 }
 
 const Hit = ({ hit }) => {
     return (
-        <>
+        <StyledHit>
             {/* {console.log(hit)} */}
-            <A attribute="employeeName" hit={hit} />
-            <br></br>
-            <A attribute="externalNumber" hit={hit} />
-            <br></br>
-            <A attribute={['unit', 'unitName']} hit={hit} />
-        </>
+            <HitHighlight attribute="employeeFirstName" hit={hit} />{' '}
+            <HitHighlight attribute="employeeLastName" hit={hit} />
+            <></>
+            <HitHighlight accent attribute="internalNumber" hit={hit} />{' '}
+            <HitHighlight attribute="externalNumber" hit={hit} />
+            <div>
+                <br></br>
+                <HitHighlight attribute={['unit', 'unitName']} hit={hit} />
+                <br></br>
+                <HitHighlight
+                    attribute={['section', 'sectionName']}
+                    hit={hit}
+                />
+            </div>
+        </StyledHit>
     )
 }
-
-const A = styled(Highlight)`
-    .ais-Highlight-highlighted {
-        color: ${({ theme }) => theme.color.accent};
-        background-color: yellow;
-        list-style: none;
-    }
-`

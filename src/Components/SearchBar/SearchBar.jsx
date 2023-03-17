@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import styled from 'styled-components'
 import { useDebounce } from '../../Hooks/useDebounce'
 import { SearchResults } from '../SearchResults/SearchResults'
 import { IndexDropdown } from '../IndexDropdown/IndexDropdown'
+import { BlurBackground } from '../BlurBackground/BlurBackground'
 import {
     SearchBarContainer,
     InputContainer,
@@ -12,7 +14,7 @@ import {
 import { ImGithub } from 'react-icons/im'
 import { MdSearch } from 'react-icons/md'
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
-import { InstantSearch } from 'react-instantsearch-dom'
+import { InstantSearch, Configure } from 'react-instantsearch-dom'
 
 const searchClient = instantMeiliSearch(
     import.meta.env.VITE_MEILISEARCH_API,
@@ -44,7 +46,7 @@ const searchIndexItems = [
 
 export const SearchBar = ({ isOpen }) => {
     // const [searchQuery, setSearchQuery] = useState('')
-    const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const [isSearchOpen, setIsSearchOpen] = useState(true)
     const initalState = searchIndexItems[0]
     const [selectedSearchIndex, setSelectedSearchIndex] = useState(initalState)
     // const debounceSearchQuery = useCallback(
@@ -64,19 +66,13 @@ export const SearchBar = ({ isOpen }) => {
     //     }
     // }, [debounceSearchQuery])
 
-    const handleBlur = (event) => {
-        console.log(event)
-        if (!event.currentTarget.contains(event.relatedTarget)) {
-            closeSearchResults()
-        }
-    }
-
     return (
         <SearchBarContainer isOpen={isOpen}>
             <InstantSearch
                 indexName={selectedSearchIndex.index}
                 searchClient={searchClient}
             >
+                {isSearchOpen ? <BlurBackground /> : null}
                 <InputContainer
                     tabIndex={1}
                     onBlur={(e) => {
@@ -91,23 +87,25 @@ export const SearchBar = ({ isOpen }) => {
                 >
                     <MdSearch size="3rem" />
                     <StyledSearchBar
+                        // searchAsYouType={true}
+                        showLoadingIndicator={true}
+                        onFocus={openSearchResults}
+                        focusShortcuts={['s']}
                         translations={{
                             resetTitle: 'Usuń szukany tekst',
                             placeholder: `${selectedSearchIndex.placeholder}`,
                         }}
-                        searchAsYouType={true}
-                        showLoadingIndicator={true}
-                        onFocus={openSearchResults}
                     />
-                    <SearchResults
-                        isSearchOpen={isSearchOpen}
-                        selectedSearchIndex={selectedSearchIndex}
-                    />
+                    <Configure hitsPerPage={10} analytics={true} distinct />
                     <IndexDropdown
                         items={searchIndexItems}
                         defaultValue={selectedSearchIndex}
                         setSelectedSearchIndex={setSelectedSearchIndex}
                         closeSearchResults={closeSearchResults}
+                    />
+                    <SearchResults
+                        isSearchOpen={isSearchOpen}
+                        selectedSearchIndex={selectedSearchIndex}
                     />
                 </InputContainer>
             </InstantSearch>
