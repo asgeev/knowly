@@ -17,20 +17,28 @@ export const ResultsContainer = styled.div`
     top: 6rem;
     left: 0;
     min-height: 100px;
-    max-height: 70vh;
+    max-height: 80vh;
     min-width: 100%;
-    width: clamp(100%, 150%);
     background-color: ${({ theme }) => theme.color.background100};
     border-radius: 0.6rem;
     padding: 2rem;
     overflow-y: auto;
+    transition: all 0.2s ease-in-out;
 
     .ais-Hits-list {
         list-style: none;
     }
 
+    .ais-Hits-item {
+        border-bottom: 1px solid ${({ theme }) => theme.color.dividerPrimary};
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
     &::-webkit-scrollbar {
-        width: 5px;
+        width: 4px;
     }
     &::-webkit-scrollbar-track {
         background: transparent;
@@ -49,7 +57,6 @@ export const StyledStats = styled(Stats)`
 
 export const StyledHitsContainer = styled(Hits)`
     margin-top: 3rem;
-    font-size: ${({ theme }) => theme.font.size.small};
 `
 
 export const SearchResults = ({ isSearchOpen }) => {

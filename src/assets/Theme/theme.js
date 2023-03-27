@@ -81,6 +81,6 @@ export const darkTheme = {
         secondaryText: '#B0B3B8',
         dividerPrimary: '#3c4043',
         accent: '#3097FE',
-        accentSecondary: '#FFFD00',
+        accentSecondary: '#FFD43B',
     },
 }
