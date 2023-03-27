@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import styled from 'styled-components'
 import { useDebounce } from '../../Hooks/useDebounce'
 import { SearchResults } from '../SearchResults/SearchResults'
 import { IndexDropdown } from '../IndexDropdown/IndexDropdown'
@@ -36,11 +35,6 @@ const searchIndexItems = [
         index: 'page',
         title: 'Strona',
         placeholder: 'Wyszukaj w tytule lub treści...',
-    },
-    {
-        index: 'tag',
-        title: 'Tag',
-        placeholder: 'Wyszukaj interesujący cię tag...',
     },
 ]
 
@@ -95,7 +89,11 @@ export const SearchBar = ({ isOpen }) => {
                             placeholder: `${selectedSearchIndex.placeholder}`,
                         }}
                     />
-                    <Configure hitsPerPage={10} analytics={true} distinct />
+                    <Configure
+                        hitsPerPage={10}
+                        analytics={true}
+                        searchAsYouType={true}
+                    />
                     <IndexDropdown
                         items={searchIndexItems}
                         defaultValue={selectedSearchIndex}
