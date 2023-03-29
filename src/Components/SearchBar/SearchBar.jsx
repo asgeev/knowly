@@ -88,12 +88,9 @@ export const SearchBar = ({ isOpen }) => {
                             resetTitle: 'Usuń szukany tekst',
                             placeholder: `${selectedSearchIndex.placeholder}`,
                         }}
+                        searchAsYouType
                     />
-                    <Configure
-                        hitsPerPage={10}
-                        analytics={true}
-                        searchAsYouType={true}
-                    />
+                    <Configure hitsPerPage={10} analytics={true} />
                     <IndexDropdown
                         items={searchIndexItems}
                         defaultValue={selectedSearchIndex}
