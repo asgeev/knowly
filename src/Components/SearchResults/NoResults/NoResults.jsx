@@ -1,15 +1,6 @@
 import astronaut from '../.././../assets/astronaut_question.png'
 import styled, { keyframes } from 'styled-components'
 
-const FadeOut = keyframes`
-    0% {
-        opacity: 1;
-        visibility: visible;
-    }
-    100%{
-        opacity: 0;
-    }
-`
 const FadeIn = keyframes`
     0% {
         opacity: 0;

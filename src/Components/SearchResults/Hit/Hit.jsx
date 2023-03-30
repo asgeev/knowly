@@ -6,7 +6,6 @@ import { FiPhone } from 'react-icons/fi'
 import { BsQuestionCircle } from 'react-icons/bs'
 
 export const StyledHit = styled.div`
-    /* background-color: ${({ theme }) => theme.color.background}; */
     border-radius: 0.6rem;
     padding: 1.5rem;
     margin-bottom: 1rem;
@@ -97,7 +96,7 @@ export const PhoneIcon = styled.div`
     }
 `
 
-export const Divider = styled.div`
+export const VerticalDivider = styled.div`
     width: 1px;
     color: ${({ theme }) => theme.color.dividerPrimary};
 `
@@ -105,7 +104,6 @@ export const Divider = styled.div`
 export const Hit = ({ hit }) => {
     return (
         <StyledHit>
-            {/* {console.log(hit)} */}
             <PhoneIcon>
                 <FiPhone size="2rem" />
             </PhoneIcon>
@@ -124,7 +122,7 @@ export const Hit = ({ hit }) => {
                                 />
                             </UnitNameBox>
                         )}
-                        <Divider />
+                        <VerticalDivider />
                         <SectionNameBox>
                             <HitHighlight
                                 attribute={['section', 'sectionShortcut']}

@@ -8,7 +8,7 @@ import {
     connectStateResults,
 } from 'react-instantsearch-dom'
 import { NoResults } from './NoResults/NoResults'
-
+import { TypeForResults } from './TypeForResults/TypeForResults'
 export const ResultsContainer = styled.div`
     visibility: ${({ isSearchOpen }) => (isSearchOpen ? 'visible' : 'hidden')};
     opacity: ${({ isSearchOpen }) => (isSearchOpen ? 1 : 0)};
@@ -36,10 +36,17 @@ export const ResultsContainer = styled.div`
 
     .ais-PoweredBy {
         display: flex;
-        align-items: center;
-        margin: 2rem 0rem 2rem 0;
+        align-items: flex-start;
+        margin: 2rem 0;
         justify-content: center;
-        gap: 1rem;
+
+        span {
+            color: ${({ theme }) => theme.color.secondaryText};
+            font-size: ${({ theme }) => theme.font.size.small};
+        }
+        svg {
+            height: 2.2rem;
+        }
     }
 
     &::-webkit-scrollbar {
@@ -64,7 +71,11 @@ export const StyledHitsContainer = styled(Hits)`
     margin-top: 3rem;
 `
 
-const CustomResultsBox = ({ searchState, searchResults, searching }) => {
+const CustomResultsBox = ({
+    searchState,
+    searchResults,
+    selectedSearchIndex,
+}) => {
     const hasResults = searchResults && searchResults.nbHits !== 0
     const nbHits = searchResults && searchResults.nbHits
     // console.log(searchResults)
@@ -89,11 +100,7 @@ const CustomResultsBox = ({ searchState, searchResults, searching }) => {
                     <StyledHitsContainer hitComponent={Hit} />
                 </>
             ) : (
-                <>
-                    <div>
-                        <p>Napisz cokolwiek aby wyszukać</p>
-                    </div>
-                </>
+                <TypeForResults selectedSearchIndex={selectedSearchIndex} />
             )}
 
             <NoResults hidden={hasResults} />
@@ -103,12 +110,12 @@ const CustomResultsBox = ({ searchState, searchResults, searching }) => {
 
 const ResultsBox = connectStateResults(CustomResultsBox)
 
-export const SearchResults = ({ isSearchOpen }) => {
+export const SearchResults = ({ isSearchOpen, selectedSearchIndex }) => {
     const [searchElements, setSearchElements] = useState([])
 
     return (
         <ResultsContainer isSearchOpen={isSearchOpen}>
-            <ResultsBox />
+            <ResultsBox selectedSearchIndex={selectedSearchIndex} />
 
             <PoweredBy
                 translations={{
