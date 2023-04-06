@@ -29,6 +29,7 @@ export const HomePage = () => {
             {content && (
                 <>
                     <HomePageTitle>{content.title}</HomePageTitle>
+
                     <DangerouslyContent content={content.content} />
                 </>
             )}

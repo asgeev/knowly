@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState, useRef } from 'react'
+import { useState } from 'react'
 import { useDebounce } from '../../Hooks/useDebounce'
 import { SearchResults } from '../SearchResults/SearchResults'
-import { Dropdown } from '../Dropdown/Dropdown'
+import { IndexDropdown } from '../IndexDropdown/IndexDropdown'
+import { BlurBackground } from '../BlurBackground/BlurBackground'
 import {
     SearchBarContainer,
     InputContainer,
@@ -9,23 +10,42 @@ import {
     ItemsContainer,
     Item,
 } from './SearchBar.styles'
-import styled from 'styled-components'
 import { ImGithub } from 'react-icons/im'
 import { MdSearch } from 'react-icons/md'
+import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
+import { InstantSearch, Configure } from 'react-instantsearch-dom'
+
+const searchClient = instantMeiliSearch(
+    import.meta.env.VITE_MEILISEARCH_API,
+    import.meta.env.VITE_MEILISEARCH_API_SEARCH_KEY,
+    {
+        placeholderSearch: true,
+        primaryKey: 'id',
+        searchAsYouType: true,
+    }
+)
 
 const searchIndexItems = [
-    { index: 'number', title: 'numer' },
-    { index: 'page', title: 'strona' },
-    { index: 'tag', title: 'tag' },
+    {
+        index: 'number',
+        title: 'Telefon',
+        placeholder: 'Wyszukaj numer telefonu...',
+    },
+    // {
+    //     index: 'page',
+    //     title: 'Strona',
+    //     placeholder: 'Wyszukaj w tytule lub treści...',
+    // },
 ]
 
 export const SearchBar = ({ isOpen }) => {
-    const [searchQuery, setSearchQuery] = useState('')
+    // const [searchQuery, setSearchQuery] = useState('')
     const [isSearchOpen, setIsSearchOpen] = useState(false)
-    const [selectedSearchIndex, setSelectedSearchIndex] = useState('number')
-    const debounceSearchQuery = useCallback(
-        useDebounce(searchQuery, 600)
-    ).trim()
+    const initalState = searchIndexItems[0]
+    const [selectedSearchIndex, setSelectedSearchIndex] = useState(initalState)
+    // const debounceSearchQuery = useCallback(
+    //     useDebounce(searchQuery, 600)
+    // ).trim()
 
     const openSearchResults = () => {
         setIsSearchOpen(true)
@@ -34,36 +54,55 @@ export const SearchBar = ({ isOpen }) => {
         setIsSearchOpen(false)
     }
 
-    const handleSelectedSearchIndex = (event) => {
-        setSelectedSearchIndex(event.target.value)
-    }
-
-    useEffect(() => {
-        if (debounceSearchQuery) {
-            console.log(debounceSearchQuery)
-        }
-    }, [debounceSearchQuery])
+    // useEffect(() => {
+    //     if (debounceSearchQuery) {
+    //         console.log(debounceSearchQuery)
+    //     }
+    // }, [debounceSearchQuery])
 
     return (
         <SearchBarContainer isOpen={isOpen}>
-            <InputContainer>
-                <MdSearch size="3rem" />
-                <StyledSearchBar
-                    type="text"
-                    placeholder="Wyszukaj numer telefonu, tag lub stronę"
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    spellCheck="false"
-                    onFocus={openSearchResults}
-                    onBlur={closeSearchResults}
-                ></StyledSearchBar>
-                {/* <Dropdown
-                    items={searchIndexItems}
-                    handleSelectedSearchIndex={handleSelectedSearchIndex}
-                    defaultValue={selectedSearchIndex}
-                /> */}
-                <SearchResults isSearchOpen={isSearchOpen} />
-            </InputContainer>
-            {console.log(selectedSearchIndex)}
+            <InstantSearch
+                indexName={selectedSearchIndex.index}
+                searchClient={searchClient}
+            >
+                {isSearchOpen ? <BlurBackground /> : null}
+                <InputContainer
+                    tabIndex={1}
+                    onBlur={(e) => {
+                        // console.log('focusout (self or child)')
+                        if (e.currentTarget === e.target) {
+                            console.log('blur (self)')
+                        }
+                        if (!e.currentTarget.contains(e.relatedTarget)) {
+                            closeSearchResults()
+                        }
+                    }}
+                >
+                    <MdSearch size="3rem" />
+                    <StyledSearchBar
+                        showLoadingIndicator={true}
+                        onFocus={openSearchResults}
+                        focusShortcuts={['s']}
+                        translations={{
+                            resetTitle: 'Usuń szukany tekst',
+                            placeholder: `${selectedSearchIndex.placeholder}`,
+                        }}
+                        searchAsYouType
+                    />
+                    <Configure hitsPerPage={10} analytics={true} />
+                    <IndexDropdown
+                        items={searchIndexItems}
+                        defaultValue={selectedSearchIndex}
+                        setSelectedSearchIndex={setSelectedSearchIndex}
+                        closeSearchResults={closeSearchResults}
+                    />
+                    <SearchResults
+                        isSearchOpen={isSearchOpen}
+                        selectedSearchIndex={selectedSearchIndex}
+                    />
+                </InputContainer>
+            </InstantSearch>
             <ItemsContainer>
                 <Item href="https://github.com/polishghost27">
                     <ImGithub size="3rem" />
