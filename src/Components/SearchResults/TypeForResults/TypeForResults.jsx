@@ -24,10 +24,9 @@ export const TextBoxWithBackground = styled.span`
     background-color: ${({ theme }) => theme.color.background200};
     color: ${({ theme }) => theme.color.secondaryText};
     border-radius: 0.3rem;
+    margin-left: 0.4rem;
 `
 export const StyledP = styled.p`
-    /* font-size: ${({ theme }) => theme.font.size.small}; */
-    /* font-weight: 400; */
     margin: 3rem 0 2rem 1rem;
     color: ${({ theme }) => theme.color.secondaryText};
 `
@@ -39,9 +38,9 @@ export const TypeForResults = ({ selectedSearchIndex }) => {
                 <TipBox>
                     <MdOutlineLightbulb size="1.8rem" />
                     <p>
-                        Otwórz wyszukiwarkę szybciej naciskając klawisz{'  '}
+                        Otwórz wyszukiwarkę szybciej naciskając klawisz
                         <TextBoxWithBackground>s</TextBoxWithBackground>
-                    </p>{' '}
+                    </p>
                 </TipBox>
             </TipContainer>
             <Divider />

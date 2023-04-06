@@ -17,7 +17,7 @@ import { InstantSearch, Configure } from 'react-instantsearch-dom'
 
 const searchClient = instantMeiliSearch(
     import.meta.env.VITE_MEILISEARCH_API,
-    import.meta.env.VITE_MEILISEARCH_API_KEY,
+    import.meta.env.VITE_MEILISEARCH_API_SEARCH_KEY,
     {
         placeholderSearch: true,
         primaryKey: 'id',
@@ -40,7 +40,7 @@ const searchIndexItems = [
 
 export const SearchBar = ({ isOpen }) => {
     // const [searchQuery, setSearchQuery] = useState('')
-    const [isSearchOpen, setIsSearchOpen] = useState(true)
+    const [isSearchOpen, setIsSearchOpen] = useState(false)
     const initalState = searchIndexItems[0]
     const [selectedSearchIndex, setSelectedSearchIndex] = useState(initalState)
     // const debounceSearchQuery = useCallback(
@@ -69,15 +69,15 @@ export const SearchBar = ({ isOpen }) => {
                 {isSearchOpen ? <BlurBackground /> : null}
                 <InputContainer
                     tabIndex={1}
-                    // onBlur={(e) => {
-                    //     // console.log('focusout (self or child)')
-                    //     if (e.currentTarget === e.target) {
-                    //         console.log('blur (self)')
-                    //     }
-                    //     if (!e.currentTarget.contains(e.relatedTarget)) {
-                    //         closeSearchResults()
-                    //     }
-                    // }}
+                    onBlur={(e) => {
+                        // console.log('focusout (self or child)')
+                        if (e.currentTarget === e.target) {
+                            console.log('blur (self)')
+                        }
+                        if (!e.currentTarget.contains(e.relatedTarget)) {
+                            closeSearchResults()
+                        }
+                    }}
                 >
                     <MdSearch size="3rem" />
                     <StyledSearchBar

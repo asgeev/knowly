@@ -9,6 +9,8 @@ import {
 } from 'react-instantsearch-dom'
 import { NoResults } from './NoResults/NoResults'
 import { TypeForResults } from './TypeForResults/TypeForResults'
+import { MeiliError } from './MeiliError/MeiliError'
+
 export const ResultsContainer = styled.div`
     visibility: ${({ isSearchOpen }) => (isSearchOpen ? 'visible' : 'hidden')};
     opacity: ${({ isSearchOpen }) => (isSearchOpen ? 1 : 0)};
@@ -75,35 +77,43 @@ const CustomResultsBox = ({
     searchState,
     searchResults,
     selectedSearchIndex,
+    error,
 }) => {
     const hasResults = searchResults && searchResults.nbHits !== 0
     const nbHits = searchResults && searchResults.nbHits
-    // console.log(searchResults)
     return (
         <>
-            {searchState && searchState.query ? (
-                <>
-                    <StyledStats
-                        translations={{
-                            stats(
-                                nbHits,
-                                processingTimeMS,
-                                nbSortedHits,
-                                areHitsSorted
-                            ) {
-                                return areHitsSorted && nbHits !== nbSortedHits
-                                    ? `${nbSortedHits.toLocaleString()} relevant results sorted out of ${nbHits.toLocaleString()} found in ${processingTimeMS.toLocaleString()}ms`
-                                    : `${nbHits.toLocaleString()} wyników znaleziono w ${processingTimeMS.toLocaleString()}ms`
-                            },
-                        }}
-                    />
-                    <StyledHitsContainer hitComponent={Hit} />
-                </>
+            {error ? (
+                <MeiliError />
             ) : (
-                <TypeForResults selectedSearchIndex={selectedSearchIndex} />
+                <>
+                    {searchState && searchState.query ? (
+                        <>
+                            <StyledStats
+                                translations={{
+                                    stats(
+                                        nbHits,
+                                        processingTimeMS,
+                                        nbSortedHits,
+                                        areHitsSorted
+                                    ) {
+                                        return areHitsSorted &&
+                                            nbHits !== nbSortedHits
+                                            ? `${nbSortedHits.toLocaleString()} relevant results sorted out of ${nbHits.toLocaleString()} found in ${processingTimeMS.toLocaleString()}ms`
+                                            : `${nbHits.toLocaleString()} wyników znaleziono w ${processingTimeMS.toLocaleString()}ms`
+                                    },
+                                }}
+                            />
+                            <StyledHitsContainer hitComponent={Hit} />
+                            <NoResults hidden={hasResults} />
+                        </>
+                    ) : (
+                        <TypeForResults
+                            selectedSearchIndex={selectedSearchIndex}
+                        />
+                    )}
+                </>
             )}
-
-            <NoResults hidden={hasResults} />
         </>
     )
 }
