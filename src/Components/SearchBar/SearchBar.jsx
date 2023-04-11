@@ -90,7 +90,7 @@ export const SearchBar = ({ isOpen }) => {
                         }}
                         searchAsYouType
                     />
-                    <Configure hitsPerPage={10} analytics={true} />
+                    <Configure hitsPerPage={1000} analytics={true} />
                     <IndexDropdown
                         items={searchIndexItems}
                         defaultValue={selectedSearchIndex}
