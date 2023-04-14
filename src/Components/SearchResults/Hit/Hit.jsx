@@ -4,6 +4,7 @@ import { Highlight } from 'react-instantsearch-dom'
 import { FiPhoneForwarded, FiPhoneIncoming, FiSmartphone } from 'react-icons/fi'
 import { FiPhone } from 'react-icons/fi'
 import { BsQuestionCircle } from 'react-icons/bs'
+import { returnUnitSection } from '../../../Helpers/returnUnitSection'
 
 export const StyledHit = styled.div`
     border-radius: 0.6rem;
@@ -20,9 +21,7 @@ export const HitHighlight = styled(Highlight)`
         smallWordSpacing ? '-0.5rem' : 'unset'};
 
     .ais-Highlight-highlighted {
-        background-color: ${({ theme }) => theme.color.accentSecondary};
-        color: black;
-        font-style: normal;
+        color: ${({ theme }) => theme.color.accent};
     }
 `
 
@@ -96,12 +95,13 @@ export const PhoneIcon = styled.div`
     }
 `
 
-export const VerticalDivider = styled.div`
-    width: 1px;
-    color: ${({ theme }) => theme.color.dividerPrimary};
-`
+// export const VerticalDivider = styled.div`
+//     width: 10px;
+//     color: ${({ theme }) => theme.color.dividerPrimary};
+// `
 
 export const Hit = ({ hit }) => {
+    console.log(hit)
     return (
         <StyledHit>
             <PhoneIcon>
@@ -111,10 +111,15 @@ export const Hit = ({ hit }) => {
                 <HeaderBox>
                     <NameBox>
                         <HitHighlight attribute="employeeFirstName" hit={hit} />{' '}
-                        <HitHighlight attribute="employeeLastName" hit={hit} />
+                        {hit.employeeLastName && (
+                            <HitHighlight
+                                attribute="employeeLastName"
+                                hit={hit}
+                            />
+                        )}
                     </NameBox>
                     <UnitSectionBox>
-                        {hit.unit?.unitName && (
+                        {hit.unit && (
                             <UnitNameBox>
                                 <HitHighlight
                                     attribute={['unit', 'unitName']}
@@ -122,16 +127,20 @@ export const Hit = ({ hit }) => {
                                 />
                             </UnitNameBox>
                         )}
-                        <VerticalDivider />
-                        <SectionNameBox>
-                            <HitHighlight
-                                attribute={['section', 'sectionShortcut']}
-                                hit={hit}
-                            />
-                            <BsQuestionCircle
-                                title={`${hit.unit?.unitName} - ${hit.section?.sectionName}`}
-                            />
-                        </SectionNameBox>
+                        {hit.section && (
+                            <SectionNameBox>
+                                <HitHighlight
+                                    attribute={['section', 'sectionShortcut']}
+                                    hit={hit}
+                                />
+                                <BsQuestionCircle
+                                    title={returnUnitSection(
+                                        hit.unit?.unitName,
+                                        hit.section?.sectionName
+                                    )}
+                                />
+                            </SectionNameBox>
+                        )}
                     </UnitSectionBox>
                 </HeaderBox>
                 <NumbersBox>
