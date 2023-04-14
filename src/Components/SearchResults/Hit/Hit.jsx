@@ -20,9 +20,7 @@ export const HitHighlight = styled(Highlight)`
         smallWordSpacing ? '-0.5rem' : 'unset'};
 
     .ais-Highlight-highlighted {
-        background-color: ${({ theme }) => theme.color.accentSecondary};
-        color: black;
-        font-style: normal;
+        color: ${({ theme }) => theme.color.accent};
     }
 `
 
