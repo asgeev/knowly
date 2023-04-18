@@ -95,11 +95,6 @@ export const PhoneIcon = styled.div`
     }
 `
 
-// export const VerticalDivider = styled.div`
-//     width: 10px;
-//     color: ${({ theme }) => theme.color.dividerPrimary};
-// `
-
 export const Hit = ({ hit }) => {
     console.log(hit)
     return (

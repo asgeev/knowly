@@ -1,7 +1,5 @@
 export const returnUnitSection = (unit, section) => {
     let text = ''
-    console.log(unit)
-    console.log(section)
 
     if (unit && section) {
         text = `${unit} - ${section}`
