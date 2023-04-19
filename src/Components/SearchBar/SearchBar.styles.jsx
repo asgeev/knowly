@@ -12,7 +12,8 @@ export const SearchBarContainer = styled.div`
     padding: 2rem;
     justify-content: center;
     z-index: 300;
-    border-bottom: 1px solid ${({ theme }) => theme.color.background100};
+    border-bottom: 1px solid ${({ theme }) => theme.color.dividerPrimary};
+    box-shadow: rgba(2, 1, 1, 0.1) 0px 5px 20px -5px;
 
     ${({ theme }) => theme.mq.lg} {
         position: sticky;

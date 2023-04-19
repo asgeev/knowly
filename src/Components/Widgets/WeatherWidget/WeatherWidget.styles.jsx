@@ -34,7 +34,11 @@ export const IconContainer = styled.div`
     font-size: 2rem;
 `
 
-export const WeatherIconContainer = styled.div``
+export const WeatherIconContainer = styled.div`
+    img {
+        filter: drop-shadow(5px 5px 5px #222);
+    }
+`
 
 export const TempContainer = styled.div`
     max-width: fit-content;

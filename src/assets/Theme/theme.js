@@ -59,13 +59,13 @@ export const baseTheme = {
 
 export const lightTheme = {
     color: {
-        background: '#fff',
-        background100: '#242526',
-        background200: '#3A3B3C',
+        background: '#ECF0F1',
+        background100: '#FBFCFC',
+        background200: '#E5E7E9',
         background300: 'red',
-        primaryText: '#333333',
-        secondaryText: 'black',
-        dividerPrimary: '#3c4043',
+        primaryText: '#3F3844',
+        secondaryText: '#797D7F',
+        dividerPrimary: '#D7DBDD',
         accent: '#3097FE',
         accentSecondary: '#FFFD00',
     },
