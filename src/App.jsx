@@ -11,7 +11,7 @@ import './assets/Theme/normalize.css'
 
 function App() {
     return (
-        <ThemeProvider theme={{ ...darkTheme, ...baseTheme }}>
+        <ThemeProvider theme={{ ...lightTheme, ...baseTheme }}>
             <GlobalStyles />
             <SkeletonTheme baseColor="#202020" highlightColor="#444">
                 <BrowserRouter>

@@ -25,8 +25,7 @@ export const NavigationWrapper = styled.nav`
         height: 100%;
         padding: 2rem 1.5rem;
         width: ${({ theme }) => theme.navBar.desktopWidth};
-        /* border-right: 1px solid ${({ theme }) =>
-            theme.color.background200}; */
+        border-right: 1px solid ${({ theme }) => theme.color.dividerPrimary};
     }
 `
 
