@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { Highlight } from 'react-instantsearch-dom'
 import { FiPhoneForwarded, FiPhoneIncoming, FiSmartphone } from 'react-icons/fi'
 import { FiPhone } from 'react-icons/fi'
