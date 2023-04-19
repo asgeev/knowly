@@ -96,7 +96,6 @@ export const PhoneIcon = styled.div`
 `
 
 export const Hit = ({ hit }) => {
-    console.log(hit)
     return (
         <StyledHit>
             <PhoneIcon>
