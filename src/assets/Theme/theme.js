@@ -59,8 +59,8 @@ export const baseTheme = {
 
 export const lightTheme = {
     color: {
-        background: '#ECF0F1',
-        background100: '#FBFCFC',
+        background: '#F7F7F7',
+        background100: '#EEEEEE',
         background200: '#E5E7E9',
         background300: 'red',
         primaryText: '#3F3844',
