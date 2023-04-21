@@ -73,7 +73,7 @@ export const StyledNestedDiv = styled.div`
         left: -1rem;
         height: 100%;
         width: 2px;
-        background-color: ${({ theme }) => theme.color.background200};
+        background-color: ${({ theme }) => theme.color.dividerPrimary};
     }
 `
 

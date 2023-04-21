@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+import { ThemeContext } from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { NavLinks } from '../NavLinks/NavLinks'
 import { Logo } from '../Logo/Logo'
@@ -7,6 +9,7 @@ import {
     NavigationItemsContainer,
     RightSection,
     StyledMdOutlineLightMode,
+    StyledMdOutlineDarktMode,
     MenuIcon,
     StyledMdClose,
     StyledMdMenu,
@@ -14,13 +17,20 @@ import {
 
 export const Navigation = ({ isOpen, setIsOpen }) => {
     const navigate = useNavigate()
+    const { isDarkMode, setIsDarkMode } = useContext(ThemeContext)
+
+    const toggleThemeMode = () => {
+        setIsDarkMode((prev) => !prev)
+    }
 
     const closeMenu = () => {
         setIsOpen(false)
     }
+
     const openMenu = () => {
         setIsOpen(true)
     }
+
     const navigateToHomePage = () => {
         navigate('/')
     }
@@ -34,7 +44,18 @@ export const Navigation = ({ isOpen, setIsOpen }) => {
                 <NavLinks />
             </NavigationItemsContainer>
             <RightSection>
-                <StyledMdOutlineLightMode size="3rem" />
+                {isDarkMode ? (
+                    <StyledMdOutlineDarktMode
+                        onClick={toggleThemeMode}
+                        size="3rem"
+                    />
+                ) : (
+                    <StyledMdOutlineLightMode
+                        onClick={toggleThemeMode}
+                        size="3rem"
+                    />
+                )}
+
                 <MenuIcon>
                     {isOpen ? (
                         <StyledMdClose size="3rem" onClick={closeMenu} />
