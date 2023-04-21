@@ -20,7 +20,7 @@ export const ResultsContainer = styled.div`
     top: 6rem;
     left: 0;
     min-height: 100px;
-    max-height: 82vh;
+    max-height: 72vh;
     min-width: 100%;
     background-color: ${({ theme }) => theme.color.background100};
     border-radius: 0.6rem;
