@@ -1,5 +1,10 @@
 import styled from 'styled-components'
-import { MdMenu, MdClose, MdOutlineLightMode } from 'react-icons/md'
+import {
+    MdMenu,
+    MdClose,
+    MdOutlineLightMode,
+    MdOutlineDarkMode,
+} from 'react-icons/md'
 
 export const NavigationWrapper = styled.nav`
     position: sticky;
@@ -37,6 +42,10 @@ export const StyledMdClose = styled(MdClose)`
 `
 
 export const StyledMdOutlineLightMode = styled(MdOutlineLightMode)`
+    cursor: pointer;
+`
+
+export const StyledMdOutlineDarktMode = styled(MdOutlineDarkMode)`
     cursor: pointer;
 `
 
