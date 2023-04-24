@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import { GlobalStyles } from './Components/GlobalStyles/GlobalStyles'
-import { ThemeProvider, ThemeContext, useTheme } from 'styled-components'
+import { ThemeProvider, ThemeContext } from 'styled-components'
 import { darkTheme, baseTheme, lightTheme } from './assets/Theme/theme'
 import { AppLayout } from './Components/AppLayout/AppLayout'
 import { PageNotFound } from './Components/PageNotFound/PageNotFound'
@@ -11,7 +11,12 @@ import { SkeletonTheme } from 'react-loading-skeleton'
 import './assets/Theme/normalize.css'
 
 function App() {
-    const [isDarkMode, setIsDarkMode] = useState(false)
+    const initial = JSON.parse(localStorage.getItem('isDarkMode'))
+    const [isDarkMode, setIsDarkMode] = useState(initial)
+
+    useEffect(() => {
+        localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode))
+    }, [isDarkMode])
 
     const theme = {
         dark: { ...darkTheme, ...baseTheme },
