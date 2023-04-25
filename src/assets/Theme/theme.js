@@ -68,6 +68,8 @@ export const lightTheme = {
         dividerPrimary: '#D7DBDD',
         accent: '#3097FE',
         accentSecondary: '#FFFD00',
+        skeletonBase: '#DDDBDD',
+        skeletonHighlight: '#ECECEC',
     },
 }
 
@@ -82,5 +84,7 @@ export const darkTheme = {
         dividerPrimary: '#3c4043',
         accent: '#3097FE',
         accentSecondary: '#FFD43B',
+        skeletonBase: '#202020',
+        skeletonHighlight: '#444',
     },
 }
