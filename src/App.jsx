@@ -27,7 +27,18 @@ function App() {
         <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
             <ThemeProvider theme={isDarkMode ? theme.dark : theme.light}>
                 <GlobalStyles />
-                <SkeletonTheme baseColor="#202020" highlightColor="#444">
+                <SkeletonTheme
+                    baseColor={
+                        isDarkMode
+                            ? theme.dark.color.skeletonBase
+                            : theme.light.color.skeletonBase
+                    }
+                    highlightColor={
+                        isDarkMode
+                            ? theme.dark.color.skeletonHighlight
+                            : theme.light.color.skeletonHighlight
+                    }
+                >
                     <BrowserRouter>
                         <Routes>
                             <Route path="/" element={<AppLayout />}>
