@@ -31,11 +31,11 @@ const searchIndexItems = [
         title: 'Telefon',
         placeholder: 'Wyszukaj numer telefonu...',
     },
-    // {
-    //     index: 'page',
-    //     title: 'Strona',
-    //     placeholder: 'Wyszukaj w tytule lub treści...',
-    // },
+    {
+        index: 'page',
+        title: 'Strona',
+        placeholder: 'Wyszukaj w tytule lub treści...',
+    },
 ]
 
 export const SearchBar = ({ isOpen }) => {
