@@ -3,7 +3,7 @@ import { NoResults } from '../NoResults/NoResults'
 import { TypeForResults } from '../TypeForResults/TypeForResults'
 import { MeiliError } from '../MeiliError/MeiliError'
 import { StyledStats, StyledHitsContainer} from "./CustomResultsBox.styles"
-
+import {PageHit} from '../Hit/PageHit'
 
 
 
@@ -19,7 +19,6 @@ export const CustomResultsBox = ({
 
     const searchIndex = selectedSearchIndex.index
 
-    console.log(selectedSearchIndex)
     return (
         <>
             {error ? (
@@ -63,12 +62,9 @@ const switchHitComponent = (searchIndex) => {
         case 'number':
             return Hit;
         case 'page':
-            return pageHit;
+            return PageHit;
         default:
             console.log('Unknow search index');
 }}
 
 
-const pageHit = (a) => {
-    console.log(a)
-}

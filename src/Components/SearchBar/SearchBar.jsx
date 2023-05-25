@@ -65,6 +65,7 @@ export const SearchBar = ({ isOpen }) => {
             <InstantSearch
                 indexName={selectedSearchIndex.index}
                 searchClient={searchClient}
+                attributesToCrop={['content']}
             >
                 {isSearchOpen ? <BlurBackground /> : null}
                 <InputContainer
@@ -90,7 +91,7 @@ export const SearchBar = ({ isOpen }) => {
                         }}
                         searchAsYouType
                     />
-                    <Configure hitsPerPage={30} analytics={false} />
+                    <Configure hitsPerPage={30} analytics={false} attributesToSnippet={['content']} attributesToCrop={['content']} />
                     <IndexDropdown
                         items={searchIndexItems}
                         defaultValue={selectedSearchIndex}
