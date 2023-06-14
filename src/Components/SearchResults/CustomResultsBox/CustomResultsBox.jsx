@@ -1,4 +1,4 @@
-import { Hit } from '../Hit/Hit'
+import { PhoneHit } from '../Hit/PhoneHit'
 import { NoResults } from '../NoResults/NoResults'
 import { TypeForResults } from '../TypeForResults/TypeForResults'
 import { MeiliError } from '../MeiliError/MeiliError'
@@ -60,7 +60,7 @@ const switchHitComponent = (searchIndex) => {
 
     switch(searchIndex) {
         case 'number':
-            return Hit;
+            return PhoneHit;
         case 'page':
             return PageHit;
         default:

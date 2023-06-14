@@ -91,7 +91,7 @@ export const SearchBar = ({ isOpen }) => {
                         }}
                         searchAsYouType
                     />
-                    <Configure hitsPerPage={30} analytics={false} attributesToSnippet={['content']} attributesToCrop={['content']} />
+                    <Configure hitsPerPage={30} analytics={false} attributesToSnippet={['content']} />
                     <IndexDropdown
                         items={searchIndexItems}
                         defaultValue={selectedSearchIndex}
