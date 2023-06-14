@@ -1,9 +1,5 @@
 import styled from 'styled-components'
-import {
-    Hits,
-    Stats,
-} from 'react-instantsearch-dom'
-
+import { Hits, Stats } from 'react-instantsearch-dom'
 
 export const StyledStats = styled(Stats)`
     font-size: ${({ theme }) => theme.font.size.small};

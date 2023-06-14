@@ -2,11 +2,8 @@ import { PhoneHit } from '../Hit/PhoneHit'
 import { NoResults } from '../NoResults/NoResults'
 import { TypeForResults } from '../TypeForResults/TypeForResults'
 import { MeiliError } from '../MeiliError/MeiliError'
-import { StyledStats, StyledHitsContainer} from "./CustomResultsBox.styles"
-import {PageHit} from '../Hit/PageHit'
-
-
-
+import { StyledStats, StyledHitsContainer } from './CustomResultsBox.styles'
+import { PageHit } from '../Hit/PageHit'
 
 export const CustomResultsBox = ({
     searchState,
@@ -42,7 +39,9 @@ export const CustomResultsBox = ({
                                     },
                                 }}
                             />
-                            <StyledHitsContainer hitComponent={switchHitComponent(searchIndex)} />
+                            <StyledHitsContainer
+                                hitComponent={switchHitComponent(searchIndex)}
+                            />
                             <NoResults hidden={hasResults} />
                         </>
                     ) : (
@@ -57,14 +56,12 @@ export const CustomResultsBox = ({
 }
 
 const switchHitComponent = (searchIndex) => {
-
-    switch(searchIndex) {
+    switch (searchIndex) {
         case 'number':
-            return PhoneHit;
+            return PhoneHit
         case 'page':
-            return PageHit;
+            return PageHit
         default:
-            console.log('Unknow search index');
-}}
-
-
+            console.log('Unknow search index')
+    }
+}
