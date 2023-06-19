@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useDebounce } from '../../Hooks/useDebounce'
 import { SearchResults } from '../SearchResults/SearchResults'
 import { IndexDropdown } from '../IndexDropdown/IndexDropdown'
@@ -14,6 +14,7 @@ import { ImGithub } from 'react-icons/im'
 import { MdSearch } from 'react-icons/md'
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 import { InstantSearch, Configure } from 'react-instantsearch-dom'
+import { SearchBarContext } from '../../Context/SearchBarContext'
 
 const searchClient = instantMeiliSearch(
     import.meta.env.VITE_MEILISEARCH_API,
@@ -39,20 +40,15 @@ const searchIndexItems = [
 ]
 
 export const SearchBar = ({ isOpen }) => {
-    // const [searchQuery, setSearchQuery] = useState('')
-    const [isSearchOpen, setIsSearchOpen] = useState(false)
     const initalState = searchIndexItems[0]
     const [selectedSearchIndex, setSelectedSearchIndex] = useState(initalState)
+    const { isSearchOpen, openSearchResults, closeSearchResults } =
+        useContext(SearchBarContext)
+
+    //Code for debouncing search value
     // const debounceSearchQuery = useCallback(
     //     useDebounce(searchQuery, 600)
     // ).trim()
-
-    const openSearchResults = () => {
-        setIsSearchOpen(true)
-    }
-    const closeSearchResults = () => {
-        setIsSearchOpen(false)
-    }
 
     // useEffect(() => {
     //     if (debounceSearchQuery) {
@@ -91,7 +87,11 @@ export const SearchBar = ({ isOpen }) => {
                         }}
                         searchAsYouType
                     />
-                    <Configure hitsPerPage={30} analytics={false} attributesToSnippet={['content']} />
+                    <Configure
+                        hitsPerPage={30}
+                        analytics={false}
+                        attributesToSnippet={['content']}
+                    />
                     <IndexDropdown
                         items={searchIndexItems}
                         defaultValue={selectedSearchIndex}
