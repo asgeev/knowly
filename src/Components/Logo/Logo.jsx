@@ -8,7 +8,7 @@ export const Logo = () => {
         <LogoWrapper onClick={() => navigate('/', { replace: true })}>
             <LogoImg src={knowlylogo} />
             <LogoTitle>knowly</LogoTitle>
-            <BetaTag>BETA</BetaTag>
+            {/* <BetaTag>BETA</BetaTag> */}
         </LogoWrapper>
     )
 }
