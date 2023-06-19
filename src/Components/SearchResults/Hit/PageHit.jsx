@@ -1,6 +1,9 @@
+import { useContext } from 'react'
+import { NavLink } from 'react-router-dom'
 import { Highlight, Snippet } from 'react-instantsearch-dom'
-import styled from 'styled-components';
-import {BsFileEarmarkText} from 'react-icons/bs'
+import styled from 'styled-components'
+import { BsFileEarmarkText } from 'react-icons/bs'
+import { SearchBarContext } from '../../../Context/SearchBarContext'
 
 export const StyledHit = styled.div`
     padding: 1.5rem;
@@ -17,10 +20,10 @@ export const HitHighlight = styled(Highlight)`
 `
 
 export const SnippetHighlightContent = styled(Snippet)`
-    font-size: ${({theme}) => theme.font.size.small};
+    font-size: ${({ theme }) => theme.font.size.small};
     color: ${({ theme }) => theme.color.secondaryText};
 
-    .ais-Snippet-highlighted{
+    .ais-Snippet-highlighted {
         color: ${({ theme }) => theme.color.accent};
     }
 `
@@ -28,19 +31,27 @@ export const SnippetHighlightContent = styled(Snippet)`
 export const RowBox = styled.div`
     display: flex;
     flex-direction: column;
-    gap: .6rem;
-
+    gap: 0.6rem;
 `
 
-export const PageHit = ({hit}) => {
+export const PageHit = ({ hit }) => {
+    const { closeSearchResults } = useContext(SearchBarContext)
+    const pageId = hit.id
+
     return (
         <StyledHit>
-            <BsFileEarmarkText size="2rem"/>
+            <BsFileEarmarkText size="2rem" />
             <RowBox>
-                <HitHighlight attribute="title" hit={hit} />
-                <SnippetHighlightContent attribute="content" hit={hit}/>
-            </RowBox>   
+                <NavLink
+                    to={{ pathname: `page/${pageId}` }}
+                    search=""
+                    state={{ searchingText: 'qwrqwrW' }}
+                    onClick={closeSearchResults}
+                >
+                    <HitHighlight attribute="title" hit={hit} />
+                </NavLink>
+                <SnippetHighlightContent attribute="content" hit={hit} />
+            </RowBox>
         </StyledHit>
     )
-
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { Navigate, useLocation, useParams } from 'react-router-dom'
 import { DangerouslyContent } from '../DangerouslyContent/DangerouslyContent'
 import { TagsContainer } from '../TagsContainer/TagsContainer'
 import { UnitName } from '../UnitName/UnitName'
@@ -22,6 +22,7 @@ const queryParams = `populate=%2A`
 
 export const Page = () => {
     const { pageId } = useParams()
+    const location = useLocation()
     const { response, error, loading } = useAxios(
         {
             url: `/pages/${pageId}?${queryParams}`,
@@ -30,6 +31,8 @@ export const Page = () => {
     )
     const [pageContent, setPageContent] = useState(response)
     const updatedAt = useDate(pageContent?.updatedAt)
+
+    console.log(location)
 
     useEffect(() => {
         response ? setPageContent(response.data.attributes) : null
