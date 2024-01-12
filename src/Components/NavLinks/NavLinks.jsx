@@ -65,7 +65,7 @@ export const NavLinks = () => {
     const [menuData, setMenuData] = useState([])
 
     const { response, loading, error } = useAxios({
-        url: '/navigation/render/1?type=TREE',
+        url: '/navigation/render/main-navigation?type=TREE',
     })
 
     useEffect(() => {
