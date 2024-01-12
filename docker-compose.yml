@@ -1,0 +1,23 @@
+version: '3'
+services:
+    knowly:
+        container_name: knowly-frontend
+        build: .
+        image: knowly-frontend
+        env_file: .env
+        environment:
+            VITE_API_ADRESS: ${VITE_API_ADRESS}
+            VITE_WEATHER_API_KEY: ${VITE_WEATHER_API_KEY}
+            VITE_MEILISEARCH_API: ${VITE_MEILISEARCH_API}
+            VITE_MEILISEARCH_API_SEARCH_KEY: ${VITE_MEILISEARCH_API_SEARCH_KEY}
+        networks:
+            - traefik_web
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.knowly-strapi.rule=Host(`${PUBLIC_URL}`)
+            - traefik.http.routers.knowly-strapi.tls=${TLS}
+
+networks:
+    traefik_web:
+        name: traefik_web
+        external: true
