@@ -14,8 +14,8 @@ services:
             - traefik_web
         labels:
             - traefik.enable=true
-            - traefik.http.routers.knowly-strapi.rule=Host(`${PUBLIC_URL}`)
-            - traefik.http.routers.knowly-strapi.tls=${TLS}
+            - traefik.http.routers.knowly-frontend.rule=Host(`${PUBLIC_URL}`)
+            - traefik.http.routers.knowly-frontend.tls=${TLS}
 
 networks:
     traefik_web:
