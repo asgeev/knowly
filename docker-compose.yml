@@ -16,7 +16,6 @@ services:
             - traefik.enable=true
             - traefik.http.routers.knowly-frontend.rule=Host(`${PUBLIC_URL}`)
             - traefik.http.routers.knowly-frontend.tls=${TLS}
-
 networks:
     traefik_web:
         name: traefik_web

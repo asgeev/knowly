@@ -35,7 +35,7 @@ export const Page = () => {
     console.log(location)
 
     useEffect(() => {
-        response ? setPageContent(response.data.attributes) : null
+        response ? setPageContent(response.data?.attributes) : null
     }, [response])
 
     useEffect(() => {
@@ -56,11 +56,11 @@ export const Page = () => {
                         <PageHeaderContainer>
                             <PageHeaderUpdatedBy>
                                 {
-                                    pageContent.updatedBy?.data.attributes
+                                    pageContent.updatedBy?.data?.attributes
                                         .firstname
                                 }{' '}
                                 {
-                                    pageContent.updatedBy?.data.attributes
+                                    pageContent.updatedBy?.data?.attributes
                                         .lastname
                                 }
                             </PageHeaderUpdatedBy>
