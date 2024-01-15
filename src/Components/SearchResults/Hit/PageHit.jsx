@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Highlight, Snippet } from 'react-instantsearch-dom'
 import styled from 'styled-components'
-import { BsFileEarmarkText } from 'react-icons/bs'
+import { BsFileEarmarkText, BsListNested } from 'react-icons/bs'
 import { SearchBarContext } from '../../../Context/SearchBarContext'
 
 export const StyledHit = styled.div`
@@ -38,6 +38,16 @@ export const RowBox = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
+`
+
+export const StyledNavLink = styled(NavLink)`
+    cursor: pointer;
+    color: unset;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
 `
 
 export const PageHit = ({ hit }) => {
