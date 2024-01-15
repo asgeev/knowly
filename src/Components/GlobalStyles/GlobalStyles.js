@@ -13,6 +13,7 @@ export const GlobalStyles = createGlobalStyle`
 html {
     font-size: 62.5%; 
     height: 100%;
+    color-scheme: dark;
 }
 html:focus-within {
   scroll-behavior: smooth;
@@ -57,9 +58,9 @@ ol[role='list'] {
 
 
 /* A elements that don't have a class get default styles */
-a:not([class]) {
+/* a:not([class]) {
   text-decoration-skip-ink: auto;
-}
+} */
 
 /* Make images easier to work with */
 img,

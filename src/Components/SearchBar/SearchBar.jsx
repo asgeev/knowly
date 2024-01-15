@@ -69,7 +69,6 @@ export const SearchBar = ({ isOpen }) => {
                     onBlur={(e) => {
                         // console.log('focusout (self or child)')
                         if (e.currentTarget === e.target) {
-                            console.log('blur (self)')
                         }
                         if (!e.currentTarget.contains(e.relatedTarget)) {
                             closeSearchResults()
@@ -105,7 +104,7 @@ export const SearchBar = ({ isOpen }) => {
                 </InputContainer>
             </InstantSearch>
             <ItemsContainer>
-                <Item href="https://github.com/polishghost27">
+                <Item href="https://github.com/asgeev">
                     <ImGithub size="3rem" />
                 </Item>
             </ItemsContainer>

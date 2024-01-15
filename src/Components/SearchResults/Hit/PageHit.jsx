@@ -19,6 +19,12 @@ export const HitHighlight = styled(Highlight)`
     }
 `
 
+export const StyledNavLink = styled(NavLink)`
+    color: ${({ theme }) => theme.color.primaryText};
+    font-weight: ${({ theme }) => theme.font.weight.w500};
+    text-decoration: none;
+`
+
 export const SnippetHighlightContent = styled(Snippet)`
     font-size: ${({ theme }) => theme.font.size.small};
     color: ${({ theme }) => theme.color.secondaryText};
@@ -42,14 +48,14 @@ export const PageHit = ({ hit }) => {
         <StyledHit>
             <BsFileEarmarkText size="2rem" />
             <RowBox>
-                <NavLink
+                <StyledNavLink
                     to={{ pathname: `page/${pageId}` }}
                     search=""
-                    state={{ searchingText: 'qwrqwrW' }}
+                    state={{ searchingText: '' }}
                     onClick={closeSearchResults}
                 >
                     <HitHighlight attribute="title" hit={hit} />
-                </NavLink>
+                </StyledNavLink>
                 <SnippetHighlightContent attribute="content" hit={hit} />
             </RowBox>
         </StyledHit>
