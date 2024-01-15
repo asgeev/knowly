@@ -40,16 +40,6 @@ export const RowBox = styled.div`
     gap: 0.6rem;
 `
 
-export const StyledNavLink = styled(NavLink)`
-    cursor: pointer;
-    color: unset;
-    text-decoration: none;
-
-    &:hover {
-        text-decoration: underline;
-    }
-`
-
 export const PageHit = ({ hit }) => {
     const { closeSearchResults } = useContext(SearchBarContext)
     const pageId = hit.id
