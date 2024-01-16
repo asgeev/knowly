@@ -3,7 +3,7 @@ services:
     knowly:
         container_name: knowly-frontend
         build: .
-        image: knowly-frontend
+        image: knowly-frontend:v1.0.1
         env_file: .env
         environment:
             VITE_API_ADRESS: ${VITE_API_ADRESS}
