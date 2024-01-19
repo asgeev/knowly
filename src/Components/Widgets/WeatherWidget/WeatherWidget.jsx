@@ -57,7 +57,7 @@ export const WeatherWidget = () => {
                         <WeatherIconContainer>
                             {weather.weather && (
                                 <img
-                                    src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                                    src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                                 />
                             )}
                         </WeatherIconContainer>
