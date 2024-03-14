@@ -1,6 +1,6 @@
 import { Poppins } from 'next/font/google'
-import Footer from '../components/Footer'
-import Header from '../components/Header'
+import Footer from '../components/organisms/Footer'
+import Header from '../components/organisms/Header'
 import './globals.css'
 import { ThemeProvider } from 'next-themes'
 
@@ -22,11 +22,23 @@ export default function RootLayout({
 }) {
     return (
         <html lang="pl" suppressHydrationWarning>
+            <head>
+                <link
+                    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+                    rel="stylesheet"
+                />
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+                    rel="stylesheet"
+                />
+            </head>
             <body className={`${poppins.className}`}>
                 <ThemeProvider>
-                    <Header />
-                    {children}
-                    <Footer />
+                    <div className="container px-6">
+                        <Header />
+                        {children}
+                        <Footer />
+                    </div>
                 </ThemeProvider>
             </body>
         </html>

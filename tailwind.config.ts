@@ -14,9 +14,17 @@ const config: Config = {
             },
             colors: {
                 background: 'var(--background)',
+                color_1: 'var(--color-1)',
+                color_2: 'var(--color-2)',
                 textPrimary: 'var(--text-primary)',
                 textSecondary: 'var(--text-secondary)',
                 accent: 'var(--accent)',
+            },
+        },
+        container: {
+            center: true,
+            screens: {
+                xl: '1200px',
             },
         },
     },
