@@ -6,15 +6,17 @@ const config: Config = {
         './src/components/**/*.{js,ts,jsx,tsx,mdx}',
         './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
+    darkMode: 'selector',
     theme: {
         extend: {
             fontFamily: {
                 sans: ['var(--font-poppins)'],
             },
             colors: {
-                background: '#F7F7F7',
+                background: 'var(--background)',
                 textPrimary: 'var(--text-primary)',
                 textSecondary: 'var(--text-secondary)',
+                accent: 'var(--accent)',
             },
         },
     },
