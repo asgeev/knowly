@@ -9,8 +9,7 @@ const Header = () => {
                         <div className="relative h-10 w-10 p-3">
                             <Image
                                 src="/knowlylogo.svg"
-                                layout="fill"
-                                objectFit="contain"
+                                fill
                                 alt="knowly icon"
                             />
                         </div>

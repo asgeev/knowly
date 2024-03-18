@@ -33,7 +33,7 @@ export default function RootLayout({
                 />
             </head>
             <body className={`${poppins.className}`}>
-                <ThemeProvider>
+                <ThemeProvider attribute="class">
                     <div className="container px-6">
                         <Header />
                         {children}

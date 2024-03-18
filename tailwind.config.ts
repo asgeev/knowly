@@ -6,7 +6,7 @@ const config: Config = {
         './src/components/**/*.{js,ts,jsx,tsx,mdx}',
         './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
-    darkMode: 'selector',
+    darkMode: 'class',
     theme: {
         extend: {
             fontFamily: {
@@ -28,6 +28,6 @@ const config: Config = {
             },
         },
     },
-    plugins: [],
+    plugins: [require('@tailwindcss/typography')],
 }
 export default config
