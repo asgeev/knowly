@@ -1,8 +1,18 @@
 import { notFound } from 'next/navigation'
+import { changeDate } from '../../../helpers/changeDate'
+interface PageContent {
+    type: string
+    title: string
+    createdBy: {
+        firstname: string
+        createdAt: string
+    }
+    content: string
+}
 
 const getPageData = async (path: string) => {
     const response = await fetch(
-        `http://localhost:1337/api/navigation/render/main-navigation?path=/${path}`
+        `http://localhost:1337/api/navigation/render/main-navigation?type=TREE&path=/${path}`
     )
     if (!response.ok) {
         throw new Error('Failed')
@@ -20,22 +30,37 @@ const Page = async ({
     const path: string = params?.slug?.join('/')
 
     const data = await getPageData(path)
-    console.log(data[0]?.related?.content)
+
+    const pageContent: PageContent = data[0]?.related
+
+    const localDate = changeDate(pageContent?.createdBy?.createdAt)
+
+    //If data response array is empty or type is WRAPPER
+    if (!data?.length || pageContent?.type === 'WRAPPER') {
+        notFound()
+    }
+
     return (
         <>
-            {!data || !data[0]?.related ? (
-                notFound()
-            ) : (
-                <article className="prose lg:prose-lg dark:prose-invert">
-                    <p>afas</p>
-                    {data[0]?.related && (
+            {pageContent && (
+                <div className="pt-32 container">
+                    <article className="mx-auto prose dark:prose-invert">
+                        <div className="pb-16">
+                            <h1 className="text-4xl font-bold m-0">
+                                {pageContent?.title}
+                            </h1>
+                            <p className="text-textSecondary font-semibold">
+                                {localDate}
+                            </p>
+                        </div>
+
                         <div
                             dangerouslySetInnerHTML={{
-                                __html: data[0]?.related?.content,
+                                __html: pageContent?.content,
                             }}
                         ></div>
-                    )}
-                </article>
+                    </article>
+                </div>
             )}
         </>
     )
