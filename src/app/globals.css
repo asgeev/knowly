@@ -19,21 +19,11 @@
         --text-secondary: #b0b3b8;
         --accent: #3097fe;
     }
-
-    /* @media (prefers-color-scheme: dark) {
-        :root {
-          
-        }
-    }
-    
-    @media (prefers-color-scheme: light) {
-        :root {
-        }
-    } */
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-optical-sizing: auto;
     background: var(--background);
     color: var(--text-primary);
 }

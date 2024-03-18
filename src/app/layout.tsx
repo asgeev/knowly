@@ -1,4 +1,4 @@
-import { Poppins } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 import Footer from '../components/organisms/Footer'
 import Header from '../components/organisms/Header'
 import './globals.css'
@@ -9,9 +9,9 @@ export const metadata = {
     description: 'Portal knowly',
 }
 
-const poppins = Poppins({
+const roboto = Roboto({
     weight: '400',
-    variable: '--font-poppins',
+    variable: '--font-roboto',
     subsets: ['latin'],
 })
 
@@ -32,7 +32,7 @@ export default function RootLayout({
                     rel="stylesheet"
                 />
             </head>
-            <body className={`${poppins.className}`}>
+            <body className={`${roboto.className}`}>
                 <ThemeProvider attribute="class">
                     <div className="container px-6">
                         <Header />
