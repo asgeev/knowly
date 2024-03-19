@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { changeDate } from '../../../helpers/changeDate'
+import { Tag } from '../../../components/atoms/Tag'
 interface PageContent {
     type: string
     title: string
@@ -8,6 +9,19 @@ interface PageContent {
         createdAt: string
     }
     content: string
+    tags: {
+        map(
+            arg0: ({
+                id,
+                slug,
+            }: {
+                id: any
+                slug: any
+            }) => import('react').JSX.Element
+        ): import('react').ReactNode
+        id: number
+        slug: string
+    }
 }
 
 const getPageData = async (path: string) => {
@@ -35,6 +49,8 @@ const Page = async ({
 
     const localDate = changeDate(pageContent?.createdBy?.createdAt)
 
+    const tags = pageContent?.tags
+
     //If data response array is empty or type is WRAPPER
     if (!data?.length || pageContent?.type === 'WRAPPER') {
         notFound()
@@ -52,6 +68,13 @@ const Page = async ({
                             <p className="text-textSecondary font-semibold">
                                 {localDate}
                             </p>
+                            {tags && (
+                                <div className="flex flex-row gap-2">
+                                    {tags.map(({ id, slug }) => {
+                                        return <Tag key={id} text={slug} />
+                                    })}
+                                </div>
+                            )}
                         </div>
 
                         <div
