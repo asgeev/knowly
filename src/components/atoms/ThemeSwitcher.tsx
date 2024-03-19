@@ -1,17 +1,29 @@
 'use client'
 import { useTheme } from 'next-themes'
+import { useState, useEffect } from 'react'
 
-export default function ThemeSwitcher() {
-    const { resolvedTheme, setTheme } = useTheme()
+const ThemeSwitcher = () => {
+    const [mounted, setMounted] = useState(false)
+    const { theme, setTheme } = useTheme()
 
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    if (!mounted) {
+        return null
+    }
     return (
-        <div>
-            <button onClick={() => setTheme('dark')}>
-                <span className="material-icons md-36">dark_mode</span>
-            </button>
-            {/* <button onClick={() => setTheme('light')}>
-                <span className="material-icons md-36">dark</span>
-            </button> */}
-        </div>
+        <select
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
+            className="bg-background border dark:border-color_2 text-sm rounded-lg focus:ring-accent focus:border-accent block w-full p-2.5 "
+        >
+            <option value="system">System</option>
+            <option value="dark">Ciemny</option>
+            <option value="light">Jasny</option>
+        </select>
     )
 }
+
+export default ThemeSwitcher
