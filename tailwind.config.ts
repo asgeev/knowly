@@ -23,9 +23,6 @@ const config: Config = {
         },
         container: {
             center: true,
-            screens: {
-                xl: '1200px',
-            },
         },
     },
     plugins: [require('@tailwindcss/typography')],
