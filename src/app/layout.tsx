@@ -36,11 +36,9 @@ export default function RootLayout({
                 className={`${roboto.className} bg-background transition duration-600 dark:bg-background`}
             >
                 <ThemeProvider attribute="class">
-                    <div className="container px-6">
-                        <Header />
-                        {children}
-                        <Footer />
-                    </div>
+                    <Header />
+                    <div className="container px-6">{children}</div>
+                    <Footer />
                 </ThemeProvider>
             </body>
         </html>
