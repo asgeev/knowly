@@ -31,7 +31,7 @@ const Navigation = (props: Props) => {
         <nav className="flex md:gap-x-10 md:w-full justify-between">
             <div
                 data-ismenuopen={`${isMenuOpen}`}
-                className={`max-md:data-[ismenuopen=false]:hidden max-md:data-[ismenuopen=true]:fixed max-md:data-[ismenuopen=true]:bg-background md:flex items-center top-0 left-0 max-md:p-16 max-md:w-full max-md:h-full z-10`}
+                className={`max-md:data-[ismenuopen=false]:hidden max-md:data-[ismenuopen=true]:fixed max-md:data-[ismenuopen=true]:bg-background md:flex items-center top-0 left-0 max-md:p-16 max-md:w-full max-md:h-full z-50`}
             >
                 <button onClick={closeMenu} className="float-end md:hidden">
                     <span className="material-symbols-outlined md-30">

@@ -16,15 +16,17 @@ const Footer = () => {
                         <div>
                             <ThemeSwitcher />
                         </div>
-                        <div className="relative w-10 h-10 invert dark:invert-0">
+
+                        {/* <div className="invert dark:invert-0">
                             <Link href="https://github.com/asgeev">
                                 <Image
                                     src="/github.svg"
-                                    fill
+                                    width={40}
+                                    height={40}
                                     alt="knowly icon"
                                 />
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="flex flex-wrap gap-20 md:gap-30 lg:gap-36">
