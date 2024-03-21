@@ -59,13 +59,13 @@ const Page = async ({
     return (
         <>
             {pageContent && (
-                <div className="pt-32 container">
-                    <article className="mx-auto prose dark:prose-invert">
-                        <div className="pb-16">
-                            <h1 className="text-4xl font-bold m-0">
+                <div className="">
+                    <article className="prose m-auto lg:prose-xl dark:prose-invert prose-gray">
+                        <div className="pt-32 pb-6">
+                            <h2 className="not-prose text-textPrimary  text-5xl pb-2 ">
                                 {pageContent?.title}
-                            </h1>
-                            <p className="text-textSecondary font-semibold">
+                            </h2>
+                            <p className="text-textSecondary text-md font-semibold ml-1">
                                 {localDate}
                             </p>
                             {tags && (
@@ -76,7 +76,6 @@ const Page = async ({
                                 </div>
                             )}
                         </div>
-
                         <div
                             dangerouslySetInnerHTML={{
                                 __html: pageContent?.content,
