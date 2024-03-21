@@ -1,9 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import RecursiveMenu from './NavigationLinks'
 import { usePathname } from 'next/navigation'
+import { SearchButton } from '../atoms/SearchButton'
+import { Meilisearch } from '../organisms/Meilisearch'
 
 interface Props {
     navigation: []
@@ -85,11 +87,7 @@ const Navigation = (props: Props) => {
                 </div>
             </div>
             <div className="flex flex-row gap-4">
-                <div>
-                    <span className="material-symbols-outlined md-30">
-                        search
-                    </span>
-                </div>
+                <Meilisearch />
                 <div className="md:hidden">
                     <button onClick={openMenu}>
                         <span className="material-symbols-outlined md-30">
