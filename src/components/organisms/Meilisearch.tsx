@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import { SearchButton } from '../atoms/SearchButton'
 
-// eslint-disable-next-line react/display-name
 export const Meilisearch = () => {
     const searchDialogRef = useRef<HTMLDialogElement>(null)
 
@@ -20,9 +19,10 @@ export const Meilisearch = () => {
             <dialog
                 ref={searchDialogRef}
                 onClick={closeMeilisearch}
-                className="p-10"
+                //TODO: add colors for light theme
+                className="my-0 top-32 w-10/12 max-w-3xl backdrop:bg-backdrop backdrop:backdrop-blur-sm bg-inherit"
             >
-                afasf
+                <div className="bg-secondary p-10 rounded-lg shadow-meilisearch "></div>
             </dialog>
         </>
     )

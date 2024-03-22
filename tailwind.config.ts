@@ -13,12 +13,17 @@ const config: Config = {
                 sans: ['var(--font-roboto)'],
             },
             colors: {
-                background: 'var(--background)',
+                primary: 'var(--primary)',
+                secondary: 'var(--secondary)',
                 color_1: 'var(--color-1)',
                 color_2: 'var(--color-2)',
                 textPrimary: 'var(--text-primary)',
                 textSecondary: 'var(--text-secondary)',
                 accent: 'var(--accent)',
+                backdrop: 'var(--backdrop)',
+            },
+            boxShadow: {
+                meilisearch: 'inset 0 1px 0 0 #ffffff0d',
             },
         },
         container: {

@@ -4,27 +4,32 @@
 
 @layer base {
     :root {
-        --background: #fff;
+        --primary: #fff;
+        --secondary: #eee;
         --color-1: #eeeeee;
         --color-2: #e5e7e9;
         --text-primary: #3f3844;
         --text-secondary: #797d7f;
         --accent: #3097fe;
+        --backdrop: #0f172acc;
     }
     .dark {
-        --background: #1f2028;
+        --primary: #1f2028;
+        --secondary: #2e3039;
         --color-1: #2e3039;
         --color-2: #3a3b3c;
+        --color-3: #1e293b;
         --text-primary: #fff;
         --text-secondary: #a9adc1;
         --accent: #3097fe;
+        --backdrop: rgba(31, 32, 40, 0.8);
     }
 }
 
 html {
     font-family: 'Roboto', sans-serif;
     font-optical-sizing: auto;
-    background: var(--background);
+    background: var(--primary);
     color: var(--text-primary);
 }
 
