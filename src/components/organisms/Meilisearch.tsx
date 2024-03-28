@@ -5,13 +5,16 @@ import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 import {
     InstantSearch,
     SearchBox,
-    Highlight,
     Index,
     Hits,
     PoweredBy,
+    Configure,
 } from 'react-instantsearch'
 import NoResultsBoundary from '../molecules/meilisearch/NoResultsBoundary'
 import EmptyQueryBoundary from '../molecules/meilisearch/EmptyQueryBoundary'
+import HitPhone from '../molecules/meilisearch/HitPhone'
+import HitPage from '../molecules/meilisearch/HitPage'
+import HitsSection from '../molecules/meilisearch/HitSection'
 
 const { searchClient, setMeiliSearchParams } = instantMeiliSearch(
     'http://localhost:7700', // Host
@@ -61,7 +64,7 @@ export const Meilisearch = () => {
                                     submitIcon: 'hidden',
                                     resetIcon: 'hidden',
                                 }}
-                                placeholder="Wyszukaj numeru telefonu"
+                                placeholder="Wyszukaj telefon lub stronę"
                             />
                             <button
                                 onClick={closeMeilisearch}
@@ -70,19 +73,25 @@ export const Meilisearch = () => {
                                 ESC
                             </button>
                         </div>
-                        <div className="px-6 min-h-10 max-h-[600px] overflow-auto transition-all ease-in-out duration-1000">
+                        <div className="px-6 min-h-10 max-h-[600px] overflow-auto transition-all ease-in-out duration-1000 divide-y divide-color_2">
                             <EmptyQueryBoundary text="Brak wyników">
                                 <Index indexName="number">
                                     <NoResultsBoundary>
                                         <HitsSection title="Telefon">
-                                            <Hits hitComponent={Hit} />
+                                            <Hits hitComponent={HitPhone} />
                                         </HitsSection>
                                     </NoResultsBoundary>
                                 </Index>
-                                <Index indexName="navigation-item">
+                                <Index indexName="page">
                                     <NoResultsBoundary>
                                         <HitsSection title="Baza wiedzy">
-                                            <Hits hitComponent={Hit1} />
+                                            <Configure
+                                                attributesToSnippet={[
+                                                    'content',
+                                                ]}
+                                            />
+
+                                            <Hits hitComponent={HitPage} />
                                         </HitsSection>
                                     </NoResultsBoundary>
                                 </Index>
@@ -100,79 +109,5 @@ export const Meilisearch = () => {
                 </div>
             </dialog>
         </>
-    )
-}
-
-const Hit = ({ hit }) => {
-    console.log(hit)
-
-    return (
-        <div className="my-6">
-            <div className="flex  flex-col md:flex-row gap-y-2 items-start justify-between">
-                <div>
-                    <div className="space-x-1">
-                        <Highlight
-                            classNames={{
-                                highlighted: 'bg-transparent text-accent',
-                            }}
-                            attribute="employeeFirstName"
-                            hit={hit}
-                        />
-                        <Highlight
-                            classNames={{
-                                highlighted: 'bg-transparent text-accent',
-                            }}
-                            attribute="employeeLastName"
-                            hit={hit}
-                        />
-                    </div>
-
-                    <div className="flex gap-1 text-textSecondary">
-                        <p className="text-sm ">{hit?.unit?.unitName}</p>
-                        <p className="text-sm text-textSecondary">
-                            {hit?.section?.sectionName}
-                        </p>
-                    </div>
-                </div>
-
-                <div className="flex gap-2 text-sm tracking-wider">
-                    {hit?.internalNumber && (
-                        <div className="bg-color_2 px-4 py-1 rounded-3xl">
-                            {hit?.internalNumber}
-                        </div>
-                    )}
-                    {hit?.companyNumber && (
-                        <div className="bg-color_2 px-4 py-1 rounded-3xl">
-                            {hit?.companyNumber}
-                        </div>
-                    )}
-                    {hit?.externalNumber && (
-                        <div className="bg-color_2 px-4 py-1 rounded-3xl">
-                            {hit?.externalNumber}
-                        </div>
-                    )}
-                </div>
-            </div>
-        </div>
-    )
-}
-
-const Hit1 = ({ hit }) => {
-    return (
-        <>
-            <Highlight attribute="path" hit={hit} />
-            <Highlight attribute="path" hit={hit} />
-            <p>{hit.path}</p>
-        </>
-    )
-}
-
-const HitsSection = ({ children, title }) => {
-    return (
-        <section className="py-6 ">
-            <p className="text-textSecondary mb-6">{title}</p>
-
-            {children}
-        </section>
     )
 }
