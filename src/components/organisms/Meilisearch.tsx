@@ -108,9 +108,9 @@ const Hit = ({ hit }) => {
 
     return (
         <div className="my-6">
-            <div>
-                <div className="grid grid-flow-col grid-cols-[minmax(200px,300px)_minmax(300px,_1fr)]	 ">
-                    <div className="flex gap-1">
+            <div className="flex  flex-col md:flex-row gap-y-2 items-start justify-between">
+                <div>
+                    <div className="space-x-1">
                         <Highlight
                             classNames={{
                                 highlighted: 'bg-transparent text-accent',
@@ -127,19 +127,30 @@ const Hit = ({ hit }) => {
                         />
                     </div>
 
-                    <div className="flex gap-6 text-textSecondary">
-                        <div>{hit?.internalNumber}</div>
-                        <div className="w-[2px] h-full bg-neutral-600 mx-2" />
-                        <div>{hit?.companyNumber}</div>
-                        <div className="w-[2px] h-full bg-neutral-600 mx-2" />
-                        <div>{hit?.externalNumber}</div>
+                    <div className="flex gap-1 text-textSecondary">
+                        <p className="text-sm ">{hit?.unit?.unitName}</p>
+                        <p className="text-sm text-textSecondary">
+                            {hit?.section?.sectionName}
+                        </p>
                     </div>
                 </div>
-                <div className="flex gap-1 text-textSecondary">
-                    <p className="text-sm ">{hit?.unit?.unitName}</p>
-                    <p className="text-sm text-textSecondary">
-                        {hit?.section?.sectionName}
-                    </p>
+
+                <div className="flex gap-2 text-sm tracking-wider">
+                    {hit?.internalNumber && (
+                        <div className="bg-color_2 px-4 py-1 rounded-3xl">
+                            {hit?.internalNumber}
+                        </div>
+                    )}
+                    {hit?.companyNumber && (
+                        <div className="bg-color_2 px-4 py-1 rounded-3xl">
+                            {hit?.companyNumber}
+                        </div>
+                    )}
+                    {hit?.externalNumber && (
+                        <div className="bg-color_2 px-4 py-1 rounded-3xl">
+                            {hit?.externalNumber}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
