@@ -1,6 +1,7 @@
 export default function Docs() {
     return (
         <article className="md:basis-2/3 lg:basis-1/2 lg:mx-auto prose dark:prose-invert prose-gray">
+            <h1>Lorem ipsum</h1>
             <p>
                 What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
                 printing and typesetting industry. Lorem Ipsum has been the

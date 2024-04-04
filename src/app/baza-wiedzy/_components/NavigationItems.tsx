@@ -16,10 +16,10 @@ export const NavigationItems = (props: Props) => {
 
     return (
         <>
-            <div className="mb-10 md:hidden">
+            <div className="max-md:mb-10  md:hidden">
                 <button
                     onClick={toggleMenu}
-                    className="flex items-center gap-1"
+                    className="flex items-center gap-1 text-accent"
                 >
                     Menu
                     <span className="material-symbols-outlined">
@@ -29,7 +29,7 @@ export const NavigationItems = (props: Props) => {
             </div>
             <div
                 data-ismenuopen={`${isMenuOpen}`}
-                className="max-md:data-[ismenuopen=false]:max-h-0 max-md:data-[ismenuopen=true]:max-h-96  transition-all overflow-y-auto md:h-[calc(100vh_-_136px)]"
+                className="max-md:data-[ismenuopen=false]:max-h-0 max-md:data-[ismenuopen=true]:max-h-96  transition-all overflow-y-auto md:max-h-[calc(100vh_-_136px)]"
             >
                 <div className="">
                     {navigation?.map((element) => {
