@@ -1,6 +1,6 @@
 const DocPage = () => {
     return (
-        <div>
+        <div className="">
             Doc content
             <h1 id="test">test</h1>
         </div>
