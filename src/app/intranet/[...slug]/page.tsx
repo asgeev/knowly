@@ -59,15 +59,12 @@ const Page = async ({
     return (
         <>
             {pageContent && (
-                <div className="">
-                    <article className="prose m-auto lg:prose-xl dark:prose-invert prose-gray">
-                        <div className="pt-32 pb-6">
-                            <h2 className="not-prose text-textPrimary  text-5xl pb-2 ">
-                                {pageContent?.title}
-                            </h2>
-                            <p className="text-textSecondary text-md font-semibold ml-1">
-                                {localDate}
-                            </p>
+                <div className="max-w-4xl m-auto">
+                    <article className="prose max-w-none lg:prose-xl prose-img:rounded-xl dark:prose-invert prose-gray">
+                        <div className="pt-20">
+                            <p className="text-textSecondary">{localDate}</p>
+                            <h1>{pageContent?.title}</h1>
+
                             {tags && (
                                 <div className="flex flex-row gap-2">
                                     {tags.map(({ id, slug }) => {
