@@ -59,8 +59,8 @@ const Page = async ({
     return (
         <>
             {pageContent && (
-                <div className="max-w-4xl m-auto">
-                    <article className="prose max-w-none lg:prose-xl prose-img:rounded-xl dark:prose-invert prose-gray">
+                <div className=" m-auto">
+                    <article className="prose m-auto lg:prose-xl prose-img:rounded-xl dark:prose-invert prose-gray">
                         <div className="pt-20">
                             <p className="text-textSecondary">{localDate}</p>
                             <h1>{pageContent?.title}</h1>
