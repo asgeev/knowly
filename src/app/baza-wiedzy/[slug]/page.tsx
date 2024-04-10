@@ -30,7 +30,7 @@ const DocPage = async ({
         <>
             {pageData && (
                 <div className="">
-                    <article className="prose dark:prose-invert prose-gray">
+                    <article className="prose lg:prose-xl dark:prose-invert prose-gray">
                         <div className="pb-6">
                             <p className="mt-1.5 text-textSecondary">
                                 {formattedDate}

@@ -15,7 +15,7 @@ const Navigation = async () => {
     const navigation = await getDocsNavigation()
 
     return (
-        <nav className=" md:basis-1/3 lg:basis-1/4">
+        <nav className="">
             <NavigationItems navigation={navigation} />
         </nav>
     )
