@@ -2,7 +2,7 @@ import Navigation from './_components/Navigation'
 const DocsLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="flex flex-col gap-4 md:gap-10 md:flex-row mt-20 justify-center">
-            <div className="max-md:w-full min-w-48 ticky top-[120px] self-start h-auto">
+            <div className="max-md:w-full min-w-48 sticky top-[120px] self-start h-auto">
                 <Navigation />
             </div>
             <div>{children}</div>
