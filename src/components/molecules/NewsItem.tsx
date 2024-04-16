@@ -32,9 +32,9 @@ export const NewsItem = (props: Props) => {
                         <p className="text-xl font-medium">
                             Przerwa techniczna dnia 15.02.2014
                         </p>
-                        <p className="text-textSecondary">
+                        {/* <p className="text-textSecondary">
                             W godzinach 9:00 - 12:00
-                        </p>
+                        </p> */}
                     </section>
                 </div>
             </div>
