@@ -37,7 +37,7 @@ export default function RootLayout({
             >
                 <ThemeProvider attribute="class">
                     <Header />
-                    <main className="container px-4">{children}</main>
+                    <main>{children}</main>
                     <Footer />
                 </ThemeProvider>
             </body>

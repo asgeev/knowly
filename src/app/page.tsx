@@ -3,10 +3,10 @@ import { PinnedNewsItem } from '../components/molecules/PinnedNewsItem'
 
 export default function Home() {
     return (
-        <div className="flex flex-col gap-20 md:gap-12 mt-10">
-            <div className="space-y-6 md:space-y-10">
+        <div className="flex flex-col gap-20 md:gap-12">
+            <div className="container px-1 space-y-6 md:space-y-10 mt-10">
                 <h1 className="font-bold text-2xl md:text-4xl">Przypięte</h1>
-                <div className="grid sm:grid-flow-col gap-4 overflow-y-auto py-4">
+                <div className=" grid sm:grid-flow-col gap-4 overflow-y-auto py-4">
                     <PinnedNewsItem
                         href="/intranet/raporty"
                         title="Nowość! Strona raportów już istnieje!"

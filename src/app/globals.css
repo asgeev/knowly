@@ -4,9 +4,9 @@
 
 @layer base {
     :root {
-        --primary: #fff;
+        --primary: white;
         --secondary: #eee;
-        --color-1: #eeeeee;
+        --color-1: rgb(242, 242, 242);
         --color-2: #e3e3e9;
         --color-3: #1e293b;
         --text-primary: #3f3844;
@@ -15,7 +15,7 @@
         --backdrop: #0f172acc;
     }
     .dark {
-        --primary: #1f2028;
+        --primary: 21, 32, 40;
         --secondary: #2e3039;
         --color-1: #2e3039;
         --color-2: rgba(255, 255, 255, 0.16);
@@ -53,7 +53,7 @@
 html {
     font-family: 'Roboto', sans-serif;
     font-optical-sizing: auto;
-    background: var(--primary);
+    background: rgb(var(--primary), 1);
     color: var(--text-primary);
 }
 
