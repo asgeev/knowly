@@ -8,15 +8,13 @@ import { Section } from '../components/molecules/Section'
 export default function Home() {
     return (
         <div>
-            <Section>
-                <h1 className="font-bold text-2xl md:text-4xl">Przypięte</h1>
-                <div className="grid sm:grid-flow-col gap-4 overflow-auto">
+            <Section title="Przypięte">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
                     <NewsItemBackground
                         href="/intranet/raporty"
                         title="Nowość! Strona raportów już istnieje!"
                         coverUrl="http://localhost:1337/uploads/4aca9e73dfe46dbfbc4af8ec53f54d25_179b51d211.webp"
                         tag="Informatyka"
-                        className="h-40"
                     />
                     <NewsItemBackground
                         href="/raporty/sprawozdania"
@@ -42,40 +40,9 @@ export default function Home() {
                         coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
                         tag="Cyberbezpieczeństwo"
                     />
-                    <NewsItemBackground
-                        href="/raporty/sprawozdania"
-                        title="Nowe rozwiązania informatyczne już niedługo"
-                        coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
-                        tag="Cyberbezpieczeństwo"
-                    />
-                    <NewsItemBackground
-                        href="/raporty/sprawozdania"
-                        title="Nowe rozwiązania informatyczne już niedługo"
-                        coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
-                        tag="Cyberbezpieczeństwo"
-                    />
-                    <NewsItemBackground
-                        href="/raporty/sprawozdania"
-                        title="Nowe rozwiązania informatyczne już niedługo"
-                        coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
-                        tag="Cyberbezpieczeństwo"
-                    />
-                    <NewsItemBackground
-                        href="/raporty/sprawozdania"
-                        title="Nowe rozwiązania informatyczne już niedługo"
-                        coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
-                        tag="Cyberbezpieczeństwo"
-                    />
-                    <NewsItemBackground
-                        href="/raporty/sprawozdania"
-                        title="Nowe rozwiązania informatyczne już niedługo"
-                        coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
-                        tag="Cyberbezpieczeństwo"
-                    />
                 </div>
             </Section>
-            <Section>
-                <h1 className="font-bold text-2xl md:text-4xl">Aktualności</h1>
+            <Section title="Najnowsze">
                 <div className="grid grid-cols-12 gap-5">
                     <div className="col-span-12 lg:col-span-6 grid grid-cols-12 gap-5">
                         <NewsItemBackground
@@ -83,14 +50,14 @@ export default function Home() {
                             tag="fgnfgn"
                             href="/aktualnosci/asfas"
                             coverUrl="http://localhost:1337/uploads/4aca9e73dfe46dbfbc4af8ec53f54d25_179b51d211.webp"
-                            className="col-span-12 sm:col-span-6 h-[350px]"
+                            className="col-span-12 sm:col-span-6 md:h-[350px]"
                         />
                         <NewsItemBackground
                             title="Dodatkowe pieniądze dla NFZ oraz dla innych jednostek współpracyjących"
                             href="/aktualnosci/asfas"
                             tag="Ogólna"
                             coverUrl="http://localhost:1337/uploads/Main_2056eb9dfb.png"
-                            className="col-span-12 sm:col-span-6 h-[350px]"
+                            className="col-span-12 sm:col-span-6 md:h-[350px]"
                         />
                         <NewsItemRight
                             title="asfas"
@@ -140,8 +107,7 @@ export default function Home() {
                     </div>
                 </div>
             </Section>
-            <Section>
-                <h1 className="font-bold text-2xl md:text-4xl">Kategoria</h1>
+            <Section title="Kategoria">
                 <div className="grid grid-cols-12 gap-5">
                     <div className="col-span-12 lg:col-span-6 grid grid-cols-12 gap-5">
                         <NewsItemBackground
@@ -149,7 +115,7 @@ export default function Home() {
                             tag="fgnfgn"
                             href="/aktualnosci/asfas"
                             coverUrl="http://localhost:1337/uploads/4aca9e73dfe46dbfbc4af8ec53f54d25_179b51d211.webp"
-                            className="col-span-12 sm:h-auto"
+                            className="col-span-12 lg:h-full"
                         />
                         {/* <NewsItemBackground
                             title="Dodatkowe pieniądze dla NFZ oraz dla innych jednostek współpracyjących"
@@ -198,9 +164,7 @@ export default function Home() {
                     </div>
                 </div>
             </Section>
-            <Section>
-                <h1 className="font-bold text-2xl md:text-4xl">Ciekawostki</h1>
-
+            <Section title="Ciekawostki">
                 <div className="grid grid-cols-12 gap-5">
                     <NewsItemTop
                         title="Dodatkowe pieniądze dla NFZ oraz dla innych jednostek współpracyjących Dodatkowe pieniądze dla NFZ oraz dla innych jednostek współpracyjących Dodatkowe pieniądze dla NFZ oraz dla innych jednostek współpracyjących Dodatkowe pieniądze dla NFZ oraz dla innych jednostek współpracyjących"

@@ -1,9 +1,19 @@
 import React from 'react'
 
-export const Section = ({ children }: { children: React.ReactNode }) => {
+type Props = {
+    children: React.ReactNode
+    title: string
+}
+
+export const Section = (props: Props) => {
     return (
-        <section className="container px-1 space-y-4 md:space-y-6 mt-20">
-            {children}
+        <section className="">
+            <div className="container space-y-6 pt-12">
+                <h1 className="font-bold text-2xl md:text-4xl">
+                    {props.title}
+                </h1>
+                {props.children}
+            </div>
         </section>
     )
 }

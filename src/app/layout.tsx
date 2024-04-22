@@ -33,7 +33,7 @@ export default function RootLayout({
                 />
             </head>
             <body
-                className={`${roboto.className} bg-background transition duration-600 dark:bg-background`}
+                className={`${roboto.className} bg-primary transition duration-600 dark:bg-primary`}
             >
                 <ThemeProvider attribute="class">
                     <Header />

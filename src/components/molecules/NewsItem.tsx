@@ -10,13 +10,13 @@ type Props = {
 }
 
 export const NewsItemBackground = (props: Props) => {
-    const { href, title, coverUrl, tag, className } = props
+    const { href, title, coverUrl, tag, className = '' } = props
     return (
         <article
-            className={`relative bg-color_1 rounded-md group h-64 ${className}`}
+            className={`relative bg-secondary sm:rounded-xl group h-64 ${className}`}
         >
-            <Link href={href} className="">
-                <div className="relative h-full w-full overflow-hidden rounded-md aspect-square">
+            <Link href={href}>
+                <div className="relative h-full w-full overflow-hidden sm:rounded-xl">
                     <Image
                         src={coverUrl}
                         alt={title}
@@ -56,10 +56,10 @@ export const NewsItemRight = (props: Props) => {
     const { href, title, coverUrl, tag, className } = props
     return (
         <article
-            className={`flex bg-color_1 gap-2 rounded-md group h-32 sm:h-[165px] ${className}`}
+            className={`flex bg-secondary gap-2 sm:rounded-xl group h-32 sm:h-[165px] ${className}`}
         >
             <Link href={href} className="w-1/3 order-1">
-                <div className="relative h-full w-full overflow-hidden rounded-e-md">
+                <div className="relative h-full w-full overflow-hidden sm:rounded-e-xl">
                     <Image
                         src={coverUrl}
                         alt={title}
@@ -98,7 +98,7 @@ export const NewsItemTop = (props: Props) => {
     const { href, title, coverUrl, tag, className } = props
     return (
         <article
-            className={`flex flex-col bg-color_1 rounded-md group  sm:h-[350px] w-full  ${className}`}
+            className={`flex flex-col bg-secondary rounded-md group  sm:h-[350px] w-full  ${className}`}
         >
             <Link href={href} className="h-40 md:h-1/2 w-full">
                 <div className="relative h-full w-full overflow-hidden rounded-t-md aspect-square">
