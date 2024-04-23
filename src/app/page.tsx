@@ -9,7 +9,7 @@ export default function Home() {
     return (
         <div>
             <Section title="Przypięte">
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
                     <NewsItemBackground
                         href="/intranet/raporty"
                         title="Nowość! Strona raportów już istnieje!"
