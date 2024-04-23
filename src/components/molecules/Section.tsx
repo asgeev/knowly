@@ -1,11 +1,10 @@
-import React from 'react'
+import { PropsWithChildren } from 'react'
 
 type Props = {
-    children: React.ReactNode
     title: string
 }
 
-export const Section = (props: Props) => {
+export const Section = (props: PropsWithChildren<Props>) => {
     return (
         <section className="">
             <div className="container space-y-6 pt-12">
