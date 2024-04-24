@@ -13,8 +13,25 @@ type Props = {
         attributes: {
             title: string
             slug: string
-            coverUrl?: string | undefined
-            tag?: string | undefined
+            cover?: {
+                data: {
+                    attributes: {
+                        formats: {
+                            thumbnail: {
+                                hash: string
+                            }
+                        }
+                    }
+                }
+            }
+            category?: {
+                data: {
+                    attributes: {
+                        color: string
+                        name: string
+                    }
+                }
+            }
         }
     }>
 }
@@ -23,13 +40,15 @@ export const Template1 = (props: PropsWithChildren<Props>) => {
     const { title, items } = props
 
     const content = items?.slice(0, 5).map((item) => {
+        const { category, slug, title, cover } = item?.attributes
         return (
             <NewsItemBackground
                 key={item?.id}
-                href={`/${item?.attributes?.slug}`}
-                title={item?.attributes?.title}
+                href={`/aktualnosc/${slug}`}
+                title={title}
                 coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
-                tag="fasf"
+                category={category?.data?.attributes?.name}
+                categoryColor={category?.data?.attributes?.color}
             />
         )
     })
@@ -47,14 +66,16 @@ export const Template1 = (props: PropsWithChildren<Props>) => {
 export const Template2 = (props: PropsWithChildren<Props>) => {
     const { title, items } = props
 
-    const contentRight = items.slice(3, 7).map((item) => {
+    const contentRight = items?.slice(3, 7).map((item) => {
+        const { id, title, slug, category, cover } = item?.attributes
         return (
             <NewsItemRight
-                key={item.id}
-                title={item?.attributes?.title}
-                tag={item?.attributes?.tag}
-                href={item?.attributes?.slug}
+                key={id}
+                title={title}
+                href={slug}
                 coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
+                category={category?.data?.attributes?.name}
+                categoryColor={category?.data?.attributes?.color}
                 className="col-span-12"
             />
         )
@@ -67,7 +88,14 @@ export const Template2 = (props: PropsWithChildren<Props>) => {
                     {items[0] && (
                         <NewsItemBackground
                             title={items[0]?.attributes?.title}
-                            tag={items[0]?.attributes?.tag}
+                            category={
+                                items[0]?.attributes?.category?.data?.attributes
+                                    ?.name
+                            }
+                            categoryColor={
+                                items[0]?.attributes?.category?.data?.attributes
+                                    ?.color
+                            }
                             href={items[0]?.attributes?.slug}
                             coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
                             className="col-span-12 sm:col-span-6 md:h-[350px]"
@@ -77,7 +105,14 @@ export const Template2 = (props: PropsWithChildren<Props>) => {
                     {items[1] && (
                         <NewsItemBackground
                             title={items[1]?.attributes?.title}
-                            tag={items[1]?.attributes?.tag}
+                            category={
+                                items[1]?.attributes?.category?.data?.attributes
+                                    ?.name
+                            }
+                            categoryColor={
+                                items[1]?.attributes?.category?.data?.attributes
+                                    ?.color
+                            }
                             href={items[1]?.attributes?.slug}
                             coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
                             className="col-span-12 sm:col-span-6 md:h-[350px]"
@@ -86,7 +121,14 @@ export const Template2 = (props: PropsWithChildren<Props>) => {
                     {items[2] && (
                         <NewsItemRight
                             title={items[2]?.attributes?.title}
-                            tag={items[2]?.attributes?.tag}
+                            category={
+                                items[2]?.attributes?.category?.data?.attributes
+                                    ?.name
+                            }
+                            categoryColor={
+                                items[2]?.attributes?.category?.data?.attributes
+                                    ?.color
+                            }
                             href={items[2]?.attributes?.slug}
                             coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
                             className="col-span-12"
@@ -95,7 +137,14 @@ export const Template2 = (props: PropsWithChildren<Props>) => {
                     {items[3] && (
                         <NewsItemRight
                             title={items[3]?.attributes?.title}
-                            tag={items[3]?.attributes?.tag}
+                            category={
+                                items[3]?.attributes?.category?.data?.attributes
+                                    ?.name
+                            }
+                            categoryColor={
+                                items[3]?.attributes?.category?.data?.attributes
+                                    ?.color
+                            }
                             href={items[3]?.attributes?.slug}
                             coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
                             className="col-span-12"
@@ -119,7 +168,7 @@ export const Template3 = (props: PropsWithChildren<Props>) => {
             <NewsItemRight
                 key={item.id}
                 title="Dodatkowe pieniądze dla NFZ oraz dla innych jednostek współpracyjących Dodatkowe pieniądze dla NFZ oraz dla innych jednostek współpracyjących Dodatkowe pieniądze dla NFZ oraz dla innych jednostek współpracyjących Dodatkowe pieniądze dla NFZ oraz dla innych jednostek współpracyjących"
-                tag="fgnfgn"
+                category="fgnfgn"
                 href="/aktualnosci/asfas"
                 coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
                 className="col-span-12"
@@ -134,7 +183,7 @@ export const Template3 = (props: PropsWithChildren<Props>) => {
                     {items[0] && (
                         <NewsItemBackground
                             title={items[0]?.attributes?.title}
-                            tag={items[0]?.attributes?.tag}
+                            category={items[0]?.attributes?.tag}
                             href={items[0]?.attributes?.slug}
                             coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
                             className="col-span-12 min-h-[350px] lg:h-full"
@@ -157,7 +206,7 @@ export const Template4 = (props: PropsWithChildren<Props>) => {
             <NewsItemTop
                 key={item?.id}
                 title={item?.attributes?.title}
-                tag="asfas"
+                category="asfas"
                 href={item?.attributes?.title}
                 coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
                 className="col-span-6 md:col-span-3"
@@ -176,11 +225,16 @@ export const Template5 = (props: PropsWithChildren<Props>) => {
     const { title, items } = props
 
     const contentBottom = items?.slice(3, 7).map((item) => {
+        console.log(item?.attributes)
+
         return (
             <NewsItemTop
                 key={item?.id}
                 title={item?.attributes?.title}
-                tag="asfas"
+                category={item?.attributes?.category?.data?.attributes?.name}
+                categoryColor={
+                    item?.attributes?.category?.data?.attributes?.color
+                }
                 href={item?.attributes?.title}
                 coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
                 className="col-span-6 md:col-span-3"
@@ -198,7 +252,7 @@ export const Template5 = (props: PropsWithChildren<Props>) => {
                 {items[0] && (
                     <NewsItemBackground
                         title={items[0]?.attributes?.title}
-                        tag={items[0]?.attributes?.tag}
+                        category={items[0]?.attributes?.tag}
                         href={items[0]?.attributes?.slug}
                         coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
                         className="col-span-12 md:col-span-5 h-[350px]"
@@ -209,7 +263,7 @@ export const Template5 = (props: PropsWithChildren<Props>) => {
                         <NewsItemRight
                             key={items[1]?.id}
                             title={items[1]?.attributes?.title}
-                            tag="asfas"
+                            category="asfas"
                             href={items[1]?.attributes?.title}
                             coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
                             className="col-span-12 md:col-span-6"
@@ -219,7 +273,7 @@ export const Template5 = (props: PropsWithChildren<Props>) => {
                         <NewsItemRight
                             key={items[2]?.id}
                             title={items[2]?.attributes?.title}
-                            tag="asfas"
+                            category="asfas"
                             href={items[2]?.attributes?.title}
                             coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
                             className="col-span-12 md:col-span-6"

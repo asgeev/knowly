@@ -5,12 +5,21 @@ type Props = {
     href: string
     title: string
     coverUrl: string
-    tag?: string
+    category?: string
+    categoryColor?: string
     className?: string
 }
 
 export const NewsItemBackground = (props: Props) => {
-    const { href, title, coverUrl, tag, className = '' } = props
+    const {
+        href,
+        title,
+        coverUrl,
+        category,
+        categoryColor,
+        className = '',
+    } = props
+
     return (
         <article
             className={`relative bg-secondary sm:rounded-xl group h-64 ${className}`}
@@ -30,9 +39,12 @@ export const NewsItemBackground = (props: Props) => {
             </Link>
             <div className="absolute bottom-0 gap-1 text-white mb-4 p-3">
                 <div>
-                    {tag && (
-                        <div className="bg-accent text-white w-fit py-0.5 px-1.5 rounded-md uppercase mb-0.5">
-                            <p className="text-xs font-semibold">{tag}</p>
+                    {category && (
+                        <div
+                            className={` text-white w-fit py-0.5 px-1.5 rounded-md uppercase mb-0.5`}
+                            style={{ backgroundColor: categoryColor }}
+                        >
+                            <p className="text-xs font-semibold">{category}</p>
                         </div>
                     )}
 
@@ -53,7 +65,14 @@ export const NewsItemBackground = (props: Props) => {
 }
 
 export const NewsItemRight = (props: Props) => {
-    const { href, title, coverUrl, tag, className } = props
+    const {
+        href,
+        title,
+        coverUrl,
+        category,
+        categoryColor,
+        className = '',
+    } = props
     return (
         <article
             className={`flex bg-secondary gap-2 sm:rounded-xl group h-32 sm:h-[165px] ${className}`}
@@ -73,9 +92,12 @@ export const NewsItemRight = (props: Props) => {
             </Link>
             <div className="w-full flex flex-col justify-between text-white p-4">
                 <div>
-                    {tag && (
-                        <div className="bg-accent text-white w-fit py-0.5 px-1.5 rounded-md uppercase mb-0.5">
-                            <p className="text-xs font-semibold">{tag}</p>
+                    {category && (
+                        <div
+                            className={` text-white w-fit py-0.5 px-1.5 rounded-md uppercase mb-0.5`}
+                            style={{ backgroundColor: categoryColor }}
+                        >
+                            <p className="text-xs font-semibold">{category}</p>
                         </div>
                     )}
 
@@ -95,7 +117,14 @@ export const NewsItemRight = (props: Props) => {
 }
 
 export const NewsItemTop = (props: Props) => {
-    const { href, title, coverUrl, tag, className } = props
+    const {
+        href,
+        title,
+        coverUrl,
+        category,
+        categoryColor,
+        className = '',
+    } = props
     return (
         <article
             className={`flex flex-col bg-secondary rounded-md group  sm:h-[350px] w-full  ${className}`}
@@ -115,9 +144,12 @@ export const NewsItemTop = (props: Props) => {
             </Link>
             <div className="flex flex-col justify-between p-4  bottom-0 gap-1 sm:text-white h-full">
                 <div>
-                    {tag && (
-                        <div className="bg-accent text-white w-fit py-0.5 px-1.5 rounded-md uppercase mb-0.5">
-                            <p className="text-xs font-semibold">{tag}</p>
+                    {category && (
+                        <div
+                            className={` text-white w-fit py-0.5 px-1.5 rounded-md uppercase mb-0.5`}
+                            style={{ backgroundColor: categoryColor }}
+                        >
+                            <p className="text-xs font-semibold">{category}</p>
                         </div>
                     )}
 

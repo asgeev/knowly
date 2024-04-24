@@ -6,94 +6,342 @@ import {
     Template5,
 } from '../components/organisms/NewsTemplates'
 
-const data = [
+const dataTest = [
     {
-        id: 1,
+        id: 3,
         attributes: {
-            title: 'How to use Prisma ORM with multiple database schemas',
-            slug: 'how-to-use-prisma-orm-with-multiple-database-schemas-1',
-        },
-    },
-    {
-        id: 2,
-        attributes: {
-            title: 'page2',
-            slug: 'page2',
+            title: 'post',
+            slug: 'post-1',
+            cover: {
+                data: {
+                    id: 4,
+                    attributes: {
+                        name: '01893a9429f7588db8058ecb1439bb46.webp',
+                        alternativeText: null,
+                        caption: null,
+                        width: 1024,
+                        height: 576,
+                        formats: {
+                            thumbnail: {
+                                name: 'thumbnail_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'thumbnail_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 245,
+                                height: 138,
+                                size: 9.27,
+                                url: '/uploads/thumbnail_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                            medium: {
+                                name: 'medium_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'medium_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 750,
+                                height: 422,
+                                size: 48.19,
+                                url: '/uploads/medium_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                            small: {
+                                name: 'small_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'small_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 500,
+                                height: 281,
+                                size: 27.04,
+                                url: '/uploads/small_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                            large: {
+                                name: 'large_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'large_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 1000,
+                                height: 562,
+                                size: 68.89,
+                                url: '/uploads/large_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                        },
+                        hash: '01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                        ext: '.webp',
+                        mime: 'image/webp',
+                        size: 71.81,
+                        url: '/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                        previewUrl: null,
+                        provider: 'local',
+                        provider_metadata: null,
+                        createdAt: '2024-04-18T08:05:05.221Z',
+                        updatedAt: '2024-04-24T13:46:41.452Z',
+                    },
+                },
+            },
         },
     },
     {
         id: 3,
         attributes: {
-            title: 'page3',
-            slug: 'asfasf',
+            title: 'post',
+            slug: 'post-1',
+            cover: {
+                data: {
+                    id: 4,
+                    attributes: {
+                        name: '01893a9429f7588db8058ecb1439bb46.webp',
+                        alternativeText: null,
+                        caption: null,
+                        width: 1024,
+                        height: 576,
+                        formats: {
+                            thumbnail: {
+                                name: 'thumbnail_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'thumbnail_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 245,
+                                height: 138,
+                                size: 9.27,
+                                url: '/uploads/thumbnail_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                            medium: {
+                                name: 'medium_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'medium_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 750,
+                                height: 422,
+                                size: 48.19,
+                                url: '/uploads/medium_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                            small: {
+                                name: 'small_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'small_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 500,
+                                height: 281,
+                                size: 27.04,
+                                url: '/uploads/small_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                            large: {
+                                name: 'large_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'large_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 1000,
+                                height: 562,
+                                size: 68.89,
+                                url: '/uploads/large_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                        },
+                        hash: '01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                        ext: '.webp',
+                        mime: 'image/webp',
+                        size: 71.81,
+                        url: '/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                        previewUrl: null,
+                        provider: 'local',
+                        provider_metadata: null,
+                        createdAt: '2024-04-18T08:05:05.221Z',
+                        updatedAt: '2024-04-24T13:46:41.452Z',
+                    },
+                },
+            },
         },
     },
     {
-        id: 4,
+        id: 3,
         attributes: {
-            title: 'Kontrola zarządza',
-            slug: 'kontrola-zarzadza-1',
+            title: 'post',
+            slug: 'post-1',
+            cover: {
+                data: {
+                    id: 4,
+                    attributes: {
+                        name: '01893a9429f7588db8058ecb1439bb46.webp',
+                        alternativeText: null,
+                        caption: null,
+                        width: 1024,
+                        height: 576,
+                        formats: {
+                            thumbnail: {
+                                name: 'thumbnail_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'thumbnail_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 245,
+                                height: 138,
+                                size: 9.27,
+                                url: '/uploads/thumbnail_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                            medium: {
+                                name: 'medium_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'medium_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 750,
+                                height: 422,
+                                size: 48.19,
+                                url: '/uploads/medium_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                            small: {
+                                name: 'small_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'small_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 500,
+                                height: 281,
+                                size: 27.04,
+                                url: '/uploads/small_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                            large: {
+                                name: 'large_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'large_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 1000,
+                                height: 562,
+                                size: 68.89,
+                                url: '/uploads/large_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                        },
+                        hash: '01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                        ext: '.webp',
+                        mime: 'image/webp',
+                        size: 71.81,
+                        url: '/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                        previewUrl: null,
+                        provider: 'local',
+                        provider_metadata: null,
+                        createdAt: '2024-04-18T08:05:05.221Z',
+                        updatedAt: '2024-04-24T13:46:41.452Z',
+                    },
+                },
+            },
         },
     },
     {
-        id: 5,
+        id: 3,
         attributes: {
-            title: 'Petycje',
-            slug: 'asfas',
-        },
-    },
-    {
-        id: 6,
-        attributes: {
-            title: 'Procedury',
-            slug: 'procedury-1',
-        },
-    },
-    {
-        id: 7,
-        attributes: {
-            title: 'Prosty język',
-            slug: 'asfasf',
-        },
-    },
-    {
-        id: 8,
-        attributes: {
-            title: 'Adresy innych stron',
-            slug: 'adresy-innych-stron-1',
-        },
-    },
-    {
-        id: 9,
-        attributes: {
-            title: 'Struktura organizacyjna',
-            slug: 'struktura-organizacyjna',
-        },
-    },
-    {
-        id: 10,
-        attributes: {
-            title: 'Hasła SZOI/SNRL',
-            slug: 'asfas',
-        },
-    },
-    {
-        id: 13,
-        attributes: {
-            title: 'test',
-            slug: 'test',
+            title: 'post',
+            slug: 'post-1',
+            cover: {
+                data: {
+                    id: 4,
+                    attributes: {
+                        name: '01893a9429f7588db8058ecb1439bb46.webp',
+                        alternativeText: null,
+                        caption: null,
+                        width: 1024,
+                        height: 576,
+                        formats: {
+                            thumbnail: {
+                                name: 'thumbnail_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'thumbnail_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 245,
+                                height: 138,
+                                size: 9.27,
+                                url: '/uploads/thumbnail_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                            medium: {
+                                name: 'medium_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'medium_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 750,
+                                height: 422,
+                                size: 48.19,
+                                url: '/uploads/medium_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                            small: {
+                                name: 'small_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'small_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 500,
+                                height: 281,
+                                size: 27.04,
+                                url: '/uploads/small_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                            large: {
+                                name: 'large_01893a9429f7588db8058ecb1439bb46.webp',
+                                hash: 'large_01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                                ext: '.webp',
+                                mime: 'image/webp',
+                                path: null,
+                                width: 1000,
+                                height: 562,
+                                size: 68.89,
+                                url: '/uploads/large_01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                            },
+                        },
+                        hash: '01893a9429f7588db8058ecb1439bb46_bdbca91336',
+                        ext: '.webp',
+                        mime: 'image/webp',
+                        size: 71.81,
+                        url: '/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp',
+                        previewUrl: null,
+                        provider: 'local',
+                        provider_metadata: null,
+                        createdAt: '2024-04-18T08:05:05.221Z',
+                        updatedAt: '2024-04-24T13:46:41.452Z',
+                    },
+                },
+            },
         },
     },
 ]
 
-export default function Home() {
+const fetchAllPosts = async () => {
+    const response = await fetch(
+        `http://localhost:1337/api/posts?fields[0]=title&fields[1]=slug&populate[0]=cover&populate[1]=category`
+    )
+    if (!response.ok) {
+        throw new Error('Failed')
+    }
+    return response?.json()
+}
+
+const fetchPostByCategory = async (categorySlug: string) => {
+    const response = await fetch(
+        `http://localhost:1337/api/posts?fields[0]=title&fields[1]=slug&populate[0]=cover&populate[1]=category&filters[$and][0][category][slug][$eq]=${categorySlug}&`
+    )
+    if (!response.ok) {
+        throw new Error('Failed')
+    }
+    return response?.json()
+}
+
+export default async function Home() {
+    const { data: latestPosts } = await fetchAllPosts()
+    const { data: sportPosts } = await fetchPostByCategory('sport')
+    // const { data: latestPosts } = await fetchPostByCategory()
+    // const { data: latestPosts } = await fetchPostByCategory()
+
     return (
         <>
-            <Template1 title="Przypięte" items={data} />
-            <Template2 title="Najnowsze" items={data} />
-            <Template3 title="Cyberbezpieczeństwo" items={data} />
-            <Template4 title="Ciekawostki" items={data} />
-            <Template5 title="Sport " items={data} />
+            <Template1 title="Przypięte" items={latestPosts} />
+            <Template2 title="Najnowsze" items={sportPosts} />
+            {/* <Template3 title="Cyberbezpieczeństwo" items={dataTest} />
+            <Template4 title="Ciekawostki" items={dataTest} />
+            <Template5 title="Sport " items={dataTest} /> */}
         </>
     )
 }
