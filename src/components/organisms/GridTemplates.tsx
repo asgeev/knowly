@@ -14,11 +14,7 @@ type Props = {
             cover?: {
                 data: {
                     attributes: {
-                        formats: {
-                            thumbnail: {
-                                hash: string
-                            }
-                        }
+                        url: string
                     }
                 }
             }
@@ -39,12 +35,13 @@ export const GridTemplate1 = (props: PropsWithChildren<Props>) => {
 
     const content = items?.slice(0, 5).map((item) => {
         const { category, slug, title, cover } = item?.attributes
+
         return (
             <NewsItemBackground
                 key={item?.id}
                 href={slug}
                 title={title}
-                coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
+                coverUrl={cover?.data?.attributes?.url}
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
             />
@@ -62,13 +59,13 @@ export const GridTemplate2 = (props: PropsWithChildren<Props>) => {
     const { items } = props
 
     const contentRight = items?.slice(3, 7).map((item) => {
-        const { id, title, slug, category, cover } = item?.attributes
+        const { title, slug, category, cover } = item?.attributes
         return (
             <NewsItemRight
-                key={id}
+                key={item?.id}
                 title={title}
                 href={slug}
-                coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
+                coverUrl={cover?.data?.attributes?.url}
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
                 className="col-span-12"
@@ -92,7 +89,10 @@ export const GridTemplate2 = (props: PropsWithChildren<Props>) => {
                                     ?.color
                             }
                             href={items[0]?.attributes?.slug}
-                            coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
+                            coverUrl={
+                                items[0]?.attributes?.cover?.data?.attributes
+                                    ?.url
+                            }
                             className="col-span-12 sm:col-span-6 md:h-[350px]"
                         />
                     )}
@@ -109,7 +109,10 @@ export const GridTemplate2 = (props: PropsWithChildren<Props>) => {
                                     ?.color
                             }
                             href={items[1]?.attributes?.slug}
-                            coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
+                            coverUrl={
+                                items[1]?.attributes?.cover?.data?.attributes
+                                    ?.url
+                            }
                             className="col-span-12 sm:col-span-6 md:h-[350px]"
                         />
                     )}
@@ -125,7 +128,10 @@ export const GridTemplate2 = (props: PropsWithChildren<Props>) => {
                                     ?.color
                             }
                             href={items[2]?.attributes?.slug}
-                            coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
+                            coverUrl={
+                                items[2]?.attributes?.cover?.data?.attributes
+                                    ?.url
+                            }
                             className="col-span-12"
                         />
                     )}
@@ -141,7 +147,10 @@ export const GridTemplate2 = (props: PropsWithChildren<Props>) => {
                                     ?.color
                             }
                             href={items[3]?.attributes?.slug}
-                            coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
+                            coverUrl={
+                                items[3]?.attributes?.cover?.data?.attributes
+                                    ?.url
+                            }
                             className="col-span-12"
                         />
                     )}
@@ -167,7 +176,7 @@ export const GridTemplate3 = (props: PropsWithChildren<Props>) => {
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
                 href={`${slug}`}
-                coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
+                coverUrl={cover?.data?.attributes?.url}
                 className="col-span-12"
             />
         )
@@ -188,7 +197,9 @@ export const GridTemplate3 = (props: PropsWithChildren<Props>) => {
                                 ?.color
                         }
                         href={items[0]?.attributes?.slug}
-                        coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
+                        coverUrl={
+                            items[0]?.attributes?.cover?.data?.attributes?.url
+                        }
                         className="col-span-12 min-h-[350px] lg:h-full"
                     />
                 )}
@@ -213,7 +224,7 @@ export const GridTemplate4 = (props: PropsWithChildren<Props>) => {
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
                 href={slug}
-                coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
+                coverUrl={cover?.data?.attributes?.url}
                 className="col-span-6 md:col-span-3"
             />
         )
@@ -235,7 +246,7 @@ export const GridTemplate5 = (props: PropsWithChildren<Props>) => {
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
                 href={slug}
-                coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
+                coverUrl={cover?.data?.attributes?.url}
                 className="col-span-6 md:col-span-3"
             />
         )
@@ -253,7 +264,9 @@ export const GridTemplate5 = (props: PropsWithChildren<Props>) => {
                     categoryColor={
                         items[0]?.attributes?.category?.data?.attributes?.color
                     }
-                    coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
+                    coverUrl={
+                        items[0]?.attributes?.cover?.data?.attributes?.url
+                    }
                     className="col-span-12 md:col-span-5 h-[350px]"
                 />
             )}
@@ -270,7 +283,9 @@ export const GridTemplate5 = (props: PropsWithChildren<Props>) => {
                             items[1]?.attributes?.category?.data?.attributes
                                 ?.color
                         }
-                        coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
+                        coverUrl={
+                            items[1]?.attributes?.cover?.data?.attributes?.url
+                        }
                         className="col-span-12 md:col-span-6"
                     />
                 )}
@@ -287,7 +302,9 @@ export const GridTemplate5 = (props: PropsWithChildren<Props>) => {
                             items[2]?.attributes?.category?.data?.attributes
                                 ?.color
                         }
-                        coverUrl="http://localhost:1337/uploads/01893a9429f7588db8058ecb1439bb46_bdbca91336.webp"
+                        coverUrl={
+                            items[2]?.attributes?.cover?.data?.attributes?.url
+                        }
                         className="col-span-12 md:col-span-6"
                     />
                 )}

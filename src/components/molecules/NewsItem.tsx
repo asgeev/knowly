@@ -4,11 +4,13 @@ import Link from 'next/link'
 type Props = {
     href: string
     title: string
-    coverUrl: string
+    coverUrl: string | undefined
     category?: string
     categoryColor?: string
     className?: string
 }
+
+const apiURL = process.env.STRAPI_URL
 
 export const NewsItemBackground = (props: Props) => {
     const {
@@ -26,14 +28,17 @@ export const NewsItemBackground = (props: Props) => {
         >
             <Link href={href}>
                 <div className="relative h-full w-full overflow-hidden sm:rounded-xl">
-                    <Image
-                        src={coverUrl}
-                        alt={title}
-                        fill={true}
-                        objectFit="cover"
-                        objectPosition="center center"
-                        className="group-hover:scale-110 transition-transform duration-500"
-                    />
+                    {coverUrl && (
+                        <Image
+                            src={`${apiURL}${coverUrl}`}
+                            alt={title}
+                            fill={true}
+                            objectFit="cover"
+                            objectPosition="center center"
+                            className="group-hover:scale-110 transition-transform duration-500"
+                        />
+                    )}
+
                     <div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-black to-[#4444442c]"></div>
                 </div>
             </Link>
@@ -73,20 +78,23 @@ export const NewsItemRight = (props: Props) => {
         categoryColor,
         className = '',
     } = props
+
     return (
         <article
             className={`flex bg-secondary gap-2 sm:rounded-xl group h-32 sm:h-[165px] ${className}`}
         >
             <Link href={href} className="w-1/3 order-1">
                 <div className="relative h-full w-full overflow-hidden sm:rounded-e-xl">
-                    <Image
-                        src={coverUrl}
-                        alt={title}
-                        fill={true}
-                        objectFit="cover"
-                        objectPosition="center center"
-                        className="group-hover:scale-110 transition-transform duration-500"
-                    />
+                    {coverUrl && (
+                        <Image
+                            src={`${apiURL}${coverUrl}`}
+                            alt={title}
+                            fill={true}
+                            objectFit="cover"
+                            objectPosition="center center"
+                            className="group-hover:scale-110 transition-transform duration-500"
+                        />
+                    )}
                     <div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-black to-[#4444442c]"></div>
                 </div>
             </Link>
@@ -131,14 +139,16 @@ export const NewsItemTop = (props: Props) => {
         >
             <Link href={href} className="h-40 md:h-1/2 w-full">
                 <div className="relative h-full w-full overflow-hidden rounded-t-md aspect-square">
-                    <Image
-                        src={coverUrl}
-                        alt={title}
-                        fill={true}
-                        objectFit="cover"
-                        objectPosition="center center"
-                        className="group-hover:scale-110 transition-transform duration-500"
-                    />
+                    {coverUrl && (
+                        <Image
+                            src={`${apiURL}${coverUrl}`}
+                            alt={title}
+                            fill={true}
+                            objectFit="cover"
+                            objectPosition="center center"
+                            className="group-hover:scale-110 transition-transform duration-500"
+                        />
+                    )}
                     <div className="sm:absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-black to-[#4444442c]"></div>
                 </div>
             </Link>

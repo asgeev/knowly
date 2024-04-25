@@ -1,6 +1,6 @@
 'use client'
 
 const ErrorBoundary = () => {
-    return <div>asfasfa</div>
+    return <div>Error</div>
 }
 export default ErrorBoundary
