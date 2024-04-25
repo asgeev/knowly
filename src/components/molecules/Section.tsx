@@ -6,7 +6,7 @@ type Props = {
 
 export const Section = (props: PropsWithChildren<Props>) => {
     return (
-        <section className="">
+        <section>
             <div className="container space-y-6 pt-12">
                 <h1 className="font-bold text-2xl md:text-4xl">
                     {props.title}
