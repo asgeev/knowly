@@ -31,6 +31,7 @@ const getPageData = async (path: string) => {
     if (!response.ok) {
         throw new Error('Failed')
     }
+
     return response?.json()
 }
 

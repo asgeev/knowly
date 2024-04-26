@@ -2,9 +2,9 @@ import Image from 'next/image'
 import Navigation from '../molecules/Navigation'
 
 const getNavigation = async (menuName: string) => {
-    const url = 'http://localhost:1337'
+    const apiURL = process.env.STRAPI_URL
     const response = await fetch(
-        `${url}/api/navigation/render/${menuName}/?type=TREE`
+        `${apiURL}/api/navigation/render/${menuName}/?type=TREE`
     )
     if (!response.ok) {
         throw new Error('Failed')
@@ -23,7 +23,7 @@ const Header = async () => {
                     </div>
                     <span className="hidden sm:block text-2xl">knowly</span>
                 </div>
-                <Navigation navigation={mainNavigation} />
+                {mainNavigation && <Navigation navigation={mainNavigation} />}
             </div>
         </header>
     )
