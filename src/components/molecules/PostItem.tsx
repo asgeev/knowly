@@ -5,6 +5,7 @@ type Props = {
     href: string
     title: string
     coverUrl: string | undefined
+    publishedAt: string | undefined
     category?: string
     categoryColor?: string
     className?: string
@@ -12,11 +13,12 @@ type Props = {
 
 const apiURL = process.env.STRAPI_URL
 
-export const NewsItemBackground = (props: Props) => {
+export const PostItemBackground = (props: Props) => {
     const {
         href,
         title,
         coverUrl,
+        publishedAt = '',
         category,
         categoryColor,
         className = '',
@@ -62,18 +64,19 @@ export const NewsItemBackground = (props: Props) => {
                 </div>
 
                 <div className="text-ellipsis text-gray-300 whitespace-nowrap overflow-hidden font-semibold text-sm mt-3">
-                    11 stycznia 2022
+                    {publishedAt}
                 </div>
             </div>
         </article>
     )
 }
 
-export const NewsItemRight = (props: Props) => {
+export const PostItemRight = (props: Props) => {
     const {
         href,
         title,
         coverUrl,
+        publishedAt = '',
         category,
         categoryColor,
         className = '',
@@ -117,18 +120,19 @@ export const NewsItemRight = (props: Props) => {
                     </Link>
                 </div>
                 <div className="text-ellipsis text-gray-400 whitespace-nowrap overflow-hidden font-semibold text-sm">
-                    11 stycznia 2022
+                    {publishedAt}
                 </div>
             </div>
         </article>
     )
 }
 
-export const NewsItemTop = (props: Props) => {
+export const PostItemTop = (props: Props) => {
     const {
         href,
         title,
         coverUrl,
+        publishedAt = '',
         category,
         categoryColor,
         className = '',
@@ -172,7 +176,7 @@ export const NewsItemTop = (props: Props) => {
                 </div>
 
                 <div className="text-ellipsis text-textSecondary whitespace-nowrap overflow-hidden font-semibold text-sm mt-2 ">
-                    11 stycznia 2022
+                    {publishedAt}
                 </div>
             </div>
         </article>

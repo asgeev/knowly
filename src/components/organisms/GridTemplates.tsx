@@ -1,9 +1,10 @@
 import { PropsWithChildren } from 'react'
 import {
-    NewsItemBackground,
-    NewsItemRight,
-    NewsItemTop,
-} from '../molecules/NewsItem'
+    PostItemBackground,
+    PostItemRight,
+    PostItemTop,
+} from '../molecules/PostItem'
+import { changeDate } from '../../helpers/changeDate'
 
 type Props = {
     items: Array<{
@@ -11,6 +12,7 @@ type Props = {
         attributes: {
             title: string
             slug: string
+            publishedAt: string
             cover?: {
                 data: {
                     attributes: {
@@ -34,13 +36,14 @@ export const GridTemplate1 = (props: PropsWithChildren<Props>) => {
     const { items } = props
 
     const content = items?.slice(0, 5).map((item) => {
-        const { category, slug, title, cover } = item?.attributes
+        const { category, slug, title, publishedAt, cover } = item?.attributes
 
         return (
-            <NewsItemBackground
+            <PostItemBackground
                 key={item?.id}
                 href={slug}
                 title={title}
+                publishedAt={changeDate(publishedAt)}
                 coverUrl={cover?.data?.attributes?.url}
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
@@ -59,12 +62,13 @@ export const GridTemplate2 = (props: PropsWithChildren<Props>) => {
     const { items } = props
 
     const contentRight = items?.slice(3, 7).map((item) => {
-        const { title, slug, category, cover } = item?.attributes
+        const { title, slug, category, publishedAt, cover } = item?.attributes
         return (
-            <NewsItemRight
+            <PostItemRight
                 key={item?.id}
                 title={title}
                 href={slug}
+                publishedAt={changeDate(publishedAt)}
                 coverUrl={cover?.data?.attributes?.url}
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
@@ -78,12 +82,15 @@ export const GridTemplate2 = (props: PropsWithChildren<Props>) => {
             <div className="col-span-12 lg:col-span-6 grid grid-cols-12 gap-5">
                 <div className="col-span-12 lg:col-span-6 grid grid-cols-12 gap-5">
                     {items[0] && (
-                        <NewsItemBackground
+                        <PostItemBackground
                             title={items[0]?.attributes?.title}
                             category={
                                 items[0]?.attributes?.category?.data?.attributes
                                     ?.name
                             }
+                            publishedAt={changeDate(
+                                items[0]?.attributes?.publishedAt
+                            )}
                             categoryColor={
                                 items[0]?.attributes?.category?.data?.attributes
                                     ?.color
@@ -98,12 +105,15 @@ export const GridTemplate2 = (props: PropsWithChildren<Props>) => {
                     )}
 
                     {items[1] && (
-                        <NewsItemBackground
+                        <PostItemBackground
                             title={items[1]?.attributes?.title}
                             category={
                                 items[1]?.attributes?.category?.data?.attributes
                                     ?.name
                             }
+                            publishedAt={changeDate(
+                                items[1]?.attributes?.publishedAt
+                            )}
                             categoryColor={
                                 items[1]?.attributes?.category?.data?.attributes
                                     ?.color
@@ -117,12 +127,15 @@ export const GridTemplate2 = (props: PropsWithChildren<Props>) => {
                         />
                     )}
                     {items[2] && (
-                        <NewsItemRight
+                        <PostItemRight
                             title={items[2]?.attributes?.title}
                             category={
                                 items[2]?.attributes?.category?.data?.attributes
                                     ?.name
                             }
+                            publishedAt={changeDate(
+                                items[2]?.attributes?.publishedAt
+                            )}
                             categoryColor={
                                 items[2]?.attributes?.category?.data?.attributes
                                     ?.color
@@ -136,12 +149,15 @@ export const GridTemplate2 = (props: PropsWithChildren<Props>) => {
                         />
                     )}
                     {items[3] && (
-                        <NewsItemRight
+                        <PostItemRight
                             title={items[3]?.attributes?.title}
                             category={
                                 items[3]?.attributes?.category?.data?.attributes
                                     ?.name
                             }
+                            publishedAt={changeDate(
+                                items[3]?.attributes?.publishedAt
+                            )}
                             categoryColor={
                                 items[3]?.attributes?.category?.data?.attributes
                                     ?.color
@@ -168,11 +184,12 @@ export const GridTemplate3 = (props: PropsWithChildren<Props>) => {
     const { items } = props
 
     const contentRight = items.slice(1, 4).map((item) => {
-        const { category, title, slug, cover } = item?.attributes
+        const { category, title, publishedAt, slug, cover } = item?.attributes
         return (
-            <NewsItemRight
+            <PostItemRight
                 key={item?.id}
                 title={title}
+                publishedAt={changeDate(publishedAt)}
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
                 href={`${slug}`}
@@ -186,12 +203,15 @@ export const GridTemplate3 = (props: PropsWithChildren<Props>) => {
         <div className="grid grid-cols-12 gap-5">
             <div className="col-span-12 lg:col-span-6 grid grid-cols-12 gap-5">
                 {items[0] && (
-                    <NewsItemBackground
+                    <PostItemBackground
                         title={items[0]?.attributes?.title}
                         category={
                             items[0]?.attributes?.category?.data?.attributes
                                 ?.name
                         }
+                        publishedAt={changeDate(
+                            items[0]?.attributes?.publishedAt
+                        )}
                         categoryColor={
                             items[0]?.attributes?.category?.data?.attributes
                                 ?.color
@@ -215,12 +235,13 @@ export const GridTemplate4 = (props: PropsWithChildren<Props>) => {
     const { items } = props
 
     const content = items.slice(0, 4).map((item) => {
-        const { category, title, slug, cover } = item?.attributes
+        const { category, title, publishedAt, slug, cover } = item?.attributes
 
         return (
-            <NewsItemTop
+            <PostItemTop
                 key={item?.id}
                 title={title}
+                publishedAt={changeDate(publishedAt)}
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
                 href={slug}
@@ -237,12 +258,13 @@ export const GridTemplate5 = (props: PropsWithChildren<Props>) => {
     const { items } = props
 
     const contentBottom = items?.slice(3, 7).map((item) => {
-        const { category, title, slug, cover } = item?.attributes
+        const { category, title, publishedAt, slug, cover } = item?.attributes
 
         return (
-            <NewsItemTop
+            <PostItemTop
                 key={item?.id}
                 title={title}
+                publishedAt={publishedAt}
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
                 href={slug}
@@ -255,9 +277,10 @@ export const GridTemplate5 = (props: PropsWithChildren<Props>) => {
     return (
         <div className="grid grid-cols-12 gap-5">
             {items[0] && (
-                <NewsItemBackground
+                <PostItemBackground
                     title={items[0]?.attributes?.title}
                     href={items[0]?.attributes?.slug}
+                    publishedAt={changeDate(items[0]?.attributes?.publishedAt)}
                     category={
                         items[0]?.attributes?.category?.data?.attributes?.name
                     }
@@ -272,9 +295,12 @@ export const GridTemplate5 = (props: PropsWithChildren<Props>) => {
             )}
             <div className="col-span-12 md:col-span-7 grid grid-rows-2 gap-5">
                 {items[1] && (
-                    <NewsItemRight
+                    <PostItemRight
                         title={items[1]?.attributes?.title}
                         href={items[1]?.attributes?.title}
+                        publishedAt={changeDate(
+                            items[1]?.attributes?.publishedAt
+                        )}
                         category={
                             items[1]?.attributes?.category?.data?.attributes
                                 ?.name
@@ -290,10 +316,13 @@ export const GridTemplate5 = (props: PropsWithChildren<Props>) => {
                     />
                 )}
                 {items[2] && (
-                    <NewsItemRight
+                    <PostItemRight
                         key={items[2]?.id}
                         title={items[2]?.attributes?.title}
                         href={items[2]?.attributes?.title}
+                        publishedAt={changeDate(
+                            items[2]?.attributes?.publishedAt
+                        )}
                         category={
                             items[2]?.attributes?.category?.data?.attributes
                                 ?.name
