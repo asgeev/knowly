@@ -1,10 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import RecursiveMenu from './NavigationLinks'
 import { usePathname } from 'next/navigation'
-import { SearchButton } from '../atoms/SearchButton'
 import { Meilisearch } from '../organisms/Meilisearch'
 
 interface Props {
@@ -30,7 +29,7 @@ const Navigation = (props: Props) => {
 
     //TODO: change function for close menu when nav link clicked
     return (
-        <nav className="flex md:gap-x-10 md:w-full justify-between">
+        <nav className="flex md:gap-x-10 md:w-full justify-between z-50">
             <div
                 data-ismenuopen={`${isMenuOpen}`}
                 className={`max-md:data-[ismenuopen=false]:hidden max-md:data-[ismenuopen=true]:fixed max-md:data-[ismenuopen=true]:bg-primary md:flex items-center top-0 left-0 max-md:p-16 max-md:w-full max-md:h-full z-50`}
@@ -44,30 +43,23 @@ const Navigation = (props: Props) => {
                     <ul className="flex flex-col gap-10 text-xl md:text-lg md:flex-row">
                         <li>
                             <Link
-                                className={`text-textSecondary hover:text-textPrimary ${
-                                    pathname === '/baza-wiedzy'
-                                        ? 'text-accent'
-                                        : ''
-                                }`}
+                                className="text-textSecondary hover:text-textPrimary"
+                                href="/"
+                                onClick={closeMenu}
+                            >
+                                Główna
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                className="text-textSecondary hover:text-textPrimary"
                                 href="/baza-wiedzy"
                                 onClick={closeMenu}
                             >
                                 Baza wiedzy
                             </Link>
                         </li>
-                        <li>
-                            <Link
-                                className={`text-textSecondary hover:text-textPrimary ${
-                                    pathname === '/baza-wiedzy'
-                                        ? 'text-accent'
-                                        : ''
-                                }`}
-                                href="/aktualnosci"
-                                onClick={closeMenu}
-                            >
-                                Aktualności
-                            </Link>
-                        </li>
+
                         <li>
                             <RecursiveMenu
                                 path="/intranet"
