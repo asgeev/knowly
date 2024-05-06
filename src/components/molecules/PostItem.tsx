@@ -41,7 +41,7 @@ export const PostItemBackground = (props: Props) => {
                         />
                     )}
 
-                    <div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-black to-[#4444442c]"></div>
+                    <div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-black to-[#4444442c] opacity-80 group-hover:opacity-60 transition-opacity duration-500"></div>
                 </div>
             </Link>
             <div className="absolute bottom-0 gap-1 text-white mb-4 p-3">
@@ -84,7 +84,7 @@ export const PostItemRight = (props: Props) => {
 
     return (
         <article
-            className={`flex bg-secondary gap-2 sm:rounded-xl group h-32 sm:h-[165px] ${className}`}
+            className={`flex bg-secondary gap-2 sm:rounded-xl group h-40 sm:h-[165px] ${className}`}
         >
             <Link href={href} className="w-1/3 order-1">
                 <div className="relative h-full w-full overflow-hidden sm:rounded-e-xl">
@@ -98,7 +98,7 @@ export const PostItemRight = (props: Props) => {
                             className="group-hover:scale-110 transition-transform duration-500"
                         />
                     )}
-                    <div className="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-black to-[#4444442c]"></div>
+                    <div className="sm:absolute top-0 left-0 right-0 bottom-0 bg-black opacity-20 group-hover:opacity-0 transition-opacity duration-500"></div>
                 </div>
             </Link>
             <div className="w-full flex flex-col justify-between text-white p-4">
@@ -153,7 +153,7 @@ export const PostItemTop = (props: Props) => {
                             className="group-hover:scale-110 transition-transform duration-500"
                         />
                     )}
-                    <div className="sm:absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-t from-black to-[#4444442c]"></div>
+                    <div className="sm:absolute top-0 left-0 right-0 bottom-0 bg-black opacity-20 group-hover:opacity-0 transition-opacity duration-500"></div>
                 </div>
             </Link>
             <div className="flex flex-col justify-between p-4  bottom-0 gap-1 sm:text-white h-full">
