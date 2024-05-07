@@ -42,7 +42,7 @@ const fetchPostsByCategory = async (categorySlug: string) => {
 
 const getAllCategoriesWithPosts = async () => {
     const response = await fetch(
-        `http://localhost:1337/api/categories?fields[0]=name&fields[1]=slug&fields[2]=color&fields[3]=order&populate[grid][populate][0]=grid_template&populate[posts][populate][0]=cover, category`
+        `http://localhost:1337/api/categories?fields[0]=name&fields[1]=slug&fields[2]=color&fields[3]=order&populate[grid][populate][0]=grid_template&populate[posts][populate][0]=cover,category`
     )
     if (!response.ok) {
         throw new Error('Failed')
@@ -53,7 +53,12 @@ const getAllCategoriesWithPosts = async () => {
 export default async function Home() {
     const { data: pinnedPosts } = await fetchPinnedPosts()
     const { data: latestPosts } = await fetchLatestPosts()
-    const { data: categories } = await getAllCategoriesWithPosts()
+    const { data: allCategories } = await getAllCategoriesWithPosts()
+
+    //Sort categories by order
+    const categories = allCategories.sort((a, b) => {
+        return a.attributes.order - b.attributes.order
+    })
 
     return (
         <>
