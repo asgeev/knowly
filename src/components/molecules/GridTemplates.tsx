@@ -1,13 +1,9 @@
 import { PropsWithChildren } from 'react'
-import {
-    PostItemBackground,
-    PostItemRight,
-    PostItemTop,
-} from '../molecules/PostItem'
+import { PostItemBackground, PostItemRight, PostItemTop } from './PostItem'
 import { changeDate } from '../../helpers/changeDate'
 
-type Props = {
-    items: Array<{
+type Posts = {
+    posts: Array<{
         id: number
         attributes: {
             title: string
@@ -31,16 +27,40 @@ type Props = {
         }
     }>
 }
+interface GridProps extends Posts {
+    template: number
+}
 
-export const GridTemplate1 = (props: PropsWithChildren<Props>) => {
-    const { items } = props
+export const GridTemplate = (props: GridProps) => {
+    const { template, posts } = props
+    //Render grid template for category depend on number
+    switch (template) {
+        case 1:
+            return <GridTemplate1 posts={posts} />
+        case 2:
+            return <GridTemplate2 posts={posts} />
+        case 3:
+            return <GridTemplate3 posts={posts} />
+        case 4:
+            return <GridTemplate4 posts={posts} />
+        case 5:
+            return <GridTemplate5 posts={posts} />
+        default:
+            return <GridTemplate1 posts={posts} />
+    }
+}
 
-    const content = items?.slice(0, 5).map((item) => {
-        const { category, slug, title, publishedAt, cover } = item?.attributes
+export const GridTemplate1 = (props: PropsWithChildren<Posts>) => {
+    const { posts } = props
+
+    console.log(posts)
+
+    const content = posts?.slice(0, 5).map((post) => {
+        const { category, slug, title, publishedAt, cover } = post?.attributes
 
         return (
             <PostItemBackground
-                key={item?.id}
+                key={post?.id}
                 href={slug}
                 title={title}
                 publishedAt={changeDate(publishedAt)}
@@ -58,14 +78,14 @@ export const GridTemplate1 = (props: PropsWithChildren<Props>) => {
     )
 }
 
-export const GridTemplate2 = (props: PropsWithChildren<Props>) => {
-    const { items } = props
+export const GridTemplate2 = (props: PropsWithChildren<Posts>) => {
+    const { posts } = props
 
-    const contentRight = items?.slice(3, 7).map((item) => {
-        const { title, slug, category, publishedAt, cover } = item?.attributes
+    const contentRight = posts?.slice(3, 7).map((post) => {
+        const { title, slug, category, publishedAt, cover } = post?.attributes
         return (
             <PostItemRight
-                key={item?.id}
+                key={post?.id}
                 title={title}
                 href={slug}
                 publishedAt={changeDate(publishedAt)}
@@ -76,95 +96,94 @@ export const GridTemplate2 = (props: PropsWithChildren<Props>) => {
             />
         )
     })
-
     return (
         <>
             <div className="col-span-12 lg:col-span-6 grid grid-cols-12 gap-5">
                 <div className="col-span-12 lg:col-span-6 grid grid-cols-12 gap-5">
-                    {items[0] && (
+                    {posts[0] && (
                         <PostItemBackground
-                            title={items[0]?.attributes?.title}
+                            title={posts[0]?.attributes?.title}
                             category={
-                                items[0]?.attributes?.category?.data?.attributes
+                                posts[0]?.attributes?.category?.data?.attributes
                                     ?.name
                             }
                             publishedAt={changeDate(
-                                items[0]?.attributes?.publishedAt
+                                posts[0]?.attributes?.publishedAt
                             )}
                             categoryColor={
-                                items[0]?.attributes?.category?.data?.attributes
+                                posts[0]?.attributes?.category?.data?.attributes
                                     ?.color
                             }
-                            href={items[0]?.attributes?.slug}
+                            href={posts[0]?.attributes?.slug}
                             coverUrl={
-                                items[0]?.attributes?.cover?.data?.attributes
+                                posts[0]?.attributes?.cover?.data?.attributes
                                     ?.url
                             }
                             className="col-span-12 sm:col-span-6 md:h-[350px]"
                         />
                     )}
 
-                    {items[1] && (
+                    {posts[1] && (
                         <PostItemBackground
-                            title={items[1]?.attributes?.title}
+                            title={posts[1]?.attributes?.title}
                             category={
-                                items[1]?.attributes?.category?.data?.attributes
+                                posts[1]?.attributes?.category?.data?.attributes
                                     ?.name
                             }
                             publishedAt={changeDate(
-                                items[1]?.attributes?.publishedAt
+                                posts[1]?.attributes?.publishedAt
                             )}
                             categoryColor={
-                                items[1]?.attributes?.category?.data?.attributes
+                                posts[1]?.attributes?.category?.data?.attributes
                                     ?.color
                             }
-                            href={items[1]?.attributes?.slug}
+                            href={posts[1]?.attributes?.slug}
                             coverUrl={
-                                items[1]?.attributes?.cover?.data?.attributes
+                                posts[1]?.attributes?.cover?.data?.attributes
                                     ?.url
                             }
                             className="col-span-12 sm:col-span-6 md:h-[350px]"
                         />
                     )}
-                    {items[2] && (
+                    {posts[2] && (
                         <PostItemRight
-                            title={items[2]?.attributes?.title}
+                            title={posts[2]?.attributes?.title}
                             category={
-                                items[2]?.attributes?.category?.data?.attributes
+                                posts[2]?.attributes?.category?.data?.attributes
                                     ?.name
                             }
                             publishedAt={changeDate(
-                                items[2]?.attributes?.publishedAt
+                                posts[2]?.attributes?.publishedAt
                             )}
                             categoryColor={
-                                items[2]?.attributes?.category?.data?.attributes
+                                posts[2]?.attributes?.category?.data?.attributes
                                     ?.color
                             }
-                            href={items[2]?.attributes?.slug}
+                            href={posts[2]?.attributes?.slug}
                             coverUrl={
-                                items[2]?.attributes?.cover?.data?.attributes
+                                posts[2]?.attributes?.cover?.data?.attributes
                                     ?.url
                             }
                             className="col-span-12"
                         />
                     )}
-                    {items[3] && (
+                    {posts[3] && (
                         <PostItemRight
-                            title={items[3]?.attributes?.title}
+                            title={posts[3]?.attributes?.title}
                             category={
-                                items[3]?.attributes?.category?.data?.attributes
+                                posts[3]?.attributes?.category?.data?.attributes
                                     ?.name
                             }
                             publishedAt={changeDate(
-                                items[3]?.attributes?.publishedAt
+                                posts[3]?.attributes?.publishedAt
                             )}
                             categoryColor={
-                                items[3]?.attributes?.category?.data?.attributes
+                                posts[3]?.attributes?.category?.data?.attributes
                                     ?.color
                             }
-                            href={items[3]?.attributes?.slug}
+                            href={posts[3]?.attributes?.slug}
                             coverUrl={
-                                items[3]?.attributes?.cover?.data?.attributes
+                                posts[3]?.attributes?.cover?.data?.attributes
                                     ?.url
                             }
                             className="col-span-12"
@@ -180,8 +199,8 @@ export const GridTemplate2 = (props: PropsWithChildren<Props>) => {
     )
 }
 
-export const GridTemplate3 = (props: PropsWithChildren<Props>) => {
-    const { items } = props
+export const GridTemplate3 = (props: PropsWithChildren<Posts>) => {
+    const { posts: items } = props
 
     const contentRight = items.slice(1, 4).map((item) => {
         const { category, title, publishedAt, slug, cover } = item?.attributes
@@ -231,8 +250,8 @@ export const GridTemplate3 = (props: PropsWithChildren<Props>) => {
     )
 }
 
-export const GridTemplate4 = (props: PropsWithChildren<Props>) => {
-    const { items } = props
+export const GridTemplate4 = (props: PropsWithChildren<Posts>) => {
+    const { posts: items } = props
 
     const content = items.slice(0, 4).map((item) => {
         const { category, title, publishedAt, slug, cover } = item?.attributes
@@ -254,8 +273,8 @@ export const GridTemplate4 = (props: PropsWithChildren<Props>) => {
     return <div className="grid grid-cols-12 gap-5">{content}</div>
 }
 
-export const GridTemplate5 = (props: PropsWithChildren<Props>) => {
-    const { items } = props
+export const GridTemplate5 = (props: PropsWithChildren<Posts>) => {
+    const { posts: items } = props
 
     const contentBottom = items?.slice(3, 7).map((item) => {
         const { category, title, publishedAt, slug, cover } = item?.attributes
