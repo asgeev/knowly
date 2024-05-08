@@ -86,7 +86,7 @@ export const PostItemRight = (props: Props) => {
         <article
             className={`flex bg-secondary gap-2 sm:rounded-xl group h-40 sm:h-[165px] ${className}`}
         >
-            <Link href={href} className="w-1/3 order-1">
+            <Link href={href} className="w-2/5 order-1">
                 <div className="relative h-full w-full overflow-hidden sm:rounded-e-xl">
                     {coverUrl && (
                         <Image
