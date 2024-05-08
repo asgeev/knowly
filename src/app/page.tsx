@@ -12,7 +12,7 @@ export const revalidate = 120 // revalidate at most every 2 minutes
 
 const fetchPinnedPosts = async () => {
     const response = await fetch(
-        `http://localhost:1337/api/posts?fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=cover&populate[1]=category`
+        `http://localhost:1337/api/posts?sort=publishedAt:desc&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=cover&populate[1]=category&filters[pinned][$eq]=true`
     )
     if (!response.ok) {
         throw new Error('Failed')
@@ -22,7 +22,7 @@ const fetchPinnedPosts = async () => {
 
 const fetchLatestPosts = async () => {
     const response = await fetch(
-        `http://localhost:1337/api/posts?fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=cover&populate[1]=category`
+        `http://localhost:1337/api/posts?sort[0]=publishedAt:desc&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=cover&populate[1]=category`
     )
     if (!response.ok) {
         throw new Error('Failed')
@@ -32,7 +32,7 @@ const fetchLatestPosts = async () => {
 
 const fetchPostsByCategory = async (categorySlug: string) => {
     const response = await fetch(
-        `http://localhost:1337/api/posts?fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=cover&populate[1]=category&filters[$and][0][category][slug][$eq]=${categorySlug}`
+        `http://localhost:1337/api/posts?sort[0]=publishedAt:desc&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=cover&populate[1]=category&filters[$and][0][category][slug][$eq]=${categorySlug}`
     )
     if (!response.ok) {
         throw new Error('Failed')
@@ -62,15 +62,11 @@ export default async function Home() {
 
     return (
         <>
-            <Section title="Przypięte" categoryUrl="/najnowsze">
-                {pinnedPosts?.length ? (
+            {pinnedPosts?.length && (
+                <Section title="Przypięte">
                     <GridTemplate template={1} posts={pinnedPosts} />
-                ) : (
-                    <p className="text-xl text-textSecondary uppercase font-semibold">
-                        Brak postów
-                    </p>
-                )}
-            </Section>
+                </Section>
+            )}
 
             <Section title="Najnowsze" categoryUrl="/najnowsze">
                 {latestPosts?.length ? (
