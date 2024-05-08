@@ -28,7 +28,7 @@ export const PostItemBackground = (props: Props) => {
         <article
             className={`relative bg-secondary sm:rounded-xl group h-64 ${className}`}
         >
-            <Link href={href}>
+            <Link href={`/post/${href}`}>
                 <div className="relative h-full w-full overflow-hidden sm:rounded-xl">
                     {coverUrl && (
                         <Image
@@ -56,7 +56,7 @@ export const PostItemBackground = (props: Props) => {
                     )}
 
                     <Link
-                        href={href}
+                        href={`/post/${href}`}
                         className="font-bold line-clamp-3 sm:text-md mt-2"
                     >
                         {title}
@@ -86,7 +86,7 @@ export const PostItemRight = (props: Props) => {
         <article
             className={`flex bg-secondary gap-2 sm:rounded-xl group h-40 sm:h-[165px] ${className}`}
         >
-            <Link href={href} className="w-2/5 order-1">
+            <Link href={`/post/${href}`} className="w-2/5 order-1">
                 <div className="relative h-full w-full overflow-hidden sm:rounded-e-xl">
                     {coverUrl && (
                         <Image
@@ -113,7 +113,7 @@ export const PostItemRight = (props: Props) => {
                     )}
 
                     <Link
-                        href={href}
+                        href={`/post/${href}`}
                         className="font-bold line-clamp-2 md:line-clamp-3 text-textPrimary sm:text-md mt-2"
                     >
                         {title}
@@ -141,7 +141,7 @@ export const PostItemTop = (props: Props) => {
         <article
             className={`flex flex-col bg-secondary rounded-md group  sm:h-[350px] w-full  ${className}`}
         >
-            <Link href={href} className="h-40 md:h-1/2 w-full">
+            <Link href={`/post/${href}`} className="h-40 md:h-1/2 w-full">
                 <div className="relative h-full w-full overflow-hidden rounded-t-md aspect-square">
                     {coverUrl && (
                         <Image
@@ -168,7 +168,7 @@ export const PostItemTop = (props: Props) => {
                     )}
 
                     <Link
-                        href={href}
+                        href={`/post/${href}`}
                         className="font-bold line-clamp-3 text-textPrimary sm:text-lg mt-2"
                     >
                         {title}
