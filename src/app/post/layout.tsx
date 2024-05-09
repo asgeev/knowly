@@ -22,13 +22,12 @@ export default async function PostLayout({
                                 Najnowsze posty
                             </h1>
                             <div className="space-y-5">
-                                {' '}
                                 {newestsPosts?.slice(0, 3).map((post) => {
                                     return (
                                         <PostItemRight
                                             key={post.id}
                                             title={post?.attributes?.title}
-                                            href={post?.attributes?.title}
+                                            href={post?.attributes?.slug}
                                             publishedAt={changeDate(
                                                 post?.attributes?.publishedAt
                                             )}

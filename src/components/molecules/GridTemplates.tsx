@@ -316,7 +316,7 @@ export const GridTemplate5 = (props: PropsWithChildren<Posts>) => {
                 {items[1] && (
                     <PostItemRight
                         title={items[1]?.attributes?.title}
-                        href={items[1]?.attributes?.title}
+                        href={items[1]?.attributes?.slug}
                         publishedAt={changeDate(
                             items[1]?.attributes?.publishedAt
                         )}
@@ -338,7 +338,7 @@ export const GridTemplate5 = (props: PropsWithChildren<Posts>) => {
                     <PostItemRight
                         key={items[2]?.id}
                         title={items[2]?.attributes?.title}
-                        href={items[2]?.attributes?.title}
+                        href={items[2]?.attributes?.slug}
                         publishedAt={changeDate(
                             items[2]?.attributes?.publishedAt
                         )}
