@@ -1,58 +1,16 @@
-import {
-    GridTemplate,
-    GridTemplate1,
-    GridTemplate2,
-    GridTemplate3,
-    GridTemplate4,
-    GridTemplate5,
-} from '../components/molecules/GridTemplates'
+import { GridTemplate } from '../components/molecules/GridTemplates'
 import { Section } from '../components/molecules/Section'
+import {
+    getAllCategoriesWithPosts,
+    getLatestPosts,
+    getPinnedPosts,
+} from './actions'
 
-export const revalidate = 120 // revalidate at most every 2 minutes
-
-const fetchPinnedPosts = async () => {
-    const response = await fetch(
-        `http://localhost:1337/api/posts?sort=publishedAt:desc&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=cover&populate[1]=category&filters[pinned][$eq]=true`
-    )
-    if (!response.ok) {
-        throw new Error('Failed')
-    }
-    return response?.json()
-}
-
-const fetchLatestPosts = async () => {
-    const response = await fetch(
-        `http://localhost:1337/api/posts?sort[0]=publishedAt:desc&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=cover&populate[1]=category`
-    )
-    if (!response.ok) {
-        throw new Error('Failed')
-    }
-    return response?.json()
-}
-
-const fetchPostsByCategory = async (categorySlug: string) => {
-    const response = await fetch(
-        `http://localhost:1337/api/posts?sort[0]=publishedAt:desc&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=cover&populate[1]=category&filters[$and][0][category][slug][$eq]=${categorySlug}`
-    )
-    if (!response.ok) {
-        throw new Error('Failed')
-    }
-    return response?.json()
-}
-
-const getAllCategoriesWithPosts = async () => {
-    const response = await fetch(
-        `http://localhost:1337/api/categories?fields[0]=name&fields[1]=slug&fields[2]=color&fields[3]=order&populate[grid][populate][0]=grid_template&populate[posts][populate][0]=cover,category`
-    )
-    if (!response.ok) {
-        throw new Error('Failed')
-    }
-    return response?.json()
-}
+export const revalidate = 10 // revalidate at most every 10 seconds
 
 export default async function Home() {
-    const { data: pinnedPosts } = await fetchPinnedPosts()
-    const { data: latestPosts } = await fetchLatestPosts()
+    const { data: pinnedPosts } = await getPinnedPosts()
+    const { data: latestPosts } = await getLatestPosts()
     const { data: allCategories } = await getAllCategoriesWithPosts()
 
     //Sort categories by order

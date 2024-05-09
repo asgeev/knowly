@@ -1,17 +1,6 @@
-import { notFound } from 'next/navigation'
 import { Tag } from '../../../components/atoms/Tag'
 import { changeDate } from '../../../helpers/changeDate'
-
-const getDocPageContent = async (slug: string) => {
-    const response = await fetch(
-        `${process.env.STRAPI_URL}/api/slugify/slugs/page/${slug}?fields[0]=title&fields[1]=content&fields[2]=createdAt&fields[3]=publishedAt&fields[4]=updatedAt&populate[0]=tags`
-    )
-
-    if (!response.ok) {
-        notFound()
-    }
-    return response?.json()
-}
+import { getDocsPageData } from '../../actions'
 
 const DocPage = async ({
     params,
@@ -20,7 +9,7 @@ const DocPage = async ({
         slug: string
     }
 }) => {
-    const { data } = await getDocPageContent(params.slug)
+    const { data } = await getDocsPageData(params.slug)
 
     const pageData = data.attributes
 

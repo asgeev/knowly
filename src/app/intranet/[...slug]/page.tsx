@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { changeDate } from '../../../helpers/changeDate'
 import { Tag } from '../../../components/atoms/Tag'
+import { getIntranetPageData } from '../../actions'
 interface PageContent {
     type: string
     title: string
@@ -24,16 +25,7 @@ interface PageContent {
     }
 }
 
-const getPageData = async (path: string) => {
-    const response = await fetch(
-        `http://localhost:1337/api/navigation/render/main-navigation?type=TREE&path=/${path}`
-    )
-    if (!response.ok) {
-        throw new Error('Failed')
-    }
-
-    return response?.json()
-}
+export const revalidate = 30 // revalidate at most every 30 seconds
 
 const Page = async ({
     params,
@@ -44,7 +36,7 @@ const Page = async ({
 }) => {
     const path: string = params?.slug?.join('/')
 
-    const data = await getPageData(path)
+    const data = await getIntranetPageData(path)
 
     const pageContent: PageContent = data[0]?.related
 
