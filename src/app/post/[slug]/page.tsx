@@ -1,25 +1,13 @@
-import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import { changeDate } from '../../../helpers/changeDate'
 import Link from 'next/link'
-
-const fetchPost = async (slug: string) => {
-    const response = await fetch(
-        `http://localhost:1337/api/slugify/slugs/post/${slug}?fields[0]=title&fields[1]=content&fields[2]=publishedAt&populate[0]=category,cover`
-    )
-    if (response.status === 404) {
-        notFound()
-    } else if (!response.ok) {
-        throw new Error('Failed')
-    }
-
-    return response?.json()
-}
+import { getPost } from '../../actions'
 
 export default async function Post({ params }: { params: { slug: string } }) {
     const slug = params.slug.toString()
 
-    const { data: postContent } = await fetchPost(slug)
+    //Fetch post data
+    const { data: postContent } = await getPost(slug)
 
     const { title, content, publishedAt, category, cover } =
         postContent?.attributes
