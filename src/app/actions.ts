@@ -30,7 +30,7 @@ export const getPinnedPosts = async () => {
 
 export const getLatestPosts = async () => {
     const response = await fetch(
-        `${strapiUrl}/api/posts?sort[0]=publishedAt:desc&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=cover&populate[1]=category`
+        `${strapiUrl}/api/posts?sort=publishedAt:desc&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=cover&populate[1]=category`
     )
     if (!response.ok) {
         throw new Error('Failed')
