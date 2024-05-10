@@ -10,7 +10,7 @@ export const Tag = (props: Props) => {
     return (
         <Link
             href={href}
-            className="py-1.5 px-3 rounded-md bg-secondary text-textSecondary font-medium hover:text-accent text-sm"
+            className="py-1.5 px-3 rounded-md bg-secondary text-textSecondary font-semibold hover:text-accent text-sm"
         >
             {text}
         </Link>

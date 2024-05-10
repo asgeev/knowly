@@ -1,7 +1,4 @@
-import Link from 'next/link'
-import { PostItemRight } from '../../components/molecules/PostItem'
-import { changeDate } from '../../helpers/changeDate'
-import { getAllCategories, getLatestPosts } from '../actions'
+import { getAllCategories } from '../actions'
 import { Tag } from '../../components/atoms/Tag'
 
 export default async function NewestLayout({

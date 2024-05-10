@@ -1,3 +1,4 @@
+import { PaginationComponent } from '../../../components/molecules/PaginationComponent'
 import { PostItemRight } from '../../../components/molecules/PostItem'
 import { changeDate } from '../../../helpers/changeDate'
 import { getLatestPosts } from '../../actions'
@@ -26,21 +27,36 @@ type latestPost = {
     }
 }
 
-export default async function Page() {
-    const { data: latestPosts } = await getLatestPosts()
+interface SearchParamsProps {
+    searchParams?: {
+        page?: string
+    }
+}
 
-    console.log(latestPosts)
+export default async function Page({ searchParams }: SearchParamsProps) {
+    const currentPage = searchParams?.page
+    const { data: latestPosts, meta } = await getLatestPosts()
+
     return (
         <div className="space-y-5">
             <h1 className="text-2xl font-semibold ml-1">Najnowsze posty</h1>
+
+            {!latestPosts &&
+                (!latestPosts?.length ? (
+                    <div className="bg-secondary rounded-md h-16 flex items-center justify-center">
+                        <p className="font-medium">Brak postów</p>
+                    </div>
+                ) : null)}
+
             {latestPosts &&
-                latestPosts.map((latestPost: latestPost) => {
+                latestPosts?.map((latestPost: latestPost) => {
                     const { title, slug, publishedAt, cover, category } =
                         latestPost.attributes
-                    console.log(title)
 
                     const coverUrl: string = cover.data.attributes.url
+
                     const categoryData = category.data.attributes
+
                     return (
                         <PostItemRight
                             key={latestPost.id}
@@ -53,6 +69,7 @@ export default async function Page() {
                         />
                     )
                 })}
+            <PaginationComponent pageCount={meta.pagination.pageCount} />
         </div>
     )
 }

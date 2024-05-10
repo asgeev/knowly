@@ -1,3 +1,69 @@
-export default function Page({ params }: { params: { slug: string } }) {
-    return <div>My Post: {params.slug}</div>
+import { PaginationComponent } from '../../../../components/molecules/PaginationComponent'
+import { PostItemRight } from '../../../../components/molecules/PostItem'
+import { changeDate } from '../../../../helpers/changeDate'
+import { fetchPostsByCategory } from '../../../actions'
+
+type CategoryPost = {
+    id: number
+    attributes: {
+        title: string
+        slug: string
+        publishedAt: string
+        cover: {
+            data: {
+                attributes: {
+                    url: string
+                }
+            }
+        }
+        category: {
+            data: {
+                attributes: {
+                    name: string
+                    color: string
+                }
+            }
+        }
+    }
+}
+
+export default async function Page({ params }: { params: { slug: string } }) {
+    const { data: categoryPosts, meta } = await fetchPostsByCategory(
+        params.slug
+    )
+
+    const pageCount = meta?.pagination?.pageCount
+
+    return (
+        <div className="space-y-5">
+            {categoryPosts &&
+                (!categoryPosts.length ? (
+                    <div className="bg-secondary rounded-md h-16 flex items-center justify-center">
+                        <p className="font-medium">Brak postów</p>
+                    </div>
+                ) : null)}
+
+            {categoryPosts?.map((categoryPost: CategoryPost) => {
+                const { title, slug, publishedAt, cover, category } =
+                    categoryPost.attributes
+
+                const coverUrl: string = cover.data.attributes.url
+
+                const categoryData = category.data.attributes
+
+                return (
+                    <PostItemRight
+                        key={categoryPost.id}
+                        href={`${slug}`}
+                        title={title}
+                        coverUrl={coverUrl}
+                        publishedAt={changeDate(publishedAt)}
+                        category={categoryData.name}
+                        categoryColor={categoryData.color}
+                    />
+                )
+            })}
+            <PaginationComponent pageCount={pageCount} />
+        </div>
+    )
 }
