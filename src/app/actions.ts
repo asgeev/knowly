@@ -48,6 +48,16 @@ export const fetchPostsByCategory = async (categorySlug: string) => {
     return response?.json()
 }
 
+export const getAllCategories = async () => {
+    const response = await fetch(
+        `${strapiUrl}/api/categories?fields[0]=name&fields[1]=slug&fields[2]=color`
+    )
+    if (!response.ok) {
+        throw new Error('Cannot fetch navigation for documentation')
+    }
+    return response?.json()
+}
+
 export const getAllCategoriesWithPosts = async () => {
     const response = await fetch(
         `${strapiUrl}/api/categories?fields[0]=name&fields[1]=slug&fields[2]=color&fields[3]=order&populate[grid][populate][0]=grid_template&populate[posts][populate][0]=cover,category`

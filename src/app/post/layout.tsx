@@ -1,6 +1,8 @@
+import Link from 'next/link'
 import { PostItemRight } from '../../components/molecules/PostItem'
 import { changeDate } from '../../helpers/changeDate'
-import { getLatestPosts } from '../actions'
+import { getAllCategories, getLatestPosts } from '../actions'
+import { Tag } from '../../components/atoms/Tag'
 
 export default async function PostLayout({
     children,
@@ -8,6 +10,9 @@ export default async function PostLayout({
     children: React.ReactNode
 }) {
     const { data: newestsPosts } = await getLatestPosts()
+    const { data: allCategories } = await getAllCategories()
+
+    console.log(allCategories)
 
     return (
         <div className="container mx-auto">
@@ -15,10 +20,10 @@ export default async function PostLayout({
                 <div className="col-span-8 bg-secondary rounded-b-lg">
                     {children}
                 </div>
-                <div className="max-lg:hidden col-span-4">
+                <div className="col-span-4 flex flex-col gap-10">
                     {newestsPosts && (
                         <div>
-                            <h1 className="text-lg font-bold mb-6">
+                            <h1 className="text-lg font-bold mb-2">
                                 Najnowsze posty
                             </h1>
                             <div className="space-y-5">
@@ -46,7 +51,26 @@ export default async function PostLayout({
                                             className="col-span-12 md:col-span-6"
                                         />
                                     )
-                                })}{' '}
+                                })}
+                            </div>
+                        </div>
+                    )}
+                    {allCategories && (
+                        <div>
+                            <h1 className="text-lg font-bold mb-2">
+                                Wszystkie kategorie
+                            </h1>
+                            <div className="flex gap-2 flex-wrap">
+                                {allCategories.map((category) => {
+                                    const { name, slug } = category?.attributes
+                                    return (
+                                        <Tag
+                                            key={category.id}
+                                            text={name}
+                                            href={`/kategoria/${slug}`}
+                                        />
+                                    )
+                                })}
                             </div>
                         </div>
                     )}
