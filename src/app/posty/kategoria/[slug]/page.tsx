@@ -29,9 +29,18 @@ type CategoryPost = {
 
 export const revalidate = 30 // revalidate at most every 10 seconds
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page({
+    searchParams,
+    params,
+}: {
+    searchParams: { page: string | undefined }
+    params: { slug: string }
+}) {
+    const currentPage = searchParams?.page || '1'
+
     const { data: categoryPosts, meta } = await fetchPostsByCategory(
-        params.slug
+        params.slug,
+        currentPage
     )
 
     const pageCount = meta?.pagination?.pageCount

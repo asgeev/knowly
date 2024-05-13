@@ -4,6 +4,9 @@ import { notFound } from 'next/navigation'
 
 const strapiUrl = process.env.STRAPI_URL
 
+//Page size fetching
+const pageSize = 10
+
 const fetchData = async (url: string, params: any) => {
     params = new URLSearchParams(params)
     try {
@@ -44,21 +47,38 @@ export const getPinnedPosts = async () => {
     return response?.json()
 }
 
-export const getLatestPosts = async () => {
-    const params = {
+export const getLatestPosts = async (currentPage: string) => {
+    let newParams = {}
+    let params = {
         'sort[0]': 'publishedAt:desc',
         'fields[0]': 'title',
         'fields[1]': 'slug',
         'fields[2]': 'publishedAt',
         'populate[0]': 'category,cover',
     }
-    const response = await fetchData(`/api/posts`, params)
+    //Create a new object with additional properties
+    if (currentPage) {
+        newParams = {
+            ...params,
+            'pagination[page]': currentPage,
+            'pagination[pageSize]': pageSize,
+        }
+    } else {
+        newParams = { ...params }
+    }
+
+    const response = await fetchData(`/api/posts`, newParams)
 
     return response?.json()
 }
 
-export const fetchPostsByCategory = async (categorySlug: string) => {
+export const fetchPostsByCategory = async (
+    categorySlug: string,
+    currentPage: string
+) => {
     const params = {
+        'pagination[page]': currentPage,
+        'pagination[pageSize]': pageSize,
         'sort[0]': 'publishedAt:desc',
         'fields[0]': 'title',
         'fields[1]': 'slug',

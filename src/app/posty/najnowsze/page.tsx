@@ -36,14 +36,16 @@ interface SearchParamsProps {
 export const revalidate = 30 // revalidate at most every 10 seconds
 
 export default async function Page({ searchParams }: SearchParamsProps) {
-    const currentPage = searchParams?.page
-    const { data: latestPosts, meta } = await getLatestPosts()
+    const currentPage = searchParams?.page || '1'
+    const { data: latestPosts, meta } = await getLatestPosts(currentPage)
+
+    const pageCount = meta?.pagination?.pageCount
 
     return (
         <div className="space-y-5">
             <h1 className="text-2xl font-semibold ml-1">Najnowsze posty</h1>
 
-            {!latestPosts &&
+            {latestPosts &&
                 (!latestPosts?.length ? (
                     <div className="bg-secondary rounded-md h-16 flex items-center justify-center">
                         <p className="font-medium">Brak postów</p>
@@ -71,7 +73,7 @@ export default async function Page({ searchParams }: SearchParamsProps) {
                         />
                     )
                 })}
-            <PaginationComponent pageCount={meta.pagination.pageCount} />
+            <PaginationComponent pageCount={pageCount} />
         </div>
     )
 }
