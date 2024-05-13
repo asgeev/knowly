@@ -4,99 +4,137 @@ import { notFound } from 'next/navigation'
 
 const strapiUrl = process.env.STRAPI_URL
 
-export const getPost = async (slug: string) => {
-    const response = await fetch(
-        `${strapiUrl}/api/slugify/slugs/post/${slug}?fields[0]=title&fields[1]=content&fields[2]=publishedAt&populate[0]=category,cover`
-    )
-
-    if (response.status === 404) {
-        notFound()
-    } else if (!response.ok) {
-        throw new Error('Failed')
+const fetchData = async (url: string, params: any) => {
+    params = new URLSearchParams(params)
+    try {
+        return await fetch(`${strapiUrl}${url}?${params}`)
+    } catch (err) {
+        console.log(err)
+        throw new Error('Failed to fetch ' + url + params)
     }
+}
+
+export const getPost = async (slug: string) => {
+    const params = {
+        'fields[0]': 'title',
+        'fields[1]': 'content',
+        'fields[2]': 'publishedAt',
+        'populate[0]': 'category,cover',
+    }
+
+    const response = await fetchData(`/api/slugify/slugs/post/${slug}`, params)
+
+    if (response.status === 404) notFound()
 
     return response?.json()
 }
 
 export const getPinnedPosts = async () => {
-    const response = await fetch(
-        `${strapiUrl}/api/posts?sort=publishedAt:desc&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=cover&populate[1]=category&filters[pinned][$eq]=true`
-    )
-    if (!response.ok) {
-        throw new Error('Failed')
+    const params = {
+        'sort[0]': 'publishedAt:desc',
+        'fields[0]': 'title',
+        'fields[1]': 'slug',
+        'fields[2]': 'publishedAt',
+        'populate[0]': 'category,cover',
+        'filters[pinned][$eq]': 'true',
     }
+
+    const response = await fetchData('/api/posts', params)
+
     return response?.json()
 }
 
 export const getLatestPosts = async () => {
-    const response = await fetch(
-        `${strapiUrl}/api/posts?sort=publishedAt:desc&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=cover&populate[1]=category`
-    )
-    if (!response.ok) {
-        throw new Error('Failed')
+    const params = {
+        'sort[0]': 'publishedAt:desc',
+        'fields[0]': 'title',
+        'fields[1]': 'slug',
+        'fields[2]': 'publishedAt',
+        'populate[0]': 'category,cover',
     }
+    const response = await fetchData(`/api/posts`, params)
+
     return response?.json()
 }
 
 export const fetchPostsByCategory = async (categorySlug: string) => {
-    const response = await fetch(
-        `${strapiUrl}/api/posts?sort[0]=publishedAt:desc&fields[0]=title&fields[1]=slug&fields[2]=publishedAt&populate[0]=cover&populate[1]=category&filters[$and][0][category][slug][$eq]=${categorySlug}`
-    )
-    if (!response.ok) {
-        throw new Error('Failed')
+    const params = {
+        'sort[0]': 'publishedAt:desc',
+        'fields[0]': 'title',
+        'fields[1]': 'slug',
+        'fields[2]': 'publishedAt',
+        'populate[0]': 'category,cover',
+        'filters[$and][0][category][slug][$eq]': categorySlug,
     }
+    const response = await fetchData(`/api/posts`, params)
+
     return response?.json()
 }
 
 export const getAllCategories = async () => {
-    const response = await fetch(
-        `${strapiUrl}/api/categories?fields[0]=name&fields[1]=slug&fields[2]=color`
-    )
-    if (!response.ok) {
-        throw new Error('Cannot fetch navigation for documentation')
+    const params = {
+        'fields[0]': 'name',
+        'fields[1]': 'slug',
+        'fields[2]': 'color',
     }
+
+    const response = await fetchData(`/api/categories`, params)
+
     return response?.json()
 }
 
 export const getAllCategoriesWithPosts = async () => {
-    const response = await fetch(
-        `${strapiUrl}/api/categories?fields[0]=name&fields[1]=slug&fields[2]=color&fields[3]=order&populate[grid][populate][0]=grid_template&populate[posts][populate][0]=cover,category`
-    )
-    if (!response.ok) {
-        throw new Error('Failed')
+    const params = {
+        'fields[0]': 'name',
+        'fields[1]': 'slug',
+        'fields[2]': 'color',
+        'fields[3]': 'order',
+        'populate[grid][populate][0]': 'grid_template',
+        'populate[posts][populate][0]': 'cover,category',
     }
+    const response = await fetchData(`/api/categories`, params)
+
     return response?.json()
 }
 
 export const getIntranetPageData = async (path: string) => {
-    const response = await fetch(
-        `${strapiUrl}/api/navigation/render/main-navigation?type=TREE&path=/${path}`
-    )
-    if (!response.ok) {
-        throw new Error('Failed')
+    const params = {
+        type: 'TREE',
+        path: `/${path}`,
     }
+
+    const response = await fetchData(
+        `/api/navigation/render/main-navigation`,
+        params
+    )
 
     return response?.json()
 }
 
 export const getDocsPageData = async (slug: string) => {
-    console.log(`Slug: ${slug}`)
-    const response = await fetch(
-        `${strapiUrl}/api/slugify/slugs/page/${slug}?fields[0]=title&fields[1]=content&fields[2]=createdAt&fields[3]=publishedAt&fields[4]=updatedAt&populate[0]=tags`
-    )
-
-    if (!response.ok) {
-        notFound()
+    const params = {
+        'fields[0]': 'title',
+        'fields[1]': 'content',
+        'fields[2]': 'createdAt',
+        'fields[3]': 'publishedAt',
+        'fields[4]': 'updatedAt',
+        'populate[0]': 'tags',
     }
+    const response = await fetchData(`/api/slugify/slugs/page/${slug}`, params)
+
+    if (response.status === 404) notFound()
+
     return response?.json()
 }
 
 export const getDocsNavigation = async () => {
-    const response = await fetch(
-        `${strapiUrl}/api/navigation/render/baza-wiedzy/?type=TREE`
-    )
-    if (!response.ok) {
-        throw new Error('Cannot fetch navigation for documentation')
+    const params = {
+        type: 'TREE',
     }
+    const response = await fetchData(
+        `/api/navigation/render/baza-wiedzy`,
+        params
+    )
+
     return response?.json()
 }
