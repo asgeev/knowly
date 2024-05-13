@@ -27,6 +27,8 @@ type CategoryPost = {
     }
 }
 
+export const revalidate = 30 // revalidate at most every 10 seconds
+
 export default async function Page({ params }: { params: { slug: string } }) {
     const { data: categoryPosts, meta } = await fetchPostsByCategory(
         params.slug

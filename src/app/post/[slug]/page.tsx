@@ -33,7 +33,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
                     <article className="prose max-w-none lg:prose-xl prose-img:rounded-xl dark:prose-invert prose-gray px-6">
                         <div className="flex gap-5 items-baseline">
                             <Link
-                                href={`/kategoria/${categoryData?.slug}`}
+                                href={`/posty/kategoria/${categoryData?.slug}`}
                                 className="text-textSecondary font-extrabold hover:text-accent no-underline"
                             >
                                 {categoryData?.name}

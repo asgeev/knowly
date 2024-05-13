@@ -33,6 +33,8 @@ interface SearchParamsProps {
     }
 }
 
+export const revalidate = 30 // revalidate at most every 10 seconds
+
 export default async function Page({ searchParams }: SearchParamsProps) {
     const currentPage = searchParams?.page
     const { data: latestPosts, meta } = await getLatestPosts()

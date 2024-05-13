@@ -26,7 +26,7 @@ export default async function Home() {
                 </Section>
             )}
 
-            <Section title="Najnowsze" categoryUrl="/najnowsze">
+            <Section title="Najnowsze" categoryUrl="/posty/najnowsze">
                 {latestPosts?.length ? (
                     <GridTemplate template={2} posts={latestPosts} />
                 ) : (
@@ -44,7 +44,7 @@ export default async function Home() {
                         key={category?.id}
                         title={name}
                         color={color}
-                        categoryUrl={`/kategoria/${slug}`}
+                        categoryUrl={`/posty/kategoria/${slug}`}
                     >
                         {posts?.data?.length ? (
                             <GridTemplate
