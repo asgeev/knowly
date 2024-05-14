@@ -5,7 +5,7 @@ const Navigation = async () => {
     const navigation = await getDocsNavigation()
 
     return (
-        <nav className="">
+        <nav>
             <NavigationItems navigation={navigation} />
         </nav>
     )

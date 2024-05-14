@@ -25,7 +25,7 @@ export const NavigationItems = (props: Props) => {
 
     return (
         <>
-            <div className="max-md:mb-10  md:hidden">
+            <div className="max-md:mb-10 lg:hidden">
                 <button
                     onClick={toggleMenu}
                     className="flex items-center gap-1 hover:text-accent"
@@ -38,7 +38,7 @@ export const NavigationItems = (props: Props) => {
             </div>
             <div
                 data-ismenuopen={`${isMenuOpen}`}
-                className="max-md:data-[ismenuopen=false]:max-h-0 max-md:data-[ismenuopen=true]:max-h-96  transition-all overflow-y-auto md:max-h-[calc(100vh_-_136px)]"
+                className="max-lg:data-[ismenuopen=false]:max-h-0 max-lg:data-[ismenuopen=true]:max-h-96  transition-all overflow-y-auto md:max-h-[calc(100vh_-_136px)]"
             >
                 <div className="text-sm">
                     {navigation?.map((element) => {
