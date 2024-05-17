@@ -4,6 +4,34 @@ import { changeDate } from '../../helpers/changeDate'
 import { getAllCategories, getLatestPosts } from '../actions'
 import { Tag } from '../../components/atoms/Tag'
 
+type Category = {
+    id: number
+    attributes: {
+        name: string
+        color: string
+        slug: string
+    }
+}
+
+interface Post {
+    id: number
+    attributes: {
+        title: string
+        slug: string
+        publishedAt: string
+        category: {
+            data: Category
+        }
+        cover: {
+            data: {
+                attributes: {
+                    url: string
+                }
+            }
+        }
+    }
+}
+
 export default async function PostLayout({
     children,
 }: {
@@ -27,7 +55,7 @@ export default async function PostLayout({
                                 Najnowsze posty
                             </h1>
                             <div className="space-y-5">
-                                {newestsPosts?.slice(0, 3).map((post) => {
+                                {newestsPosts?.slice(0, 3).map((post: Post) => {
                                     return (
                                         <PostItemRight
                                             key={post.id}
@@ -61,13 +89,13 @@ export default async function PostLayout({
                                 Wszystkie kategorie
                             </h1>
                             <div className="flex gap-2 flex-wrap">
-                                {allCategories.map((category) => {
+                                {allCategories.map((category: Category) => {
                                     const { name, slug } = category?.attributes
                                     return (
                                         <Tag
                                             key={category.id}
                                             text={name}
-                                            href={`/kategoria/${slug}`}
+                                            href={`/posty/kategoria/${slug}`}
                                         />
                                     )
                                 })}

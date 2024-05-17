@@ -47,7 +47,7 @@ export const getPinnedPosts = async () => {
     return response?.json()
 }
 
-export const getLatestPosts = async (currentPage: string) => {
+export const getLatestPosts = async (currentPage?: string) => {
     let newParams = {}
     let params = {
         'sort[0]': 'publishedAt:desc',
