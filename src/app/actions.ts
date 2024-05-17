@@ -7,7 +7,7 @@ const strapiUrl = process.env.STRAPI_URL
 //Page size fetching
 const pageSize = 10
 
-const fetchData = async (url: string, params: any) => {
+const fetchData = async (url: string, params?: any) => {
     params = new URLSearchParams(params)
     try {
         return await fetch(`${strapiUrl}${url}?${params}`)
@@ -155,6 +155,12 @@ export const getDocsNavigation = async () => {
         `/api/navigation/render/baza-wiedzy`,
         params
     )
+
+    return response?.json()
+}
+
+export const getFastLinks = async () => {
+    const response = await fetchData(`/api/links`)
 
     return response?.json()
 }

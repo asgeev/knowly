@@ -5,10 +5,8 @@ import { getIntranetPageData } from '../../actions'
 interface PageContent {
     type: string
     title: string
-    createdBy: {
-        firstname: string
-        createdAt: string
-    }
+    publishedAt: string
+    updatedAt: string
     content: string
     tags: {
         map(
@@ -40,7 +38,9 @@ const Page = async ({
 
     const pageContent: PageContent = data[0]?.related
 
-    const localDate = changeDate(pageContent?.createdBy?.createdAt)
+    const publishedAt = changeDate(pageContent?.publishedAt)
+
+    const updatedAt = changeDate(pageContent?.updatedAt)
 
     const tags = pageContent?.tags
 
@@ -52,12 +52,28 @@ const Page = async ({
     return (
         <>
             {pageContent && (
-                <div className=" m-auto">
-                    <article className="prose m-auto lg:prose-xl prose-img:rounded-xl dark:prose-invert prose-gray">
-                        <div className="pt-20">
-                            <p className="text-textSecondary">{localDate}</p>
+                <div className="bg-secondary px-6 rounded-lg">
+                    <article className="prose max-w-none lg:prose-xl prose-img:rounded-xl dark:prose-invert prose-gray ">
+                        <div className="pt-20 pb-5">
                             <h1>{pageContent?.title}</h1>
-
+                            <div className="not-prose flex gap-7 flex-wrap text-base text-textSecondary">
+                                {publishedAt && (
+                                    <div className="flex items-center gap-2">
+                                        <span className="material-symbols-outlined">
+                                            calendar_month
+                                        </span>
+                                        <p>Publikacja: {publishedAt}</p>
+                                    </div>
+                                )}
+                                {updatedAt && (
+                                    <div className="flex items-center gap-2">
+                                        <span className="material-symbols-outlined">
+                                            published_with_changes
+                                        </span>
+                                        <p>Aktualizacja: {updatedAt}</p>
+                                    </div>
+                                )}
+                            </div>
                             {tags && (
                                 <div className="flex flex-row gap-2">
                                     {tags.map(({ id, slug }) => {
