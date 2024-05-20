@@ -17,13 +17,11 @@ interface NavElement {
 
 const RecursiveMenu = (props: PropsWithChildren<Props>) => {
     const pathname = usePathname()
-
-    console.log(pathname)
     return (
-        <div className="group">
+        <div className="group ">
             {props.children}
             <div className="md:absolute">
-                <div className="left-0 top-0 right-0 md:relative mt-4 flex flex-col flex-wrap  gap-5  md:rounded-2xl md:hidden group-hover:grid md:bg-secondary md:p-8 md:text-white">
+                <div className="left-0 top-0 right-0 md:relative mt-4 md:mt-10 md:shadow-2xl max-md:ml-1 flex flex-col flex-wrap gap-3 md:gap-5 md:rounded-lg md:hidden group-hover:flex md:bg-secondary md:px-6 md:py-8 font-medium">
                     {props.navigation?.map((element: NavElement) => {
                         return (
                             <div key={element.id} className="">
@@ -39,7 +37,7 @@ const RecursiveMenu = (props: PropsWithChildren<Props>) => {
                                 </Link>
 
                                 {element?.items?.length ? (
-                                    <div className="flex flex-col pt-6 gap-4 ">
+                                    <div className="flex flex-col pt-4 gap-3 ml-3 md:ml-1">
                                         {element.items?.map(
                                             (element: NavElement) => {
                                                 console.log(
@@ -49,7 +47,7 @@ const RecursiveMenu = (props: PropsWithChildren<Props>) => {
                                                     <Link
                                                         key={element.id}
                                                         href={`${props.path}/${element.path}`}
-                                                        className={`text-sm font-normal hover:text-accent ${
+                                                        className={`text-sm font-medium hover:text-accent ${
                                                             pathname ===
                                                             props.path +
                                                                 element.path

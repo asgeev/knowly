@@ -39,11 +39,11 @@ const Navigation = (props: Props) => {
                         close
                     </span>
                 </button>
-                <div className="font-semibold">
-                    <ul className="flex flex-col gap-10 text-xl md:text-lg md:flex-row">
+                <div className="font-medium">
+                    <ul className="flex flex-col gap-6 text-xl md:text-base md:flex-row font-semibold ">
                         <li>
                             <Link
-                                className="text-textSecondary hover:text-textPrimary"
+                                className="hover:text-accent md:text-textSecondary"
                                 href="/"
                                 onClick={closeMenu}
                             >
@@ -52,7 +52,7 @@ const Navigation = (props: Props) => {
                         </li>
                         <li>
                             <Link
-                                className="text-textSecondary hover:text-textPrimary"
+                                className="hover:text-accent md:text-textSecondary"
                                 href="/baza-wiedzy"
                                 onClick={closeMenu}
                             >
@@ -67,7 +67,7 @@ const Navigation = (props: Props) => {
                                 isMenuOpen={isMenuOpen}
                             >
                                 <Link
-                                    className="text-textSecondary hover:text-textPrimary"
+                                    className="hover:text-accent md:text-textSecondary"
                                     href="/intranet"
                                     onClick={closeMenu}
                                 >
