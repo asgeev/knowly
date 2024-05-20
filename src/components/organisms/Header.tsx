@@ -15,13 +15,15 @@ const getNavigation = async (menuName: string) => {
 const Header = async () => {
     const mainNavigation = await getNavigation('main-navigation')
     return (
-        <header className="sticky top-0 bg-primary z-50">
-            <div className="container px-4 py-5 lg:py-9 h-full flex items-center gap-20 justify-between">
+        <header className="sticky top-0 z-50 bg-secondary">
+            <div className="container px-1 md:px-0 py-4 h-full flex items-center gap-20 justify-between">
                 <div className="flex flex-row items-center gap-4">
                     <div className="relative h-10 w-10 p-3">
                         <Image src="/knowlylogo.svg" fill alt="knowly icon" />
                     </div>
-                    <span className="hidden sm:block text-2xl">knowly</span>
+                    <span className="hidden sm:block text-2xl font-medium">
+                        knowly
+                    </span>
                 </div>
                 {mainNavigation && <Navigation navigation={mainNavigation} />}
             </div>

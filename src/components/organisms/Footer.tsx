@@ -5,11 +5,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ThemeSwitcher from '../atoms/ThemeSwitcher'
 const Footer = () => {
-    // const { theme, setTheme } = useTheme()
-
     return (
-        <footer className="pt-48 pb-20">
-            <div className="container px-4 py-5 lg:py-9 flex flex-col gap-12">
+        <footer className="mt-32 pb-20">
+            <div className="container px-1 md:px-0 py-4 flex flex-col gap-12">
                 <div className="flex flex-wrap gap-20 justify-between">
                     <Logo />
                     <div className="flex gap-10">
@@ -17,7 +15,7 @@ const Footer = () => {
                             <ThemeSwitcher />
                         </div>
 
-                        {/* <div className="invert dark:invert-0">
+                        <div className="invert dark:invert-0">
                             <Link href="https://github.com/asgeev">
                                 <Image
                                     src="/github.svg"
@@ -26,7 +24,7 @@ const Footer = () => {
                                     alt="knowly icon"
                                 />
                             </Link>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
                 <div className="flex flex-wrap gap-20 md:gap-30 lg:gap-36">
