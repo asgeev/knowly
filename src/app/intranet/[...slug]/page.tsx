@@ -53,7 +53,7 @@ const Page = async ({
         <>
             {pageContent && (
                 <div className="bg-secondary px-6 rounded-lg">
-                    <article className="prose max-w-none lg:prose-xl prose-img:rounded-xl dark:prose-invert prose-gray ">
+                    <article className="prose max-w-none lg:prose-xl prose-img:rounded-xl dark:prose-invert prose-gray pb-4">
                         <div className="pt-20 pb-5">
                             <h1>{pageContent?.title}</h1>
                             <div className="not-prose flex gap-7 flex-wrap text-base text-textSecondary">
