@@ -16,9 +16,12 @@ import HitPhone from '../molecules/meilisearch/HitPhone'
 import HitPage from '../molecules/meilisearch/HitPage'
 import HitsSection from '../molecules/meilisearch/HitSection'
 
-const { searchClient, setMeiliSearchParams } = instantMeiliSearch(
-    'http://localhost:7700', // Host
-    'YSUrA12HFilbkxkpCE72UWJWuvB79EZyZlbQXsKObPc', // API key
+const meilisearchUrl: string = process.env.MEILISEARCH_URL || "http://localhost:7700"
+const melisearchApiKey: string = process.env.MEILISEARCH_API_KEY || "api_key"
+
+const { searchClient } = instantMeiliSearch(
+    meilisearchUrl, // Host
+    melisearchApiKey, // API key
     {
         placeholderSearch: false,
         primaryKey: 'id',
@@ -45,9 +48,9 @@ export const Meilisearch = () => {
                 ref={searchDialogRef}
                 onClick={closeMeilisearch}
                 //TODO: add colors for light theme
-                className="my-0 top-10 md:top-24 w-11/12 max-w-3xl backdrop:bg-backdrop backdrop:backdrop-blur-sm bg-inherit overflow-hidden "
+                className="my-0 top-10 md:top-24 w-11/12 max-w-3xl backdrop:bg-backdrop backdrop:backdrop-blur-[2px] bg-inherit overflow-hidden "
             >
-                <div className="bg-secondary rounded-lg shadow-meilisearch">
+                <div className="bg-secondary rounded-lg shadow-meilisearch border border-primary">
                     <InstantSearch
                         searchClient={searchClient}
                         indexName="number"

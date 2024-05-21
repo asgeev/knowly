@@ -12,7 +12,7 @@
         --text-primary: #3f3844;
         --text-secondary: #797d7f;
         --accent: #3097fe;
-        --backdrop: #0f172acc;
+        --backdrop: rgba(255,255,255, 0.4);
     }
     .dark {
         --primary: #1a1a1a;
@@ -23,7 +23,7 @@
         --text-primary: #fff;
         --text-secondary: #a9adc1;
         --accent: #3097fe;
-        --backdrop: rgba(31, 32, 40, 0.8);
+        --backdrop: rgba(0,0,0, 0.4);
     }
 }
 
