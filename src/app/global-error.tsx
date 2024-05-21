@@ -9,10 +9,21 @@ export default function GlobalError({
 }) {
     return (
         <html>
-            <body>
-                <h2>Coś poszło nie tak!</h2>
-                <button onClick={() => reset()}>Spróbuj ponownie</button>
-            </body>
+        <body>
+        <div>
+            <h2 className={'text-5xl'}>Coś poszło nie tak!</h2>
+            <button
+                onClick={
+                    // Attempt to recover by trying to re-render the segment
+                    () => reset()
+                }
+            >
+
+                Spróbuj ponownie
+            </button>
+            <p className={"text-textSecondary"}>{error?.message}</p>
+        </div>
+        </body>
         </html>
     )
 }
