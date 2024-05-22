@@ -8,7 +8,9 @@
         --secondary: rgb(255, 255, 255);
         --color-1: ;
         --color-2: #e3e3e9;
-        --color-3: #1e293b;
+        --info: rgb(255,200,48);
+        --warning: rgb(255,200,48);
+        --danger: rgb(255,14,14);
         --text-primary: #3f3844;
         --text-secondary: #797d7f;
         --accent: #3097fe;
@@ -19,7 +21,9 @@
         --secondary: #212121;
         --color-1: ;
         --color-2: rgba(255, 255, 255, 0.16);
-        --color-3: #1e293b;
+        --info: rgb(255,200,48);
+        --warning: rgb(255,200,48);
+        --danger: rgb(255,0,0);
         --text-primary: #fff;
         --text-secondary: #a9adc1;
         --accent: #3097fe;
