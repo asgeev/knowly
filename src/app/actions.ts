@@ -164,3 +164,12 @@ export const getFastLinks = async () => {
 
     return response?.json()
 }
+
+export const getNotificationBar = async () => {
+    const params = {
+        'fields[0]': 'content',
+    }
+    const response = await fetchData(`/api/notification-bar`, params)
+
+    return response?.json()
+}

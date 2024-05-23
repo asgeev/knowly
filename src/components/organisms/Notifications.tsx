@@ -1,17 +1,14 @@
 'use client'
 
-import NotificationBar from '@/components/molecules/NotificationBar'
+import NotificationBarComponent from '@/components/molecules/NotificationBarComponent'
 
+// interface NotificationsProps {
+//     type="info"
+// }
 const Notifications = () => {
     return (
         <div>
-            <NotificationBar
-                type={'danger'}
-                textsArray={[
-                    'Cios w kieszenie Polaków. Rachunki za prąd wzrosną więcej, niż początkowo zapowiadał rząd ',
-                ]}
-            />
-            <NotificationBar
+            <NotificationBarComponent
                 type={'info'}
                 textsArray={[
                     'Cios w kieszenie Polaków. Rachunki za prąd wzrosną więcej, niż początkowo zapowiadał rząd ',

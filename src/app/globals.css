@@ -8,12 +8,12 @@
         --secondary: rgb(255, 255, 255);
         --color-1: ;
         --color-2: #e3e3e9;
-        --info: rgb(255,200,48);
+        --info: rgb(37, 99, 235);
         --warning: rgb(255,200,48);
         --danger: rgb(255,14,14);
         --text-primary: #3f3844;
         --text-secondary: #797d7f;
-        --accent: #3097fe;
+        --accent: rgb(37, 99, 235);
         --backdrop: rgba(255,255,255, 0.4);
     }
     .dark {
@@ -21,12 +21,12 @@
         --secondary: #212121;
         --color-1: ;
         --color-2: rgba(255, 255, 255, 0.16);
-        --info: rgb(255,200,48);
+        --info: rgb(37, 99, 235);
         --warning: rgb(255,200,48);
         --danger: rgb(255,0,0);
         --text-primary: #fff;
         --text-secondary: #a9adc1;
-        --accent: #3097fe;
+        --accent: rgb(37, 99, 235);
         --backdrop: rgba(0,0,0, 0.4);
     }
 }

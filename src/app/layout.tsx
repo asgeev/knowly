@@ -4,6 +4,8 @@ import Header from '../components/organisms/Header'
 import './globals.css'
 import { ThemeProvider } from 'next-themes'
 import Notifications from '@/components/organisms/Notifications'
+import NotificationBar from '@/components/organisms/NotificationBar'
+import { getNotificationBar } from '@/app/actions'
 
 export const metadata = {
     title: 'Knowly',
@@ -37,9 +39,12 @@ export default function RootLayout({
                 className={`${roboto.className} bg-primary transition duration-600 dark:bg-primary`}
             >
                 <ThemeProvider attribute="class">
-                    {/*<Notifications />*/}
+                    <NotificationBar />
                     <Header />
-                    <main className="py-6">{children}</main>
+                    <main className="py-6">
+                        {/*<Notifications />*/}
+                        {children}
+                    </main>
                     <Footer />
                 </ThemeProvider>
             </body>
