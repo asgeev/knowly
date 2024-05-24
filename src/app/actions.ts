@@ -7,10 +7,10 @@ const strapiUrl = process.env.STRAPI_URL
 //Page size fetching
 const pageSize = 10
 
-const fetchData = async (url: string, params?: any) => {
+const fetchData = async (url: string, params?: any, options?: {}) => {
     params = new URLSearchParams(params)
     try {
-        return await fetch(`${strapiUrl}${url}?${params}`)
+        return await fetch(`${strapiUrl}${url}?${params}`, options)
     } catch (err) {
         console.log(err)
         throw new Error('Failed to fetch ' + url + params)
@@ -48,7 +48,7 @@ export const getPinnedPosts = async () => {
 }
 
 export const getLatestPosts = async (currentPage?: string) => {
-    let newParams = {}
+    let newParams
     let params = {
         'sort[0]': 'publishedAt:desc',
         'fields[0]': 'title',
@@ -170,6 +170,19 @@ export const getNotificationBar = async () => {
         'fields[0]': 'content',
     }
     const response = await fetchData(`/api/notification-bar`, params)
+
+    return response?.json()
+}
+
+export const getNotifications = async () => {
+    const params = {
+        'fields[0]': 'text',
+        'fields[1]': 'type',
+        'fields[2]': 'link',
+    }
+    const response = await fetchData(`/api/notifications`, params, {
+        cache: 'no-store',
+    })
 
     return response?.json()
 }

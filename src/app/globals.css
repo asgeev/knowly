@@ -9,7 +9,7 @@
         --color-1: ;
         --color-2: #e3e3e9;
         --info: rgb(37, 99, 235);
-        --warning: rgb(255,200,48);
+        --warning:rgb(255, 159, 10);
         --danger: rgb(255,14,14);
         --text-primary: #3f3844;
         --text-secondary: #797d7f;
@@ -22,7 +22,7 @@
         --color-1: ;
         --color-2: rgba(255, 255, 255, 0.16);
         --info: rgb(37, 99, 235);
-        --warning: rgb(255,200,48);
+        --warning: rgb(255, 159, 10);
         --danger: rgb(255,0,0);
         --text-primary: #fff;
         --text-secondary: #a9adc1;
