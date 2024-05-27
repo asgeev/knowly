@@ -124,7 +124,7 @@ export const getIntranetPageData = async (path: string) => {
     }
 
     const response = await fetchData(
-        `/api/navigation/render/main-navigation`,
+        `/api/navigation/render/intranet-navigation`,
         params
     )
 
@@ -152,7 +152,7 @@ export const getDocsNavigation = async () => {
         type: 'TREE',
     }
     const response = await fetchData(
-        `/api/navigation/render/baza-wiedzy`,
+        `/api/navigation/render/docs-navigation`,
         params
     )
 
