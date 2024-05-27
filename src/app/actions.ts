@@ -153,7 +153,21 @@ export const getDocsNavigation = async () => {
     }
     const response = await fetchData(
         `/api/navigation/render/docs-navigation`,
-        params
+        params,
+        { next: { revalidate: 300 } }
+    )
+
+    return response?.json()
+}
+
+export const getIntranetNavigation = async () => {
+    const params = {
+        type: 'TREE',
+    }
+    const response = await fetchData(
+        `/api/navigation/render/intranet-navigation`,
+        params,
+        { next: { revalidate: 300 } }
     )
 
     return response?.json()

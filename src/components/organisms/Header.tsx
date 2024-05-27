@@ -1,19 +1,9 @@
 import Image from 'next/image'
 import Navigation from '../molecules/Navigation'
-
-const getNavigation = async (menuName: string) => {
-    const apiURL = process.env.STRAPI_URL
-    const response = await fetch(
-        `${apiURL}/api/navigation/render/${menuName}/?type=TREE`
-    )
-    if (!response.ok) {
-        throw new Error('Failed')
-    }
-    return response?.json()
-}
+import { getIntranetNavigation } from '@/app/actions'
 
 const Header = async () => {
-    const mainNavigation = await getNavigation('main-navigation')
+    const intranetNavigation = await getIntranetNavigation()
     return (
         <header className="sticky top-0 z-50 bg-secondary">
             <div className="container px-1 md:px-0 py-4 h-full flex items-center gap-20 justify-between">
@@ -25,7 +15,9 @@ const Header = async () => {
                         knowly
                     </span>
                 </div>
-                {mainNavigation && <Navigation navigation={mainNavigation} />}
+                {intranetNavigation && (
+                    <Navigation navigation={intranetNavigation} />
+                )}
             </div>
         </header>
     )
