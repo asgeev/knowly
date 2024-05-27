@@ -2,8 +2,8 @@ import { Card } from './_components/Card'
 
 export default function Docs() {
     return (
-        <article className="prose max-w-none lg:prose-lg prose-imp:rounded-xl dark:prose-invert prose-gray px-4 lg:px-2">
-            <div className="pt-8">
+        <article className="prose max-w-none lg:prose-lg prose-img:rounded-xl dark:prose-invert prose-gray lg:mt-4">
+            <div>
                 <h1>Wprowadzenie</h1>
                 <h2>Czym jest baza wiedzy w Knowly ❓</h2>
                 <p>

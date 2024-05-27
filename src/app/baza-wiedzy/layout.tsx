@@ -4,11 +4,11 @@ const DocsLayout = ({ children }: { children: React.ReactNode }) => {
     const strapiUrl = process.env.STRAPI_URL
 
     return (
-        <div className="container mx-auto lg:grid grid-cols-12 gap-8 mt-10 lg:mt-0">
-            <div className="px-4 lg:px-2 col-span-3 xl:col-span-2 lg:sticky top-[120px] self-start h-auto">
+        <div className="container mx-auto lg:grid grid-cols-12 gap-8 mt-6 lg:mt-10 max-md:mx-2">
+            <div className=" col-span-3 xl:col-span-2 lg:sticky top-[120px] self-start h-auto">
                 <Navigation />
             </div>
-            <div className="col-span-9 xl:col-span-7 mt-10 lg:mt-0">
+            <div className="col-span-9 xl:col-span-7 max-lg:mt-16">
                 {children}
             </div>
             <div className="hidden xl:block sticky top-[120px] self-start h-auto col-span-3">

@@ -25,7 +25,7 @@ export const NavigationItems = (props: Props) => {
 
     return (
         <>
-            <div className="max-md:mb-10 lg:hidden">
+            <div className="lg:hidden">
                 <button
                     onClick={toggleMenu}
                     className="flex items-center gap-1 hover:text-accent"
