@@ -1,6 +1,6 @@
-import { PaginationComponent } from '../../../components/molecules/PaginationComponent'
-import { PostItemRight } from '../../../components/molecules/PostItem'
-import { changeDate } from '../../../helpers/changeDate'
+import { PaginationComponent } from '@/components/molecules/PaginationComponent'
+import { PostItemRight } from '@/components/molecules/PostItem'
+import { changeDate } from '@/helpers/changeDate'
 import { getLatestPosts } from '../../actions'
 
 type latestPost = {
@@ -67,7 +67,7 @@ export default async function Page({ searchParams }: SearchParamsProps) {
                             href={`${slug}`}
                             title={title}
                             coverUrl={coverUrl}
-                            publishedAt={changeDate(publishedAt)}
+                            publishedAt={changeDate(publishedAt)?.toString()}
                             category={categoryData.name}
                             categoryColor={categoryData.color}
                         />

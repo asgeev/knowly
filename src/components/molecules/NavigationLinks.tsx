@@ -26,7 +26,7 @@ const RecursiveMenu = (props: PropsWithChildren<Props>) => {
                         return (
                             <div key={element.id} className="">
                                 <Link
-                                    href={`${props.path}/${element.path}`}
+                                    href={`${props.path}${element.path}`}
                                     className={`text-base hover:text-accent ${
                                         pathname === props.path + element.path
                                             ? 'text-accent'
@@ -40,13 +40,10 @@ const RecursiveMenu = (props: PropsWithChildren<Props>) => {
                                     <div className="flex flex-col pt-4 gap-3 ml-3 md:ml-1">
                                         {element.items?.map(
                                             (element: NavElement) => {
-                                                console.log(
-                                                    props.path + element.path
-                                                )
                                                 return (
                                                     <Link
                                                         key={element.id}
-                                                        href={`${props.path}/${element.path}`}
+                                                        href={`${props.path}${element.path}`}
                                                         className={`text-sm font-medium hover:text-accent ${
                                                             pathname ===
                                                             props.path +

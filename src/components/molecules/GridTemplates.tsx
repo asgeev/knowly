@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { PostItemBackground, PostItemRight, PostItemTop } from './PostItem'
-import { changeDate } from '../../helpers/changeDate'
+import { changeDate } from '@/helpers/changeDate'
 
 type Posts = {
     posts: Array<{
@@ -63,7 +63,7 @@ export const GridTemplate1 = (props: PropsWithChildren<Posts>) => {
                 key={post?.id}
                 href={slug}
                 title={title}
-                publishedAt={changeDate(publishedAt)}
+                publishedAt={changeDate(publishedAt)?.toString()}
                 coverUrl={cover?.data?.attributes?.url}
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
@@ -88,7 +88,7 @@ export const GridTemplate2 = (props: PropsWithChildren<Posts>) => {
                 key={post?.id}
                 title={title}
                 href={slug}
-                publishedAt={changeDate(publishedAt)}
+                publishedAt={changeDate(publishedAt)?.toString()}
                 coverUrl={cover?.data?.attributes?.url}
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
@@ -108,7 +108,7 @@ export const GridTemplate2 = (props: PropsWithChildren<Posts>) => {
                                     ?.name
                             }
                             publishedAt={changeDate(
-                                posts[0]?.attributes?.publishedAt
+                                posts[0]?.attributes?.publishedAt.toString()
                             )}
                             categoryColor={
                                 posts[0]?.attributes?.category?.data?.attributes
@@ -131,7 +131,7 @@ export const GridTemplate2 = (props: PropsWithChildren<Posts>) => {
                                     ?.name
                             }
                             publishedAt={changeDate(
-                                posts[1]?.attributes?.publishedAt
+                                posts[1]?.attributes?.publishedAt?.toString()
                             )}
                             categoryColor={
                                 posts[1]?.attributes?.category?.data?.attributes

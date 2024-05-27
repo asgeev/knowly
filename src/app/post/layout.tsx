@@ -1,8 +1,8 @@
-import Link from 'next/link'
-import { PostItemRight } from '../../components/molecules/PostItem'
-import { changeDate } from '../../helpers/changeDate'
+import { PostItemRight } from '@/components/molecules/PostItem'
+import { changeDate } from '@/helpers/changeDate'
 import { getAllCategories, getLatestPosts } from '../actions'
-import { Tag } from '../../components/atoms/Tag'
+import { Tag } from '@/components/atoms/Tag'
+import React from 'react'
 
 type Category = {
     id: number

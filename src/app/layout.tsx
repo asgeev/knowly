@@ -5,6 +5,7 @@ import './globals.css'
 import { ThemeProvider } from 'next-themes'
 import Notifications from '@/components/organisms/Notifications'
 import NotificationBar from '@/components/organisms/NotificationBar'
+import React from 'react'
 
 export const metadata = {
     title: 'Knowly',

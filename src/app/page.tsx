@@ -1,5 +1,5 @@
-import { GridTemplate } from '../components/molecules/GridTemplates'
-import { Section } from '../components/molecules/Section'
+import { GridTemplate } from '@/components/molecules/GridTemplates'
+import { Section } from '@/components/molecules/Section'
 import {
     getAllCategoriesWithPosts,
     getLatestPosts,
@@ -14,7 +14,7 @@ export default async function Home() {
     const { data: allCategories } = await getAllCategoriesWithPosts()
 
     //Sort categories by order
-    const categories = allCategories.sort((a, b) => {
+    const categories = allCategories.sort((a: any, b: any) => {
         return a.attributes.order - b.attributes.order
     })
 
@@ -36,7 +36,7 @@ export default async function Home() {
                 )}
             </Section>
             {/* Map all categories from backend */}
-            {categories?.map((category) => {
+            {categories?.map((category: any) => {
                 const { name, slug, posts, color, grid } = category?.attributes
 
                 return (

@@ -4,8 +4,8 @@ import Link from 'next/link'
 type Props = {
     href: string
     title: string
-    coverUrl: string | undefined
-    publishedAt: string | undefined
+    coverUrl: string | undefined | null
+    publishedAt: string | undefined | null
     category?: string
     categoryColor?: string
     className?: string

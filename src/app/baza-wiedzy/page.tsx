@@ -9,11 +9,12 @@ export default function Docs() {
                 <p>
                     Baza wiedzy zapewnia dostęp do jednolitych danych
                     dotyczących wykonywanych zadań. Jej zadaniem jest zebranie
-                    procedur w jedno miejsce i utworzenie tzw. "single source of
-                    truth". Dzięki temu podejściu każdy z pracowników będzie
-                    miał dostęp do szybkiego wyszukania danego zagadnienia i
-                    wykonanie zadania według dokumentacji. Ma to zmniejszyć
-                    ilość pomyłek które występują przy danym zadaniu.
+                    procedur w jedno miejsce i utworzenie tzw. &ldquo;single
+                    source of truth&ldquo;. Dzięki temu podejściu każdy z
+                    pracowników będzie miał dostęp do szybkiego wyszukania
+                    danego zagadnienia i wykonanie zadania według dokumentacji.
+                    Ma to zmniejszyć ilość pomyłek które występują przy danym
+                    zadaniu.
                 </p>
                 <p>
                     Całość podzielona jest na wydziały, daje to możliwość
@@ -83,7 +84,7 @@ export default function Docs() {
                 </div>
                 <p>
                     Masz już konto i chcesz dodać więcej treści naciśnij
-                    przycisk "Dodaj dokumentację" po prawej stronie
+                    przycisk &ldquo;Dodaj dokumentację&ldquo; po prawej stronie
                 </p>
                 <h2>Rozwój 🚀</h2>
                 <p>

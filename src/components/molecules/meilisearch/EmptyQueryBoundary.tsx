@@ -1,4 +1,5 @@
 import { useInstantSearch } from 'react-instantsearch'
+import React from 'react'
 type Props = {
     children: React.ReactNode
     text: string

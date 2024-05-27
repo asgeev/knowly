@@ -1,5 +1,5 @@
-import { Tag } from '../../../components/atoms/Tag'
-import { changeDate } from '../../../helpers/changeDate'
+import { Tag } from '@/components/atoms/Tag'
+import { changeDate } from '@/helpers/changeDate'
 import { getDocsPageData } from '../../actions'
 
 const DocPage = async ({
@@ -42,16 +42,15 @@ const DocPage = async ({
                         </div>
                         {pageData?.tags && (
                             <div className="flex flex-wrap gap-2">
-                                {pageData?.tags?.data.map(
-                                    ({ id, attributes }) => {
-                                        return (
-                                            <Tag
-                                                key={id}
-                                                text={attributes.slug}
-                                            />
-                                        )
-                                    }
-                                )}
+                                {pageData?.tags?.data.map((tags: any) => {
+                                    const { id, attributes } = tags
+                                    return (
+                                        <Tag
+                                            key={Number(id)}
+                                            text={attributes.slug}
+                                        />
+                                    )
+                                })}
                             </div>
                         )}
                         <div

@@ -1,5 +1,6 @@
 import { getAllCategories } from '../actions'
-import { Tag } from '../../components/atoms/Tag'
+import { Tag } from '@/components/atoms/Tag'
+import React from 'react'
 
 export default async function NewestLayout({
     children,
@@ -12,7 +13,7 @@ export default async function NewestLayout({
         <div className="container mx-auto">
             <div className="flex gap-2">
                 <Tag text="Najnowsze" href={`/posty/najnowsze`} />
-                {allCategories.map((category) => {
+                {allCategories.map((category: any) => {
                     const { name, slug } = category?.attributes
                     return (
                         <Tag
@@ -32,7 +33,7 @@ export default async function NewestLayout({
                                 Wszystkie kategorie
                             </h1>
                             <div className="flex gap-2 flex-wrap">
-                                {allCategories.map((category) => {
+                                {allCategories.map((category: any) => {
                                     const { name, slug } = category?.attributes
                                     return (
                                         <Tag

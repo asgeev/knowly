@@ -41,12 +41,13 @@ export const NavigationItems = (props: Props) => {
                 className="max-lg:data-[ismenuopen=false]:max-h-0 max-lg:data-[ismenuopen=true]:max-h-96  transition-all overflow-y-auto md:max-h-[calc(100vh_-_136px)]"
             >
                 <div className="text-sm">
-                    {navigation?.map((element) => {
+                    {navigation?.map((element: any) => {
                         return (
                             <div key={element.id} className="py-1.5">
                                 <NavigationLink
                                     item={element}
                                     className="font-medium inline-block py-1"
+                                    href={''}
                                 />
 
                                 {element.items && (

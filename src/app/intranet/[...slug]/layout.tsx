@@ -1,5 +1,6 @@
-import { Tag } from '../../../components/atoms/Tag'
+import { Tag } from '@/components/atoms/Tag'
 import { getFastLinks } from '../../actions'
+import React from 'react'
 
 interface Link {
     id: number

@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
-import { changeDate } from '../../../helpers/changeDate'
-import { Tag } from '../../../components/atoms/Tag'
+import { changeDate } from '@/helpers/changeDate'
+import { Tag } from '@/components/atoms/Tag'
 import { getIntranetPageData } from '../../actions'
 interface PageContent {
     type: string

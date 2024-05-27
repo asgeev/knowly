@@ -1,7 +1,7 @@
-import { PaginationComponent } from '../../../../components/molecules/PaginationComponent'
-import { PostItemRight } from '../../../../components/molecules/PostItem'
-import { changeDate } from '../../../../helpers/changeDate'
-import { fetchPostsByCategory } from '../../../actions'
+import { PaginationComponent } from '@/components/molecules/PaginationComponent'
+import { PostItemRight } from '@/components/molecules/PostItem'
+import { changeDate } from '@/helpers/changeDate'
+import { fetchPostsByCategory } from '@/app/actions'
 
 type CategoryPost = {
     id: number

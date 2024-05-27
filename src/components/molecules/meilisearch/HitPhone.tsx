@@ -1,6 +1,6 @@
 import { Highlight } from 'react-instantsearch'
 //TODO: add types
-const HitPhone = ({ hit }) => {
+const HitPhone = ({ hit }: { hit: any }) => {
     return (
         <div className="my-6">
             <div className="flex  flex-col md:flex-row gap-y-2 items-start justify-between">

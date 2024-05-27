@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { changeDate } from '../../../helpers/changeDate'
+import { changeDate } from '@/helpers/changeDate'
 import Link from 'next/link'
 import { getPost } from '../../actions'
 
@@ -13,9 +13,10 @@ export default async function Post({ params }: { params: { slug: string } }) {
         postContent?.attributes
 
     const strapiUrl: string | undefined = process.env.STRAPI_URL
-    const localDate: string = changeDate(publishedAt)
+    const localDate: string | null | undefined =
+        changeDate(publishedAt)?.toString()
     const coverUrl: string = `${strapiUrl}${cover?.data?.attributes?.url}`
-    const categoryData: string = category?.data?.attributes
+    const categoryData = category?.data?.attributes
 
     return (
         <>

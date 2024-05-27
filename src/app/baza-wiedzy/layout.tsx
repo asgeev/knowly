@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Navigation from './_components/Navigation'
+import React from 'react'
 const DocsLayout = ({ children }: { children: React.ReactNode }) => {
     const strapiUrl = process.env.STRAPI_URL
 
