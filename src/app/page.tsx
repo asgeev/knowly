@@ -14,8 +14,8 @@ export default async function Home() {
     const { data: allCategories } = await getAllCategoriesWithPosts()
 
     //Sort categories by order
-    const categories = allCategories.sort((a: any, b: any) => {
-        return a.attributes.order - b.attributes.order
+    const categories = allCategories?.sort((a: any, b: any) => {
+        return a?.attributes?.order - b?.attributes?.order
     })
 
     return (
