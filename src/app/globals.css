@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --primary: rgb(242, 242, 242);
+        --secondary: rgb(255, 255, 255);
+        --color-1: ;
+        --color-2: #e3e3e9;
+        --info: rgb(37, 99, 235);
+        --warning:rgb(255, 159, 10);
+        --danger: rgb(255,14,14);
+        --text-primary: #3f3844;
+        --text-secondary: #797d7f;
+        --accent: rgb(37, 99, 235);
+        --backdrop: rgba(255,255,255, 0.4);
+    }
+    .dark {
+        --primary: #1a1a1a;
+        --secondary: #212121;
+        --color-1: ;
+        --color-2: rgba(255, 255, 255, 0.16);
+        --info: rgb(37, 99, 235);
+        --warning: rgb(255, 159, 10);
+        --danger: rgb(255,0,0);
+        --text-primary: #fff;
+        --text-secondary: #a9adc1;
+        --accent: rgb(37, 99, 235);
+        --backdrop: rgba(0,0,0, 0.4);
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 26px;
+    width: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+    font-optical-sizing: auto;
+    background: rgb(var(--primary), 1);
+    color: var(--text-primary);
+}
+
+.material-icons.md-18 {
+    font-size: 18px;
+}
+.material-icons.md-24 {
+    font-size: 24px;
+}
+.material-icons.md-36 {
+    font-size: 36px;
+}
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+.material-symbols-outlined.md-18 {
+    font-size: 18px;
+}
+.material-symbols-outlined.md-24 {
+    font-size: 24px;
+}
+.material-symbols-outlined.md-30 {
+    font-size: 30px;
+}
+.material-symbols-outlined.md-36 {
+    font-size: 36px;
+}
+.material-symbols-outlined.md-48 {
+    font-size: 48px;
+}
