@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation'
 import { changeDate } from '@/helpers/changeDate'
 import { Tag } from '@/components/atoms/Tag'
 import { getIntranetPageData } from '../../actions'
+import { Calendar, RefreshCcw } from 'lucide-react'
+
 interface PageContent {
     type: string
     title: string
@@ -59,17 +61,13 @@ const Page = async ({
                             <div className="not-prose flex gap-7 flex-wrap text-base text-textSecondary">
                                 {publishedAt && (
                                     <div className="flex items-center gap-2">
-                                        <span className="material-symbols-outlined">
-                                            calendar_month
-                                        </span>
+                                        <Calendar size={18} />
                                         <p>Publikacja: {publishedAt}</p>
                                     </div>
                                 )}
                                 {updatedAt && (
                                     <div className="flex items-center gap-2">
-                                        <span className="material-symbols-outlined">
-                                            published_with_changes
-                                        </span>
+                                        <RefreshCcw size={18} />
                                         <p>Aktualizacja: {updatedAt}</p>
                                     </div>
                                 )}

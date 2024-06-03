@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Navigation from './_components/Navigation'
 import React from 'react'
+import { ArrowRight } from 'lucide-react'
+
 const DocsLayout = ({ children }: { children: React.ReactNode }) => {
     const strapiUrl = process.env.STRAPI_URL
 
@@ -43,9 +45,7 @@ const DocsLayout = ({ children }: { children: React.ReactNode }) => {
                             className="flex items-center gap-2 font-medium group-hover:gap-4 transition-all text-white"
                         >
                             Dodaj dokumentację
-                            <span className="material-symbols-outlined md-18">
-                                arrow_forward
-                            </span>
+                            <ArrowRight size={20} />
                         </Link>
                     </div>
                 </div>

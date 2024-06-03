@@ -1,6 +1,7 @@
 'use client'
 import { FC } from 'react'
 import { usePathname, useSearchParams, useRouter } from 'next/navigation'
+import { ChevronsRight, ChevronsLeft } from 'lucide-react'
 
 interface PaginationProps {
     pageCount: number
@@ -32,16 +33,12 @@ const PaginationArrow: FC<PaginationArrowProps> = ({
         >
             {isLeft ? (
                 <div className="flex gap-2">
-                    <span className="material-symbols-outlined">
-                        keyboard_double_arrow_left
-                    </span>
+                    <ChevronsLeft />
                     <p>poprzednia</p>
                 </div>
             ) : (
                 <div className="flex gap-2 flex-row-reverse">
-                    <span className="material-symbols-outlined">
-                        keyboard_double_arrow_right
-                    </span>
+                    <ChevronsRight />
                     <p>następna</p>
                 </div>
             )}

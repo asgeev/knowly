@@ -60,32 +60,3 @@ html {
     background: rgb(var(--primary), 1);
     color: var(--text-primary);
 }
-
-.material-icons.md-18 {
-    font-size: 18px;
-}
-.material-icons.md-24 {
-    font-size: 24px;
-}
-.material-icons.md-36 {
-    font-size: 36px;
-}
-.material-icons.md-48 {
-    font-size: 48px;
-}
-
-.material-symbols-outlined.md-18 {
-    font-size: 18px;
-}
-.material-symbols-outlined.md-24 {
-    font-size: 24px;
-}
-.material-symbols-outlined.md-30 {
-    font-size: 30px;
-}
-.material-symbols-outlined.md-36 {
-    font-size: 36px;
-}
-.material-symbols-outlined.md-48 {
-    font-size: 48px;
-}

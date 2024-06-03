@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
 const Intranet = () => {
     return (
@@ -14,9 +15,7 @@ const Intranet = () => {
                 >
                     <div className="flex gap-2 group-hover:gap-4 transition-all items-center justify-center">
                         <p>Główna</p>
-                        <span className="material-symbols-outlined md-18">
-                            arrow_forward
-                        </span>
+                        <ArrowRight size={20} />
                     </div>
                 </Link>
             </div>
