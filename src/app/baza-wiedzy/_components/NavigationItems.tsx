@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { NavigationLink } from './NavigationLink'
 import { NavigationNested } from './NavigationNested'
+import { ChevronRight } from 'lucide-react'
 
 type Props = {
     navigation: []
@@ -31,9 +32,7 @@ export const NavigationItems = (props: Props) => {
                     className="flex items-center gap-1 hover:text-accent"
                 >
                     Menu
-                    <span className="material-symbols-outlined">
-                        chevron_right
-                    </span>
+                    <ChevronRight />
                 </button>
             </div>
             <div

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ChevronRight, Info, CircleAlert, OctagonAlert } from 'lucide-react'
 
 export interface NotificationComponentProps {
     type: 'info' | 'warning' | 'danger'
@@ -19,11 +20,9 @@ const NotificationComponent = (props: NotificationComponentProps) => {
                     className={'flex gap-3 items-center justify-between w-full'}
                 >
                     <div className={'flex gap-4 items-center'}>
-                        <span className="material-symbols-outlined">
-                            {type === 'info' && 'info'}
-                            {type === 'warning' && 'warning'}
-                            {type === 'danger' && 'error'}
-                        </span>
+                        {type === 'info' && <Info />}
+                        {type === 'warning' && <CircleAlert />}
+                        {type === 'danger' && <OctagonAlert />}
                         <p
                             className={
                                 'text-sm md:text-base font-medium line-clamp-1'
@@ -46,9 +45,7 @@ const NotificationComponent = (props: NotificationComponentProps) => {
                                 >
                                     Zobacz więcej
                                 </span>
-                                <span className="material-symbols-outlined md-18">
-                                    arrow_forward
-                                </span>
+                                <ChevronRight />
                             </div>
                         </Link>
                     )}

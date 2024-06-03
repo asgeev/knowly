@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { NavigationLink } from './NavigationLink'
+import { ChevronDown, ChevronRight } from 'lucide-react'
 
 export const NavigationNested = ({ items }: { items: [] }) => {
     const [isExpand, seIsExpand] = useState(false)
@@ -22,13 +23,9 @@ export const NavigationNested = ({ items }: { items: [] }) => {
                             {item.items && item?.items?.length ? (
                                 <>
                                     {isExpand ? (
-                                        <span className="material-symbols-outlined md-24">
-                                            expand_more
-                                        </span>
+                                        <ChevronDown />
                                     ) : (
-                                        <span className="material-symbols-outlined md-24">
-                                            chevron_right
-                                        </span>
+                                        <ChevronRight />
                                     )}
                                 </>
                             ) : null}

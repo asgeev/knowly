@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { SearchButton } from '../atoms/SearchButton'
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
-
+import { Search } from 'lucide-react'
 import {
     InstantSearch,
     SearchBox,
@@ -16,8 +16,9 @@ import HitPhone from '../molecules/meilisearch/HitPhone'
 import HitPage from '../molecules/meilisearch/HitPage'
 import HitsSection from '../molecules/meilisearch/HitSection'
 
-const meilisearchUrl: string = process.env.MEILISEARCH_URL || "http://localhost:7700"
-const melisearchApiKey: string = process.env.MEILISEARCH_API_KEY || "api_key"
+const meilisearchUrl: string =
+    process.env.MEILISEARCH_URL || 'http://localhost:7700'
+const melisearchApiKey: string = process.env.MEILISEARCH_API_KEY || 'api_key'
 
 const { searchClient } = instantMeiliSearch(
     meilisearchUrl, // Host
@@ -56,9 +57,7 @@ export const Meilisearch = () => {
                         indexName="number"
                     >
                         <div className="flex flex-row px-4 items-center gap-4 border-b border-color_2 ">
-                            <span className="material-symbols-outlined md-24 text-textSecondary">
-                                search
-                            </span>
+                            <Search size={20} className="text-textSecondary" />
                             <SearchBox
                                 classNames={{
                                     root: 'w-full ',

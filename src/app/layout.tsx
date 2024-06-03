@@ -27,14 +27,6 @@ export default function RootLayout({
     return (
         <html lang="pl" suppressHydrationWarning>
             <head>
-                <link
-                    href="https://fonts.googleapis.com/icon?family=Material+Icons"
-                    rel="stylesheet"
-                />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-                    rel="stylesheet"
-                />
                 <title>Knowly</title>
             </head>
             <body

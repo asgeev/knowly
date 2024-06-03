@@ -1,3 +1,5 @@
+import { Search } from 'lucide-react'
+
 type Props = {
     openMeilisearch: () => void
 }
@@ -5,7 +7,7 @@ type Props = {
 export const SearchButton = (props: Props) => {
     return (
         <button onClick={props.openMeilisearch}>
-            <span className="material-symbols-outlined md-30">search</span>
+            <Search />
         </button>
     )
 }
