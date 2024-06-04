@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ChevronRight } from 'lucide-react'
 
 export default function NotFound() {
     return (
@@ -20,9 +21,7 @@ export default function NotFound() {
                         <Link href={'/'} className="group text-white">
                             <div className="bg-accent flex gap-2 group-hover:gap-4 transition-all items-center justify-center px-10 py-3 rounded-md w-48">
                                 <p>Główna</p>
-                                <span className="material-symbols-outlined md-18">
-                                    arrow_forward
-                                </span>
+                                <ChevronRight size={18} />
                             </div>
                         </Link>
                     </div>

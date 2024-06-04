@@ -1,4 +1,14 @@
 import { Card } from './_components/Card'
+import {
+    KeyRound,
+    ShieldCheck,
+    Zap,
+    Watch,
+    Award,
+    Waypoints,
+    Mail,
+    Phone,
+} from 'lucide-react'
 
 export default function Docs() {
     return (
@@ -34,40 +44,46 @@ export default function Docs() {
                     pracowników itp. itd..
                 </p>
                 <h2>Co zyskasz 💲</h2>
-                <div className="grid grid-cols-12 gap-4 not-prose">
+                <div className="grid grid-cols-12 gap-4 not-prose container">
                     <Card
                         title={'Szybkość'}
                         subtitle={'Szybsze wyszukiwanie dzięki wyszukiwarce'}
-                        icon={'bolt'}
-                    />
+                    >
+                        <Zap size={30} />
+                    </Card>
                     <Card
                         title="Jednolitość"
                         subtitle="Treść ustalana wspólnie"
-                        icon={'verified'}
-                    />
+                    >
+                        <ShieldCheck size={30} />
+                    </Card>
 
                     <Card
                         title={'Dostępność'}
                         subtitle={'Treść dostępna dla każdego użytkownika'}
-                        icon={'key'}
-                    />
+                    >
+                        <KeyRound size={30} />
+                    </Card>
                     <Card
                         title={'Oszczędność'}
                         subtitle={
                             'Zmniejszenie czasu na poszukiwanie rozwiązania'
                         }
-                        icon={'acute'}
-                    />
+                    >
+                        <Watch size={30} />
+                    </Card>
                     <Card
                         title={'Jakość'}
                         subtitle={'Zwiększenie jakości wykonywanych zadań'}
-                        icon={'show_chart'}
-                    />
+                    >
+                        <Award size={30} />
+                    </Card>
                     <Card
                         title={'Komfort'}
                         subtitle={'Wszystkie sprawy w jednym miejscu'}
-                        icon={'hub'}
-                    />
+                    >
+                        <Waypoints size={30} />
+                    </Card>
                 </div>
                 <h2>Dodawanie treści 📄</h2>
                 <p>
@@ -75,11 +91,11 @@ export default function Docs() {
                     zagadnienia, zapraszamy Cię do kontaktu!
                 </p>
                 <div className="flex gap-5 items-center not-prose pt-2">
-                    <span className="material-symbols-outlined">mail</span>
+                    <Mail />
                     <p>adam.szymanski@nfz-lublin.pl</p>
                 </div>
                 <div className="flex gap-5 items-center not-prose pt-2">
-                    <span className="material-symbols-outlined">phone</span>
+                    <Phone />
                     <p>3964</p>
                 </div>
                 <p>
