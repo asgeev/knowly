@@ -3,6 +3,8 @@ import { changeDate } from '@/helpers/changeDate'
 import Link from 'next/link'
 import { getPost } from '../../actions'
 
+export const revalidate = 30 // revalidate at most every 30 seconds
+
 export default async function Post({ params }: { params: { slug: string } }) {
     const slug = params.slug.toString()
 
