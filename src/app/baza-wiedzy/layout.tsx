@@ -4,7 +4,7 @@ import React from 'react'
 import { ArrowRight } from 'lucide-react'
 
 const DocsLayout = ({ children }: { children: React.ReactNode }) => {
-    const strapiUrl = process.env.STRAPI_URL
+    const strapiPublicUrl = process.env.PUBLIC_STRAPI_URL
 
     return (
         <div className="container mx-auto lg:grid grid-cols-12 gap-8 mt-6 lg:mt-10 max-md:mx-2">
@@ -41,7 +41,7 @@ const DocsLayout = ({ children }: { children: React.ReactNode }) => {
                     </ul>
                     <div className="bg-accent p-2 flex items-center justify-center rounded-lg mt-12 group">
                         <Link
-                            href={`${strapiUrl}/admin`}
+                            href={`${strapiPublicUrl}/admin`}
                             className="flex items-center gap-2 font-medium group-hover:gap-4 transition-all text-white"
                         >
                             Dodaj dokumentację
