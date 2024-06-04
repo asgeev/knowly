@@ -6,7 +6,7 @@ import {
     getPinnedPosts,
 } from './actions'
 
-export const revalidate = 10 // revalidate at most every 10 seconds
+export const revalidate = 30 // revalidate at most every 10 seconds
 
 export default async function Home() {
     const { data: pinnedPosts } = await getPinnedPosts()
