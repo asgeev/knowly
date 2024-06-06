@@ -43,8 +43,6 @@ export default async function Page({ searchParams }: SearchParamsProps) {
 
     return (
         <div className="space-y-5">
-            <h1 className="text-2xl font-semibold ml-1">Najnowsze posty</h1>
-
             {latestPosts &&
                 (!latestPosts?.length ? (
                     <div className="bg-secondary rounded-md h-16 flex items-center justify-center">
