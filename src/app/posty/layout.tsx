@@ -11,7 +11,7 @@ export default async function NewestLayout({
 
     return (
         <div className="container mx-auto">
-            <div className="flex gap-2">
+            <div className="flex gap-2 my-4">
                 <Tag text="Najnowsze" href={`/posty/najnowsze`} />
                 {allCategories.map((category: any) => {
                     const { name, slug } = category?.attributes
@@ -24,7 +24,7 @@ export default async function NewestLayout({
                     )
                 })}
             </div>
-            <div className="lg:grid grid-cols-12 gap-5 mt-5">
+            <div className="lg:grid grid-cols-12 gap-5">
                 <div className="col-span-8 rounded-b-lg">{children}</div>
                 <div className="mt-6 lg:mt-0 col-span-4 flex flex-col gap-10">
                     {allCategories && (
