@@ -3,6 +3,7 @@ import { changeDate } from '@/helpers/changeDate'
 import { getAllCategories, getLatestPosts } from '../actions'
 import { Tag } from '@/components/atoms/Tag'
 import React from 'react'
+import { Post } from '../types'
 
 type Category = {
     id: number
@@ -10,25 +11,6 @@ type Category = {
         name: string
         color: string
         slug: string
-    }
-}
-
-interface Post {
-    id: number
-    attributes: {
-        title: string
-        slug: string
-        publishedAt: string
-        category: {
-            data: Category
-        }
-        cover: {
-            data: {
-                attributes: {
-                    url: string
-                }
-            }
-        }
     }
 }
 

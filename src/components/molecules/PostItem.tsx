@@ -1,22 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { imageLoader } from '@/helpers/imageLoader'
+import { PostItemProps } from '@/app/types'
 
-type Props = {
-    href: string
-    title: string
-    coverUrl: string | undefined | null
-    publishedAt: string | undefined | null
-    category?: string
-    categoryColor?: string
-    className?: string
-}
-
-const apiURL = process.env.STRAPI_URL
-
-export const PostItemBackground = (props: Props) => {
+export const PostItemBackground = (props: PostItemProps) => {
     const {
-        href,
-        title,
+        href = '',
+        title = '',
         coverUrl,
         publishedAt = '',
         category,
@@ -28,11 +18,11 @@ export const PostItemBackground = (props: Props) => {
         <article
             className={`relative bg-secondary sm:rounded-xl group h-64 ${className}`}
         >
-            <Link href={`/post/${href}`}>
+            <Link href={href}>
                 <div className="relative h-full w-full overflow-hidden sm:rounded-xl">
                     {coverUrl && (
                         <Image
-                            src={`${apiURL}${coverUrl}`}
+                            src={imageLoader(coverUrl)}
                             alt={title}
                             fill={true}
                             objectFit="cover"
@@ -48,7 +38,7 @@ export const PostItemBackground = (props: Props) => {
                 <div>
                     {category && (
                         <div
-                            className={` text-white w-fit py-0.5 px-1.5 rounded-md uppercase mb-0.5`}
+                            className={`text-white w-fit py-0.5 px-1.5 rounded-md uppercase mb-0.5`}
                             style={{ backgroundColor: categoryColor }}
                         >
                             <p className="text-xs font-semibold">{category}</p>
@@ -56,7 +46,7 @@ export const PostItemBackground = (props: Props) => {
                     )}
 
                     <Link
-                        href={`/post/${href}`}
+                        href={href}
                         className="font-bold line-clamp-3 sm:text-md mt-2"
                     >
                         {title}
@@ -71,10 +61,10 @@ export const PostItemBackground = (props: Props) => {
     )
 }
 
-export const PostItemRight = (props: Props) => {
+export const PostItemRight = (props: PostItemProps) => {
     const {
-        href,
-        title,
+        href = '',
+        title = '',
         coverUrl,
         publishedAt = '',
         category,
@@ -86,11 +76,11 @@ export const PostItemRight = (props: Props) => {
         <article
             className={`flex bg-secondary gap-2 sm:rounded-xl group h-40 sm:h-[165px] ${className}`}
         >
-            <Link href={`/post/${href}`} className="w-2/5 order-1">
+            <Link href={href} className="w-2/5 order-1">
                 <div className="relative h-full w-full overflow-hidden sm:rounded-e-xl">
                     {coverUrl && (
                         <Image
-                            src={`${apiURL}${coverUrl}`}
+                            src={imageLoader(coverUrl)}
                             alt={title}
                             fill={true}
                             objectFit="cover"
@@ -113,7 +103,7 @@ export const PostItemRight = (props: Props) => {
                     )}
 
                     <Link
-                        href={`/post/${href}`}
+                        href={href}
                         className="font-bold line-clamp-2 md:line-clamp-3 text-textPrimary sm:text-md mt-2"
                     >
                         {title}
@@ -127,10 +117,10 @@ export const PostItemRight = (props: Props) => {
     )
 }
 
-export const PostItemTop = (props: Props) => {
+export const PostItemTop = (props: PostItemProps) => {
     const {
-        href,
-        title,
+        href = '',
+        title = '',
         coverUrl,
         publishedAt = '',
         category,
@@ -141,11 +131,11 @@ export const PostItemTop = (props: Props) => {
         <article
             className={`flex flex-col bg-secondary rounded-md group  sm:h-[350px] w-full  ${className}`}
         >
-            <Link href={`/post/${href}`} className="h-40 md:h-1/2 w-full">
+            <Link href={href} className="h-40 md:h-1/2 w-full">
                 <div className="relative h-full w-full overflow-hidden rounded-t-md aspect-square">
                     {coverUrl && (
                         <Image
-                            src={`${apiURL}${coverUrl}`}
+                            src={imageLoader(coverUrl)}
                             alt={title}
                             fill={true}
                             objectFit="cover"
@@ -168,7 +158,7 @@ export const PostItemTop = (props: Props) => {
                     )}
 
                     <Link
-                        href={`/post/${href}`}
+                        href={href}
                         className="font-bold line-clamp-3 text-textPrimary sm:text-lg mt-2"
                     >
                         {title}
