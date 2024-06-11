@@ -45,7 +45,7 @@ export default async function Home() {
             >
                 {intranetHeadOfficePosts?.length ? (
                     <GridTemplate
-                        template={4}
+                        template={5}
                         posts={intranetHeadOfficePosts}
                     />
                 ) : (
