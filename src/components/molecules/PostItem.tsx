@@ -6,7 +6,7 @@ import { PostItemProps } from '@/app/types'
 export const PostItemBackground = (props: PostItemProps) => {
     const {
         href = '',
-        title,
+        title = '',
         coverUrl,
         publishedAt = '',
         category,
@@ -64,7 +64,7 @@ export const PostItemBackground = (props: PostItemProps) => {
 export const PostItemRight = (props: PostItemProps) => {
     const {
         href = '',
-        title,
+        title = '',
         coverUrl,
         publishedAt = '',
         category,
@@ -120,7 +120,7 @@ export const PostItemRight = (props: PostItemProps) => {
 export const PostItemTop = (props: PostItemProps) => {
     const {
         href = '',
-        title,
+        title = '',
         coverUrl,
         publishedAt = '',
         category,

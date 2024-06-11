@@ -1,11 +1,11 @@
 export type PostItemProps = {
-    href: string
-    title: string
-    coverUrl: string
-    publishedAt: string
-    category?: string
-    categoryColor?: string
-    className?: string
+    href: string | undefined
+    title: string | undefined
+    coverUrl: string | undefined
+    publishedAt: string | undefined | null
+    category?: string | undefined
+    categoryColor?: string | undefined
+    className?: string | undefined
 }
 
 export type PostCategory = {
