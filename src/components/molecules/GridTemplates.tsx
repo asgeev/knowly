@@ -1,8 +1,7 @@
-import { PropsWithChildren } from 'react'
 import { PostItemBackground, PostItemRight, PostItemTop } from './PostItem'
 import { changeDate } from '@/helpers/changeDate'
 import { internalExternalPostHref } from '@/helpers/internalExternalPostHref'
-import { GridProps, Posts } from '@/app/types'
+import { GridProps, Post } from '@/app/types'
 
 export const GridTemplate = (props: GridProps) => {
     const { template, posts } = props
@@ -23,10 +22,8 @@ export const GridTemplate = (props: GridProps) => {
     }
 }
 
-export const GridTemplate1 = (props: PropsWithChildren<Posts>) => {
-    const { posts } = props
-
-    const content = posts?.slice(0, 5).map((post) => {
+export const GridTemplate1 = ({ posts }: { posts: Array<Post> }) => {
+    const content = posts?.slice(0, 5).map((post: Post) => {
         const { category, title, publishedAt, cover } = post?.attributes
 
         return (
@@ -49,9 +46,7 @@ export const GridTemplate1 = (props: PropsWithChildren<Posts>) => {
     )
 }
 
-export const GridTemplate2 = (props: PropsWithChildren<Posts>) => {
-    const { posts } = props
-
+export const GridTemplate2 = ({ posts }: { posts: Array<Post> }) => {
     const post0 = posts[0]?.attributes
     const post1 = posts[1]?.attributes
     const post2 = posts[2]?.attributes
@@ -149,14 +144,11 @@ export const GridTemplate2 = (props: PropsWithChildren<Posts>) => {
                     {contentRight}
                 </div>
             </div>
-            {props.children}
         </>
     )
 }
 
-export const GridTemplate3 = (props: PropsWithChildren<Posts>) => {
-    const { posts } = props
-
+export const GridTemplate3 = ({ posts }: { posts: Array<Post> }) => {
     const post0 = posts[0]?.attributes
 
     const contentRight = posts.slice(1, 4).map((post) => {
@@ -197,9 +189,7 @@ export const GridTemplate3 = (props: PropsWithChildren<Posts>) => {
     )
 }
 
-export const GridTemplate4 = (props: PropsWithChildren<Posts>) => {
-    const { posts } = props
-
+export const GridTemplate4 = ({ posts }: { posts: Array<Post> }) => {
     const content = posts.slice(0, 4).map((post) => {
         const { category, title, publishedAt, cover } = post?.attributes
 
@@ -220,9 +210,7 @@ export const GridTemplate4 = (props: PropsWithChildren<Posts>) => {
     return <div className="grid grid-cols-12 gap-5">{content}</div>
 }
 
-export const GridTemplate5 = (props: PropsWithChildren<Posts>) => {
-    const { posts } = props
-
+export const GridTemplate5 = ({ posts }: { posts: Array<Post> }) => {
     const post0 = posts[0]?.attributes
     const post1 = posts[1]?.attributes
     const post2 = posts[2]?.attributes

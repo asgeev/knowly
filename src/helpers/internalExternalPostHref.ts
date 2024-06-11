@@ -1,8 +1,8 @@
-import { PostAttributes } from '@/components/molecules/GridTemplates'
+import { PostAttributes } from '@/app/types'
 
-export const internalExternalPostHref = (post: PostAttributes) => {
-    if (post?.isExternal) {
-        return post?.href
+export const internalExternalPostHref = (postAttributes: PostAttributes) => {
+    if (postAttributes?.isExternal) {
+        return postAttributes?.href
     }
     return `/post/${post?.slug}`
 }

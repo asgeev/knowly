@@ -1,8 +1,8 @@
 export type PostItemProps = {
-    href: string | undefined
+    href: string
     title: string
-    coverUrl: string | undefined | null
-    publishedAt: string | undefined | null
+    coverUrl: string
+    publishedAt: string
     category?: string
     categoryColor?: string
     className?: string
@@ -40,7 +40,7 @@ export type Post = {
     attributes: PostAttributes
 }
 
-export type Posts = {
+export interface Posts {
     posts: Array<Post>
 }
 
