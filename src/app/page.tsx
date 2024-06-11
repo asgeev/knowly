@@ -5,6 +5,7 @@ import {
     getLatestPosts,
     getPinnedPosts,
 } from './actions'
+import { getInfoCen } from '@/app/scraper'
 
 export const revalidate = 30 // revalidate at most every 10 seconds
 
@@ -12,6 +13,9 @@ export default async function Home() {
     const { data: pinnedPosts } = await getPinnedPosts()
     const { data: latestPosts } = await getLatestPosts()
     const { data: allCategories } = await getAllCategoriesWithPosts()
+    const intranetHeadOfficePosts = await getInfoCen()
+
+    const intranetHeadOfficeUrl = process.env.INTRANET_HEAD_OFFICE || ''
 
     //Sort categories by order
     const categories = allCategories?.sort((a: any, b: any) => {
@@ -29,6 +33,21 @@ export default async function Home() {
             <Section title="Najnowsze" categoryUrl="/posty/najnowsze">
                 {latestPosts?.length ? (
                     <GridTemplate template={2} posts={latestPosts} />
+                ) : (
+                    <p className="text-xl text-textSecondary uppercase font-semibold">
+                        Brak postów
+                    </p>
+                )}
+            </Section>
+            <Section
+                title="Intranet centrali"
+                categoryUrl={intranetHeadOfficeUrl}
+            >
+                {intranetHeadOfficePosts?.length ? (
+                    <GridTemplate
+                        template={4}
+                        posts={intranetHeadOfficePosts}
+                    />
                 ) : (
                     <p className="text-xl text-textSecondary uppercase font-semibold">
                         Brak postów
