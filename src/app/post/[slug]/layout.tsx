@@ -1,9 +1,16 @@
 import { PostItemRight } from '@/components/molecules/PostItem'
 import { changeDate } from '@/helpers/changeDate'
-import { getAllCategories, getLatestPosts } from '../actions'
+import {
+    fetchPostsByCategory,
+    getAllCategories,
+    getLatestPosts,
+    getPost,
+} from '@/app/actions'
 import { Tag } from '@/components/atoms/Tag'
 import React from 'react'
-import { Post } from '../types'
+import { Post } from '@/app/types'
+import { Section } from '@/components/molecules/Section'
+import { GridTemplate } from '../../../components/molecules/GridTemplates'
 
 type Category = {
     id: number
@@ -16,13 +23,18 @@ type Category = {
 
 export default async function PostLayout({
     children,
+    params,
 }: {
     children: React.ReactNode
+    params: { slug: string }
 }) {
+    const { data: postContent } = await getPost(params.slug)
+    const category: Category = postContent?.attributes?.category?.data
     const { data: newestsPosts } = await getLatestPosts()
     const { data: allCategories } = await getAllCategories()
-
-    console.log(allCategories)
+    let { data: postsByCategory } = await fetchPostsByCategory(
+        category?.attributes?.slug
+    )
 
     return (
         <div className="container mx-auto">
@@ -38,25 +50,30 @@ export default async function PostLayout({
                             </h1>
                             <div className="space-y-5">
                                 {newestsPosts?.slice(0, 3).map((post: Post) => {
+                                    const {
+                                        title,
+                                        slug,
+                                        publishedAt,
+                                        category,
+                                        cover,
+                                    } = post?.attributes
                                     return (
                                         <PostItemRight
                                             key={post.id}
-                                            title={post?.attributes?.title}
-                                            href={post?.attributes?.slug}
+                                            title={title}
+                                            href={slug}
                                             publishedAt={changeDate(
-                                                post?.attributes?.publishedAt
+                                                publishedAt
                                             )}
                                             category={
-                                                post?.attributes?.category?.data
-                                                    ?.attributes?.name
+                                                category?.data?.attributes?.name
                                             }
                                             categoryColor={
-                                                post?.attributes?.category?.data
-                                                    ?.attributes?.color
+                                                category?.data?.attributes
+                                                    ?.color
                                             }
                                             coverUrl={
-                                                post?.attributes?.cover?.data
-                                                    ?.attributes?.url
+                                                cover?.data?.attributes?.url
                                             }
                                             className="col-span-12 md:col-span-6"
                                         />
@@ -86,6 +103,15 @@ export default async function PostLayout({
                     )}
                 </div>
             </div>
+            {postsByCategory && (
+                <Section
+                    title={'Więcej w tej kategorii'}
+                    categoryUrl={`/posty/kategoria/${category?.attributes?.slug}`}
+                    color={category?.attributes?.color}
+                >
+                    <GridTemplate template={4} posts={postsByCategory} />
+                </Section>
+            )}
         </div>
     )
 }

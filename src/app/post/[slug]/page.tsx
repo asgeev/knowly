@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import { changeDate } from '@/helpers/changeDate'
 import Link from 'next/link'
-import { getPost } from '../../actions'
+import { getPost } from '@/app/actions'
+import { imageLoader } from '@/helpers/imageLoader'
 
 export const revalidate = 30 // revalidate at most every 30 seconds
 
@@ -14,10 +15,9 @@ export default async function Post({ params }: { params: { slug: string } }) {
     const { title, content, publishedAt, category, cover } =
         postContent?.attributes
 
-    const strapiUrl: string | undefined = process.env.STRAPI_URL
     const localDate: string | null | undefined =
         changeDate(publishedAt)?.toString()
-    const coverUrl: string = `${strapiUrl}${cover?.data?.attributes?.url}`
+    const coverUrl: string = cover?.data?.attributes?.url
     const categoryData = category?.data?.attributes
 
     return (
@@ -26,7 +26,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
                 <div className="space-y-6">
                     <div className="not-prose relative overflow-hidden w-full h-64 md:h-[420px] rounded-lg">
                         <Image
-                            src={coverUrl}
+                            src={imageLoader(coverUrl)}
                             alt={'asfafs'}
                             fill
                             objectFit="cover"

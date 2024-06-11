@@ -13,6 +13,7 @@ export type PostCategory = {
         attributes: {
             color: string
             name: string
+            slug?: string
         }
     }
 }
