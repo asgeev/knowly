@@ -74,11 +74,9 @@ export const getLatestPosts = async (currentPage?: string) => {
 
 export const fetchPostsByCategory = async (
     categorySlug: string,
-    currentPage: string
+    currentPage?: string
 ) => {
-    const params = {
-        'pagination[page]': currentPage,
-        'pagination[pageSize]': pageSize,
+    let params = {
         'sort[0]': 'publishedAt:desc',
         'fields[0]': 'title',
         'fields[1]': 'slug',
@@ -86,6 +84,19 @@ export const fetchPostsByCategory = async (
         'populate[0]': 'category,cover',
         'filters[$and][0][category][slug][$eq]': categorySlug,
     }
+
+    const paramsWithPagination = {
+        'pagination[page]': currentPage,
+        'pagination[pageSize]': pageSize,
+    }
+
+    if (currentPage) {
+        params = {
+            ...params,
+            ...paramsWithPagination,
+        }
+    }
+
     const response = await fetchData(`/api/posts`, params)
 
     return response?.json()
