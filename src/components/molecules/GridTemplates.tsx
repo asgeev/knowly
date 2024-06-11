@@ -222,7 +222,7 @@ export const GridTemplate5 = ({ posts }: { posts: Array<Post> }) => {
             <PostItemTop
                 key={post?.id}
                 title={title}
-                publishedAt={publishedAt}
+                publishedAt={changeDate(publishedAt)}
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
                 href={internalExternalPostHref(post?.attributes)}
