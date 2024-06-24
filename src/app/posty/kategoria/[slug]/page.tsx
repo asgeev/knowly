@@ -65,7 +65,7 @@ export default async function Page({
                 return (
                     <PostItemRight
                         key={categoryPost.id}
-                        href={`${slug}`}
+                        href={`/post/${slug}`}
                         title={title}
                         coverUrl={coverUrl}
                         publishedAt={changeDate(publishedAt)}

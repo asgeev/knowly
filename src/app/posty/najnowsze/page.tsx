@@ -62,7 +62,7 @@ export default async function Page({ searchParams }: SearchParamsProps) {
                     return (
                         <PostItemRight
                             key={latestPost.id}
-                            href={`${slug}`}
+                            href={`/post/${slug}`}
                             title={title}
                             coverUrl={coverUrl}
                             publishedAt={changeDate(publishedAt)?.toString()}
