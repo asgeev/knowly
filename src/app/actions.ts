@@ -22,7 +22,7 @@ export const getPost = async (slug: string) => {
         'fields[0]': 'title',
         'fields[1]': 'content',
         'fields[2]': 'publishedAt',
-        'populate[0]': 'category,cover',
+        'populate[0]': 'category,cover,embedPdf',
     }
 
     const response = await fetchData(`/api/slugify/slugs/post/${slug}`, params)
