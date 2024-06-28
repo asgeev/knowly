@@ -6,6 +6,7 @@ import { ThemeProvider } from 'next-themes'
 import Notifications from '@/components/organisms/Notifications'
 import NotificationBar from '@/components/organisms/NotificationBar'
 import React, { Suspense } from 'react'
+import NextTopLoader from 'nextjs-toploader'
 
 export const metadata = {
     title: 'Knowly',
@@ -32,6 +33,11 @@ export default function RootLayout({
             <body
                 className={`${roboto.className} bg-primary transition duration-600 dark:bg-primary`}
             >
+                <NextTopLoader
+                    color="#fed300"
+                    showSpinner={false}
+                    shadow={false}
+                />
                 <ThemeProvider attribute="class">
                     <Suspense fallback={null}>
                         <NotificationBar />
