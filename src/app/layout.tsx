@@ -1,11 +1,11 @@
 import { Roboto } from 'next/font/google'
-import Footer from '../components/organisms/Footer'
-import Header from '../components/organisms/Header'
+import Footer from '@/components/organisms/Footer'
+import Header from '@/components/organisms/Header'
 import './globals.css'
 import { ThemeProvider } from 'next-themes'
 import Notifications from '@/components/organisms/Notifications'
 import NotificationBar from '@/components/organisms/NotificationBar'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 export const metadata = {
     title: 'Knowly',
@@ -33,9 +33,13 @@ export default function RootLayout({
                 className={`${roboto.className} bg-primary transition duration-600 dark:bg-primary`}
             >
                 <ThemeProvider attribute="class">
-                    <NotificationBar />
+                    <Suspense fallback={null}>
+                        <NotificationBar />
+                    </Suspense>
                     <Header />
-                    <Notifications />
+                    <Suspense fallback={null}>
+                        <Notifications />
+                    </Suspense>
                     <main className="pb-6">{children}</main>
                     <Footer />
                 </ThemeProvider>
