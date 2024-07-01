@@ -34,7 +34,7 @@ export default function RootLayout({
                 className={`${roboto.className} bg-primary transition duration-600 dark:bg-primary`}
             >
                 <NextTopLoader
-                    color="#fed300"
+                    color="white"
                     showSpinner={false}
                     shadow={false}
                 />
