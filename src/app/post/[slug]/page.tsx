@@ -3,6 +3,10 @@ import { changeDate } from '@/helpers/changeDate'
 import Link from 'next/link'
 import { getPost } from '@/app/actions'
 import { imageLoader } from '@/helpers/imageLoader'
+import AllCategoriesSkeleton from './_components/AllCategoriesSkeleton'
+import AllCategories from './_components/AllCategories'
+import { Suspense } from 'react'
+import NewestPosts from './_components/LatestPosts'
 
 export const revalidate = 30 // revalidate at most every 30 seconds
 
@@ -29,7 +33,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
     return (
         <>
             {postContent && (
-                <div className="space-y-6">
+                <div className="space-y-6 bg-secondary rounded-lg">
                     <div className="not-prose relative overflow-hidden w-full h-64 md:h-[420px] rounded-lg">
                         <Image
                             src={imageLoader(cover?.url)}

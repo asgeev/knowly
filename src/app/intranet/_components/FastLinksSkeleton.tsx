@@ -1,9 +1,9 @@
+import { TagSkeleton } from '@/components/atoms/TagSkeleton'
+
 const renderLinksSkeleton = () => {
     const links = []
     for (let index = 0; index < 5; index++) {
-        links.push(
-            <div className="h-8 w-14 rounded-md bg-neutral-200 dark:bg-neutral-800 animate-pulse"></div>
-        )
+        links.push(<TagSkeleton key={index} />)
     }
     return links
 }
