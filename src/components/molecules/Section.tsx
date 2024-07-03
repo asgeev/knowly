@@ -12,8 +12,8 @@ export const Section = (props: PropsWithChildren<Props>) => {
     console.log(color)
 
     return (
-        <section>
-            <div className="container space-y-6 pt-12">
+        <section className="mb-12">
+            <div className="container space-y-6">
                 <div className="flex mb-4 items-center gap-6">
                     <h1 className="font-bold text-2xl md:text-4xl mb-2">
                         {title}

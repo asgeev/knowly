@@ -1,3 +1,5 @@
+'use client'
+
 import { PropsWithChildren } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -15,10 +17,10 @@ interface NavElement {
     items: []
 }
 
-const RecursiveMenu = (props: PropsWithChildren<Props>) => {
+export default function RecursiveMenu(props: PropsWithChildren<Props>) {
     const pathname = usePathname()
     return (
-        <div className="group ">
+        <>
             {props.children}
             <div className="md:absolute">
                 <div className="left-0 top-0 right-0 md:relative mt-4 md:mt-10 md:shadow-2xl max-md:ml-1 flex flex-col flex-wrap gap-3 md:gap-5 md:rounded-lg md:hidden group-hover:flex md:bg-secondary md:px-6 md:py-8 font-medium">
@@ -64,8 +66,7 @@ const RecursiveMenu = (props: PropsWithChildren<Props>) => {
                     })}
                 </div>
             </div>
-        </div>
+        </>
     )
 }
-
-export default RecursiveMenu
+RecursiveMenu

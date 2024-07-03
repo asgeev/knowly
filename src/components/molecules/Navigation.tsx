@@ -1,38 +1,38 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import RecursiveMenu from './NavigationLinks'
+import React, { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { Meilisearch } from '../organisms/Meilisearch'
+import { Meilisearch } from '@/components/organisms/Meilisearch'
 import { X, Menu } from 'lucide-react'
+
 interface Props {
-    navigation: []
+    navigation?: []
+    children: React.ReactNode
 }
 
 const Navigation = (props: Props) => {
     const pathname = usePathname()
 
-    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+    const [isMenuActive, setIsMenuActive] = useState<boolean>(false)
 
     const openMenu = () => {
-        setIsMenuOpen(true)
+        setIsMenuActive(true)
     }
 
     const closeMenu = () => {
-        setIsMenuOpen(false)
+        setIsMenuActive(false)
     }
 
     useEffect(() => {
         closeMenu()
     }, [pathname])
 
-    //TODO: change function for close menu when nav link clicked
     return (
         <nav className="flex md:gap-x-10 md:w-full justify-between z-50">
             <div
-                data-ismenuopen={`${isMenuOpen}`}
-                className={`max-md:data-[ismenuopen=false]:hidden max-md:data-[ismenuopen=true]:fixed max-md:data-[ismenuopen=true]:bg-primary md:flex items-center top-0 left-0 max-md:p-16 max-md:w-full max-md:h-full z-50`}
+                data-ismenuactive={`${isMenuActive}`}
+                className={`max-md:data-[ismenuactive=false]:hidden max-md:data-[ismenuactive=true]:fixed max-md:data-[ismenuactive=true]:bg-primary md:flex items-center top-0 left-0 max-md:p-16 max-md:w-full max-md:h-full z-50`}
             >
                 <button onClick={closeMenu} className="float-end md:hidden">
                     <X />
@@ -57,22 +57,7 @@ const Navigation = (props: Props) => {
                                 Baza wiedzy
                             </Link>
                         </li>
-
-                        <li>
-                            <RecursiveMenu
-                                path="/intranet"
-                                navigation={props.navigation}
-                                isMenuOpen={isMenuOpen}
-                            >
-                                <Link
-                                    className="hover:text-accent md:text-textSecondary"
-                                    href={'/intranet'}
-                                    onClick={closeMenu}
-                                >
-                                    <p>Intranet</p>
-                                </Link>
-                            </RecursiveMenu>
-                        </li>
+                        {props.children}
                     </ul>
                 </div>
             </div>

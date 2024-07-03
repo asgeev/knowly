@@ -29,7 +29,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
     return (
         <>
             {postContent && (
-                <div className="space-y-6">
+                <div className="space-y-6 bg-secondary rounded-lg">
                     <div className="not-prose relative overflow-hidden w-full h-64 md:h-[420px] rounded-lg">
                         <Image
                             src={imageLoader(cover?.url)}

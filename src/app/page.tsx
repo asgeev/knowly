@@ -1,83 +1,28 @@
-import { GridTemplate } from '@/components/molecules/GridTemplates'
-import { Section } from '@/components/molecules/Section'
-import {
-    getAllCategoriesWithPosts,
-    getLatestPosts,
-    getPinnedPosts,
-} from './actions'
-import { getInfoCen } from '@/app/scraper'
+import { Suspense } from 'react'
+import PinnedPosts from '@/components/organisms/PinnedPosts'
+import { SectionSkeleton } from '@/components/molecules/SectionSkeleton'
+import LatestPosts from '@/components/organisms/LatestPosts'
+import IntranetHeadOfficePosts from '@/components/organisms/IntranetHeadOfficePosts'
+import CategoryPosts from '@/components/organisms/CategoryPosts'
 
 export const revalidate = 30 // revalidate at most every 10 seconds
 
-export default async function Home() {
-    const { data: pinnedPosts } = await getPinnedPosts()
-    const { data: latestPosts } = await getLatestPosts()
-    const { data: allCategories } = await getAllCategoriesWithPosts()
-    const intranetHeadOfficePosts = await getInfoCen()
-
-    const intranetHeadOfficeUrl = process.env.INTRANET_HEAD_OFFICE || ''
-
-    //Sort categories by order
-    const categories = allCategories?.sort((a: any, b: any) => {
-        return a?.attributes?.order - b?.attributes?.order
-    })
-
+export default function Home() {
     return (
-        <>
-            {pinnedPosts?.length && (
-                <Section title="Przypięte">
-                    <GridTemplate template={1} posts={pinnedPosts} />
-                </Section>
-            )}
-
-            <Section title="Najnowsze" categoryUrl="/posty/najnowsze">
-                {latestPosts?.length ? (
-                    <GridTemplate template={2} posts={latestPosts} />
-                ) : (
-                    <p className="text-xl text-textSecondary uppercase font-semibold">
-                        Brak postów
-                    </p>
-                )}
-            </Section>
-            <Section
-                title="Intranet centrali"
-                categoryUrl={intranetHeadOfficeUrl}
-            >
-                {intranetHeadOfficePosts?.length ? (
-                    <GridTemplate
-                        template={5}
-                        posts={intranetHeadOfficePosts}
-                    />
-                ) : (
-                    <p className="text-xl text-textSecondary uppercase font-semibold">
-                        Brak postów
-                    </p>
-                )}
-            </Section>
-            {/* Map all categories from backend */}
-            {categories?.map((category: any) => {
-                const { name, slug, posts, color, grid } = category?.attributes
-
-                return (
-                    <Section
-                        key={category?.id}
-                        title={name}
-                        color={color}
-                        categoryUrl={`/posty/kategoria/${slug}`}
-                    >
-                        {posts?.data?.length ? (
-                            <GridTemplate
-                                template={grid?.grid_template}
-                                posts={posts?.data}
-                            />
-                        ) : (
-                            <p className="text-xl text-textSecondary uppercase font-semibold">
-                                Brak postów
-                            </p>
-                        )}
-                    </Section>
-                )
-            })}
-        </>
+        <div className="mt-10">
+            <Suspense fallback={<SectionSkeleton />}>
+                <PinnedPosts />
+            </Suspense>
+            <Suspense fallback={<SectionSkeleton />}>
+                <LatestPosts />
+            </Suspense>
+            <Suspense fallback={<SectionSkeleton />}>
+                <IntranetHeadOfficePosts />
+            </Suspense>
+            {/* All categories from backend */}
+            <Suspense fallback={<SectionSkeleton />}>
+                <CategoryPosts />
+            </Suspense>
+        </div>
     )
 }

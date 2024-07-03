@@ -1,9 +1,9 @@
 import Image from 'next/image'
-import Navigation from '../molecules/Navigation'
-import { getIntranetNavigation } from '@/app/actions'
+import Navigation from '@/components/molecules/Navigation'
+import IntranetNavigation from '@/components/molecules/IntranetNavigation'
+import { Suspense } from 'react'
 
-const Header = async () => {
-    const intranetNavigation = await getIntranetNavigation()
+export default function Header() {
     return (
         <header className="sticky top-0 z-50 bg-secondary">
             <div className="container px-1 md:px-0 py-4 h-full flex items-center gap-20 justify-between">
@@ -15,12 +15,14 @@ const Header = async () => {
                         knowly
                     </span>
                 </div>
-                {intranetNavigation && (
-                    <Navigation navigation={intranetNavigation} />
-                )}
+
+                <Navigation>
+                    {/* Additional menus from api. To add additional menu create server component similar to IntranetNavigation and put it in suspense component for better performance */}
+                    <Suspense fallback={null}>
+                        <IntranetNavigation />
+                    </Suspense>
+                </Navigation>
             </div>
         </header>
     )
 }
-
-export default Header

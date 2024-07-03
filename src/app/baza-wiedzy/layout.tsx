@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Navigation from './_components/Navigation'
-import React from 'react'
+import React, { Suspense } from 'react'
 import { ArrowRight } from 'lucide-react'
 
 const DocsLayout = ({ children }: { children: React.ReactNode }) => {
@@ -9,7 +9,9 @@ const DocsLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="container mx-auto lg:grid grid-cols-12 gap-8 mt-6 lg:mt-10 max-md:mx-2">
             <div className=" col-span-3 xl:col-span-2 lg:sticky top-[120px] self-start h-auto">
-                <Navigation />
+                <Suspense fallback={null}>
+                    <Navigation />
+                </Suspense>
             </div>
             <div className="col-span-9 xl:col-span-7 max-lg:mt-16">
                 {children}
