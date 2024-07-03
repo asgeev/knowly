@@ -1,22 +1,21 @@
-
-version: '3.9'
 services:
-  knowly:
-    container_name: knowly-frontend
-    build: .
-    image: knowly-frontend:v2.3.0
-    env_file: .env
-    environment:
-      MEILISEARCH_URL: ${MEILISEARCH_URL}
-      MEILISEARCH_API_KEY: ${MEILISEARCH_API_KEY}
-      STRAPI_URL: ${STRAPI_URL}
-    networks:
-      - traefik_web
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.knowly-frontend.rule=Host(`${PUBLIC_URL}`)
-      - traefik.http.routers.knowly-frontend.tls=true
+    knowly:
+        container_name: knowly-frontend
+        build: .
+        image: knowly-frontend:v2.4.0
+        env_file: .env
+        restart: always
+        environment:
+            MEILISEARCH_URL: ${MEILISEARCH_URL}
+            MEILISEARCH_API_KEY: ${MEILISEARCH_API_KEY}
+            STRAPI_URL: ${STRAPI_URL}
+        networks:
+            - traefik_web
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.knowly-frontend.rule=Host(`${PUBLIC_URL}`)
+            - traefik.http.routers.knowly-frontend.tls=true
 networks:
-  traefik_web:
-    name: traefik_web
-    external: true
+    traefik_web:
+        name: traefik_web
+        external: true
