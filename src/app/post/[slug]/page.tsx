@@ -3,10 +3,6 @@ import { changeDate } from '@/helpers/changeDate'
 import Link from 'next/link'
 import { getPost } from '@/app/actions'
 import { imageLoader } from '@/helpers/imageLoader'
-import AllCategoriesSkeleton from './_components/AllCategoriesSkeleton'
-import AllCategories from './_components/AllCategories'
-import { Suspense } from 'react'
-import NewestPosts from './_components/LatestPosts'
 
 export const revalidate = 30 // revalidate at most every 30 seconds
 
