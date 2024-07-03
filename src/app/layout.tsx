@@ -1,4 +1,4 @@
-import { Roboto } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import Footer from '@/components/organisms/Footer'
 import Header from '@/components/organisms/Header'
 import './globals.css'
@@ -13,10 +13,9 @@ export const metadata = {
     description: 'Portal knowly',
 }
 
-const roboto = Roboto({
-    weight: ['100', '300', '400', '500', '700', '900'],
-    variable: '--font-roboto',
+const inter = Inter({
     subsets: ['latin'],
+    variable: '--font-inter',
     display: 'swap',
 })
 
@@ -31,7 +30,7 @@ export default function RootLayout({
                 <title>Knowly</title>
             </head>
             <body
-                className={`${roboto.className} bg-primary transition duration-600 dark:bg-primary`}
+                className={`${inter.className} bg-primary transition duration-600 dark:bg-primary`}
             >
                 <NextTopLoader
                     color="white"
