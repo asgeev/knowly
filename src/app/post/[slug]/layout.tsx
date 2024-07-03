@@ -2,10 +2,10 @@ import React, { Suspense } from 'react'
 import MoreInCategory from './_components/MoreInCategory'
 import { Section } from '@/components/molecules/Section'
 import MoreInCategorySkeleton from './_components/MoreInCategorySkeleton'
-import AllCategoriesSkeleton from './_components/AllCategoriesSkeleton'
-import AllCategories from './_components/AllCategories'
 import LatestPostsSkeleton from './_components/LatestPostsSkeleton'
 import LatestPosts from './_components/LatestPosts'
+import AllCategoriesTags from '@/components/molecules/AllCategoriesTags'
+import AllCategoriesTagsSkeleton from '@/components/molecules/AllCategoriesTagsSkeleton'
 
 export default function PostLayout({
     children,
@@ -31,8 +31,8 @@ export default function PostLayout({
                         <h1 className="text-lg font-bold mb-2">
                             Wszystkie kategorie
                         </h1>
-                        <Suspense fallback={<AllCategoriesSkeleton />}>
-                            <AllCategories />
+                        <Suspense fallback={<AllCategoriesTagsSkeleton />}>
+                            <AllCategoriesTags />
                         </Suspense>
                     </div>
                 </div>

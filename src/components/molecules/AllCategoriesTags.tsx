@@ -10,7 +10,7 @@ type Category = {
     }
 }
 
-export default async function AllCategories() {
+export default async function AllCategoriesTags() {
     const { data: allCategories } = await getAllCategories()
 
     return (
