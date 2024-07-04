@@ -2,8 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { imageLoader } from '@/helpers/imageLoader'
 import { PostItemProps } from '@/app/types'
+import getBase64 from '@/lib/getBase64'
 
-export const PostItemBackground = (props: PostItemProps) => {
+export const PostItemBackground = async (props: PostItemProps) => {
     const {
         href = '',
         title = '',
@@ -13,7 +14,7 @@ export const PostItemBackground = (props: PostItemProps) => {
         categoryColor,
         className = '',
     } = props
-
+    const blurImage = await getBase64(imageLoader(coverUrl))
     return (
         <article
             className={`relative bg-secondary sm:rounded-xl group h-64 ${className}`}
@@ -28,6 +29,8 @@ export const PostItemBackground = (props: PostItemProps) => {
                             objectFit="cover"
                             objectPosition="center center"
                             className="group-hover:scale-110 transition-transform duration-500"
+                            placeholder="blur"
+                            blurDataURL={blurImage}
                         />
                     )}
 
@@ -61,7 +64,7 @@ export const PostItemBackground = (props: PostItemProps) => {
     )
 }
 
-export const PostItemRight = (props: PostItemProps) => {
+export const PostItemRight = async (props: PostItemProps) => {
     const {
         href = '',
         title = '',
@@ -71,6 +74,7 @@ export const PostItemRight = (props: PostItemProps) => {
         categoryColor,
         className = '',
     } = props
+    const blurImage = await getBase64(imageLoader(coverUrl))
 
     return (
         <article
@@ -86,6 +90,8 @@ export const PostItemRight = (props: PostItemProps) => {
                             objectFit="cover"
                             objectPosition="center center"
                             className="group-hover:scale-110 transition-transform duration-500"
+                            placeholder="blur"
+                            blurDataURL={blurImage}
                         />
                     )}
                     <div className="sm:absolute top-0 left-0 right-0 bottom-0 bg-black opacity-20 group-hover:opacity-0 transition-opacity duration-500"></div>
@@ -117,7 +123,7 @@ export const PostItemRight = (props: PostItemProps) => {
     )
 }
 
-export const PostItemTop = (props: PostItemProps) => {
+export const PostItemTop = async (props: PostItemProps) => {
     const {
         href = '',
         title = '',
@@ -127,6 +133,8 @@ export const PostItemTop = (props: PostItemProps) => {
         categoryColor,
         className = '',
     } = props
+    const blurImage = await getBase64(imageLoader(coverUrl))
+
     return (
         <article
             className={`flex flex-col bg-secondary rounded-md group  sm:h-[350px] w-full  ${className}`}
@@ -141,6 +149,8 @@ export const PostItemTop = (props: PostItemProps) => {
                             objectFit="cover"
                             objectPosition="center center"
                             className="group-hover:scale-110 transition-transform duration-500"
+                            placeholder="blur"
+                            blurDataURL={blurImage}
                         />
                     )}
                     <div className="sm:absolute top-0 left-0 right-0 bottom-0 bg-black opacity-20 group-hover:opacity-0 transition-opacity duration-500"></div>

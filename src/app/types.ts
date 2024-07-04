@@ -22,6 +22,20 @@ export type PostCover = {
     data: {
         attributes: {
             url: string
+            formats?: {
+                thumbnail?: {
+                    url: string
+                }
+                large?: {
+                    url: string
+                }
+                medium?: {
+                    url: string
+                }
+                small?: {
+                    url: string
+                }
+            }
         }
     }
 }

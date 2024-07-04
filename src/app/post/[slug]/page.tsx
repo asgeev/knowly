@@ -3,11 +3,13 @@ import { changeDate } from '@/helpers/changeDate'
 import Link from 'next/link'
 import { getPost } from '@/app/actions'
 import { imageLoader } from '@/helpers/imageLoader'
+import getBase64 from '@/lib/getBase64'
+import getExistCoverUrl from '@/lib/getExistCoverUrl'
 
 export const revalidate = 30 // revalidate at most every 30 seconds
 
 export default async function Post({ params }: { params: { slug: string } }) {
-    const slug = params.slug.toString()
+    const slug = params.slug
     const strapiUrl = process.env.PUBLIC_STRAPI_URL
 
     //Fetch post data
@@ -22,9 +24,15 @@ export default async function Post({ params }: { params: { slug: string } }) {
         embedPdf,
     } = postContent?.attributes
 
-    const cover = coverData?.data?.attributes
     const category = categoryData?.data?.attributes
     const pdf = embedPdf?.data?.attributes
+
+    //Images
+    const cover = coverData?.data?.attributes
+    const thumbnail = getExistCoverUrl(cover, 'thumbnail')
+    const coverMedium = getExistCoverUrl(cover)
+
+    const blurImage = await getBase64(imageLoader(thumbnail))
 
     return (
         <>
@@ -32,11 +40,12 @@ export default async function Post({ params }: { params: { slug: string } }) {
                 <div className="space-y-6 bg-secondary rounded-lg">
                     <div className="not-prose relative overflow-hidden w-full h-64 md:h-[420px] rounded-lg">
                         <Image
-                            src={imageLoader(cover?.url)}
+                            src={imageLoader(coverMedium)}
                             alt={cover?.alternativeText}
                             fill
-                            quality={70}
                             style={{ objectFit: 'cover' }}
+                            placeholder="blur"
+                            blurDataURL={blurImage}
                         />
                     </div>
                     <article className="prose max-w-none lg:prose-xl prose-img:rounded-xl dark:prose-invert prose-gray px-6">
