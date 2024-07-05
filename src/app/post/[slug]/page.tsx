@@ -14,24 +14,20 @@ export default async function Post({ params }: { params: { slug: string } }) {
 
     //Fetch post data
     const { data: postContent } = await getPost(slug)
-
     const {
         title,
         content,
         publishedAt,
         category: categoryData,
-        cover: coverData,
+        cover,
         embedPdf,
     } = postContent?.attributes
-
     const category = categoryData?.data?.attributes
     const pdf = embedPdf?.data?.attributes
 
     //Images
-    const cover = coverData?.data?.attributes
     const thumbnail = getExistCoverUrl(cover, 'thumbnail')
-    const coverMedium = getExistCoverUrl(cover)
-
+    const coverLarge = getExistCoverUrl(cover, 'large')
     const blurImage = await getBase64(imageLoader(thumbnail))
 
     return (
@@ -40,7 +36,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
                 <div className="space-y-6 bg-secondary rounded-lg">
                     <div className="not-prose relative overflow-hidden w-full h-64 md:h-[420px] rounded-lg">
                         <Image
-                            src={imageLoader(coverMedium)}
+                            src={imageLoader(coverLarge)}
                             alt={cover?.alternativeText}
                             fill
                             style={{ objectFit: 'cover' }}

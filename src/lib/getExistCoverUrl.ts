@@ -1,48 +1,32 @@
-interface CoverObject {
-    url: string
-    formats: {
-        thumbnail?: {
-            url: string
-        }
-        large?: {
-            url: string
-        }
-        medium?: {
-            url: string
-        }
-        small?: {
-            url: string
-        }
-    }
-}
+import { PostCover } from '@/app/types'
 
 //Try get image from cover object
 export default function getExistCoverUrl(
-    coverObject: CoverObject | undefined,
+    coverObject: PostCover | undefined,
     size?: 'thumbnail' | 'large' | 'medium' | 'small'
 ) {
     //If size not exists try get larger image
-    const formats = coverObject?.formats
+    const coverAttr = coverObject?.data?.attributes
+    const formats = coverAttr?.formats
     if (formats) {
-        let exist = false
+        let urlExists = false
         if (size === 'thumbnail') {
             if (formats.thumbnail) return formats.thumbnail.url
-            else exist = true
+            else urlExists = true
         }
-        if (size === 'small' || exist) {
+        if (size === 'small' || urlExists) {
             if (formats.small) return formats.small.url
-            else exist = true
+            else urlExists = true
         }
-
-        if (size === 'medium' || exist) {
+        if (size === 'medium' || urlExists) {
             if (formats.medium) return formats.medium.url
-            else exist = true
+            else urlExists = true
         }
-        if (size === 'large' || exist) {
+        if (size === 'large' || urlExists) {
             if (formats.large) return formats.large.url
         }
-        return coverObject?.url
+        return coverAttr?.url
     } else {
-        return coverObject?.url
+        return coverAttr?.url
     }
 }

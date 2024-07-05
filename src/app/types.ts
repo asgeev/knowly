@@ -6,6 +6,7 @@ export type PostItemProps = {
     category?: string | undefined
     categoryColor?: string | undefined
     className?: string | undefined
+    blurData?: string
 }
 
 export type PostCategory = {
@@ -61,4 +62,20 @@ export interface Posts {
 
 export interface GridProps extends Posts {
     template: number
+}
+
+export type TemplateObjVariants = 'background' | 'top' | 'right'
+
+export interface TemplateObj {
+    grid: string
+    elements: Array<{
+        grid: string
+        component: TemplateObjVariants
+    }>
+}
+
+export interface SearchParamsProps {
+    searchParams?: {
+        page?: string
+    }
 }
