@@ -78,8 +78,7 @@ export const PostItemBackground = (props: PostItemProps) => {
                             src={imageLoader(coverUrl)}
                             alt={title}
                             fill={true}
-                            objectFit="cover"
-                            objectPosition="center center"
+                            style={{ objectFit: 'cover' }}
                             className="group-hover:scale-110 transition-transform duration-500"
                             placeholder={blurData ? 'blur' : 'empty'}
                             blurDataURL={blurData}
@@ -139,8 +138,7 @@ const PostItemRight = (props: PostItemProps) => {
                             src={imageLoader(coverUrl)}
                             alt={title}
                             fill={true}
-                            objectFit="cover"
-                            objectPosition="center center"
+                            style={{ objectFit: 'cover' }}
                             className="group-hover:scale-110 transition-transform duration-500"
                             placeholder={blurData ? 'blur' : 'empty'}
                             blurDataURL={blurData}
@@ -198,8 +196,7 @@ const PostItemTop = (props: PostItemProps) => {
                             src={imageLoader(coverUrl)}
                             alt={title}
                             fill={true}
-                            objectFit="cover"
-                            objectPosition="center center"
+                            style={{ objectFit: 'cover' }}
                             className="group-hover:scale-110 transition-transform duration-500"
                             placeholder={blurData ? 'blur' : 'empty'}
                             blurDataURL={blurData}

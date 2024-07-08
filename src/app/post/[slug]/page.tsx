@@ -40,7 +40,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
                             alt={cover?.alternativeText}
                             fill
                             style={{ objectFit: 'cover' }}
-                            placeholder="blur"
+                            placeholder={blurImage ? 'blur' : 'empty'}
                             blurDataURL={blurImage}
                         />
                     </div>

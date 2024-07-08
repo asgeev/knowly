@@ -10,7 +10,11 @@ export default async function LatestPosts() {
             {newestsPosts?.slice(0, 3).map((post: Post) => {
                 return (
                     <>
-                        <DynamicPostItem variant={'right'} data={post} />
+                        <DynamicPostItem
+                            key={post?.id}
+                            variant={'right'}
+                            data={post}
+                        />
                     </>
                 )
             })}
