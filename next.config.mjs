@@ -1,17 +1,19 @@
+import withPlaiceholder from '@plaiceholder/next'
+
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
     output: 'standalone',
     images: {
-        formats: ['image/avif', 'image/webp'],
+        formats: ['image/webp'],
         remotePatterns: [
             {
                 protocol: 'http',
-                hostname: "**",
+                hostname: '**',
             },
             {
                 protocol: 'https',
-                hostname: "**",
+                hostname: '**',
             },
         ],
     },
@@ -22,4 +24,4 @@ const nextConfig = {
     },
 }
 
-export default nextConfig
+export default withPlaiceholder(nextConfig)

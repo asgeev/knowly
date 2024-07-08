@@ -1,33 +1,9 @@
 import { PaginationComponent } from '@/components/molecules/PaginationComponent'
-import { PostItemRight } from '@/components/molecules/PostItem'
-import { changeDate } from '@/helpers/changeDate'
+import { DynamicPostItem } from '@/components/molecules/PostItem'
 import { fetchPostsByCategory } from '@/app/actions'
+import { Post } from '@/app/types'
 
-type CategoryPost = {
-    id: number
-    attributes: {
-        title: string
-        slug: string
-        publishedAt: string
-        cover: {
-            data: {
-                attributes: {
-                    url: string
-                }
-            }
-        }
-        category: {
-            data: {
-                attributes: {
-                    name: string
-                    color: string
-                }
-            }
-        }
-    }
-}
-
-export const revalidate = 30 // revalidate at most every 10 seconds
+export const revalidate = 0 // revalidate at most every 0 seconds
 
 export default async function Page({
     searchParams,
@@ -54,23 +30,12 @@ export default async function Page({
                     </div>
                 ) : null)}
 
-            {categoryPosts?.map((categoryPost: CategoryPost) => {
-                const { title, slug, publishedAt, cover, category } =
-                    categoryPost.attributes
-
-                const coverUrl: string = cover.data.attributes.url
-
-                const categoryData = category.data.attributes
-
+            {categoryPosts?.map((categoryPost: Post) => {
                 return (
-                    <PostItemRight
+                    <DynamicPostItem
                         key={categoryPost.id}
-                        href={`/post/${slug}`}
-                        title={title}
-                        coverUrl={coverUrl}
-                        publishedAt={changeDate(publishedAt)}
-                        category={categoryData.name}
-                        categoryColor={categoryData.color}
+                        variant="right"
+                        data={categoryPost}
                     />
                 )
             })}

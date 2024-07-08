@@ -1,39 +1,9 @@
 import { PaginationComponent } from '@/components/molecules/PaginationComponent'
-import { PostItemRight } from '@/components/molecules/PostItem'
-import { changeDate } from '@/helpers/changeDate'
-import { getLatestPosts } from '../../actions'
+import { DynamicPostItem } from '@/components/molecules/PostItem'
+import { getLatestPosts } from '@/app/actions'
+import { Post, SearchParamsProps } from '@/app/types'
 
-type latestPost = {
-    id: number
-    attributes: {
-        title: string
-        slug: string
-        publishedAt: string
-        cover: {
-            data: {
-                attributes: {
-                    url: string
-                }
-            }
-        }
-        category: {
-            data: {
-                attributes: {
-                    name: string
-                    color: string
-                }
-            }
-        }
-    }
-}
-
-interface SearchParamsProps {
-    searchParams?: {
-        page?: string
-    }
-}
-
-export const revalidate = 30 // revalidate at most every 10 seconds
+export const revalidate = 0 // revalidate at most every 0 seconds
 
 export default async function Page({ searchParams }: SearchParamsProps) {
     const currentPage = searchParams?.page || '1'
@@ -51,23 +21,12 @@ export default async function Page({ searchParams }: SearchParamsProps) {
                 ) : null)}
 
             {latestPosts &&
-                latestPosts?.map((latestPost: latestPost) => {
-                    const { title, slug, publishedAt, cover, category } =
-                        latestPost.attributes
-
-                    const coverUrl: string = cover.data.attributes.url
-
-                    const categoryData = category.data.attributes
-
+                latestPosts?.map((latestPost: Post) => {
                     return (
-                        <PostItemRight
+                        <DynamicPostItem
                             key={latestPost.id}
-                            href={`/post/${slug}`}
-                            title={title}
-                            coverUrl={coverUrl}
-                            publishedAt={changeDate(publishedAt)?.toString()}
-                            category={categoryData.name}
-                            categoryColor={categoryData.color}
+                            variant="right"
+                            data={latestPost}
                         />
                     )
                 })}

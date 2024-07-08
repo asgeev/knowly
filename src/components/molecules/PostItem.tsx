@@ -1,8 +1,61 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { imageLoader } from '@/helpers/imageLoader'
-import { PostItemProps } from '@/app/types'
+import { Post, PostItemProps, TemplateObjVariants } from '@/app/types'
+import getBase64 from '@/lib/getBase64'
+import { internalExternalPostHref } from '@/helpers/internalExternalPostHref'
+import { changeDate } from '@/helpers/changeDate'
+import getExistCoverUrl from '@/lib/getExistCoverUrl'
 
+export const DynamicPostItem = async ({
+    variant,
+    data,
+}: {
+    variant: TemplateObjVariants
+    data: Post
+}) => {
+    const { category, title, publishedAt, cover } = data?.attributes
+    const thumbnail = getExistCoverUrl(cover, 'thumbnail')
+    const coverMedium = getExistCoverUrl(cover, 'medium')
+    const blurImage = await getBase64(imageLoader(thumbnail))
+
+    if (variant === 'background')
+        return (
+            <PostItemBackground
+                title={title}
+                href={internalExternalPostHref(data?.attributes)}
+                publishedAt={changeDate(publishedAt)}
+                category={category?.data?.attributes?.name}
+                categoryColor={category?.data?.attributes?.color}
+                coverUrl={coverMedium}
+                blurData={blurImage}
+            />
+        )
+    if (variant === 'top')
+        return (
+            <PostItemTop
+                title={title}
+                href={internalExternalPostHref(data?.attributes)}
+                publishedAt={changeDate(publishedAt)}
+                category={category?.data?.attributes?.name}
+                categoryColor={category?.data?.attributes?.color}
+                coverUrl={coverMedium}
+                blurData={blurImage}
+            />
+        )
+    if (variant === 'right')
+        return (
+            <PostItemRight
+                title={title}
+                href={internalExternalPostHref(data?.attributes)}
+                publishedAt={changeDate(publishedAt)}
+                category={category?.data?.attributes?.name}
+                categoryColor={category?.data?.attributes?.color}
+                coverUrl={coverMedium}
+                blurData={blurImage}
+            />
+        )
+}
 export const PostItemBackground = (props: PostItemProps) => {
     const {
         href = '',
@@ -12,11 +65,11 @@ export const PostItemBackground = (props: PostItemProps) => {
         category,
         categoryColor,
         className = '',
+        blurData,
     } = props
-
     return (
         <article
-            className={`relative bg-secondary sm:rounded-xl group h-64 ${className}`}
+            className={`relative bg-secondary sm:rounded-xl group min-h-64 h-full  ${className}`}
         >
             <Link href={href}>
                 <div className="relative h-full w-full overflow-hidden sm:rounded-xl">
@@ -28,6 +81,8 @@ export const PostItemBackground = (props: PostItemProps) => {
                             objectFit="cover"
                             objectPosition="center center"
                             className="group-hover:scale-110 transition-transform duration-500"
+                            placeholder={blurData ? 'blur' : 'empty'}
+                            blurDataURL={blurData}
                         />
                     )}
 
@@ -61,7 +116,7 @@ export const PostItemBackground = (props: PostItemProps) => {
     )
 }
 
-export const PostItemRight = (props: PostItemProps) => {
+const PostItemRight = (props: PostItemProps) => {
     const {
         href = '',
         title = '',
@@ -70,11 +125,12 @@ export const PostItemRight = (props: PostItemProps) => {
         category,
         categoryColor,
         className = '',
+        blurData,
     } = props
 
     return (
         <article
-            className={`flex bg-secondary gap-2 sm:rounded-xl group h-40 sm:h-[165px] ${className}`}
+            className={`flex bg-secondary gap-2 sm:rounded-xl group min-h-40 sm:h-[165px] ${className}`}
         >
             <Link href={href} className="w-2/5 order-1">
                 <div className="relative h-full w-full overflow-hidden sm:rounded-e-xl">
@@ -86,6 +142,8 @@ export const PostItemRight = (props: PostItemProps) => {
                             objectFit="cover"
                             objectPosition="center center"
                             className="group-hover:scale-110 transition-transform duration-500"
+                            placeholder={blurData ? 'blur' : 'empty'}
+                            blurDataURL={blurData}
                         />
                     )}
                     <div className="sm:absolute top-0 left-0 right-0 bottom-0 bg-black opacity-20 group-hover:opacity-0 transition-opacity duration-500"></div>
@@ -117,7 +175,7 @@ export const PostItemRight = (props: PostItemProps) => {
     )
 }
 
-export const PostItemTop = (props: PostItemProps) => {
+const PostItemTop = (props: PostItemProps) => {
     const {
         href = '',
         title = '',
@@ -126,7 +184,9 @@ export const PostItemTop = (props: PostItemProps) => {
         category,
         categoryColor,
         className = '',
+        blurData,
     } = props
+
     return (
         <article
             className={`flex flex-col bg-secondary rounded-md group  sm:h-[350px] w-full  ${className}`}
@@ -141,6 +201,8 @@ export const PostItemTop = (props: PostItemProps) => {
                             objectFit="cover"
                             objectPosition="center center"
                             className="group-hover:scale-110 transition-transform duration-500"
+                            placeholder={blurData ? 'blur' : 'empty'}
+                            blurDataURL={blurData}
                         />
                     )}
                     <div className="sm:absolute top-0 left-0 right-0 bottom-0 bg-black opacity-20 group-hover:opacity-0 transition-opacity duration-500"></div>
