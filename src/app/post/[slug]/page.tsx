@@ -5,6 +5,7 @@ import { getPost } from '@/app/actions'
 import { imageLoader } from '@/helpers/imageLoader'
 import getBase64 from '@/lib/getBase64'
 import getExistCoverUrl from '@/lib/getExistCoverUrl'
+import { OpenFile } from '@/components/molecules/OpenFile'
 
 export const revalidate = 30 // revalidate at most every 30 seconds
 
@@ -44,7 +45,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
                             blurDataURL={blurImage}
                         />
                     </div>
-                    <article className="prose max-w-none lg:prose-xl prose-img:rounded-xl dark:prose-invert prose-gray px-6">
+                    <article className="prose max-w-none lg:prose-xl prose-img:rounded-xl dark:prose-invert prose-gray px-6 pb-6">
                         <div className="flex gap-5 items-baseline">
                             <Link
                                 href={`/posty/kategoria/${category?.slug}`}
@@ -77,21 +78,11 @@ export default async function Post({ params }: { params: { slug: string } }) {
                             }}
                         ></div>
                         {pdf && (
-                            <object
-                                data={`${strapiUrl}${pdf?.url}`}
-                                type={pdf?.mime}
-                                height={800}
-                                width={'100%'}
-                                className="pb-10"
-                            >
-                                <p>
-                                    Niestety nie udało się wyświetlić pliku!
-                                    Możesz go pobrać pod tym{' '}
-                                    <Link href={`${strapiUrl}${pdf.url}`}>
-                                        linkiem
-                                    </Link>
-                                </p>
-                            </object>
+                            <OpenFile
+                                fileName={pdf.name}
+                                url={`${strapiUrl}${pdf?.url}`}
+                                size={pdf?.size}
+                            />
                         )}
                     </article>
                 </div>
