@@ -2,12 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { imageLoader } from '@/helpers/imageLoader'
 import { Post, PostItemProps, TemplateObjVariants } from '@/app/types'
-import getBase64 from '@/lib/getBase64'
 import { internalExternalPostHref } from '@/helpers/internalExternalPostHref'
 import { changeDate } from '@/helpers/changeDate'
 import getExistCoverUrl from '@/lib/getExistCoverUrl'
 
-export const DynamicPostItem = async ({
+export const DynamicPostItem = ({
     variant,
     data,
 }: {
@@ -15,10 +14,9 @@ export const DynamicPostItem = async ({
     data: Post
 }) => {
     const { category, title, publishedAt, cover } = data?.attributes
-    const thumbnail = getExistCoverUrl(cover, 'thumbnail')
     const coverMedium = getExistCoverUrl(cover, 'medium')
-    const blurImage = await getBase64(imageLoader(thumbnail))
-
+    const blurData =
+        'data:image/png;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs='
     if (variant === 'background')
         return (
             <PostItemBackground
@@ -28,7 +26,7 @@ export const DynamicPostItem = async ({
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
                 coverUrl={coverMedium}
-                blurData={blurImage}
+                blurData={blurData}
             />
         )
     if (variant === 'top')
@@ -40,7 +38,7 @@ export const DynamicPostItem = async ({
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
                 coverUrl={coverMedium}
-                blurData={blurImage}
+                blurData={blurData}
             />
         )
     if (variant === 'right')
@@ -52,7 +50,7 @@ export const DynamicPostItem = async ({
                 category={category?.data?.attributes?.name}
                 categoryColor={category?.data?.attributes?.color}
                 coverUrl={coverMedium}
-                blurData={blurImage}
+                blurData={blurData}
             />
         )
 }
