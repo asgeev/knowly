@@ -5,7 +5,7 @@ import { Suspense } from 'react'
 
 export default function Header() {
     return (
-        <header className="sticky top-0 z-50 bg-secondary">
+        <header className="sticky top-0 z-50 bg-background">
             <div className="container px-1 md:px-0 py-4 h-full flex items-center gap-20 justify-between">
                 <div className="flex flex-row items-center gap-4">
                     <div className="relative h-10 w-10 p-3">

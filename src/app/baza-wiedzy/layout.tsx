@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Navigation from './_components/Navigation'
 import React, { Suspense } from 'react'
 import { ArrowRight } from 'lucide-react'
+import { Button } from '../../components/ui/button'
 
 const DocsLayout = ({ children }: { children: React.ReactNode }) => {
     const strapiPublicUrl = process.env.PUBLIC_STRAPI_URL
@@ -17,7 +18,7 @@ const DocsLayout = ({ children }: { children: React.ReactNode }) => {
                 {children}
             </div>
             <div className="hidden xl:block sticky top-[120px] self-start h-auto col-span-3">
-                <div className="bg-secondary p-7 rounded-xl">
+                <div className="bg-secondary border border-border p-7 rounded-xl">
                     <h1 className="text-lg font-bold mb-8">
                         Dokumentacja dla Twojego wydziału już dostępna! 🚀🎉🪄
                     </h1>
@@ -42,13 +43,11 @@ const DocsLayout = ({ children }: { children: React.ReactNode }) => {
                         </li>
                     </ul>
                     <div className="bg-accent p-2 flex items-center justify-center rounded-lg mt-12 group">
-                        <Link
-                            href={`${strapiPublicUrl}/admin`}
-                            className="flex items-center gap-2 font-medium group-hover:gap-4 transition-all text-white"
-                        >
-                            Dodaj dokumentację
-                            <ArrowRight size={20} />
-                        </Link>
+                        <Button asChild className="w-full" size="icon">
+                            <Link href={`${strapiPublicUrl}/admin`}>
+                                Dodaj dokumentację
+                            </Link>
+                        </Button>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@ export default async function IntranetNavigation() {
     return (
         <li className="group">
             <Link
-                className="hover:text-accent md:text-textSecondary"
+                className="hover:text-foreground md:text-muted-foreground"
                 href={'/intranet'}
             >
                 Intranet

@@ -10,14 +10,14 @@ export const NavigationNested = ({ items }: { items: [] }) => {
     }
 
     return (
-        <div className="text-textSecondary px-1">
+        <div className="text-muted-foreground px-1">
             {items?.map((item: any) => {
                 return (
                     <div key={item.id}>
                         <NavigationLink
                             href={''}
                             item={item}
-                            className="flex justify-between hover:text-textPrimary py-1.5"
+                            className="flex justify-between hover:text-foreground py-1.5"
                             onClick={toggleExpand}
                         >
                             {item.items && item?.items?.length ? (
@@ -42,7 +42,7 @@ export const NavigationNested = ({ items }: { items: [] }) => {
                                             href={''}
                                             key={item.id}
                                             item={item}
-                                            className="flex justify-between hover:text-textPrimary py-1.5"
+                                            className="flex justify-between hover:text-foreground py-1.5"
                                         />
                                     )
                                 })}

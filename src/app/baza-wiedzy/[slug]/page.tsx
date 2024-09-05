@@ -1,6 +1,6 @@
 import { Tag } from '@/components/atoms/Tag'
 import { changeDate } from '@/helpers/changeDate'
-import { getDocsPageData } from '../../actions'
+import { getDocsPageData } from '@/app/actions'
 import { Calendar, RefreshCcw } from 'lucide-react'
 
 const DocPage = async ({
@@ -23,7 +23,7 @@ const DocPage = async ({
                 <div>
                     <article className="prose max-w-none lg:prose-lg prose-img:rounded-xl dark:prose-invert prose-gray lg:mt-4">
                         <h1>{pageData?.title}</h1>
-                        <div className="not-prose flex gap-7 text-base text-textSecondary">
+                        <div className="not-prose flex gap-7 text-base text-muted-foreground">
                             {publishedAt && (
                                 <div className="flex items-center gap-2">
                                     <Calendar size={18} />

@@ -32,7 +32,7 @@ const Navigation = (props: Props) => {
         <nav className="flex md:gap-x-10 md:w-full justify-between z-50">
             <div
                 data-ismenuactive={`${isMenuActive}`}
-                className={`max-md:data-[ismenuactive=false]:hidden max-md:data-[ismenuactive=true]:fixed max-md:data-[ismenuactive=true]:bg-primary md:flex items-center top-0 left-0 max-md:p-16 max-md:w-full max-md:h-full z-50`}
+                className={`max-md:data-[ismenuactive=false]:hidden max-md:data-[ismenuactive=true]:fixed max-md:data-[ismenuactive=true]:bg-background md:flex items-center top-0 left-0 max-md:p-16 max-md:w-full max-md:h-full z-50`}
             >
                 <button onClick={closeMenu} className="float-end md:hidden">
                     <X />
@@ -41,7 +41,7 @@ const Navigation = (props: Props) => {
                     <ul className="flex flex-col gap-6 text-xl md:text-base md:flex-row font-semibold ">
                         <li>
                             <Link
-                                className="hover:text-accent md:text-textSecondary"
+                                className="hover:text-foreground md:text-muted-foreground"
                                 href="/"
                                 onClick={closeMenu}
                             >
@@ -50,7 +50,7 @@ const Navigation = (props: Props) => {
                         </li>
                         <li>
                             <Link
-                                className="hover:text-accent md:text-textSecondary"
+                                className="hover:text-foreground md:text-muted-foreground"
                                 href={'/baza-wiedzy'}
                                 onClick={closeMenu}
                             >

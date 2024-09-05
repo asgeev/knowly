@@ -29,9 +29,7 @@ export default function RootLayout({
             <head>
                 <title>Knowly</title>
             </head>
-            <body
-                className={`${inter.className} bg-primary transition duration-600 dark:bg-primary`}
-            >
+            <body className={`${inter.className} transition duration-600`}>
                 <NextTopLoader
                     color="white"
                     showSpinner={false}

@@ -1,6 +1,7 @@
 import { formatBytes } from '@/lib/formatBytes'
 import { File } from 'lucide-react'
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 type OpenFileProps = {
     fileName: string
@@ -10,32 +11,27 @@ type OpenFileProps = {
 
 export function OpenFile(props: OpenFileProps) {
     return (
-        <div className="not-prose bg-primary rounded-lg p-6">
+        <div className="not-prose rounded-lg pt-10">
             <p className="font-bold text-2xl">Pliki</p>
             <div className="my-6 space-y-5">
-                <div className="bg-secondary rounded-lg">
+                <div className="bg-background border border-border rounded-xl">
                     <div className="flex flex-col sm:flex-row p-4 gap-4 sm:gap-2 justify-between">
                         <div className="flex gap-4 items-center">
                             <File size={26} />
                             <div className="text-sm">
                                 <p
-                                    className="line-clamp-1 font-medium text-base"
+                                    className="text-foreground line-clamp-1 font-medium text-base"
                                     title={props?.fileName}
                                 >
                                     {props?.fileName}
                                 </p>
-                                <p className="text-textSecondary font-medium">
+                                <p className="text-muted-foreground font-medium">
                                     {formatBytes(props?.size * 1024)}
                                 </p>
                             </div>
                         </div>
-                        <Link
-                            className="bg-accent px-4 py-2 text-white rounded-md flex items-center justify-center gap-2"
-                            href={props.url}
-                        >
-                            <p className="text-sm  font-medium text-nowrap">
-                                Otwórz plik
-                            </p>
+                        <Link href={props.url}>
+                            <Button>Otwórz plik</Button>
                         </Link>
                     </div>
                 </div>

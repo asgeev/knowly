@@ -5,6 +5,7 @@ import { Post, PostItemProps, TemplateObjVariants } from '@/app/types'
 import { internalExternalPostHref } from '@/helpers/internalExternalPostHref'
 import { changeDate } from '@/helpers/changeDate'
 import getExistCoverUrl from '@/lib/getExistCoverUrl'
+import CustomBadge from '../atoms/CustomBadge'
 
 export const DynamicPostItem = ({
     variant,
@@ -67,7 +68,7 @@ export const PostItemBackground = (props: PostItemProps) => {
     } = props
     return (
         <article
-            className={`relative bg-secondary sm:rounded-xl group min-h-64 h-full  ${className}`}
+            className={`relative bg-secondary border border-border sm:rounded-xl group min-h-64 h-full  ${className}`}
         >
             <Link href={href}>
                 <div className="relative h-full w-full overflow-hidden sm:rounded-xl">
@@ -89,12 +90,10 @@ export const PostItemBackground = (props: PostItemProps) => {
             <div className="absolute bottom-0 gap-1 text-white mb-4 p-3">
                 <div>
                     {category && (
-                        <div
-                            className={`text-white w-fit py-0.5 px-1.5 rounded-md uppercase mb-0.5`}
-                            style={{ backgroundColor: categoryColor }}
-                        >
-                            <p className="text-xs font-semibold">{category}</p>
-                        </div>
+                        <CustomBadge
+                            categoryColor={categoryColor}
+                            categoryText={category}
+                        />
                     )}
 
                     <Link
@@ -105,7 +104,7 @@ export const PostItemBackground = (props: PostItemProps) => {
                     </Link>
                 </div>
 
-                <div className="text-ellipsis text-gray-300 whitespace-nowrap overflow-hidden font-semibold text-sm mt-3">
+                <div className="text-ellipsis text-[#A1A1A1] dark:text-[#A1A1A1] whitespace-nowrap overflow-hidden font-semibold text-sm mt-3">
                     {publishedAt}
                 </div>
             </div>
@@ -127,7 +126,7 @@ const PostItemRight = (props: PostItemProps) => {
 
     return (
         <article
-            className={`flex bg-secondary gap-2 sm:rounded-xl group min-h-40 sm:h-[165px] ${className}`}
+            className={`flex bg-secondary border border-border gap-2 sm:rounded-xl group min-h-40 sm:h-[165px] ${className}`}
         >
             <Link href={href} className="w-2/5 order-1">
                 <div className="relative h-full w-full overflow-hidden sm:rounded-e-xl">
@@ -145,25 +144,23 @@ const PostItemRight = (props: PostItemProps) => {
                     <div className="sm:absolute top-0 left-0 right-0 bottom-0 bg-black opacity-20 group-hover:opacity-0 transition-opacity duration-500"></div>
                 </div>
             </Link>
-            <div className="w-full flex flex-col justify-between text-white p-4">
+            <div className="w-full flex flex-col justify-between p-4">
                 <div>
                     {category && (
-                        <div
-                            className={` text-white w-fit py-0.5 px-1.5 rounded-md uppercase mb-0.5`}
-                            style={{ backgroundColor: categoryColor }}
-                        >
-                            <p className="text-xs font-semibold">{category}</p>
-                        </div>
+                        <CustomBadge
+                            categoryColor={categoryColor}
+                            categoryText={category}
+                        />
                     )}
 
                     <Link
                         href={href}
-                        className="font-bold line-clamp-2 md:line-clamp-3 text-textPrimary sm:text-md mt-2"
+                        className="font-bold line-clamp-2 md:line-clamp-3 sm:text-md mt-2"
                     >
                         {title}
                     </Link>
                 </div>
-                <div className="text-ellipsis text-gray-400 whitespace-nowrap overflow-hidden font-semibold text-sm">
+                <div className="text-ellipsis text-muted-foreground whitespace-nowrap overflow-hidden font-semibold text-sm">
                     {publishedAt}
                 </div>
             </div>
@@ -185,10 +182,10 @@ const PostItemTop = (props: PostItemProps) => {
 
     return (
         <article
-            className={`flex flex-col bg-secondary rounded-md group  sm:h-[350px] w-full  ${className}`}
+            className={`flex flex-col bg-secondary border border-border w-full h-full sm:rounded-xl group sm:h-[350px]  ${className}`}
         >
             <Link href={href} className="h-40 md:h-1/2 w-full">
-                <div className="relative h-full w-full overflow-hidden rounded-t-md aspect-square">
+                <div className="relative h-full w-full overflow-hidden sm:rounded-t-xl aspect-square">
                     {coverUrl && (
                         <Image
                             src={imageLoader(coverUrl)}
@@ -203,26 +200,24 @@ const PostItemTop = (props: PostItemProps) => {
                     <div className="sm:absolute top-0 left-0 right-0 bottom-0 bg-black opacity-20 group-hover:opacity-0 transition-opacity duration-500"></div>
                 </div>
             </Link>
-            <div className="flex flex-col justify-between p-4  bottom-0 gap-1 sm:text-white h-full">
+            <div className="flex flex-col justify-between p-4 bottom-0 gap-1 h-full">
                 <div>
                     {category && (
-                        <div
-                            className={` text-white w-fit py-0.5 px-1.5 rounded-md uppercase mb-0.5`}
-                            style={{ backgroundColor: categoryColor }}
-                        >
-                            <p className="text-xs font-semibold">{category}</p>
-                        </div>
+                        <CustomBadge
+                            categoryColor={categoryColor}
+                            categoryText={category}
+                        />
                     )}
 
                     <Link
                         href={href}
-                        className="font-bold line-clamp-3 text-textPrimary sm:text-lg mt-2"
+                        className="font-bold line-clamp-3 sm:text-lg mt-2"
                     >
                         {title}
                     </Link>
                 </div>
 
-                <div className="text-ellipsis text-textSecondary whitespace-nowrap overflow-hidden font-semibold text-sm mt-2 ">
+                <div className="text-ellipsis text-muted-foreground whitespace-nowrap overflow-hidden font-semibold text-sm mt-2 ">
                     {publishedAt}
                 </div>
             </div>

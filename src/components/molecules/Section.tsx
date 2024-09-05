@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
+import { Button } from '@/components/ui/button'
 
 type Props = {
     title: string
@@ -14,15 +15,16 @@ export const Section = (props: PropsWithChildren<Props>) => {
     return (
         <section className="mb-12">
             <div className="container space-y-6">
-                <div className="flex mb-4 items-center gap-6">
-                    <h1 className="font-bold text-2xl md:text-4xl mb-2">
-                        {title}
-                    </h1>
+                <div className="flex mb-6 items-center gap-6">
+                    <h1 className="font-bold text-2xl md:text-4xl">{title}</h1>
                     {categoryUrl && (
                         <Link href={categoryUrl}>
-                            <p className="text-sm uppercase font-bold text-textSecondary hover:text-accent">
+                            <Button
+                                variant={'ghost'}
+                                className="text-muted-foreground text-sm uppercase font-bold"
+                            >
                                 Zobacz więcej
-                            </p>
+                            </Button>
                         </Link>
                     )}
                 </div>

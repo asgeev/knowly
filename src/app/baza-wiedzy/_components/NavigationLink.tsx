@@ -28,8 +28,10 @@ const NavLink: React.FC<NavLinkProps> = ({
     return (
         <Link
             href={href}
-            className={`${
-                pathname === href && !(href === 'null') ? 'text-accent' : ''
+            className={`hover:text-foreground ${
+                pathname === href && !(href === 'null')
+                    ? 'text-foreground'
+                    : 'text-muted-foreground '
             } ${className}`}
             {...rest}
         >

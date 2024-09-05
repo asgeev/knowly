@@ -34,7 +34,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
     return (
         <>
             {postContent && (
-                <div className="space-y-6 bg-secondary rounded-lg">
+                <div className="space-y-6 bg-secondary border border-border rounded-xl">
                     <div className="not-prose relative overflow-hidden w-full h-64 md:h-[420px] rounded-lg">
                         <Image
                             src={imageLoader(coverLarge)}
@@ -49,11 +49,11 @@ export default async function Post({ params }: { params: { slug: string } }) {
                         <div className="flex gap-5 items-baseline">
                             <Link
                                 href={`/posty/kategoria/${category?.slug}`}
-                                className="text-textSecondary font-extrabold hover:text-accent no-underline"
+                                className="text-muted-foreground font-extrabold hover:underline no-underline"
                             >
                                 {category?.name}
                             </Link>
-                            <p className="text-textSecondary text-base font-semibold ">
+                            <p className="text-muted-foreground text-base font-semibold ">
                                 {changeDate(publishedAt)}
                             </p>
                         </div>
@@ -63,14 +63,6 @@ export default async function Post({ params }: { params: { slug: string } }) {
                                 className="w-14 h-2 rounded-lg block my-10"
                                 style={{ backgroundColor: category?.color }}
                             ></span>
-
-                            {/* {tags && (
-                               <div className="flex flex-row gap-2">
-                                   {tags.map(({ id, slug }) => {
-                                       return <Tag key={id} text={slug} />
-                                   })}
-                               </div>
-                           )}  */}
                         </div>
                         <div
                             dangerouslySetInnerHTML={{

@@ -28,7 +28,7 @@ export default async function CategoryPosts() {
                                 posts={posts?.data}
                             />
                         ) : (
-                            <p className="text-xl text-textSecondary uppercase font-semibold">
+                            <p className="text-xl text-muted-foreground uppercase font-semibold">
                                 Brak postów
                             </p>
                         )}

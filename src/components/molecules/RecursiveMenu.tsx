@@ -23,15 +23,15 @@ export default function RecursiveMenu(props: PropsWithChildren<Props>) {
         <>
             {props.children}
             <div className="md:absolute">
-                <div className="left-0 top-0 right-0 md:relative mt-4 md:mt-10 md:shadow-2xl max-md:ml-1 flex flex-col flex-wrap gap-3 md:gap-5 md:rounded-lg md:hidden group-hover:flex md:bg-secondary md:px-6 md:py-8 font-medium">
+                <div className="left-0 top-0 right-0 md:relative mt-4 md:mt-10 md:shadow-2xl max-md:ml-1 flex flex-col md:border border-border flex-wrap gap-3 md:gap-5 md:rounded-lg md:hidden group-hover:flex bg-background md:px-6 md:py-8 font-medium">
                     {props.navigation?.map((element: NavElement) => {
                         return (
                             <div key={element.id} className="">
                                 <Link
                                     href={`${props.path}${element.path}`}
-                                    className={`text-base hover:text-accent ${
+                                    className={`text-base hover:text-foreground ${
                                         pathname === props.path + element.path
-                                            ? 'text-accent'
+                                            ? 'text-foreground'
                                             : ''
                                     }`}
                                 >
@@ -46,12 +46,12 @@ export default function RecursiveMenu(props: PropsWithChildren<Props>) {
                                                     <Link
                                                         key={element.id}
                                                         href={`${props.path}${element.path}`}
-                                                        className={`text-sm font-medium hover:text-accent ${
+                                                        className={`text-sm font-medium hover:text-foreground ${
                                                             pathname ===
                                                             props.path +
                                                                 element.path
-                                                                ? 'text-accent'
-                                                                : 'text-textSecondary'
+                                                                ? 'text-foreground'
+                                                                : 'text-muted-foreground'
                                                         }`}
                                                     >
                                                         {element.title}

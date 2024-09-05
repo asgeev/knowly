@@ -29,7 +29,7 @@ export const NavigationItems = (props: Props) => {
             <div className="lg:hidden">
                 <button
                     onClick={toggleMenu}
-                    className="flex items-center gap-1 hover:text-accent"
+                    className="flex items-center gap-1 hover:text-foreground hover:underline"
                 >
                     Menu
                     <ChevronRight />
@@ -45,7 +45,7 @@ export const NavigationItems = (props: Props) => {
                             <div key={element.id} className="py-1.5">
                                 <NavigationLink
                                     item={element}
-                                    className="font-medium inline-block py-1"
+                                    className="font-semibold inline-block py-1"
                                     href={''}
                                 />
 
