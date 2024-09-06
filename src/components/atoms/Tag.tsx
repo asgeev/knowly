@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 type Props = {
     text: string
@@ -11,21 +12,15 @@ export const Tag = (props: Props) => {
     return (
         <>
             {!isExternal ? (
-                <Link
-                    href={href}
-                    className="py-1.5 px-3 rounded-md border border-border bg-secondary text-muted-foreground font-semibold hover:text-foreground text-sm"
-                >
-                    {text}
-                </Link>
+                <Button asChild variant="secondary">
+                    <Link href={href}>{text}</Link>
+                </Button>
             ) : (
-                <Link
-                    href={href}
-                    className="py-1.5 px-3 rounded-md border border-border bg-secondary text-muted-foreground font-semibold hover:text-foreground text-sm"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    {text}
-                </Link>
+                <Button asChild variant="secondary">
+                    <Link href={href} target="_blank" rel="noopener noreferrer">
+                        {text}
+                    </Link>
+                </Button>
             )}
         </>
     )

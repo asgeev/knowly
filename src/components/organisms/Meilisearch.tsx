@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { SearchButton } from '../atoms/SearchButton'
+import { SearchButton } from '@/components/atoms/SearchButton'
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 import { Search } from 'lucide-react'
 import {
@@ -10,11 +10,11 @@ import {
     PoweredBy,
     Configure,
 } from 'react-instantsearch'
-import NoResultsBoundary from '../molecules/meilisearch/NoResultsBoundary'
-import EmptyQueryBoundary from '../molecules/meilisearch/EmptyQueryBoundary'
-import HitPhone from '../molecules/meilisearch/HitPhone'
-import HitPage from '../molecules/meilisearch/HitPage'
-import HitsSection from '../molecules/meilisearch/HitSection'
+import NoResultsBoundary from '@/components/molecules/meilisearch/NoResultsBoundary'
+import EmptyQueryBoundary from '@/components/molecules/meilisearch/EmptyQueryBoundary'
+import HitPhone from '@/components/molecules/meilisearch/HitPhone'
+import HitPage from '@/components/molecules/meilisearch/HitPage'
+import HitsSection from '@/components/molecules/meilisearch/HitSection'
 
 const meilisearchUrl: string =
     process.env.MEILISEARCH_URL || 'http://localhost:7700'
@@ -48,21 +48,20 @@ export const Meilisearch = () => {
             <dialog
                 ref={searchDialogRef}
                 onClick={closeMeilisearch}
-                //TODO: add colors for light theme
-                className="my-0 top-10 md:top-24 w-11/12 max-w-3xl backdrop:bg-backdrop backdrop:backdrop-blur-[2px] bg-inherit overflow-hidden "
+                className="my-0 top-10 md:top-24 w-11/12 max-w-3xl backdrop:bg-backdrop bg-inherit overflow-hidden "
             >
-                <div className="bg-secondary rounded-lg shadow-meilisearch border border-primary">
+                <div className="bg-popover rounded-lg shadow-meilisearch border border-border">
                     <InstantSearch
                         searchClient={searchClient}
                         indexName="number"
                     >
-                        <div className="flex flex-row px-4 items-center gap-4 border-b border-color_2 ">
-                            <Search size={20} className="text-textSecondary" />
+                        <div className="flex flex-row px-4 items-center gap-4 border-b border-border">
+                            <Search size={20} />
                             <SearchBox
                                 classNames={{
-                                    root: 'w-full ',
-                                    form: 'appearance-none ',
-                                    input: 'unset focus:outline-none bg-transparent h-14 w-full font-medium',
+                                    root: 'w-full',
+                                    form: 'appearance-none',
+                                    input: 'w-full bg-transparent unset focus:outline-none h-14 font-medium',
                                     submitIcon: 'hidden',
                                     resetIcon: 'hidden',
                                 }}
@@ -70,12 +69,12 @@ export const Meilisearch = () => {
                             />
                             <button
                                 onClick={closeMeilisearch}
-                                className="apperance-none text-textSecondary text-[10px] font-semibold bg-primary  p-2 rounded-md hover:text-accent"
+                                className="apperance-none text-muted-foreground text-[10px] font-semibold bg-secondary border border-border p-2 rounded-md hover:text-secondary-foreground"
                             >
                                 ESC
                             </button>
                         </div>
-                        <div className="px-6 min-h-10 max-h-[600px] overflow-auto transition-all ease-in-out duration-1000 divide-y divide-color_2">
+                        <div className="px-6 min-h-10 max-h-[600px] overflow-auto transition-all ease-in-out duration-1000 divide-y divide-border">
                             <EmptyQueryBoundary text="Brak wyników">
                                 <Index indexName="number">
                                     <NoResultsBoundary>
@@ -100,7 +99,7 @@ export const Meilisearch = () => {
                             </EmptyQueryBoundary>
                         </div>
 
-                        <div className="border-t border-color_2 h-14 flex justify-end items-center px-4 py-6">
+                        <div className="border-t border-border h-14 flex justify-end items-center px-4 py-6">
                             <PoweredBy
                                 classNames={{
                                     logo: 'h-4',

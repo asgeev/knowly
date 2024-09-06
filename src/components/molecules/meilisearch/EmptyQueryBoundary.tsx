@@ -10,7 +10,7 @@ const EmptyQueryBoundary = ({ children, text }: Props) => {
 
     if (!indexUiState.query) {
         return (
-            <p className="py-16 px-6 text-center text-textSecondary font-medium">
+            <p className="py-16 px-6 text-center text-muted-foreground font-medium">
                 {text}
             </p>
         )

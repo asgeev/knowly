@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { changeDate } from '@/helpers/changeDate'
 import { Tag } from '@/components/atoms/Tag'
-import { getIntranetPageData } from '../../actions'
+import { getIntranetPageData } from '@/app/actions'
 import { Calendar, RefreshCcw } from 'lucide-react'
 
 interface PageContent {
@@ -54,11 +54,11 @@ const Page = async ({
     return (
         <>
             {pageContent && (
-                <div className="bg-secondary px-6 rounded-lg">
+                <div className="bg-secondary px-6 rounded-lg border border-border">
                     <article className="prose max-w-none lg:prose-lg prose-img:rounded-xl dark:prose-invert prose-gray pb-4">
                         <div className="pt-20 pb-5">
                             <h1>{pageContent?.title}</h1>
-                            <div className="not-prose flex gap-7 flex-wrap text-base text-textSecondary">
+                            <div className="not-prose flex gap-7 flex-wrap text-base text-muted-foreground">
                                 {publishedAt && (
                                     <div className="flex items-center gap-2">
                                         <Calendar size={18} />

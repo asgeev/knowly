@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 const Intranet = () => {
     return (
@@ -9,15 +10,14 @@ const Intranet = () => {
                 <p className="text-textSecondary mt-5">
                     Jeszcze nie jesteśmy gotowi, daj nam trochę czasu!
                 </p>
-                <Link
-                    href={'/'}
-                    className="group mt-8 text-white bg-accent px-10 py-3 rounded-md w-48  "
-                >
-                    <div className="flex gap-2 group-hover:gap-4 transition-all items-center justify-center">
-                        <p>Główna</p>
-                        <ArrowRight size={20} />
-                    </div>
-                </Link>
+                <Button asChild className="group mt-8 px-10 py-3">
+                    <Link href={'/'}>
+                        <div className="flex gap-2 group-hover:gap-4 transition-all">
+                            <p>Główna</p>
+                            <ArrowRight size={20} />
+                        </div>
+                    </Link>
+                </Button>
             </div>
         </div>
     )

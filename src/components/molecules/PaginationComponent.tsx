@@ -1,7 +1,9 @@
 'use client'
+
 import { FC } from 'react'
 import { usePathname, useSearchParams, useRouter } from 'next/navigation'
 import { ChevronsRight, ChevronsLeft } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 interface PaginationProps {
     pageCount: number
@@ -20,29 +22,26 @@ const PaginationArrow: FC<PaginationArrowProps> = ({
 }) => {
     const router = useRouter()
     const isLeft = direction === 'left'
-    const disabledClassName = isDisabled
-        ? 'text-textSecondary pointer-events-none'
-        : ''
 
     return (
-        <button
+        <Button
             onClick={() => router.push(href)}
-            className={`hover:text-accent font-semibold ${disabledClassName}`}
+            variant={'ghost'}
             aria-disabled={isDisabled}
             disabled={isDisabled}
         >
             {isLeft ? (
-                <div className="flex gap-2">
+                <div className="flex gap-2 items-center">
                     <ChevronsLeft />
                     <p>poprzednia</p>
                 </div>
             ) : (
-                <div className="flex gap-2 flex-row-reverse">
+                <div className="flex gap-2 items-center flex-row-reverse">
                     <ChevronsRight />
                     <p>następna</p>
                 </div>
             )}
-        </button>
+        </Button>
     )
 }
 
@@ -68,7 +67,7 @@ export function PaginationComponent({ pageCount }: Readonly<PaginationProps>) {
                     isDisabled={currentPage <= 1}
                 />
                 <div>
-                    <p className="font-semibold text-textSecondary ">
+                    <p className="font-semibold text-muted-foreground ">
                         strona {currentPage} z {pageCount}
                     </p>
                 </div>

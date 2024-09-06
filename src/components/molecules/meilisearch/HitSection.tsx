@@ -8,7 +8,7 @@ type Props = {
 const HitsSection = (props: Props) => {
     return (
         <section className="py-6">
-            <p className="text-textSecondary mb-6">{props.title}</p>
+            <p className="mb-6 font-bold">{props.title}</p>
 
             {props.children}
         </section>
