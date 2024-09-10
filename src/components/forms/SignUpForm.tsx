@@ -20,6 +20,7 @@ import { StrapiErrors } from '@/components/atoms/StrapiErrors'
 const INITAL_STATE = {
     data: null,
     zodErrors: null,
+    strapiErrors: null,
     message: null,
 }
 
@@ -27,7 +28,6 @@ export default function SignUpForm() {
     const [formState, formAction] = useFormState(signUpAction, INITAL_STATE)
     const status = useFormStatus()
 
-    console.log(formState, 'client')
     return (
         <form action={formAction}>
             <Card className="mx-auto max-w-sm">

@@ -13,16 +13,20 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { signInAction } from '@/actions/auth-actions'
-import { useFormState } from 'react-dom'
+import { useFormState, useFormStatus } from 'react-dom'
+import { ZodErrors } from '@/components/atoms/ZodErrors'
+import { StrapiErrors } from '@/components/atoms/StrapiErrors'
 
 const INITAL_STATE = {
     data: null,
     zodError: null,
+    strapiErrors: null,
     message: null,
 }
 
 export default function SignInForm() {
     const [formState, formAction] = useFormState(signInAction, INITAL_STATE)
+    const status = useFormStatus()
     return (
         <form action={formAction}>
             <Card className="mx-auto max-w-sm">
@@ -36,13 +40,16 @@ export default function SignInForm() {
                 <CardContent>
                     <div className="grid gap-4">
                         <div className="grid gap-2">
-                            <Label htmlFor="email">Email lub login</Label>
+                            <Label htmlFor="identifier">Email lub login</Label>
                             <Input
-                                id="email"
-                                type="email"
-                                name="email"
+                                id="identifier"
+                                type="identifier"
+                                name="identifier"
                                 placeholder="imie.nazwisko@nfz-lublin.pl"
                                 required
+                            />
+                            <ZodErrors
+                                error={formState?.zodErrors?.identifier}
                             />
                         </div>
                         <div className="grid gap-2">
@@ -61,8 +68,14 @@ export default function SignInForm() {
                                 name="password"
                                 required
                             />
+                            <ZodErrors error={formState?.zodErrors?.password} />
                         </div>
-                        <Button type="submit" className="w-full">
+                        <StrapiErrors error={formState?.strapiErrors} />
+                        <Button
+                            type="submit"
+                            className="w-full"
+                            disabled={status.pending}
+                        >
                             Zaloguj
                         </Button>
                     </div>
