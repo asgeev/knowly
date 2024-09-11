@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { SearchButton } from '../atoms/SearchButton'
+import { SearchBar } from '@/components/atoms/SearchBar'
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 import { Search } from 'lucide-react'
 import {
@@ -44,24 +44,27 @@ export const Meilisearch = () => {
 
     return (
         <>
-            <SearchButton openMeilisearch={openMeilisearch} />
+            <SearchBar onClick={openMeilisearch} />
             <dialog
                 ref={searchDialogRef}
                 onClick={closeMeilisearch}
                 //TODO: add colors for light theme
-                className="my-0 top-10 md:top-24 w-11/12 max-w-3xl backdrop:bg-backdrop backdrop:backdrop-blur-[2px] bg-inherit overflow-hidden "
+                className="top-10 my-0 w-11/12 max-w-3xl overflow-hidden bg-inherit backdrop:bg-backdrop backdrop:backdrop-blur-[2px] md:top-24"
             >
-                <div className="bg-secondary rounded-lg shadow-meilisearch border border-primary">
+                <div className="rounded-lg border border-primary bg-secondary shadow-meilisearch">
                     <InstantSearch
                         searchClient={searchClient}
                         indexName="number"
+                        future={{
+                            preserveSharedStateOnUnmount: true,
+                        }}
                     >
-                        <div className="flex flex-row px-4 items-center gap-4 border-b border-color_2 ">
+                        <div className="flex flex-row items-center gap-4 border-b border-color_2 px-4">
                             <Search size={20} className="text-textSecondary" />
                             <SearchBox
                                 classNames={{
                                     root: 'w-full ',
-                                    form: 'appearance-none ',
+                                    form: 'appearance-none',
                                     input: 'unset focus:outline-none bg-transparent h-14 w-full font-medium',
                                     submitIcon: 'hidden',
                                     resetIcon: 'hidden',
@@ -70,12 +73,12 @@ export const Meilisearch = () => {
                             />
                             <button
                                 onClick={closeMeilisearch}
-                                className="apperance-none text-textSecondary text-[10px] font-semibold bg-primary  p-2 rounded-md hover:text-accent"
+                                className="apperance-none rounded-md bg-primary p-2 text-[10px] font-semibold text-textSecondary hover:text-accent"
                             >
                                 ESC
                             </button>
                         </div>
-                        <div className="px-6 min-h-10 max-h-[600px] overflow-auto transition-all ease-in-out duration-1000 divide-y divide-color_2">
+                        <div className="max-h-[600px] min-h-10 divide-y divide-color_2 overflow-auto px-6 transition-all duration-1000 ease-in-out">
                             <EmptyQueryBoundary text="Brak wyników">
                                 <Index indexName="number">
                                     <NoResultsBoundary>
@@ -100,7 +103,7 @@ export const Meilisearch = () => {
                             </EmptyQueryBoundary>
                         </div>
 
-                        <div className="border-t border-color_2 h-14 flex justify-end items-center px-4 py-6">
+                        <div className="flex h-14 items-center justify-end border-t border-color_2 px-4 py-6">
                             <PoweredBy
                                 classNames={{
                                     logo: 'h-4',
