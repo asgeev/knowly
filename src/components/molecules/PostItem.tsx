@@ -1,11 +1,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { imageLoader } from '@/helpers/imageLoader'
-import { Post, PostItemProps, TemplateObjVariants } from '@/app/types'
+import {
+    Post,
+    PostItemProps,
+    SharedPostProps,
+    TemplateObjVariants,
+} from '@/app/types'
 import { internalExternalPostHref } from '@/helpers/internalExternalPostHref'
 import { changeDate } from '@/helpers/changeDate'
 import getExistCoverUrl from '@/lib/getExistCoverUrl'
-import CustomBadge from '../atoms/CustomBadge'
+import CustomBadge from '@/components/atoms/CustomBadge'
 
 export const DynamicPostItem = ({
     variant,
@@ -55,7 +60,7 @@ export const DynamicPostItem = ({
             />
         )
 }
-export const PostItemBackground = (props: PostItemProps) => {
+const PostItemBackground = (props: PostItemProps) => {
     const {
         href = '',
         title = '',
@@ -219,6 +224,33 @@ const PostItemTop = (props: PostItemProps) => {
 
                 <div className="text-ellipsis text-muted-foreground whitespace-nowrap overflow-hidden font-semibold text-sm mt-2 ">
                     {publishedAt}
+                </div>
+            </div>
+        </article>
+    )
+}
+
+export const SharedPost = (props: SharedPostProps) => {
+    return (
+        <article
+            className={`flex bg-secondary border border-border gap-2 sm:rounded-xl group min-h-40 sm:h-[165px]`}
+        >
+            <div className="w-full flex flex-col justify-between p-4">
+                <div>
+                    <CustomBadge
+                        categoryColor={'red'}
+                        categoryText={'udostępnione'}
+                    />
+
+                    <Link
+                        href={props.href}
+                        className="font-bold line-clamp-2 md:line-clamp-3 sm:text-md mt-2 hover:underline"
+                    >
+                        {props.title}
+                    </Link>
+                </div>
+                <div className="text-ellipsis text-muted-foreground whitespace-nowrap overflow-hidden font-semibold text-sm">
+                    {props.publishedAt}
                 </div>
             </div>
         </article>

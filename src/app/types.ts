@@ -79,3 +79,9 @@ export interface SearchParamsProps {
         page?: string
     }
 }
+
+export type SharedPostProps = {
+    title: string
+    href: string
+    publishedAt?: string | undefined
+}

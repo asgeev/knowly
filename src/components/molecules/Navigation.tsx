@@ -58,6 +58,15 @@ const Navigation = (props: Props) => {
                             </Link>
                         </li>
                         {props.children}
+                        <li>
+                            <Link
+                                className="hover:text-foreground md:text-muted-foreground"
+                                href={'/udostepnione'}
+                                onClick={closeMenu}
+                            >
+                                Udostępnione
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>
