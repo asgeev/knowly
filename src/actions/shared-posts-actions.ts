@@ -1,31 +1,43 @@
 'use server'
 
-import { getStrapiUrl } from '@/lib/utils'
-import { getAuthToken } from '../lib/getAuthToken'
 import { redirect } from 'next/navigation'
+import {
+    createSharedPostsManagementService,
+    getSharedPostsManagementService,
+} from '@/services/shared-post-service'
+import { TSharedPostSchema } from '@/lib/types'
+import { SharedPostSchema } from '@/lib/formSchemas'
+import slugify from 'slugify'
 
-const strapiUrl = getStrapiUrl()
+export const getSharedPostsManagementAction = async () => {
+    const response = await getSharedPostsManagementService()
 
-const fetchDataWithAuth = async (url: string, params?: any, options?: {}) => {
-    const token = await getAuthToken()
-
-    params = new URLSearchParams(params)
-
-    return await fetch(`${strapiUrl}${url}?${params}`, {
-        headers: { Authorization: `Bearer ${token}` },
-        ...options,
-    })
-}
-
-export const getSharedPostsManagement = async () => {
-    const paramsWithPagination = {
-        'pagination[page]': 1,
-        'pagination[pageSize]': 10,
+    if (!response || !response?.ok) {
+        throw new Error('Fetch error')
     }
 
-    const response = await fetchDataWithAuth(`/api/shared-posts-management`)
+    if (response?.status === 403) redirect('/403')
 
-    if (response.status === 403) redirect('/')
+    return response.json()
+}
 
-    return response?.json()
+export const createSharedPostsManagementAction = async (
+    formData: TSharedPostSchema
+) => {
+    const validateFields = SharedPostSchema.safeParse(formData)
+    console.log(validateFields)
+
+    if (!validateFields.success) {
+        throw new Error('Form data are invalid!')
+    }
+
+    const formDataWithSlug = {
+        ...formData,
+        slug: slugify(formData.title),
+    }
+    const response = await createSharedPostsManagementService(formDataWithSlug)
+
+    console.log(response)
+
+    // console.log(validateFields)
 }

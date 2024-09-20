@@ -1,5 +1,5 @@
 import { getStrapiUrl } from '@/lib/utils'
-import { getAuthToken } from '../lib/getAuthToken'
+import { getAuthToken } from '@/lib/getAuthToken'
 
 interface RegisterUserProps {
     username: string
@@ -57,6 +57,7 @@ export async function getUserMe() {
     const baseUrl = getStrapiUrl()
 
     const url = new URL('/api/users/me', baseUrl)
+    url.searchParams.append('populate', 'role')
 
     const authToken = await getAuthToken()
     if (!authToken) return { ok: false, data: null, error: null }

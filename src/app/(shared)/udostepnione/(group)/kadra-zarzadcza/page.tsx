@@ -1,7 +1,7 @@
 import { PaginationComponent } from '@/components/molecules/PaginationComponent'
 import { DynamicPostItem, SharedPost } from '@/components/molecules/PostItem'
 import { Post, SharedPostProps } from '@/app/types'
-import { getSharedPostsManagement } from '@/actions/shared-posts-actions'
+import { getSharedPostsManagementAction } from '@/actions/shared-posts-actions'
 import { title } from 'process'
 import { changeDate } from '../../../../../helpers/changeDate'
 
@@ -16,7 +16,7 @@ export default async function SharedPostsManagement({
 }) {
     const currentPage = searchParams?.page || '1'
 
-    const { data: posts, meta } = await getSharedPostsManagement()
+    const { data: posts, meta } = await getSharedPostsManagementAction()
 
     const pageCount = meta?.pagination?.pageCount
 

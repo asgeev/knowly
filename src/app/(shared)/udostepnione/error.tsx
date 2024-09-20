@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { useEffect } from 'react'
+import { Button } from '@/components/ui/button'
 
 export default function Error({
     error,
@@ -17,16 +18,15 @@ export default function Error({
 
     return (
         <div className="container flex justify-center items-center flex-col py-20">
-            <h2 className={'text-5xl'}>Wystąpił problem z tą stroną!</h2>
-            <p className={'text-textSecondary'}>{error?.message}</p>
-            <button
+            <h2 className={'text-5xl'}>Coś poszło nie tak!</h2>
+            <Button
                 onClick={
                     // Attempt to recover by trying to re-render the segment
                     () => reset()
                 }
             >
                 Spróbuj ponownie
-            </button>
+            </Button>
         </div>
     )
 }

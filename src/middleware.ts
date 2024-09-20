@@ -13,9 +13,13 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL('/zaloguj', request.url))
     }
 
+    if (request.nextUrl.pathname.startsWith('/dodaj') && user.ok === false) {
+        return NextResponse.redirect(new URL('/zaloguj', request.url))
+    }
+
     return NextResponse.next()
 }
 
 export const config = {
-    matcher: ['/udostepnione/:path'],
+    matcher: ['/udostepnione/:path', '/dodaj/:path'],
 }

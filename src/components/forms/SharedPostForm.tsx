@@ -11,16 +11,32 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+
 import Tiptap from '@/components/molecules/Tiptap'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { createSharedPostsManagementAction } from '@/actions/shared-posts-actions'
+import { SharedPostSchema } from '@/lib/formSchemas'
+import { TSharedPostSchema } from '@/lib/types'
 
 export default function SharedPostForm() {
-    const form = useForm({
-        mode: 'onSubmit',
+    const form = useForm<TSharedPostSchema>({
+        resolver: zodResolver(SharedPostSchema),
+        defaultValues: {
+            title: '',
+            content: '',
+        },
     })
+
+    function onSubmit(formData: TSharedPostSchema) {
+        // Do something with the form values.
+        // ✅ This will be type-safe and validated.
+
+        createSharedPostsManagementAction(formData)
+    }
 
     return (
         <Form {...form}>
-            <form className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <FormField
                     control={form.control}
                     name="title"
@@ -28,11 +44,7 @@ export default function SharedPostForm() {
                         <FormItem>
                             <FormLabel>Tytuł</FormLabel>
                             <FormControl>
-                                <Input
-                                    required
-                                    placeholder="shadcn"
-                                    {...field}
-                                />
+                                <Input placeholder="shadcn" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -50,7 +62,6 @@ export default function SharedPostForm() {
                                     content={field.value}
                                 />
                             </FormControl>
-
                             <FormMessage />
                         </FormItem>
                     )}
