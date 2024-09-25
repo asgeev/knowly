@@ -1,6 +1,6 @@
 'use client'
 
-import { useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import {
     Form,
     FormControl,
@@ -17,6 +17,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { createSharedPostsManagementAction } from '@/actions/shared-posts-actions'
 import { SharedPostSchema } from '@/lib/formSchemas'
 import { TSharedPostSchema } from '@/lib/types'
+import Dropzone from '@/components/molecules/Dropzone'
 
 export default function SharedPostForm() {
     const form = useForm<TSharedPostSchema>({
@@ -24,50 +25,60 @@ export default function SharedPostForm() {
         defaultValues: {
             title: '',
             content: '',
+            files: undefined,
         },
     })
 
-    function onSubmit(formData: TSharedPostSchema) {
+    function onSubmit(values: TSharedPostSchema) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
+        console.log('Form values on submit')
 
-        createSharedPostsManagementAction(formData)
+        console.log(values)
+        // createSharedPostsManagementAction(values)
     }
 
     return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                <FormField
-                    control={form.control}
-                    name="title"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Tytuł</FormLabel>
-                            <FormControl>
-                                <Input placeholder="shadcn" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="content"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Treść</FormLabel>
-                            <FormControl>
-                                <Tiptap
-                                    onChange={field.onChange}
-                                    content={field.value}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <Button type="submit">Opublikuj post</Button>
-            </form>
-        </Form>
+        <FormProvider {...form}>
+            <Form {...form}>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-8"
+                >
+                    <FormField
+                        control={form.control}
+                        name="title"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Tytuł</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="shadcn" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="content"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Treść</FormLabel>
+                                <FormControl>
+                                    <Tiptap
+                                        onChange={field.onChange}
+                                        content={field.value}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <Dropzone form={form} />
+
+                    <Button type="submit">Opublikuj post</Button>
+                </form>
+            </Form>
+        </FormProvider>
     )
 }
