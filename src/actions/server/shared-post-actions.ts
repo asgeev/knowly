@@ -2,15 +2,15 @@
 
 import { redirect } from 'next/navigation'
 import {
-    createSharedPostsManagementService,
-    getSharedPostsManagementService,
+    addSharedPostService,
+    getSharedPostsService,
 } from '@/services/shared-post-service'
 import { TSharedPostSchema } from '@/lib/types'
 import { SharedPostSchema } from '@/lib/formSchemas'
 import slugify from 'slugify'
 
-export const getSharedPostsManagementAction = async () => {
-    const response = await getSharedPostsManagementService()
+export const getSharedPostsAction = async () => {
+    const response = await getSharedPostsService()
 
     if (!response || !response?.ok) {
         throw new Error('Fetch error')
@@ -21,10 +21,8 @@ export const getSharedPostsManagementAction = async () => {
     return response.json()
 }
 
-export const createSharedPostsManagementAction = async (
-    formData: TSharedPostSchema
-) => {
-    const validateFields = SharedPostSchema.safeParse(formData)
+export const addSharedPostAction = async (values: TSharedPostSchema) => {
+    const validateFields = SharedPostSchema.safeParse(values)
     console.log(validateFields)
 
     if (!validateFields.success) {
@@ -32,12 +30,10 @@ export const createSharedPostsManagementAction = async (
     }
 
     const formDataWithSlug = {
-        ...formData,
-        slug: slugify(formData.title),
+        ...values,
+        slug: slugify(values.title),
     }
-    const response = await createSharedPostsManagementService(formDataWithSlug)
+    const response = await addSharedPostService(formDataWithSlug)
 
-    console.log(response)
-
-    // console.log(validateFields)
+    return response
 }

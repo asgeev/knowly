@@ -1,19 +1,23 @@
-import { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { useFieldArray } from 'react-hook-form'
+import { useFieldArray, UseFormReturn } from 'react-hook-form'
 import {
-    Form,
     FormControl,
     FormField,
     FormItem,
     FormLabel,
     FormMessage,
 } from '@/components/ui/form'
+import { TSharedPostSchema } from '@/lib/types'
 
-export default function Dropzone({ form }: { form: any }) {
-    const [files, setFiles] = useState<Array<File>>([])
+type TDropzone = {
+    form: UseFormReturn<TSharedPostSchema>
+    setFiles: React.Dispatch<React.SetStateAction<Array<File>>>
+}
 
-    const { fields, append } = useFieldArray({
+export default function Dropzone(props: TDropzone) {
+    const { form, setFiles } = props
+    const { append } = useFieldArray({
         name: 'files',
         control: form.control,
     })
@@ -22,7 +26,7 @@ export default function Dropzone({ form }: { form: any }) {
         async (acceptedFiles: Array<File>) => {
             console.log(acceptedFiles)
             if (acceptedFiles?.length) {
-                setFiles((previousFiles) => [
+                setFiles((previousFiles: Array<File>) => [
                     ...previousFiles,
                     ...acceptedFiles,
                 ])
@@ -30,13 +34,12 @@ export default function Dropzone({ form }: { form: any }) {
                 await form.trigger('files')
             }
         },
-        [form]
+        [append, form, setFiles]
     )
 
-    const { acceptedFiles, getRootProps, getInputProps, isDragActive } =
-        useDropzone({
-            onDrop,
-        })
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        onDrop,
+    })
     const filesRef = form.register('files')
     return (
         <>
@@ -71,12 +74,6 @@ export default function Dropzone({ form }: { form: any }) {
                     )
                 }}
             />
-
-            <ul className="space-y-2">
-                {files?.map((file) => {
-                    return <li key={file.name}>{file.name}</li>
-                })}
-            </ul>
         </>
     )
 }

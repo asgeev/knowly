@@ -14,12 +14,16 @@ import { Button } from '@/components/ui/button'
 
 import Tiptap from '@/components/molecules/Tiptap'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { createSharedPostsManagementAction } from '@/actions/shared-posts-actions'
 import { SharedPostSchema } from '@/lib/formSchemas'
 import { TSharedPostSchema } from '@/lib/types'
 import Dropzone from '@/components/molecules/Dropzone'
+import { uploadSharedFileClientAction } from '@/actions/client/upload-shared-file-client-actions'
+import { addSharedPostAction } from '@/actions/server/shared-post-actions'
+import { useState } from 'react'
 
 export default function SharedPostForm() {
+    const [files, setFiles] = useState<Array<File>>([])
+
     const form = useForm<TSharedPostSchema>({
         resolver: zodResolver(SharedPostSchema),
         defaultValues: {
@@ -29,13 +33,41 @@ export default function SharedPostForm() {
         },
     })
 
-    function onSubmit(values: TSharedPostSchema) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log('Form values on submit')
+    async function onSubmit(values: TSharedPostSchema) {
+        let uploadedFiles = []
+        // 1. Upload files from client to external service and add files item to strapi by server action
+        if (values.files.length) {
+            uploadedFiles = await Promise.all(
+                values.files?.map(({ value }: { value: File }) => {
+                    return uploadSharedFileClientAction(value)
+                })
+            )
+        }
+        //Get id of created files
+        const getFilesIdArray = () => {
+            let idsArray: Array<number> = []
+            uploadedFiles.map(({ file }) => {
+                idsArray.push(file?.data?.id)
+            })
+            return idsArray
+        }
 
-        console.log(values)
-        // createSharedPostsManagementAction(values)
+        const valuesWithUploadedFiles = {
+            ...values,
+            files: getFilesIdArray(),
+        }
+
+        console.log(valuesWithUploadedFiles)
+
+        // 3. Create shared post in strapi by server action
+        const response = await addSharedPostAction(valuesWithUploadedFiles)
+
+        //Reset form
+        if (response) {
+            console.log('Shared post created!')
+            form.reset()
+            setFiles([])
+        }
     }
 
     return (
@@ -74,7 +106,13 @@ export default function SharedPostForm() {
                             </FormItem>
                         )}
                     />
-                    <Dropzone form={form} />
+                    <Dropzone form={form} setFiles={setFiles} />
+
+                    <ul className="space-y-2">
+                        {files?.map((file: File) => {
+                            return <li key={file.name}>{file.name}</li>
+                        })}
+                    </ul>
 
                     <Button type="submit">Opublikuj post</Button>
                 </form>

@@ -17,7 +17,7 @@ async function fetchWithAuth(endpoint: string, options?: {}) {
     })
 }
 
-export async function getSharedPostsManagementService() {
+export async function getSharedPostsService() {
     const params = {
         'pagination[page]': '1',
         'pagination[pageSize]': '10',
@@ -32,16 +32,17 @@ export async function getSharedPostsManagementService() {
     }
 }
 
-export async function createSharedPostsManagementService(
-    sharedPostData: TSharedPostSchema
-) {
+export async function addSharedPostService(sharedPostData: TSharedPostSchema) {
     try {
-        const response = await fetchWithAuth('/api/shared-posts-management', {
-            method: 'POST',
-            body: JSON.stringify({ data: sharedPostData }),
-            cache: 'no-cache',
-        })
-        return response
+        const response = await fetchWithAuth(
+            '/api/shared-posts-management?populate=*',
+            {
+                method: 'POST',
+                body: JSON.stringify({ data: sharedPostData }),
+                cache: 'no-cache',
+            }
+        )
+        return response?.json()
     } catch (error) {
         console.error('There is an error creating shared post!', error)
     }
