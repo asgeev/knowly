@@ -1,10 +1,10 @@
 import { Inter } from 'next/font/google'
-import Footer from '@/components/organisms/Footer'
-import Header from '@/components/organisms/Header'
+import Footer from '@/components/organisms/footer'
+import Header from '@/components/organisms/header'
 import './globals.css'
 import { ThemeProvider } from 'next-themes'
-import Notifications from '@/components/organisms/Notifications'
-import NotificationBar from '@/components/organisms/NotificationBar'
+import AllNotifications from '@/features/notification/components/all-notifications'
+import NotificationBar from '@/features/notification/components/notification-bar'
 import React, { Suspense } from 'react'
 import NextTopLoader from 'nextjs-toploader'
 
@@ -41,7 +41,7 @@ export default function RootLayout({
                     </Suspense>
                     <Header />
                     <Suspense fallback={null}>
-                        <Notifications />
+                        <AllNotifications />
                     </Suspense>
                     <main className="pb-6">{children}</main>
                     <Footer />
