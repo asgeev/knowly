@@ -15,50 +15,52 @@ import { Button } from '@/components/ui/button'
 import Tiptap from '@/components/molecules/tiptap'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SharedPostSchema } from '@/lib/formSchemas'
-import { TSharedPostSchema } from '@/lib/types'
-import Dropzone from '@/components/molecules/dropzone'
-import { uploadFileShared } from '@/actions/client/file-shared-actions'
+import { TFile, TSharedPostSchema } from '@/lib/types'
 import { addPostSharedAction } from '@/features/add-post/actions/add-post-actions'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { deleteFileShared } from '@/actions/server/file-shared-actions'
+import Dropzone from '@/components/molecules/dropzone'
+import File from '@/components/atoms/file'
 
 export default function SharedPostForm() {
-    const [files, setFiles] = useState<Array<File>>([])
+    const [files, setFiles] = useState<Array<TFile>>([])
+
+    useEffect(() => {
+        console.log(files)
+    }, [files])
 
     const form = useForm<TSharedPostSchema>({
         resolver: zodResolver(SharedPostSchema),
         defaultValues: {
             title: '',
             content: '',
-            files: undefined,
+            files: [],
         },
     })
 
-    async function onSubmit(values: TSharedPostSchema) {
-        let uploadedFiles = []
-        // 1. Upload files from client to external service and add files item to strapi by server action
-        if (values.files.length) {
-            uploadedFiles = await Promise.all(
-                values.files?.map((file: File) => {
-                    return uploadFileShared(file)
-                })
+    const deleteFile = async (id: number) => {
+        try {
+            const response = await deleteFileShared(id)
+            if (response) {
+                setFiles((files) => files.filter((file) => file.fileId !== id))
+            }
+        } catch (e) {
+            console.log(
+                'Nie udało się usunąć pliku, prosimy spróbować później!'
             )
         }
+    }
 
-        console.log(uploadedFiles)
-        //Get id of created files
-        const getFilesIdArray = () => {
-            let idsArray: Array<number> = []
-            uploadedFiles.map(({ file }) => {
-                idsArray.push(file?.data?.id)
-            })
-            return idsArray
-        }
+    async function onSubmit(values: TSharedPostSchema) {
+        const filesArr = files.map((file) => {
+            return file.fileId
+        })
+
         const valuesWithUploadedFiles = {
             ...values,
-            files: getFilesIdArray(),
+            files: filesArr,
         }
-        console.log(valuesWithUploadedFiles)
-        // 3. Create shared post in strapi by server action
+
         const response = await addPostSharedAction(valuesWithUploadedFiles)
         //Reset form
         if (response) {
@@ -69,52 +71,69 @@ export default function SharedPostForm() {
     }
 
     return (
-        <FormProvider {...form}>
-            <Form {...form}>
-                <form
-                    onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-8"
-                >
-                    <FormField
-                        control={form.control}
-                        name="title"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Tytuł</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="shadcn" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="content"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Treść</FormLabel>
-                                <FormControl>
-                                    <Tiptap
-                                        onChange={field.onChange}
-                                        content={field.value}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <Dropzone form={form} setFiles={setFiles} />
-
-                    <ul className="space-y-2">
-                        {files?.map((file: File) => {
-                            return <li key={file.name}>{file.name}</li>
-                        })}
-                    </ul>
-
-                    <Button type="submit">Opublikuj post</Button>
-                </form>
-            </Form>
-        </FormProvider>
+        <>
+            <FormProvider {...form}>
+                <Form {...form}>
+                    <form
+                        onSubmit={form.handleSubmit(onSubmit)}
+                        className="space-y-8"
+                    >
+                        <FormField
+                            control={form.control}
+                            name="title"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Tytuł</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            placeholder="shadcn"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="content"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Treść</FormLabel>
+                                    <FormControl>
+                                        <Tiptap
+                                            onChange={field.onChange}
+                                            content={field.value}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormItem>
+                            <FormLabel>Pliki</FormLabel>
+                            <Dropzone setFiles={setFiles} />
+                            <FormMessage />
+                        </FormItem>
+                    </form>
+                </Form>
+            </FormProvider>
+            <div className="space-y-2 pt-2">
+                {files?.map((file: TFile, index) => {
+                    return (
+                        <File
+                            key={index}
+                            fileData={file}
+                            onDelete={deleteFile}
+                        />
+                    )
+                })}
+            </div>
+            <div className="pt-8">
+                <Button onClick={form.handleSubmit(onSubmit)}>
+                    Opublikuj post
+                </Button>
+            </div>
+        </>
     )
 }

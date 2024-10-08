@@ -83,12 +83,10 @@ export type SharedPostProps = {
 
 export type TSharedPostSchema = z.infer<typeof SharedPostSchema>
 
-export type TSharedFile = {
-    fileUID: string
-    originalFileName: string
-    fileNameWithExt: string
-    fileMime: string
-    fileSize: number
-    patch: string
-    uploadDate: Date
+export type TFile = {
+    fileId: number | undefined
+    fileUID?: string
+    fileName: string
+    size?: number
+    isLoading: boolean
 }

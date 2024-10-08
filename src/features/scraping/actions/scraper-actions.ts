@@ -2,7 +2,7 @@
 
 import * as cheerio from 'cheerio'
 import axios from 'axios'
-import { Post } from '@/app/types'
+import { Post } from '@/lib/types'
 
 export const getInfoCen = async () => {
     const url = process.env.INTRANET_HEAD_OFFICE || ''
