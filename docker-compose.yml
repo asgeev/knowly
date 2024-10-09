@@ -13,7 +13,7 @@ services:
             - traefik_web
         labels:
             - traefik.enable=true
-            - traefik.http.routers.knowly-frontend.rule=Host(`${PUBLIC_URL}`)
+            - traefik.http.routers.knowly-frontend.rule=Host(`${PUBLIC_URL}`, `${SECOND_PUBLIC_URL}`)
             - traefik.http.routers.knowly-frontend.tls=true
 networks:
     traefik_web:
