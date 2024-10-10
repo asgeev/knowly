@@ -7,6 +7,7 @@ import AllNotifications from '@/features/notification/components/all-notificatio
 import NotificationBar from '@/features/notification/components/notification-bar'
 import React, { Suspense } from 'react'
 import NextTopLoader from 'nextjs-toploader'
+import { Toaster } from '@/components/ui/sonner'
 
 export const metadata = {
     title: 'Knowly',
@@ -46,6 +47,7 @@ export default function RootLayout({
                     <main className="pb-6">{children}</main>
                     <Footer />
                 </ThemeProvider>
+                <Toaster position="top-right" richColors />
             </body>
         </html>
     )

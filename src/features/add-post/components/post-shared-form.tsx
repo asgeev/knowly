@@ -15,19 +15,16 @@ import { Button } from '@/components/ui/button'
 import Tiptap from '@/components/molecules/tiptap'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SharedPostSchema } from '@/lib/formSchemas'
-import { TFile, TSharedPostSchema } from '@/lib/types'
+import { TFile, TResponse, TSharedPostSchema } from '@/lib/types'
 import { addPostSharedAction } from '@/features/add-post/actions/add-post-actions'
 import { useEffect, useState } from 'react'
 import { deleteFileShared } from '@/actions/server/file-shared-actions'
 import Dropzone from '@/components/molecules/dropzone'
 import File from '@/components/atoms/file'
+import { toast } from 'sonner'
 
 export default function SharedPostForm() {
     const [files, setFiles] = useState<Array<TFile>>([])
-
-    useEffect(() => {
-        console.log(files)
-    }, [files])
 
     const form = useForm<TSharedPostSchema>({
         resolver: zodResolver(SharedPostSchema),
@@ -44,10 +41,10 @@ export default function SharedPostForm() {
             if (response) {
                 setFiles((files) => files.filter((file) => file.fileId !== id))
             }
-        } catch (e) {
-            console.log(
-                'Nie udało się usunąć pliku, prosimy spróbować później!'
-            )
+        } catch (err) {
+            toast.error('Nie udało się wysłać pliku', {
+                description: 'Spróbuj ponownie później',
+            })
         }
     }
 
@@ -61,12 +58,30 @@ export default function SharedPostForm() {
             files: filesArr,
         }
 
-        const response = await addPostSharedAction(valuesWithUploadedFiles)
-        //Reset form
-        if (response) {
-            console.log('Shared post created!')
-            form.reset()
-            setFiles([])
+        try {
+            const response: TResponse = await addPostSharedAction(
+                valuesWithUploadedFiles
+            )
+
+            if (response?.error) {
+                toast.error('Nie udało się utworzyć posta', {
+                    description: response?.error?.message,
+                })
+            }
+
+            if (response?.ok) {
+                //Reset form
+                form.reset()
+                setFiles([])
+                toast.success('Udało się!', {
+                    description: 'Twój post został zapisany!',
+                })
+            }
+        } catch (e) {
+            toast.error('Coś poszło nie tak!', {
+                description:
+                    'Twój post nie może być zapisany, spróbuj ponownie później!',
+            })
         }
     }
 

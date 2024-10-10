@@ -1,13 +1,12 @@
 'use server'
 
 import { addPostSharedService } from '@/features/add-post/services/add-post-service'
-import { TSharedPostSchema } from '@/lib/types'
+import { TResponse, TSharedPostSchema } from '@/lib/types'
 import { SharedPostSchema } from '@/lib/formSchemas'
 import slugify from 'slugify'
 
 export const addPostSharedAction = async (values: TSharedPostSchema) => {
     const validateFields = SharedPostSchema.safeParse(values)
-    console.log(validateFields)
 
     if (!validateFields.success) {
         throw new Error('Form data are invalid!')
@@ -17,16 +16,34 @@ export const addPostSharedAction = async (values: TSharedPostSchema) => {
         ...values,
         slug: slugify(values.title),
     }
-    const response = await addPostSharedService(formDataWithSlug)
 
-    return response
+    try {
+        const response = await addPostSharedService(formDataWithSlug)
+
+        if (response.status === 403) {
+            return {
+                ok: false,
+                data: null,
+                error: {
+                    message:
+                        'Nie masz uprawnień do tworzenia udostepnionych postów',
+                },
+            } as TResponse
+        }
+
+        return {
+            ok: true,
+            data: null,
+            error: null,
+        } as TResponse
+    } catch (err) {
+        return {
+            ok: false,
+            data: null,
+            error: {
+                message:
+                    'Wystąpił błąd podczas zapisywania posta spróbuj ponownie później',
+            },
+        } as TResponse
+    }
 }
-
-// export const createSharedFileManagementAction = async (
-//     fileData: TSharedFile
-// ) => {
-//     const response = await createSharedFileEntryService(fileData)
-
-//     console.log(response?.json)
-//     return response?.json()
-// }

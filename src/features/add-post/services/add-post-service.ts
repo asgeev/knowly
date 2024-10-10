@@ -11,8 +11,8 @@ export async function addPostSharedService(sharedPostData: TSharedPostSchema) {
                 cache: 'no-cache',
             }
         )
-        return response?.json()
+        return response
     } catch (error) {
-        console.error('There is an error creating shared post!', error)
+        throw new Error('Wystąpił błąd podczas tworzenia posta')
     }
 }

@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { uploadFile } from '@/actions/server/file-shared-actions'
-import { TFile } from '@/lib/types'
+import { TFile, TResponse } from '@/lib/types'
 import { Upload } from 'lucide-react'
+import { toast } from 'sonner'
 
 type TDropzone = {
     setFiles: React.Dispatch<React.SetStateAction<Array<TFile>>>
@@ -23,37 +24,61 @@ export default function DropzoneTest(props: TDropzone) {
         )
     }
 
+    const deleteFileState = (name: string) => {
+        setFiles((files) =>
+            files.filter((element) => element.fileName !== name)
+        )
+    }
+
     const onDrop = useCallback(
         (acceptedFiles: Array<File>) => {
             acceptedFiles.forEach(async (file: File) => {
                 if (acceptedFiles?.length) {
-                    //Set files state to upload
-                    setFiles((prevFiles: Array<TFile>) => [
-                        ...prevFiles,
-                        {
-                            fileId: undefined,
-                            fileName: file.name,
-                            isLoading: true,
-                        },
-                    ])
+                    try {
+                        //Set files state to upload
+                        setFiles((prevFiles: Array<TFile>) => [
+                            ...prevFiles,
+                            {
+                                fileId: undefined,
+                                fileName: file.name,
+                                isLoading: true,
+                            },
+                        ])
 
-                    //Create new form and update file
-                    const form = new FormData()
+                        //Create new form and update file
+                        const form = new FormData()
 
-                    form.append('file', file)
+                        form.append('file', file)
 
-                    const response = await uploadFile(form)
+                        const response: TResponse = await uploadFile(form)
 
-                    const uploadedFile: TFile = {
-                        fileId: response?.data?.id,
-                        fileUID: response?.data?.attributes?.fileUID,
-                        fileName: response?.data?.attributes?.originalFileName,
-                        size: response?.data?.attributes?.fileSize,
-                        isLoading: false,
+                        console.log(response)
+
+                        if (response?.error) {
+                            deleteFileState(file.name)
+                            toast.error('Nie udało się wysłać pliku!', {
+                                description: response?.error?.message,
+                            })
+                        }
+
+                        const uploadedFile: TFile = {
+                            fileId: response?.data?.id,
+                            fileUID: response?.data?.attributes?.fileUID,
+                            fileName:
+                                response?.data?.attributes?.originalFileName,
+                            size: response?.data?.attributes?.fileSize,
+                            isLoading: false,
+                        }
+
+                        //Update file state after upload
+                        updateFileState(uploadedFile)
+                    } catch (e: any) {
+                        //Remove file from state
+                        deleteFileState(file.name)
+                        toast.error('Nie udało się wysłać pliku!', {
+                            description: 'Spróbuj ponownie później...',
+                        })
                     }
-
-                    //Update file state after upload
-                    updateFileState(uploadedFile)
                 }
             })
         },

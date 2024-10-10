@@ -90,3 +90,13 @@ export type TFile = {
     size?: number
     isLoading: boolean
 }
+
+export type TResponse =
+    | {
+          ok: boolean
+          data: any | null
+          error: null | {
+              message: string
+          }
+      }
+    | undefined
