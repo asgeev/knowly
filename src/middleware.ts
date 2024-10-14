@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
         !viewer &&
         !author
     ) {
-        return NextResponse.redirect(new URL('/', request.url))
+        return NextResponse.redirect(new URL('/error?status=403', request.url))
     }
 
     if (request.nextUrl.pathname.startsWith('/dodaj') && user.ok === false) {
