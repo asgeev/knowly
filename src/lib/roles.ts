@@ -8,7 +8,7 @@ const roles = {
 
 export const isAuthenticated = async () => {
     const user = await getUserMe()
-    const userRole = user?.data?.role?.type
+    const userRole = user?.data?.role?.name
 
     if (!user || !user.ok) {
         return null
@@ -23,7 +23,7 @@ export const isAuthenticated = async () => {
 
 export const isViewer = async () => {
     const user = await getUserMe()
-    const userRole = user?.data?.role?.type
+    const userRole = user?.data?.role?.name
 
     if (!user || !user.ok) {
         return null
@@ -38,7 +38,7 @@ export const isViewer = async () => {
 
 export const isAuthor = async () => {
     const user = await getUserMe()
-    const userRole = user?.data?.role?.type
+    const userRole = user?.data?.role?.name
 
     if (!user || !user.ok) {
         return null

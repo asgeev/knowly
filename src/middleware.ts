@@ -17,8 +17,15 @@ export async function middleware(request: NextRequest) {
     }
 
     if (
-        request.nextUrl.pathname.startsWith('/udostepnione/kadra-zarzadcza') &&
+        request.nextUrl.pathname.startsWith('/udostepnione') &&
         !viewer &&
+        !author
+    ) {
+        return NextResponse.redirect(new URL('/error?status=403', request.url))
+    }
+
+    if (
+        request.nextUrl.pathname.startsWith('/udostepnione/edytuj') &&
         !author
     ) {
         return NextResponse.redirect(new URL('/error?status=403', request.url))
@@ -34,7 +41,7 @@ export async function middleware(request: NextRequest) {
 export const config = {
     matcher: [
         '/udostepnione/:path',
-        '/udostepnione/kadra-zarzadcza/:path',
+        '/udostepnione/edytuj/:path*',
         '/dodaj/:path',
     ],
 }

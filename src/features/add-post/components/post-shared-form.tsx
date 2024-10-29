@@ -22,30 +22,51 @@ import { deleteFileShared } from '@/actions/server/file-shared-actions'
 import Dropzone from '@/components/molecules/dropzone'
 import File from '@/components/atoms/file'
 import { toast } from 'sonner'
+import { updatePostShared } from '@/features/post-shared/actions/post-shared-actions'
+import { useWarnIfUnsavedChanges } from '@/hooks/useWarnIfUnsavedChanges'
 
-export default function SharedPostForm() {
-    const [files, setFiles] = useState<Array<TFile>>([])
+export interface TInitialData extends TSharedPostSchema {
+    id: number
+}
+
+export default function SharedPostForm({
+    initialData,
+}: {
+    initialData?: TInitialData
+}) {
+    const [files, setFiles] = useState<Array<TFile>>(initialData?.files ?? [])
 
     const form = useForm<TSharedPostSchema>({
         resolver: zodResolver(SharedPostSchema),
         defaultValues: {
-            title: '',
-            content: '',
+            title: initialData?.title ?? '',
+            content: initialData?.content ?? '',
             files: [],
         },
     })
 
-    const deleteFile = async (id: number) => {
-        try {
-            const response = await deleteFileShared(id)
-            if (response) {
-                setFiles((files) => files.filter((file) => file.fileId !== id))
+    //Check if files change
+    useEffect(() => {
+        if (initialData) {
+            if (files.length != initialData?.files?.length) {
+                form.setValue('files', '', { shouldDirty: true })
             }
-        } catch (err) {
-            toast.error('Nie udało się wysłać pliku', {
-                description: 'Spróbuj ponownie później',
-            })
         }
+    }, [files, form, initialData, initialData?.files?.length])
+
+    //Warn if exiting page
+    useWarnIfUnsavedChanges(form.formState.isDirty)
+
+    const onDeleteFile = async (id: number) => {
+        const response: TResponse = await deleteFileShared(id)
+        if (response?.ok) {
+            setFiles((files) => files.filter((file) => file.fileId !== id))
+            toast.success('Plik został usunięty!')
+        }
+        if (response?.error)
+            toast.error('Wystąpił błąd', {
+                description: response?.error?.message,
+            })
     }
 
     async function onSubmit(values: TSharedPostSchema) {
@@ -59,9 +80,17 @@ export default function SharedPostForm() {
         }
 
         try {
-            const response: TResponse = await addPostSharedAction(
-                valuesWithUploadedFiles
-            )
+            let response: TResponse
+
+            //If form has initial data update post shared otherwise create new post shared
+            if (initialData) {
+                response = await updatePostShared(
+                    initialData.id,
+                    valuesWithUploadedFiles
+                )
+            } else {
+                response = await addPostSharedAction(valuesWithUploadedFiles)
+            }
 
             if (response?.error) {
                 toast.error('Nie udało się utworzyć posta', {
@@ -70,9 +99,13 @@ export default function SharedPostForm() {
             }
 
             if (response?.ok) {
-                //Reset form
+                if (!initialData) {
+                    //Remove files
+                    setFiles([])
+                }
+
                 form.reset()
-                setFiles([])
+
                 toast.success('Udało się!', {
                     description: 'Twój post został zapisany!',
                 })
@@ -139,14 +172,17 @@ export default function SharedPostForm() {
                         <File
                             key={index}
                             fileData={file}
-                            onDelete={deleteFile}
+                            onDelete={onDeleteFile}
                         />
                     )
                 })}
             </div>
             <div className="pt-8">
-                <Button onClick={form.handleSubmit(onSubmit)}>
-                    Opublikuj post
+                <Button
+                    disabled={!form.formState.isDirty}
+                    onClick={form.handleSubmit(onSubmit)}
+                >
+                    Zapisz
                 </Button>
             </div>
         </>

@@ -3,6 +3,7 @@
 import { fetchWithAuth } from '@/lib/fetchWithAuth'
 import { uploadFileService } from '@/services/file-service'
 import { TResponse } from '@/lib/types'
+import { revalidatePath } from 'next/cache'
 
 type TSharedFile = {
     fileUID: string
@@ -44,28 +45,32 @@ export async function saveFileShared(fileData: TSharedFile) {
 }
 
 export async function deleteFileShared(id: number) {
-    try {
-        const response = await fetchWithAuth(
-            `/api/shared-files-management/${id}`,
-            {
-                method: 'DELETE',
+    const response = await fetchWithAuth(`/api/shared-files-management/${id}`, {
+        method: 'DELETE',
+    })
+
+    if (response.ok) {
+        revalidatePath('/udostepnione')
+
+        return { ok: true, data: null, error: null }
+    } else {
+        if (response.status === 403)
+            return {
+                ok: false,
+                data: null,
+                error: {
+                    message: 'Nie masz uprawnień do usuwania plików!',
+                },
             }
-        )
 
-        if (!response.ok) {
-            throw new Error(
-                'Nie udało sie usunąc pliku, spróbuj ponownie później!'
-            )
-        }
-
-        if (response.status === 403) {
-            throw new Error('Brak uprawnień do przesyłania plików!')
-        }
-
-        return response?.json()
-    } catch (err) {
-        console.log(err)
-        throw new Error('Cannot delete file!')
+        if (response.status === 404)
+            return {
+                ok: false,
+                data: null,
+                error: {
+                    message: 'Plik nie istnieje!',
+                },
+            }
     }
 }
 
