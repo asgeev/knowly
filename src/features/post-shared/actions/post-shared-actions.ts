@@ -10,7 +10,7 @@ import { TSharedPostSchema } from '@/lib/types'
 import { SharedPostSchema } from '@/lib/formSchemas'
 import { revalidatePath } from 'next/cache'
 
-export const getSharedPostsAction = async () => {
+export const getSharedPosts = async () => {
     const response = await getSharedPostsService()
 
     if (response?.status === 403) redirect('/403')
