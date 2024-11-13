@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/card'
 import SharedPostForm, {
     TInitialData,
-} from '@/features/add-post/components/post-shared-form'
+} from '@/features/post-shared/components/post-shared-form'
 import { getPostSharedById } from '@/features/post-shared/actions/post-shared-actions'
 import { TFile, TResponse } from '@/lib/types'
 import { notFound } from 'next/navigation'

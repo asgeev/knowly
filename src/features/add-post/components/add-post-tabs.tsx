@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import PostForm from '@/features/add-post/components/post-form'
-import SharedPostForm from '@/features/add-post/components/post-shared-form'
+import SharedPostForm from '@/features/post-shared/components/post-shared-form'
 import {
     Card,
     CardContent,
