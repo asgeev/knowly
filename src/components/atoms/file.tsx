@@ -1,7 +1,7 @@
 import { TFile } from '@/lib/types'
 import { Download, LoaderCircle, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { formatBytes } from '@/lib/formatBytes'
+import { formatBytes } from '@/lib/utils'
 import { File as FileIcon } from 'lucide-react'
 
 type TFileProps = {

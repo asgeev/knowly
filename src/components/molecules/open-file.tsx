@@ -1,4 +1,4 @@
-import { formatBytes } from '@/lib/formatBytes'
+import { formatBytes } from '@/lib/utils'
 import { File } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'

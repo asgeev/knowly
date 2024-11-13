@@ -1,4 +1,4 @@
-import { getAuthToken } from '@/lib/getAuthToken'
+import { getAuthToken } from '@/lib/auth'
 import { getStrapiUrl } from '@/lib/utils'
 const strapiUrl = getStrapiUrl()
 

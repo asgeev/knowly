@@ -1,5 +1,5 @@
 import { getStrapiUrl } from '@/lib/utils'
-import { getAuthToken } from '@/lib/getAuthToken'
+import { getAuthToken } from '@/lib/auth'
 
 export async function getUserMe() {
     const baseUrl = getStrapiUrl()

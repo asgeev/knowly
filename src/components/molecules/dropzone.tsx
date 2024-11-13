@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { uploadFile } from '@/actions/server/file-shared-actions'
+import { uploadFile } from '@/features/post-shared/actions/file-shared-actions'
 import { TFile, TResponse } from '@/lib/types'
 import { Upload } from 'lucide-react'
 import { toast } from 'sonner'

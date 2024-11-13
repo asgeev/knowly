@@ -1,7 +1,7 @@
 'use server'
 
 import { fetchWithAuth } from '@/lib/fetchWithAuth'
-import { uploadFileService } from '@/services/file-service'
+import { uploadFileService } from '@/features/post-shared/services/file-shared-service'
 import { TResponse, TUploadResponse } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
