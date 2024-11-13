@@ -37,7 +37,7 @@ export default async function Layout({
                                 </Button>
                             </div>
                             <div>
-                                <Button variant={'destructive'}>
+                                <Button disabled variant={'destructive'}>
                                     <Trash /> Usuń
                                 </Button>
                             </div>

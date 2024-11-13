@@ -100,3 +100,24 @@ export type TResponse =
           }
       }
     | undefined
+
+export type TUploadedFile = {
+    fileId: number
+    fieldname: string
+    originalname: string
+    encoding: string
+    mimetype: string
+    destination: string
+    filename: string
+    path: string
+    size: number
+    uploadDate: number
+}
+
+export type TUploadResponse = {
+    message: string | null
+    data: TUploadedFile | null
+    error: null | {
+        message: string
+    }
+}

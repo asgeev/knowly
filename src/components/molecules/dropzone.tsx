@@ -52,11 +52,9 @@ export default function DropzoneTest(props: TDropzone) {
 
                         const response: TResponse = await uploadFile(form)
 
-                        console.log(response)
-
                         if (response?.error) {
                             deleteFileState(file.name)
-                            toast.error('Nie udało się wysłać pliku!', {
+                            return toast.error('Nie udało się wysłać pliku!', {
                                 description: response?.error?.message,
                             })
                         }
@@ -72,6 +70,8 @@ export default function DropzoneTest(props: TDropzone) {
 
                         //Update file state after upload
                         updateFileState(uploadedFile)
+
+                        toast.success('Plik został przesłany!')
                     } catch (e: any) {
                         //Remove file from state
                         deleteFileState(file.name)

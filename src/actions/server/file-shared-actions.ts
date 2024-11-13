@@ -2,17 +2,17 @@
 
 import { fetchWithAuth } from '@/lib/fetchWithAuth'
 import { uploadFileService } from '@/services/file-service'
-import { TResponse } from '@/lib/types'
+import { TResponse, TUploadResponse } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
 type TSharedFile = {
     fileUID: string
-    originalFileName: string
-    fileNameWithExt: string
-    fileMime: string
-    fileSize: number
-    patch: string
-    uploadDate: Date
+    originalFileName?: string
+    fileNameWithExt?: string
+    fileMime?: string
+    fileSize?: string
+    path?: string
+    uploadDate?: Date | undefined
 }
 
 export async function saveFileShared(fileData: TSharedFile) {
@@ -77,32 +77,25 @@ export async function deleteFileShared(id: number) {
 export async function uploadFile(formData: FormData) {
     const file = formData.get('file')
 
-    if (file) {
-        try {
-            const response: any = await uploadFileService(formData)
+    if (!file) {
+        return {
+            ok: false,
+            data: null,
+            error: {
+                message:
+                    'Wystąpił problem z przesłaniem pliku spróbuj ponownie później',
+            },
+        }
+    }
 
-            if (response?.ok) {
-                const responseSave: TResponse = await saveFileShared(
-                    response?.file
-                )
+    try {
+        const response = await uploadFileService(formData)
+        const data: TUploadResponse = await response.json()
 
-                if (responseSave?.error) {
-                    return {
-                        ok: false,
-                        data: null,
-                        error: {
-                            message: responseSave?.error?.message,
-                        },
-                    }
-                }
+        console.log('Upload service response json in server action')
+        console.log(data)
 
-                return {
-                    ok: true,
-                    data: { ...responseSave?.data },
-                    error: null,
-                }
-            }
-
+        if (!response.ok) {
             if (response.status === 403) {
                 return {
                     ok: false,
@@ -112,8 +105,7 @@ export async function uploadFile(formData: FormData) {
                     },
                 }
             }
-        } catch (err) {
-            console.log(err)
+
             return {
                 ok: false,
                 data: null,
@@ -123,7 +115,38 @@ export async function uploadFile(formData: FormData) {
                 },
             }
         }
-    } else {
+
+        const newFileInfo: TSharedFile = {
+            fileUID: String(data?.data?.fileId),
+            originalFileName: data?.data?.originalname,
+            fileNameWithExt: data?.data?.filename,
+            fileMime: data?.data?.mimetype,
+            fileSize: String(data?.data?.size),
+            path: data?.data?.path,
+            uploadDate: data?.data?.uploadDate
+                ? new Date(data?.data?.uploadDate)
+                : undefined,
+        }
+
+        const responseSave: TResponse = await saveFileShared(newFileInfo)
+
+        if (responseSave?.error) {
+            return {
+                ok: false,
+                data: null,
+                error: {
+                    message: responseSave?.error?.message,
+                },
+            }
+        }
+
+        return {
+            ok: true,
+            data: { ...responseSave?.data },
+            error: null,
+        }
+    } catch (err) {
+        console.log(err)
         return {
             ok: false,
             data: null,
