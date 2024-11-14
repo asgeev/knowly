@@ -7,7 +7,7 @@ import { File as FileIcon } from 'lucide-react'
 type TFileProps = {
     fileData: TFile
     secondary?: boolean
-    onDelete?: (id: number) => void
+    onDelete?: (fileId: number, fileUID: string | undefined) => void
 }
 
 export default function File(props: TFileProps) {
@@ -46,7 +46,7 @@ export default function File(props: TFileProps) {
                                 variant="outline"
                                 size="icon"
                                 title="Usuń"
-                                onClick={() => onDelete(fileId)}
+                                onClick={() => onDelete(fileId, fileUID)}
                             >
                                 <Trash2 />
                             </Button>

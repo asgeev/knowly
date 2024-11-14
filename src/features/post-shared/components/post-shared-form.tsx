@@ -18,7 +18,7 @@ import { SharedPostSchema } from '@/lib/formSchemas'
 import { TFile, TResponse, TSharedPostSchema } from '@/lib/types'
 import { addPostSharedAction } from '@/features/add-post/actions/add-post-actions'
 import { useEffect, useState } from 'react'
-import { deleteFileShared } from '@/features/post-shared/actions/file-shared-actions'
+import { deleteFile } from '@/features/post-shared/actions/file-shared-actions'
 import Dropzone from '@/components/molecules/dropzone'
 import File from '@/components/atoms/file'
 import { toast } from 'sonner'
@@ -57,16 +57,26 @@ export default function SharedPostForm({
     //Warn if exiting page
     useWarnIfUnsavedChanges(form.formState.isDirty)
 
-    const onDeleteFile = async (id: number) => {
-        const response: TResponse = await deleteFileShared(id)
-        if (response?.ok) {
-            setFiles((files) => files.filter((file) => file.fileId !== id))
-            toast.success('Plik został usunięty!')
+    const onDeleteFile = async (id: number, fileUID: string | undefined) => {
+        if (!id || !fileUID) {
+            return toast.error('Wystąpił błąd', {
+                description: 'Prosimy spróbować ponownie później',
+            })
         }
-        if (response?.error)
-            toast.error('Wystąpił błąd', {
+
+        const response: TResponse = await deleteFile(id, Number(fileUID))
+
+        if (response?.error) {
+            return toast.error('Wystąpił błąd', {
                 description: response?.error?.message,
             })
+        }
+
+        if (response?.ok) {
+            setFiles((files) => files.filter((file) => file.fileId !== id))
+
+            return toast.success('Plik został usunięty')
+        }
     }
 
     async function onSubmit(values: TSharedPostSchema) {
@@ -172,7 +182,9 @@ export default function SharedPostForm({
                         <File
                             key={index}
                             fileData={file}
-                            onDelete={onDeleteFile}
+                            onDelete={(fileId, fileUID) =>
+                                onDeleteFile(fileId, fileUID)
+                            }
                         />
                     )
                 })}

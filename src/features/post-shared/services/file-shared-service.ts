@@ -36,43 +36,21 @@ export const uploadFileService = async (formData: FormData) => {
         console.error('Cannot upload file!', err)
         throw new Error('Cannot upload file!')
     }
-
-    // return new Promise((resolve, reject) => {
-    //     setTimeout(() => {
-    //         // Other things to do before completion of the promise
-
-    //         // reject(new Error('File too big!'))
-
-    //         resolve({
-    //             ok: true,
-    //             message: 'File uploaded succesfully!',
-    //             file: {
-    //                 originalFileName: file?.name,
-    //                 fileNameWithExt: null,
-    //                 fileMime: null,
-    //                 fileSize: null,
-    //                 patch: null,
-    //                 uploadDate: new Date(),
-    //             },
-    //         })
-
-    //         // The fulfillment value of the promise
-
-    //         // throw new Error('Files upload error')
-    //     }, 2000)
-    // })
 }
 
-// try {
-//     const response = await fetchWithAuth(
-//         `/api/shared-posts-management/${id}?populate=files`
-//     )
-//     return response
-// } catch (error) {
-//     console.error('Cannot fetch shared posts!', error)
-//     throw new Error('Cannot fetch shared posts!')
-// }
+export const deleteFileService = async (id: number) => {
+    if (!id) {
+        throw new Error('Id is required!')
+    }
 
-// function getCookie(arg0: string) {
-//     throw new Error('Function not implemented.')
-// }
+    try {
+        const response = await fetchWithAuth(`/delete/${id}`, {
+            method: 'DELETE',
+        })
+
+        return response
+    } catch (err) {
+        console.error('Cannot delete file!', err)
+        throw new Error('Cannot delete file!')
+    }
+}

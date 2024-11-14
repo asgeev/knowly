@@ -1,7 +1,10 @@
 'use server'
 
 import { fetchWithAuth } from '@/lib/fetchWithAuth'
-import { uploadFileService } from '@/features/post-shared/services/file-shared-service'
+import {
+    deleteFileService,
+    uploadFileService,
+} from '@/features/post-shared/services/file-shared-service'
 import { TResponse, TUploadResponse } from '@/lib/types'
 import { revalidatePath } from 'next/cache'
 
@@ -40,6 +43,8 @@ export async function saveFileShared(fileData: TSharedFile) {
 
         return response?.json()
     } catch (err) {
+        console.log(err)
+
         throw new Error('Nie udało się z zapisać pliku!')
     }
 }
@@ -91,9 +96,6 @@ export async function uploadFile(formData: FormData) {
     try {
         const response = await uploadFileService(formData)
         const data: TUploadResponse = await response.json()
-
-        console.log('Upload service response json in server action')
-        console.log(data)
 
         if (!response.ok) {
             if (response.status === 403) {
@@ -153,6 +155,38 @@ export async function uploadFile(formData: FormData) {
             error: {
                 message:
                     'Wystąpił problem z przesłaniem pliku spróbuj ponownie później',
+            },
+        }
+    }
+}
+
+export async function deleteFile(fileId: number, fileUID: number) {
+    if (!fileId || !fileUID) {
+        return {
+            ok: false,
+            data: null,
+            error: {
+                message: 'Brak id pliku!',
+            },
+        }
+    }
+
+    try {
+        //Delete file in upload file service
+        await deleteFileService(fileUID)
+
+        //Delete file data in CMS and return result
+        const response: TResponse = await deleteFileShared(fileId)
+
+        return response
+    } catch (err) {
+        console.log(err)
+        return {
+            ok: false,
+            data: null,
+            error: {
+                message:
+                    'Wystąpił problem podczas usuwania pliku, spróbuj ponownie później!',
             },
         }
     }
