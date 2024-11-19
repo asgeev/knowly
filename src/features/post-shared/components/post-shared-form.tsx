@@ -18,12 +18,14 @@ import { SharedPostSchema } from '@/lib/formSchemas'
 import { TFile, TResponse, TSharedPostSchema } from '@/lib/types'
 import { addPostSharedAction } from '@/features/add-post/actions/add-post-actions'
 import { useEffect, useState } from 'react'
-import { deleteFile } from '@/features/post-shared/actions/file-shared-actions'
 import Dropzone from '@/components/molecules/dropzone'
 import File from '@/components/atoms/file'
 import { toast } from 'sonner'
 import { updatePostShared } from '@/features/post-shared/actions/post-shared-actions'
 import { useWarnIfUnsavedChanges } from '@/hooks/useWarnIfUnsavedChanges'
+import DownloadFileButton from './download-file-button'
+import DeleteFileButton from './delete-file-button'
+import { formatBytes } from '@/lib/utils'
 
 export interface TInitialData extends TSharedPostSchema {
     id: number
@@ -56,28 +58,6 @@ export default function SharedPostForm({
 
     //Warn if exiting page
     useWarnIfUnsavedChanges(form.formState.isDirty)
-
-    const onDeleteFile = async (id: number, fileUID: string | undefined) => {
-        if (!id || !fileUID) {
-            return toast.error('Wystąpił błąd', {
-                description: 'Prosimy spróbować ponownie później',
-            })
-        }
-
-        const response: TResponse = await deleteFile(id, Number(fileUID))
-
-        if (response?.error) {
-            return toast.error('Wystąpił błąd', {
-                description: response?.error?.message,
-            })
-        }
-
-        if (response?.ok) {
-            setFiles((files) => files.filter((file) => file.fileId !== id))
-
-            return toast.success('Plik został usunięty')
-        }
-    }
 
     async function onSubmit(values: TSharedPostSchema) {
         const filesArr = files.map((file) => {
@@ -178,14 +158,31 @@ export default function SharedPostForm({
             </FormProvider>
             <div className="space-y-2 pt-2">
                 {files?.map((file: TFile, index) => {
+                    const { fileId, fileUID, fileName, size, isLoading } = file
+
+                    const fileSize = size ? formatBytes(size) : null
+
                     return (
                         <File
                             key={index}
-                            fileData={file}
-                            onDelete={(fileId, fileUID) =>
-                                onDeleteFile(fileId, fileUID)
-                            }
-                        />
+                            name={fileName}
+                            size={fileSize?.toString()}
+                            isLoading={isLoading}
+                        >
+                            {fileUID && (
+                                <DownloadFileButton
+                                    fileUID={Number(fileUID)}
+                                    fileName={fileName}
+                                />
+                            )}
+                            {fileId && fileUID && (
+                                <DeleteFileButton
+                                    fileId={fileId}
+                                    fileUID={fileUID}
+                                    setFiles={setFiles}
+                                />
+                            )}
+                        </File>
                     )
                 })}
             </div>

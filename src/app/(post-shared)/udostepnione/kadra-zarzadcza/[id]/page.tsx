@@ -2,6 +2,8 @@ import { getPostSharedById } from '@/features/post-shared/actions/post-shared-ac
 import { notFound } from 'next/navigation'
 import File from '@/components/atoms/file'
 import Prose from '@/components/molecules/prose'
+import { formatBytes } from '@/lib/utils'
+import DownloadFileButton from '@/features/post-shared/components/download-file-button'
 
 export default async function PostSharedPage({
     params,
@@ -31,21 +33,25 @@ export default async function PostSharedPage({
                                 {files?.data.map((file: any, index: number) => {
                                     const {
                                         originalFileName,
-                                        fileUID,
                                         fileSize,
+                                        fileUID,
                                     } = file?.attributes
+
+                                    const size = fileSize
+                                        ? formatBytes(fileSize)
+                                        : null
                                     return (
                                         <File
                                             key={index}
                                             secondary={true}
-                                            fileData={{
-                                                fileId: file.id,
-                                                fileUID: fileUID,
-                                                fileName: originalFileName,
-                                                isLoading: false,
-                                                size: 20000,
-                                            }}
-                                        />
+                                            name={originalFileName}
+                                            size={size?.toString()}
+                                        >
+                                            <DownloadFileButton
+                                                fileUID={fileUID}
+                                                fileName={originalFileName}
+                                            />
+                                        </File>
                                     )
                                 })}
                             </div>

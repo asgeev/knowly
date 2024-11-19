@@ -1,56 +1,57 @@
-import { TFile } from '@/lib/types'
-import { Download, LoaderCircle, Trash2 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { formatBytes } from '@/lib/utils'
+import { Download, LoaderCircle } from 'lucide-react'
 import { File as FileIcon } from 'lucide-react'
+import Link from 'next/link'
+import { PropsWithChildren } from 'react'
+import { Button } from '@/components/ui/button'
 
-type TFileProps = {
-    fileData: TFile
+interface TFileProps extends PropsWithChildren {
+    name: string
+    size?: string | undefined
     secondary?: boolean
-    onDelete?: (fileId: number, fileUID: string | undefined) => void
+    href?: string
+    isLoading?: boolean
 }
 
 export default function File(props: TFileProps) {
-    const { fileData, secondary, onDelete } = props
-    const { fileId, fileName, isLoading, fileUID, size } = fileData
+    const { name, size, secondary, href, isLoading, children } = props
 
     return (
         <div
-            className={`${secondary ? 'bg-background' : ''} flex justify-between border border-border p-4 rounded-lg`}
+            className={`${secondary ? 'bg-background' : ''} flex justify-between border border-border p-4 rounded-lg gap-4`}
         >
             <div className="flex gap-4 items-center">
                 <FileIcon size={26} />
                 <div>
-                    <p className="text-base font-medium">{fileName}</p>
-                    <p className="text-sm text-muted-foreground font-medium">
-                        {size && formatBytes(size)}
+                    <p
+                        className="text-base font-medium line-clamp-1"
+                        title={name}
+                    >
+                        {name}
                     </p>
+                    {size && (
+                        <p className="text-sm text-muted-foreground font-medium">
+                            {size}
+                        </p>
+                    )}
                 </div>
             </div>
             <div className="flex justify-center items-center">
                 {isLoading ? (
                     <LoaderCircle className="animate-spin" />
                 ) : (
-                    <div className="space-x-2">
-                        {fileUID && (
+                    <div className="flex not-wrap gap-2">
+                        {href && (
                             <Button
                                 variant="outline"
                                 size="icon"
                                 title="Pobierz"
                             >
-                                <Download />
+                                <Link href={href} target="_blank">
+                                    <Download />
+                                </Link>
                             </Button>
                         )}
-                        {fileId && onDelete && (
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                title="Usuń"
-                                onClick={() => onDelete(fileId, fileUID)}
-                            >
-                                <Trash2 />
-                            </Button>
-                        )}
+                        {children}
                     </div>
                 )}
             </div>
