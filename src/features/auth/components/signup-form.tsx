@@ -41,7 +41,9 @@ export default function SignUpForm() {
                 <CardContent>
                     <div className="grid gap-4">
                         <div className="grid gap-2">
-                            <Label htmlFor="username">Nazwa użytkownika</Label>
+                            <Label htmlFor="username">
+                                Nazwa użytkownika *
+                            </Label>
                             <Input
                                 id="username"
                                 type="text"
@@ -52,7 +54,7 @@ export default function SignUpForm() {
                             <ZodErrors error={formState?.zodErrors?.username} />
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="email">Email</Label>
+                            <Label htmlFor="email">Email *</Label>
                             <Input
                                 id="email"
                                 type="email"
@@ -64,7 +66,7 @@ export default function SignUpForm() {
                         </div>
                         <div className="grid gap-2">
                             <div className="flex items-center">
-                                <Label htmlFor="password">Hasło</Label>
+                                <Label htmlFor="password">Hasło *</Label>
                                 <Link
                                     href="#"
                                     className="ml-auto inline-block text-sm underline"
@@ -79,6 +81,22 @@ export default function SignUpForm() {
                                 required
                             />
                             <ZodErrors error={formState?.zodErrors?.password} />
+                        </div>
+                        <div className="grid gap-2">
+                            <div className="flex items-center">
+                                <Label htmlFor="confirmPassword">
+                                    Powtórz hasło *
+                                </Label>
+                            </div>
+                            <Input
+                                id="confirmPassword"
+                                type="password"
+                                name="confirmPassword"
+                                required
+                            />
+                            <ZodErrors
+                                error={formState?.zodErrors?.confirmPassword}
+                            />
                         </div>
                         <Button
                             type="submit"

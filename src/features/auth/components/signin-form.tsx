@@ -43,7 +43,7 @@ export default function SignInForm() {
                             <Label htmlFor="identifier">Email lub login</Label>
                             <Input
                                 id="identifier"
-                                type="identifier"
+                                type="email"
                                 name="identifier"
                                 placeholder="imie.nazwisko@nfz-lublin.pl"
                                 required

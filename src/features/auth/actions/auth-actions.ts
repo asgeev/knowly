@@ -17,7 +17,7 @@ const config = {
 }
 
 const schemaSignIn = z.object({
-    identifier: z.string().email(),
+    identifier: z.string({ required_error: 'Podaj adres email' }).email(),
     password: z.string().min(8).max(100),
 })
 
@@ -60,17 +60,36 @@ export async function signInAction(prevState: any, formData: FormData) {
     redirect('/')
 }
 
-const schemaSignUp = z.object({
-    username: z.string().min(3).max(20),
-    email: z.string().email(),
-    password: z.string().min(8).max(100),
-})
-
+const schemaSignUp = z
+    .object({
+        username: z.string().min(3).max(20),
+        email: z
+            .string({ required_error: 'Wprowadź adres email' })
+            .email({ message: 'Nieprawidłowy adres email' }),
+        password: z
+            .string()
+            .min(8, { message: 'Hasło musi zawierać conajmniej 8 znaków' })
+            .max(100),
+        confirmPassword: z
+            .string()
+            .min(8, { message: 'Hasło musi zawierać conajmniej 8 znaków' })
+            .max(100),
+    })
+    .refine(
+        (values) => {
+            return values.password === values.confirmPassword
+        },
+        {
+            message: 'Hasła nie pasują do siebie!',
+            path: ['confirmPassword'],
+        }
+    )
 export async function signUpAction(prevState: any, formData: FormData) {
     const validateFields = schemaSignUp.safeParse({
         username: formData.get('username'),
         email: formData.get('email'),
         password: formData.get('password'),
+        confirmPassword: formData.get('confirmPassword'),
     })
 
     if (!validateFields.success) {
