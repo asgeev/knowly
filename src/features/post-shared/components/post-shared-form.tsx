@@ -124,7 +124,7 @@ export default function SharedPostForm({
                                     <FormLabel>Tytuł</FormLabel>
                                     <FormControl>
                                         <Input
-                                            placeholder="shadcn"
+                                            placeholder="Wpisz swój tytuł"
                                             {...field}
                                         />
                                     </FormControl>
