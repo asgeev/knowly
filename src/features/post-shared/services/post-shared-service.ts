@@ -1,15 +1,32 @@
 import { fetchWithAuth } from '@/lib/fetchWithAuth'
 import { TSharedPostSchema } from '@/lib/types'
 
-export async function getSharedPostsService() {
-    const params = {
-        'pagination[page]': '1',
-        'pagination[pageSize]': '10',
+//Page size for shared posts
+const pageSize = '10'
+
+export async function getSharedPostsService(currentPage?: string) {
+    let params = {
+        'sort[0]': 'createdAt:desc',
     }
+
+    //Create a new object with additional properties
+    const paginationParams = {
+        'pagination[page]': currentPage ?? '1',
+        'pagination[pageSize]': pageSize,
+    }
+    if (currentPage) {
+        params = {
+            ...params,
+            ...paginationParams,
+        }
+    }
+
     const searchParams = new URLSearchParams(params)
 
     try {
-        const response = await fetchWithAuth(`/api/shared-posts-management`)
+        const response = await fetchWithAuth(
+            `/api/shared-posts-management?${searchParams}`
+        )
         return response
     } catch (error) {
         console.error('Cannot fetch shared posts!', error)
