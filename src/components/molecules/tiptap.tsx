@@ -15,11 +15,20 @@ type TiptapProps = {
 
 const Tiptap = ({ onChange, content }: TiptapProps) => {
     const editor = useEditor({
-        extensions: [StarterKit, Document, Paragraph, Text],
+        extensions: [
+            StarterKit.configure({
+                heading: {
+                    levels: [2, 3],
+                },
+            }),
+            Document,
+            Paragraph,
+            Text,
+        ],
         content: content,
         editorProps: {
             attributes: {
-                class: 'rounded-md border border-border min-h-72 p-4',
+                class: 'prose prose-img:rounded-xl dark:prose-invert prose-gray rounded-md border border-border min-h-72 p-4',
             },
         },
         immediatelyRender: false,
@@ -27,6 +36,10 @@ const Tiptap = ({ onChange, content }: TiptapProps) => {
             onChange(editor.getHTML())
         },
     })
+
+    if (!editor) {
+        return null
+    }
 
     return (
         <>
