@@ -32,8 +32,8 @@ export default async function PostSharedPage({
                             <div className="space-y-2">
                                 {files?.data.map((file: any, index: number) => {
                                     const {
-                                        originalFileName,
-                                        fileSize,
+                                        originalname,
+                                        size: fileSize,
                                         fileUID,
                                     } = file?.attributes
 
@@ -44,12 +44,12 @@ export default async function PostSharedPage({
                                         <File
                                             key={index}
                                             secondary={true}
-                                            name={originalFileName}
+                                            name={originalname}
                                             size={size?.toString()}
                                         >
                                             <DownloadFileButton
                                                 fileUID={fileUID}
-                                                fileName={originalFileName}
+                                                fileName={originalname}
                                             />
                                         </File>
                                     )

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { uploadFile } from '@/features/post-shared/actions/file-shared-actions'
-import { TFile, TResponse } from '@/lib/types'
+import { TFile, TResponse, TUploadedFile } from '@/lib/types'
 import { Upload } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -62,9 +62,8 @@ export default function DropzoneTest(props: TDropzone) {
                         const uploadedFile: TFile = {
                             fileId: response?.data?.id,
                             fileUID: response?.data?.attributes?.fileUID,
-                            fileName:
-                                response?.data?.attributes?.originalFileName,
-                            size: response?.data?.attributes?.fileSize,
+                            fileName: response?.data?.attributes?.originalname,
+                            size: response?.data?.attributes?.size,
                             isLoading: false,
                         }
 

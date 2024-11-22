@@ -10,10 +10,10 @@ import { revalidatePath } from 'next/cache'
 
 type TSharedFile = {
     fileUID: string
-    originalFileName?: string
-    fileNameWithExt?: string
-    fileMime?: string
-    fileSize?: string
+    originalname?: string
+    filename?: string
+    mimetype?: string
+    size?: string
     path?: string
     uploadDate?: Date | undefined
 }
@@ -120,10 +120,10 @@ export async function uploadFile(formData: FormData) {
 
         const newFileInfo: TSharedFile = {
             fileUID: String(data?.data?.fileId),
-            originalFileName: data?.data?.originalname,
-            fileNameWithExt: data?.data?.filename,
-            fileMime: data?.data?.mimetype,
-            fileSize: String(data?.data?.size),
+            originalname: data?.data?.originalname,
+            filename: data?.data?.filename,
+            mimetype: data?.data?.mimetype,
+            size: String(data?.data?.size),
             path: data?.data?.path,
             uploadDate: data?.data?.uploadDate
                 ? new Date(data?.data?.uploadDate)

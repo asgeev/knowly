@@ -38,7 +38,8 @@ export default async function EditPostShared(props: TEditPostShared) {
         const newFile: TFile = {
             fileId: file?.id,
             fileUID: file.attributes.fileUID,
-            fileName: file.attributes.originalFileName,
+            fileName: file.attributes.originalname,
+            size: file.attributes.size,
             isLoading: false,
         }
         return newFile
