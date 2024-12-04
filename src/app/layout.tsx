@@ -20,6 +20,9 @@ const inter = Inter({
     display: 'swap',
 })
 
+//Fix for building error
+export const dynamic = 'force-dynamic'
+
 export default function RootLayout({
     children,
 }: {

@@ -19,3 +19,6 @@ networks:
     traefik_web:
         name: traefik_web
         external: true
+    knowly:
+        name: knowly
+        external: true
