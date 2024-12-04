@@ -150,7 +150,7 @@ export default function SharedPostForm({
                         />
                         <FormItem>
                             <FormLabel>Pliki</FormLabel>
-                            <Dropzone setFiles={setFiles} />
+                            <Dropzone setFiles={setFiles} files={files} />
                             <FormMessage />
                         </FormItem>
                     </form>
