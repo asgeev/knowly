@@ -1,4 +1,3 @@
-import { Inter } from 'next/font/google'
 import Footer from '@/components/organisms/footer'
 import Header from '@/components/organisms/header'
 import './globals.css'
@@ -8,16 +7,16 @@ import NotificationBar from '@/features/notification/components/notification-bar
 import React, { Suspense } from 'react'
 import NextTopLoader from 'nextjs-toploader'
 import { Toaster } from '@/components/ui/sonner'
+import localFont from 'next/font/local'
 
 export const metadata = {
     title: 'Knowly',
     description: 'Portal knowly',
 }
 
-const inter = Inter({
-    subsets: ['latin'],
+const inter = localFont({
+    src: './inter.ttf',
     variable: '--font-inter',
-    display: 'swap',
 })
 
 //Fix for building error
