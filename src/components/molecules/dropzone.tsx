@@ -13,26 +13,35 @@ type TDropzone = {
 }
 
 const acceptFiles = {
-    'image/png': [],
-    'image/jpeg': [],
-    'image/jpg': [],
-    'image/webp': [],
-    'image/gif': [],
-    'text/csv': [],
-    'application/msword': [],
-    'application/vnd.ms-excel': [],
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-        [],
-    'application/pdf': [],
-    'application/vnd.ms-powerpoint': [],
+    'image/png': ['.png'],
+    'image/jpeg': ['.jpeg', '.jpg'],
+    'image/jpg': ['.jpg'],
+    'image/webp': ['.webp'],
+    'image/gif': ['.gif'],
+    'text/csv': ['.csv'],
+    'application/msword': ['.doc'],
+    'application/vnd.ms-excel': ['.xls'],
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': [
+        '.xlsx',
+    ],
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': [
+        '.docx',
+    ],
+    'application/vnd.ms-word.document.macroEnabled.12': ['.docm'],
+    'application/vnd.oasis.opendocument.text': ['.odt'],
+    'application/vnd.ms-powerpoint': ['.ppt'],
     'application/vnd.openxmlformats-officedocument.presentationml.presentation':
-        [],
-    'application/rtf': [],
-    'application/xml': [],
-    'application/vnd.rar': [],
-    'application/zip': [],
-    'application/x-7z-compressed': [],
-    'text/plain': [],
+        ['.pptx'],
+    'application/pdf': ['.pdf'],
+    'application/rtf': ['.rtf'],
+    'application/xml': ['.xml'],
+    'application/vnd.rar': ['.rar'],
+    'application/zip': ['.zip'],
+    'application/x-zip-compressed': ['.zip'],
+    'application/x-7z-compressed': ['.7z'],
+    'application/x-compressed': ['.7z'],
+    'text/plain': ['.txt'],
+    'text/xml': ['.xml'],
 }
 
 export default function DropzoneTest(props: TDropzone) {
