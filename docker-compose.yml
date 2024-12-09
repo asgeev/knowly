@@ -11,6 +11,7 @@ services:
             STRAPI_URL: ${STRAPI_URL}
         networks:
             - traefik_web
+            - knowly
         labels:
             - traefik.enable=true
             - traefik.http.routers.knowly-frontend.rule=Host(`${PUBLIC_URL}`)
