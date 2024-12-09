@@ -20,10 +20,12 @@ export default function File(props: TFileProps) {
             className={`${secondary ? 'bg-background' : ''} flex justify-between border border-border p-4 rounded-lg gap-4`}
         >
             <div className="flex gap-4 items-center">
-                <FileIcon size={26} />
+                <div>
+                    <FileIcon size={26} />
+                </div>
                 <div>
                     <p
-                        className="text-base font-medium line-clamp-1"
+                        className="text-base font-medium break-all line-clamp-1"
                         title={name}
                     >
                         {name}
