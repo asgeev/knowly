@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import {
+    forgotPasswordService,
     signInService,
     signUpService,
 } from '@/features/auth/services/auth-service'
@@ -128,4 +129,39 @@ export async function signUpAction(prevState: any, formData: FormData) {
 export async function logoutAction() {
     cookies().set('jwt', '', { ...config, maxAge: 0 })
     redirect('/')
+}
+
+export async function forgotPasswordAction(prevState: any, formData: FormData) {
+    const email = formData.get('email') as string
+
+    const schemaForgotPassword = z.object({
+        email: z
+            .string({ required_error: 'Podaj adres email' })
+            .min(1, 'Email jest wymagany')
+            .email({ message: 'Nieprawidłowy adres email' }),
+    })
+
+    const validateFields = schemaForgotPassword.safeParse({
+        email: formData.get('email'),
+    })
+
+    if (!validateFields.success) {
+        return {
+            ...prevState,
+            zodErrors: validateFields.error.flatten().fieldErrors,
+        }
+    }
+
+    try {
+        await forgotPasswordService(email)
+        return {
+            ok: true,
+        }
+    } catch (err) {
+        console.log('Error')
+        console.log(err)
+        throw new Error(
+            'Wystąpił problem podczas wysyłania mejla, spróbuj ponownie później!'
+        )
+    }
 }

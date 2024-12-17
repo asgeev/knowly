@@ -1,5 +1,6 @@
 import { getStrapiUrl } from '@/lib/utils'
 import { getAuthToken } from '@/lib/auth'
+import { strapi } from '@/lib/axios'
 
 interface RegisterUserProps {
     username: string
@@ -78,4 +79,14 @@ export async function getUserMe() {
         console.log(error)
         return { ok: false, data: null, error: error }
     }
+}
+
+export async function forgotPasswordService(email: string) {
+    if (!email) {
+        throw new Error('Email is required!')
+    }
+
+    return await strapi.post('/api/auth/forgot-password', {
+        email: email, // user email
+    })
 }
