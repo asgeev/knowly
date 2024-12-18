@@ -2,12 +2,6 @@ import { getStrapiUrl } from '@/lib/utils'
 import { getAuthToken } from '@/lib/auth'
 import { strapi } from '@/lib/axios'
 
-interface RegisterUserProps {
-    username: string
-    password: string
-    email: string
-}
-
 interface LoginUserProps {
     identifier: string
     password: string
@@ -15,8 +9,16 @@ interface LoginUserProps {
 
 const baseUrl = getStrapiUrl()
 
-export async function signUpService(userData: RegisterUserProps) {
+export async function signUpService(
+    username: string,
+    email: string,
+    password: string
+) {
     const url = new URL('/api/auth/local/register', baseUrl)
+
+    if (!username || !email || !password) {
+        throw new Error('Missing one of elements: username, email, password ')
+    }
 
     try {
         const response = await fetch(url, {
@@ -24,7 +26,11 @@ export async function signUpService(userData: RegisterUserProps) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ ...userData }),
+            body: JSON.stringify({
+                username,
+                email,
+                password,
+            }),
             cache: 'no-cache',
         })
 

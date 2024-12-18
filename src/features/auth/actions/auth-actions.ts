@@ -1,6 +1,5 @@
 'use server'
 
-import { z } from 'zod'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import {
@@ -9,6 +8,12 @@ import {
     signInService,
     signUpService,
 } from '@/features/auth/services/auth-service'
+import {
+    schemaForgotPassword,
+    schemaResetPassword,
+    schemaSignIn,
+    schemaSignUp,
+} from '@/features/auth/libs/schemas'
 
 const config = {
     maxAge: 60 * 60 * 24 * 2,
@@ -17,11 +22,6 @@ const config = {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
 }
-
-const schemaSignIn = z.object({
-    identifier: z.string({ required_error: 'Podaj adres email' }).email(),
-    password: z.string().min(8).max(100),
-})
 
 export async function signInAction(prevState: any, formData: FormData) {
     const validateFields = schemaSignIn.safeParse({
@@ -62,36 +62,17 @@ export async function signInAction(prevState: any, formData: FormData) {
     redirect('/')
 }
 
-const schemaSignUp = z
-    .object({
-        username: z.string().min(3).max(20),
-        email: z
-            .string({ required_error: 'Wprowadź adres email' })
-            .email({ message: 'Nieprawidłowy adres email' }),
-        password: z
-            .string()
-            .min(8, { message: 'Hasło musi zawierać conajmniej 8 znaków' })
-            .max(100),
-        confirmPassword: z
-            .string()
-            .min(8, { message: 'Hasło musi zawierać conajmniej 8 znaków' })
-            .max(100),
-    })
-    .refine(
-        (values) => {
-            return values.password === values.confirmPassword
-        },
-        {
-            message: 'Hasła nie pasują do siebie!',
-            path: ['confirmPassword'],
-        }
-    )
 export async function signUpAction(prevState: any, formData: FormData) {
+    const username = formData.get('username') as string
+    const email = formData.get('email') as string
+    const password = formData.get('password') as string
+    const confirmPassword = formData.get('confirmPassword')
+
     const validateFields = schemaSignUp.safeParse({
-        username: formData.get('username'),
-        email: formData.get('email'),
-        password: formData.get('password'),
-        confirmPassword: formData.get('confirmPassword'),
+        username,
+        email,
+        password,
+        confirmPassword,
     })
 
     if (!validateFields.success) {
@@ -102,7 +83,7 @@ export async function signUpAction(prevState: any, formData: FormData) {
         }
     }
 
-    const responseData = await signUpService(validateFields?.data)
+    const responseData = await signUpService(username, email, password)
 
     if (!responseData) {
         return {
@@ -134,13 +115,6 @@ export async function logoutAction() {
 
 export async function forgotPasswordAction(prevState: any, formData: FormData) {
     const email = formData.get('email') as string
-
-    const schemaForgotPassword = z.object({
-        email: z
-            .string({ required_error: 'Podaj adres email' })
-            .min(1, 'Email jest wymagany')
-            .email({ message: 'Nieprawidłowy adres email' }),
-    })
 
     const validateFields = schemaForgotPassword.safeParse({
         email: formData.get('email'),
@@ -174,27 +148,6 @@ export async function resetPasswordAction(
 ) {
     const password = formData.get('password') as string
     const confirmPassword = formData.get('confirmPassword') as string
-
-    const schemaResetPassword = z
-        .object({
-            password: z
-                .string()
-                .min(8, { message: 'Hasło musi zawierać co najmniej 8 znaków' })
-                .max(100),
-            confirmPassword: z
-                .string()
-                .min(8, { message: 'Hasło musi zawierać co najmniej 8 znaków' })
-                .max(100),
-        })
-        .refine(
-            (values) => {
-                return values.password === values.confirmPassword
-            },
-            {
-                message: 'Hasła nie pasują do siebie!',
-                path: ['confirmPassword'],
-            }
-        )
 
     const validateFields = schemaResetPassword.safeParse({
         password: password,
