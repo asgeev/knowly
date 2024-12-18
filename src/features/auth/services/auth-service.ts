@@ -90,3 +90,27 @@ export async function forgotPasswordService(email: string) {
         email: email, // user email
     })
 }
+
+export async function resetPasswordService(
+    password: string,
+    passwordConfirmation: string,
+    code: string
+) {
+    if (!password) {
+        throw new Error('New password is required!')
+    }
+
+    if (!passwordConfirmation) {
+        throw new Error('New password confirmation is required!')
+    }
+
+    if (!code) {
+        throw new Error('Reset code is required!')
+    }
+
+    return await strapi.post('/api/auth/reset-password', {
+        code: code, // code contained in the reset link.
+        password: password,
+        passwordConfirmation: passwordConfirmation,
+    })
+}

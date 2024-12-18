@@ -5,6 +5,7 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import {
     forgotPasswordService,
+    resetPasswordService,
     signInService,
     signUpService,
 } from '@/features/auth/services/auth-service'
@@ -162,6 +163,62 @@ export async function forgotPasswordAction(prevState: any, formData: FormData) {
         console.log(err)
         throw new Error(
             'Wystąpił problem podczas wysyłania mejla, spróbuj ponownie później!'
+        )
+    }
+}
+
+export async function resetPasswordAction(
+    code: string,
+    prevState: any,
+    formData: FormData
+) {
+    const password = formData.get('password') as string
+    const confirmPassword = formData.get('confirmPassword') as string
+
+    const schemaResetPassword = z
+        .object({
+            password: z
+                .string()
+                .min(8, { message: 'Hasło musi zawierać co najmniej 8 znaków' })
+                .max(100),
+            confirmPassword: z
+                .string()
+                .min(8, { message: 'Hasło musi zawierać co najmniej 8 znaków' })
+                .max(100),
+        })
+        .refine(
+            (values) => {
+                return values.password === values.confirmPassword
+            },
+            {
+                message: 'Hasła nie pasują do siebie!',
+                path: ['confirmPassword'],
+            }
+        )
+
+    const validateFields = schemaResetPassword.safeParse({
+        password: password,
+        confirmPassword: confirmPassword,
+    })
+
+    if (!validateFields.success) {
+        return {
+            ...prevState,
+            zodErrors: validateFields.error.flatten().fieldErrors,
+        }
+    }
+
+    try {
+        await resetPasswordService(password, confirmPassword, code)
+
+        return {
+            ok: true,
+        }
+    } catch (err) {
+        console.log('Reset password error')
+        console.error(err)
+        throw new Error(
+            'Kod do zresetowania hasła jest już nie aktualny lub wystapił błąd. Wygeneruj nowy link z kodem przechodząc do sekcji "Zapomniałeś hasła?"'
         )
     }
 }
