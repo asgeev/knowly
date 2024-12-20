@@ -29,8 +29,10 @@ export function refinePasswordValidationSchema(schema?: ZodRawShape) {
 
 //Schema for sign in form
 export const schemaSignIn = z.object({
-    identifier: z.string({ required_error: 'Podaj adres email' }).email(),
-    password: z.string().min(1, { message: 'Hasło jest zbyt krótkie' }),
+    identifier: z
+        .string({ required_error: 'Podaj adres email lub login' })
+        .min(1, { message: 'Email lub login jest wymagany' }),
+    password: z.string().min(1, { message: 'Podaj hasło' }),
 })
 
 //Schema for sign up form

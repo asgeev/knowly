@@ -43,9 +43,8 @@ export default function SignInForm() {
                             <Label htmlFor="identifier">Email lub login</Label>
                             <Input
                                 id="identifier"
-                                type="email"
+                                type="text"
                                 name="identifier"
-                                placeholder="imie.nazwisko@nfz-lublin.pl"
                                 required
                             />
                             <ZodErrors
