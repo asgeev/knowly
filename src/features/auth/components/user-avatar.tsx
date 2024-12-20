@@ -16,8 +16,6 @@ import { LogoutButton } from '@/features/auth/components/logout-button'
 export default async function UserAvatar() {
     const user = await getUserMe()
 
-    console.log(user)
-
     return (
         <div className="flex gap-4">
             {user.ok ? (
