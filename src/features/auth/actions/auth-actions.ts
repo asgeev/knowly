@@ -14,6 +14,7 @@ import {
     schemaSignIn,
     schemaSignUp,
 } from '@/features/auth/libs/schemas'
+import { AxiosError, AxiosResponse } from 'axios'
 
 const config = {
     maxAge: 60 * 60 * 24 * 2,
@@ -83,29 +84,35 @@ export async function signUpAction(prevState: any, formData: FormData) {
         }
     }
 
-    const responseData = await signUpService(username, email, password)
+    try {
+        await signUpService(username, email, password)
 
-    if (!responseData) {
         return {
-            ...prevState,
-            strapiErrors: null,
-            zodErrors: null,
-            message: 'Oops! Wystąpił błąd. Prosimy spróbować ponownie później.',
+            ok: true,
+        }
+    } catch (error: any) {
+        console.error('SIGN UP ERROR')
+
+        console.log(error?.response?.data?.error?.message)
+
+        if (error.response?.data?.error) {
+            return {
+                ...prevState,
+                strapiErrors: error?.response?.data?.error,
+                zodErrors: null,
+            }
+        }
+
+        if (error) {
+            return {
+                ...prevState,
+                strapiErrors: null,
+                zodErrors: null,
+                message:
+                    'Oops! Wystąpił błąd rejestracji. Prosimy spróbować ponownie później.',
+            }
         }
     }
-
-    if (responseData.error) {
-        return {
-            ...prevState,
-            strapiErrors: responseData.error,
-            zodErrors: null,
-            message:
-                'Oops! Wystąpił błąd rejestracji. Prosimy spróbować ponownie później.',
-        }
-    }
-
-    cookies().set('jwt', responseData.jwt, config)
-    redirect('/')
 }
 
 export async function logoutAction() {

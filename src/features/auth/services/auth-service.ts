@@ -14,30 +14,15 @@ export async function signUpService(
     email: string,
     password: string
 ) {
-    const url = new URL('/api/auth/local/register', baseUrl)
-
     if (!username || !email || !password) {
-        throw new Error('Missing one of elements: username, email, password ')
+        throw new Error('Missing one of elements: username, email, password')
     }
 
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username,
-                email,
-                password,
-            }),
-            cache: 'no-cache',
-        })
-
-        return response.json()
-    } catch (error) {
-        console.error('Registration Service Error:', error)
-    }
+    return strapi.post('/api/auth/local/register', {
+        username,
+        email,
+        password,
+    })
 }
 
 export async function signInService(userData: LoginUserProps) {
