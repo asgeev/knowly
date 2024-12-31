@@ -3,14 +3,6 @@
 import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useFormState, useFormStatus } from 'react-dom'
@@ -52,15 +44,17 @@ export default function ForgotPasswordForm() {
     }, [formState.ok])
 
     return (
-        <Card className="mx-auto max-w-md">
-            <CardHeader>
-                <CardTitle className="text-2xl">Zapomniałeś hasła?</CardTitle>
-                <CardDescription>
+        <div>
+            <div>
+                <h1 className="text-2xl font-semibold tracking-tight">
+                    Nie pamiętasz hasła?
+                </h1>
+                <p className="text-muted-foreground text-sm text-balance mt-1.5">
                     Podaj adres email, jeżeli konto istnieje w naszym systemie
                     wyślemy Ci link do zresetowania hasła.
-                </CardDescription>
-            </CardHeader>
-            <CardContent>
+                </p>
+            </div>
+            <div className="mt-8">
                 <form action={formAction} ref={formRef}>
                     <div className="flex flex-col gap-4">
                         <Label htmlFor="email">Email</Label>
@@ -76,6 +70,7 @@ export default function ForgotPasswordForm() {
                             <StrapiErrors error={formState?.strapiErrors} />
                         </div>
                         <SubmitButton />
+
                         <Button asChild variant={'link'} size={'sm'}>
                             <Link href={'/zaloguj'} className="underline">
                                 Wróć do strony logowania
@@ -83,9 +78,9 @@ export default function ForgotPasswordForm() {
                         </Button>
                     </div>
                 </form>
-            </CardContent>
-            {formState.ok && (
-                <CardFooter>
+            </div>
+            <div className="mt-6">
+                {formState.ok && (
                     <Alert>
                         <Terminal className="h-4 w-4" />
                         <AlertTitle>Email został wysłany</AlertTitle>
@@ -94,8 +89,8 @@ export default function ForgotPasswordForm() {
                             został wysłany link do zresetowania hasła.
                         </AlertDescription>
                     </Alert>
-                </CardFooter>
-            )}
-        </Card>
+                )}
+            </div>
+        </div>
     )
 }
