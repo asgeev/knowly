@@ -1,10 +1,6 @@
-import Footer from '@/components/organisms/footer'
-import Header from '@/components/organisms/header'
 import './globals.css'
 import { ThemeProvider } from 'next-themes'
-import AllNotifications from '@/features/notification/components/all-notifications'
-import NotificationBar from '@/features/notification/components/notification-bar'
-import React, { Suspense } from 'react'
+import React from 'react'
 import NextTopLoader from 'nextjs-toploader'
 import { Toaster } from '@/components/ui/sonner'
 import localFont from 'next/font/local'
@@ -38,17 +34,7 @@ export default function RootLayout({
                     showSpinner={false}
                     shadow={false}
                 />
-                <ThemeProvider attribute="class">
-                    <Suspense fallback={null}>
-                        <NotificationBar />
-                    </Suspense>
-                    <Header />
-                    <Suspense fallback={null}>
-                        <AllNotifications />
-                    </Suspense>
-                    <main className="pb-6">{children}</main>
-                    <Footer />
-                </ThemeProvider>
+                <ThemeProvider attribute="class">{children}</ThemeProvider>
                 <Toaster position="top-right" richColors />
             </body>
         </html>
