@@ -57,60 +57,52 @@ export default function ResetPasswordForm({ code }: { code: string }) {
     }, [formState.ok])
 
     return (
-        <>
-            <Card className="mx-auto max-w-md">
-                <CardHeader>
-                    <CardTitle className="text-2xl">
-                        Resetowanie hasła
-                    </CardTitle>
-                    <CardDescription>
-                        Podaj nowe hasło do swojego konta.
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <form action={formAction} ref={formRef}>
-                        <div className="flex flex-col gap-4">
-                            <div className="grid gap-2">
-                                <Label htmlFor="password">Nowe Hasło *</Label>
-                                <Input
-                                    id="password"
-                                    type="password"
-                                    name="password"
-                                    required
-                                />
-                                <ZodErrors
-                                    error={formState?.zodErrors?.password}
-                                />
-                            </div>
-                            <div className="grid gap-2">
-                                <div className="flex items-center">
-                                    <Label htmlFor="confirmPassword">
-                                        Powtórz nowe hasło *
-                                    </Label>
-                                </div>
-                                <Input
-                                    id="confirmPassword"
-                                    type="password"
-                                    name="confirmPassword"
-                                    required
-                                />
-                                <ZodErrors
-                                    error={
-                                        formState?.zodErrors?.confirmPassword
-                                    }
-                                />
-                            </div>
-                            <SubmitButton />
-                            <StrapiErrors error={formState?.strapiErrors} />
-                            <Button asChild variant={'link'} size={'sm'}>
-                                <Link href={'/zaloguj'} className="underline">
-                                    Wróć do strony logowania
-                                </Link>
-                            </Button>
+        <div>
+            <div>
+                <h1 className="text-2xl font-semibold tracking-tight">
+                    Zresetuj hasło
+                </h1>
+                <p className="text-muted-foreground text-sm text-balance mt-1.5">
+                    Podaj nowe hasło do swojego konta.
+                </p>
+                <form action={formAction} ref={formRef}>
+                    <div className="flex flex-col gap-6 mt-8">
+                        <div className="grid gap-2">
+                            <Label htmlFor="password">Nowe Hasło *</Label>
+                            <Input
+                                id="password"
+                                type="password"
+                                name="password"
+                                required
+                            />
+                            <ZodErrors error={formState?.zodErrors?.password} />
                         </div>
-                    </form>
-                </CardContent>
-            </Card>
+                        <div className="grid gap-2">
+                            <div className="flex items-center">
+                                <Label htmlFor="confirmPassword">
+                                    Powtórz nowe hasło *
+                                </Label>
+                            </div>
+                            <Input
+                                id="confirmPassword"
+                                type="password"
+                                name="confirmPassword"
+                                required
+                            />
+                            <ZodErrors
+                                error={formState?.zodErrors?.confirmPassword}
+                            />
+                        </div>
+                        <SubmitButton />
+                        <StrapiErrors error={formState?.strapiErrors} />
+                        <Button asChild variant={'link'} size={'sm'}>
+                            <Link href={'/zaloguj'} className="underline">
+                                Wróć do strony logowania
+                            </Link>
+                        </Button>
+                    </div>
+                </form>
+            </div>
 
             <AlertDialog open={formState.ok}>
                 <AlertDialogContent>
@@ -132,6 +124,6 @@ export default function ResetPasswordForm({ code }: { code: string }) {
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
-        </>
+        </div>
     )
 }

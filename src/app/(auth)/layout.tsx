@@ -17,13 +17,19 @@ export default function AuthLayout({
                     <div className="w-full max-w-sm">{children}</div>
                 </div>
             </div>
-            <div className="relative hidden bg-muted lg:block">
-                <Image
-                    src="/placeholder.svg"
-                    alt="Image"
-                    fill
-                    className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-                />
+            <div className="relative hidden lg:block bg-black">
+                <div className="relative h-full w-full">
+                    <Image
+                        src="/placeholder.svg"
+                        alt="Image"
+                        fill
+                        className="absolute mx-auto inset-0 max-w-xl animate-pulse"
+                    />
+                </div>
+                <div className="absolute right-20 bottom-20 text-5xl font-semibold leading-snug tracking-wide text-right text-white">
+                    Znajdź swoje <br />
+                    miejsce w sieci!
+                </div>
             </div>
         </div>
     )
