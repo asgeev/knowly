@@ -4,12 +4,13 @@ import { Logo } from '../atoms/logo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ThemeSwitcher from '@/components/atoms/theme-switcher'
+
 const Footer = () => {
     return (
         <footer className="mt-32 pb-20">
             <div className="container px-1 md:px-0 py-4 flex flex-col gap-12">
-                <div className="flex flex-wrap gap-20 justify-between">
-                    <Logo />
+                <div className="flex flex-wrap gap-20 justify-between items-center">
+                    <Logo size="full" />
                     <div className="flex gap-10">
                         <div>
                             <ThemeSwitcher />

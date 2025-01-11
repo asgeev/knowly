@@ -1,18 +1,45 @@
 import Image from 'next/image'
+import LogoBlack from '@/assets/logo-black.svg'
+import LogoWhite from '@/assets/logo-white.svg'
+import clsx from 'clsx'
 
-export const Logo = () => {
+type LogoSize = 'small' | 'full'
+
+interface LogoProps {
+    size?: LogoSize
+}
+
+const logoSizeClasses: Record<LogoSize, string> = {
+    small: 'hidden',
+    full: 'hidden md:block',
+}
+
+export const Logo = ({ size = 'small' }: LogoProps) => {
     return (
-        <div className="flex self-start">
-            <div className={`flex flex-row gap-4 items-center`}>
+        <div className="min-w-max">
+            <div className="flex flex-row gap-2 items-center">
                 <Image
-                    src="/knowlylogo.svg"
-                    width={40}
-                    height={40}
+                    src={LogoWhite}
+                    height={20}
+                    width={32}
                     alt="knowly icon"
+                    className="hidden dark:block"
                 />
-                <div className="">
-                    <span className="text-2xl">knowly</span>
-                </div>
+                <Image
+                    src={LogoBlack}
+                    height={20}
+                    width={32}
+                    alt="knowly icon"
+                    className="dark:hidden"
+                />
+                <span
+                    className={clsx(
+                        logoSizeClasses[size],
+                        'font-medium text-xl'
+                    )}
+                >
+                    knowly
+                </span>
             </div>
         </div>
     )
