@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 export default function NotFound() {
     return (
@@ -16,14 +17,19 @@ export default function NotFound() {
                     <h2 className={'text-xl md:text-2xl font-medium'}>
                         Nie znaleziono takiej strony!
                     </h2>
-                    <p className={'mt-2'}>Wróć na stronę główną klikając:</p>
+                    <p className="mt-2 text-muted-foreground">
+                        Wróć na stronę główną klikając:
+                    </p>
                     <div className={'mt-10 flex justify-center'}>
-                        <Link href={'/'} className="group text-white">
-                            <div className="bg-accent flex gap-2 group-hover:gap-4 transition-all items-center justify-center px-10 py-3 rounded-md w-48">
-                                <p>Główna</p>
-                                <ChevronRight size={18} />
-                            </div>
-                        </Link>
+                        <Button
+                            asChild
+                            size={'lg'}
+                            className="hover:gap-4 transition-all"
+                        >
+                            <Link href={'/'}>
+                                Główna <ChevronRight />
+                            </Link>
+                        </Button>
                     </div>
                 </div>
             </div>

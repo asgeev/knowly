@@ -1,23 +1,22 @@
-import { Inter } from 'next/font/google'
-import Footer from '@/components/organisms/Footer'
-import Header from '@/components/organisms/Header'
 import './globals.css'
 import { ThemeProvider } from 'next-themes'
-import Notifications from '@/components/organisms/Notifications'
-import NotificationBar from '@/components/organisms/NotificationBar'
-import React, { Suspense } from 'react'
+import React from 'react'
 import NextTopLoader from 'nextjs-toploader'
+import { Toaster } from '@/components/ui/sonner'
+import localFont from 'next/font/local'
 
 export const metadata = {
     title: 'Knowly',
     description: 'Portal knowly',
 }
 
-const inter = Inter({
-    subsets: ['latin'],
+const inter = localFont({
+    src: './inter.ttf',
     variable: '--font-inter',
-    display: 'swap',
 })
+
+//Fix for building error
+export const dynamic = 'force-dynamic'
 
 export default function RootLayout({
     children,
@@ -29,25 +28,14 @@ export default function RootLayout({
             <head>
                 <title>Knowly</title>
             </head>
-            <body
-                className={`${inter.className} bg-primary transition duration-600 dark:bg-primary`}
-            >
+            <body className={`${inter.className} transition duration-600`}>
                 <NextTopLoader
                     color="white"
                     showSpinner={false}
                     shadow={false}
                 />
-                <ThemeProvider attribute="class">
-                    <Suspense fallback={null}>
-                        <NotificationBar />
-                    </Suspense>
-                    <Header />
-                    <Suspense fallback={null}>
-                        <Notifications />
-                    </Suspense>
-                    <main className="pb-6">{children}</main>
-                    <Footer />
-                </ThemeProvider>
+                <ThemeProvider attribute="class">{children}</ThemeProvider>
+                <Toaster position="top-right" richColors />
             </body>
         </html>
     )

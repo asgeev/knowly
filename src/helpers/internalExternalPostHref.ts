@@ -1,4 +1,4 @@
-import { PostAttributes } from '@/app/types'
+import { PostAttributes } from '@/lib/types'
 
 export const internalExternalPostHref = (postAttributes: PostAttributes) => {
     if (postAttributes?.isExternal) {

@@ -1,4 +1,4 @@
-import { PostCover } from '@/app/types'
+import { PostCover } from '@/lib/types'
 
 //Try get image from cover object
 export default function getExistCoverUrl(
