@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { SearchButton } from '../atoms/SearchButton'
+import { SearchButton } from '@/features/search/components/search-button'
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 import { Search } from 'lucide-react'
 import {
@@ -30,7 +30,7 @@ const { searchClient } = instantMeiliSearch(
 )
 
 export const Meilisearch = () => {
-    const searchDialogRef = useRef<HTMLDialogElement>(null)
+    const searchDialogRef = useRef<HTMLDialogElement | null>(null)
 
     const openMeilisearch = () => {
         searchDialogRef?.current?.showModal()
@@ -51,16 +51,16 @@ export const Meilisearch = () => {
                 //TODO: add colors for light theme
                 className="my-0 top-10 md:top-24 w-11/12 max-w-3xl backdrop:bg-backdrop backdrop:backdrop-blur-[2px] bg-inherit overflow-hidden "
             >
-                <div className="bg-secondary rounded-lg shadow-meilisearch border border-primary">
+                <div className="bg-background rounded-lg shadow-meilisearch border border-border">
                     <InstantSearch
                         searchClient={searchClient}
                         indexName="number"
                     >
-                        <div className="flex flex-row px-4 items-center gap-4 border-b border-color_2 ">
-                            <Search size={20} className="text-textSecondary" />
+                        <div className="flex flex-row px-4 items-center gap-4 border-b border-border ">
+                            <Search size={20}/>
                             <SearchBox
                                 classNames={{
-                                    root: 'w-full ',
+                                    root: 'w-full',
                                     form: 'appearance-none ',
                                     input: 'unset focus:outline-none bg-transparent h-14 w-full font-medium',
                                     submitIcon: 'hidden',
@@ -70,13 +70,13 @@ export const Meilisearch = () => {
                             />
                             <button
                                 onClick={closeMeilisearch}
-                                className="apperance-none text-textSecondary text-[10px] font-semibold bg-primary  p-2 rounded-md hover:text-accent"
+                                className="apperance-none text-muted-foreground text-[10px] font-semibold bg-secondary border border-border p-2 rounded-md hover:text-secondary-foreground"
                             >
                                 ESC
                             </button>
                         </div>
                         <div className="px-6 min-h-10 max-h-[600px] overflow-auto transition-all ease-in-out duration-1000 divide-y divide-color_2">
-                            <EmptyQueryBoundary text="Brak wyników">
+                            <EmptyQuery text="Brak wyników">
                                 <Index indexName="number">
                                     <NoResults>
                                         <HitsSection title="Telefon">
@@ -100,7 +100,7 @@ export const Meilisearch = () => {
                             </EmptyQuery>
                         </div>
 
-                        <div className="border-t border-color_2 h-14 flex justify-end items-center px-4 py-6">
+                        <div className="border-t border-border h-14 flex justify-end items-center px-4 py-6">
                             <PoweredBy
                                 classNames={{
                                     logo: 'h-4',
